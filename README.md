@@ -2,9 +2,9 @@
 Description du projet
 
 ## Documentation
-### Angular
+### Angular 2
 
-Angular doc http://devdocs.io/angular~2_typescript/
+Angular 2 doc http://devdocs.io/angular~2_typescript/
 
 Book:
 
@@ -17,7 +17,7 @@ AngularJS 2: A Simple Guide on Web App Development https://www.amazon.com/Angula
 AngularJS 2.0: Easy Guide on Web Application Development (Pas top du tout selon les commentaires) https://www.amazon.com/AngularJS-2-0-Guide-Application-Development/dp/1522722173/?_encoding=UTF8&camp=1789&creative=9325&keywords=angular%202&linkCode=ur2&qid=1453362363&sr=8-2&tag=angu2-20&linkId=QFLWEODHR7PC7S5G
 
 
-### Ionic
+### Ionic 2
 
 Ionic doc http://ionicframework.com/docs/v2/
 
@@ -25,5 +25,5 @@ Book:
 
 Building Mobile Apps with Ionic 2 (Un bon livre à mon avis) http://www.goodreads.com/book/show/30438033-building-mobile-apps-with-ionic-2
 
-Lien qui mène vers des livre Ionic
+Lien qui mène vers les livres Ionic 2
 https://ionicframework.com/docs/v2/resources/books-and-courses/
