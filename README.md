@@ -19,3 +19,11 @@ AngularJS 2.0: Easy Guide on Web Application Development (Pas top du tout selon 
 
 ### Ionic
 
+Ionic doc http://ionicframework.com/docs/v2/
+
+Book:
+
+Building Mobile Apps with Ionic 2 (Un bon livre à mon avis) http://www.goodreads.com/book/show/30438033-building-mobile-apps-with-ionic-2
+
+Lien qui mène vers des livre Ionic
+https://ionicframework.com/docs/v2/resources/books-and-courses/
