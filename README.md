@@ -1,6 +1,9 @@
 # VESS
 Description du projet
 
+# Vue d'ensemble
+![alt tag](Documents/vue_d_ensemble.png)
+
 ## Documentation
 ### Angular 2
 
