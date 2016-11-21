@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Notation de la couche</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <h3> Apparence de la couche :</h3>
+
+  <!--List of criteria-->
+  <ion-list>
+    <ion-item class="item-checkbox" *ngFor="let item of itens; let i=index">
+      <ion-label>{{item.title}}</ion-label>
+      <ion-checkbox item-right color="secondary" checked={{item.checked}} (click)="updateCheckedBox(i, item)"></ion-checkbox>
+      <ion-thumbnail item-left>
+        <img src={{item.imgSrc}}>
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
+
+  <ion-buttons >
+        <button ion-button color="light" round>Retour</button>
+        <button ion-button color="light" round>Aide</button>
+        <button ion-button color="light" round (click)="validationStep(10)">Valider</button>
+  </ion-buttons>
+
+
+</ion-content>
