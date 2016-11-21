@@ -4,7 +4,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { StatusBar } from 'ionic-native';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { Notation1Page } from '../pages/notation-1/notation-1';
 import { ListPage } from '../pages/list/list';
 
 
@@ -15,7 +15,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage: any = HelloIonicPage;
+  rootPage: any = Notation1Page;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -26,7 +26,7 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
+      { title: 'Hello Ionic', component: Notation1Page },
       { title: 'My First List', component: ListPage }
     ];
   }
