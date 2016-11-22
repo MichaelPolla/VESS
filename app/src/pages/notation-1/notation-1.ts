@@ -21,17 +21,16 @@ export class Notation1Page {
     //construction of the list
     this.items = [
       { title: 'Pas de motte fermée', checked: false, imgSrc: './assets/icon/motte.png', code:1},
-      { title: 'Présence possible de mottes fermées', checked: true, imgSrc: './assets/icon/motte.png',code:2 },
+      { title: 'Présence possible de mottes fermées', checked: false, imgSrc: './assets/icon/motte.png',code:2 },
       { title: 'Présence majoritaires de mottes fermées', checked:false, imgSrc: './assets/icon/motte.png',code:3}
     ];
   }
 
   //Methods
-  validationStep(p){
+  validationStep(){
       this.navCtrl.push(Notation2Page, {
-      code: this.code,
-    })
-       .catch(()=> console.log('should I stay or should I go now'))
+        code: this.code,
+      }).catch(()=> console.log('should I stay or should I go now'))
   }
 
   updateCheckedBox(position, item){

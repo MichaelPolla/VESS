@@ -15,25 +15,25 @@
 
 <ion-content padding>
 
-  <h3> La plupart des Agrégats obtenus en appliquant une très faible pression mesure...</h3>
+  <h3> {{title}}</h3>
 
-  <ion-item>
-    <ion-label>Pas de motte fermée</ion-label>
-    <ion-checkbox item-right color="secondary" checked="false"></ion-checkbox>
+  <!--List of criteria-->
+  <ion-list>
+    <ion-item class="item-checkbox" *ngFor="let item of items; let i=index">
+      <ion-label>{{item.title}}</ion-label>
+      <ion-checkbox item-right color="secondary" checked={{item.checked}} (click)="updateCheckedBox(i, item)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
 
-  </ion-item>
 
+    <img src='./assets/icon/regle.png'/>
 
-  <ion-item>
-    <ion-label>Présence possible de mottes fermées</ion-label>
-    <ion-checkbox item-right color="secondary" checked="false"></ion-checkbox>
-  </ion-item>
 
 
   <ion-buttons >
-        <button ion-button color="light" round>Retour</button>
+        <button ion-button color="light" round (click)="cancelButton()">Retour</button>
         <button ion-button color="light" round>Aide</button>
-        <button ion-button color="light" round>Valider</button>
+        <button ion-button color="light" round (click)="validationStep()">Valider</button>
   </ion-buttons>
 
 
