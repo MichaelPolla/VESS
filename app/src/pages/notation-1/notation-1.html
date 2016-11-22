@@ -15,7 +15,7 @@
 
   <!--List of criteria-->
   <ion-list>
-    <ion-item class="item-checkbox" *ngFor="let item of itens; let i=index">
+    <ion-item class="item-checkbox" *ngFor="let item of items; let i=index">
       <ion-label>{{item.title}}</ion-label>
       <ion-checkbox item-right color="secondary" checked={{item.checked}} (click)="updateCheckedBox(i, item)"></ion-checkbox>
       <ion-thumbnail item-left>

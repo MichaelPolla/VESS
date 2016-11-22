@@ -15,11 +15,11 @@ import { NavController } from 'ionic-angular';
 })
 export class Notation1Page {
   //declaration of field
-  itens: Array<{title: string, checked: Boolean, imgSrc:String, code:number}>;
+  items: Array<{title: string, checked: Boolean, imgSrc:String, code:number}>;
   code:number;
   constructor(public navCtrl: NavController) {
     //construction of the list
-    this.itens = [
+    this.items = [
       { title: 'Pas de motte fermée', checked: false, imgSrc: './assets/icon/motte.png', code:1},
       { title: 'Présence possible de mottes fermées', checked: true, imgSrc: './assets/icon/motte.png',code:2 },
       { title: 'Présence majoritaires de mottes fermées', checked:false, imgSrc: './assets/icon/motte.png',code:3}
@@ -38,7 +38,7 @@ export class Notation1Page {
     //declar var
     let cnt: number = 0;
 
-    for(let item of this.itens) {
+    for(let item of this.items) {
       //if position selected
       if(position==cnt){
         item.checked=true;
