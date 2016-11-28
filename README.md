@@ -30,10 +30,11 @@ Switching to Angular 2 (Pas mal) https://www.amazon.com/Switching-Angular-2-Mink
 
 Ionic doc http://ionicframework.com/docs/v2/
 
-Book:
+Books:
 
-Building Mobile Apps with Ionic 2 (Un bon livre à mon avis) http://www.goodreads.com/book/show/30438033-building-mobile-apps-with-ionic-2
+* [Mobile App Development with Ionic 2: Cross-Platform Apps with Ionic 2, Angular 2, and Cordova](https://www.amazon.com/Mobile-App-Development-Ionic-Cross-Platform/dp/1491937785/ref=sr_1_1?s=books&ie=UTF8&qid=1480323403&sr=1-1&keywords=Building+Mobile+Apps+with+Ionic+2) (release date jan. 2017)
 
-Lien qui mène vers les livres Ionic 2
-https://ionicframework.com/docs/v2/resources/books-and-courses/
--> voir livre qui sort en octobre
+
+* [Building Mobile Apps with Ionic 2](http://www.goodreads.com/book/show/30438033-building-mobile-apps-with-ionic-2) (Un bon livre à mon avis) 
+
+* [Lien qui mène vers les livres Ionic 2](https://ionicframework.com/docs/v2/resources/books-and-courses) -> voir livre qui sort en octobre
