@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 import { Notation2Page } from '../notation-2/notation-2';
-import { NavController } from 'ionic-angular';
+import { Modal, ModalController, NavController } from 'ionic-angular';
+import { ModalPicturePage } from '../modal-picture/modal-picture';
 
 /*
   Generated class for the Notation2 page.
@@ -14,10 +15,12 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'notation-1.html'
 })
 export class Notation1Page {
+
   //declaration of field
   items: Array<{title: string, checked: Boolean, imgSrc:String, code:number}>;
   code:number;
-  constructor(public navCtrl: NavController) {
+  constructor(public nav: NavController, public modalCtrl: ModalController) {
+    this.nav = nav;
     //construction of the list
     this.items = [
       { title: 'Pas de motte fermée', checked: false, imgSrc: './assets/icon/motte.png', code:1},
@@ -28,7 +31,7 @@ export class Notation1Page {
 
   //Methods
   validationStep(){
-      this.navCtrl.push(Notation2Page, {
+      this.nav.push(Notation2Page, {
         code: this.code,
       }).catch(()=> console.log('should I stay or should I go now'))
   }
@@ -50,7 +53,8 @@ export class Notation1Page {
   }
 
   showModal() {
-    alert("aller salut !");
+    let testModal = this.modalCtrl.create(ModalPicturePage);
+    testModal.present();
   }
 
 }
