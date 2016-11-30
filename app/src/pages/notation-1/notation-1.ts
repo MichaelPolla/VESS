@@ -22,7 +22,7 @@ export class Notation1Page {
     this.items = [
       { title: 'Pas de motte fermée', checked: false, imgSrc: './assets/icon/motte.png', code:1},
       { title: 'Présence possible de mottes fermées', checked: false, imgSrc: './assets/icon/motte.png',code:2 },
-      { title: 'Présence majoritaires de mottes fermées', checked:false, imgSrc: './assets/icon/motte.png',code:3}
+      { title: 'Présence majoritaire de mottes fermées', checked:false, imgSrc: './assets/icon/motte.png',code:3}
     ];
   }
 
