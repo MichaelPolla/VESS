@@ -16,7 +16,7 @@
   <ion-list class="wrapping-list">
     <ion-item *ngFor="let item of items; let i=index"> <!-- TODO-optional : check if we can use "enumerate"-like for getting index -->
       <ion-label class="wraptext">{{item.title}}</ion-label>
-      <ion-thumbnail item-left (click)="showModal()" >
+      <ion-thumbnail item-left (click)="showModal(i)" >
         <img src={{item.imgSrc}}>
       </ion-thumbnail>
       <ion-checkbox item-right color="secondary" checked={{item.checked}} (click)="updateCheckedBox(i, item)"></ion-checkbox>
