@@ -49,4 +49,8 @@ export class Notation1Page {
     }
   }
 
+  showModal() {
+    alert("aller salut !");
+  }
+
 }

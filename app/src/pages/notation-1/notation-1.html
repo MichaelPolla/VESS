@@ -10,17 +10,17 @@
 
 <ion-content padding>
 
-
   <h3> Apparence de la couche :</h3>
 
   <!--List of criteria-->
   <ion-list class="wrapping-list">
-    <ion-item class="item-checkbox" *ngFor="let item of items; let i=index">
+    <ion-item *ngFor="let item of items; let i=index"> <!-- TODO-optional : check if we can use "enumerate"-like for getting index -->
       <ion-label class="wraptext">{{item.title}}</ion-label>
-      <ion-checkbox item-right color="secondary" checked={{item.checked}} (click)="updateCheckedBox(i, item)"></ion-checkbox>
-      <ion-thumbnail item-left>
+      <ion-thumbnail item-left (click)="showModal()" >
         <img src={{item.imgSrc}}>
       </ion-thumbnail>
+      <ion-checkbox item-right color="secondary" checked={{item.checked}} (click)="updateCheckedBox(i, item)"></ion-checkbox>
+
     </ion-item>
   </ion-list>
 
