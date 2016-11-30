@@ -14,9 +14,9 @@
   <h3> Apparence de la couche :</h3>
 
   <!--List of criteria-->
-  <ion-list>
+  <ion-list class="wrapping-list">
     <ion-item class="item-checkbox" *ngFor="let item of items; let i=index">
-      <ion-label>{{item.title}}</ion-label>
+      <ion-label class="wraptext">{{item.title}}</ion-label>
       <ion-checkbox item-right color="secondary" checked={{item.checked}} (click)="updateCheckedBox(i, item)"></ion-checkbox>
       <ion-thumbnail item-left>
         <img src={{item.imgSrc}}>
