@@ -53,8 +53,8 @@ export class Notation1Page {
   }
 
   showModal(item_index) {
-    let testModal = this.modalCtrl.create(ModalPicturePage);
-    let src = this.items[item_index].imgSrc; // TODO: pass this parameter to the modal so it can be used to show the picture.
+    let imgSrc = this.items[item_index].imgSrc; // TODO: pass this parameter to the modal so it can be used to show the picture.
+    let testModal = this.modalCtrl.create(ModalPicturePage, { imgSrc: imgSrc});
     testModal.present();
   }
 

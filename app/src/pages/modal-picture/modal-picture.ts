@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { ViewController, NavParams } from 'ionic-angular';
 
 /*
   Generated class for the ModalPicture page.
@@ -18,7 +18,10 @@ import { ViewController } from 'ionic-angular';
 })
 export class ModalPicturePage {
 
-  constructor(public viewCtrl: ViewController) {}
+  imgSrc:string;
+  constructor(public viewCtrl: ViewController, public navParams: NavParams) {
+      this.imgSrc = this.navParams.get('imgSrc');
+  }
 
   dismiss(data) {
     this.viewCtrl.dismiss(data);
