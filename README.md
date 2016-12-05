@@ -2,7 +2,7 @@
 Description du projet
 
 ## Vue d'ensemble
-![alt tag](Documents/vue_d_ensemble.png)
+![alt tag](Documents/Vue d'ensemble.png)
 
 
 ## Autres documents de travail
