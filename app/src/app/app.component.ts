@@ -5,6 +5,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 import { Notation1Page } from '../pages/notation-1/notation-1';
+import { HomePage } from '../pages/home-page/home-page';
 import { ListPage } from '../pages/list/list';
 
 
@@ -15,7 +16,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage: any = Notation1Page;
+  rootPage: any = HomePage;
   pages: Array<{title: string, component: any}>;
 
   constructor(

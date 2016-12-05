@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Notation2Page } from '../notation-2/notation-2';
+import { HomePage } from '../home-page/home-page';
 import { Modal, ModalController, NavController } from 'ionic-angular';
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 
@@ -50,6 +51,10 @@ export class Notation1Page {
       }
       cnt++;
     }
+  }
+
+  goHomePage(){;
+    this.nav.push(HomePage).catch(()=> console.log('should I stay or should I go now'))
   }
 
   showModal(item_index) {

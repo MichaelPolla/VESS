@@ -6,6 +6,7 @@ import { Notation2Page } from '../pages/notation-2/notation-2';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
+import { HomePage } from '../pages/home-page/home-page';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
     Notation2Page,
     ItemDetailsPage,
     ListPage,
-    ModalPicturePage
+    ModalPicturePage,
+    HomePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,7 +28,8 @@ import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
     Notation2Page,
     ItemDetailsPage,
     ListPage,
-    ModalPicturePage
+    ModalPicturePage,
+    HomePage
   ],
   providers: []
 })
