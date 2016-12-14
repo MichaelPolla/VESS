@@ -30,12 +30,21 @@
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
-    "cordova-plugin-statusbar",
     "cordova-plugin-console",
+    "cordova-plugin-statusbar",
     "cordova-plugin-device",
     "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-plugin-x-toast",
+    "cordova-plugin-camera",
+    "cordova-plugin-compat"
   ],
-  "cordovaPlatforms": [],
+  "cordovaPlatforms": [
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    }
+  ],
   "description": "VESS: An Ionic project"
 }
