@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Notation1Page} from '../notation-1/notation-1';
+import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 
 /*
   Generated class for the HomePage page.
@@ -18,6 +18,6 @@ export class HomePage{
 
 
   goNotation(){
-    this.navCtrl.push(Notation1Page).catch(()=> console.log('should I stay or should I go now'))
+    this.navCtrl.push(ParcelsTestsPage).catch(()=> console.log('should I stay or should I go now'))
   }
 }

@@ -7,6 +7,7 @@ import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
 import { HomePage } from '../pages/home-page/home-page';
+import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HomePage } from '../pages/home-page/home-page';
     ItemDetailsPage,
     ListPage,
     ModalPicturePage,
-    HomePage
+    HomePage,
+    ParcelsTestsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -29,7 +31,8 @@ import { HomePage } from '../pages/home-page/home-page';
     ItemDetailsPage,
     ListPage,
     ModalPicturePage,
-    HomePage
+    HomePage,
+    ParcelsTestsPage
   ],
   providers: []
 })
