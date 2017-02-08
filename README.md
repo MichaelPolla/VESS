@@ -39,7 +39,9 @@ Books:
 
 * [Lien qui mène vers les livres Ionic 2](https://ionicframework.com/docs/v2/resources/books-and-courses) -> voir livre qui sort en octobre
 
-* [Introduction to lists in Ionic 2](https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/)
+Online resources :
+[Introduction to lists](https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/)
+[Simple guide to navigation] (https://www.joshmorony.com/a-simple-guide-to-navigation-in-ionic-2/)
 
 ### Git
 
