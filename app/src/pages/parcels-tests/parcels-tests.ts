@@ -14,9 +14,13 @@ export class ParcelsTestsPage {
 
   pageTitle = "Parcels";
   items: any = [];
+  tests: any = [];
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
-
+    this.items = [new Object({title:'parcel 1'}), 
+                  new Object({title:'parcel 2'})];
+    this.tests = [new Object({title:'test 1'}), 
+                  new Object({title:'test 2'})];
   }
 
   addItem() {
@@ -33,6 +37,7 @@ export class ParcelsTestsPage {
         {
           text: 'Add',
           handler: data => {
+            console.log(data['title']);
             this.items.push(data);
           }
         }
