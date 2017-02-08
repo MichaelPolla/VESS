@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
+import { GifViewPage } from '../gif-view/gif-view';
 
 /*
   Generated class for the HomePage page.
@@ -18,6 +19,10 @@ export class HomePage{
 
 
   goNotation(){
-    this.navCtrl.push(ParcelsTestsPage).catch(()=> console.log('should I stay or should I go now'))
+    this.navCtrl.push(ParcelsTestsPage).catch(()=> console.log('should I stay or should I go now'));
+  }
+
+  goExtractionBloc(){
+    this.navCtrl.push(GifViewPage).catch(()=> console.log('should I stay or should I go now'));
   }
 }
