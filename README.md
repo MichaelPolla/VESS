@@ -38,3 +38,7 @@ Books:
 * [Building Mobile Apps with Ionic 2](http://www.goodreads.com/book/show/30438033-building-mobile-apps-with-ionic-2) (Un bon livre à mon avis) 
 
 * [Lien qui mène vers les livres Ionic 2](https://ionicframework.com/docs/v2/resources/books-and-courses) -> voir livre qui sort en octobre
+
+### Git
+
+Rename a folder : ´git mv <old name> <new name>´
