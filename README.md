@@ -43,6 +43,8 @@ Online resources :
 [Introduction to lists](https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/)
 [Simple guide to navigation] (https://www.joshmorony.com/a-simple-guide-to-navigation-in-ionic-2/)
 
+`ionic serve -c` : launch in browser, `-c` to show logs also in console.
+
 ### Git
 
 Rename a folder : `git mv <oldname> <new name>`
