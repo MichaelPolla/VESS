@@ -2,7 +2,7 @@
 Description du projet
 
 ## Vue d'ensemble
-![alt tag](Documents/Vue d'ensemble.png)
+![alt tag](docs/Vue d'ensemble.png)
 
 
 ## Autres documents de travail
@@ -38,3 +38,17 @@ Books:
 * [Building Mobile Apps with Ionic 2](http://www.goodreads.com/book/show/30438033-building-mobile-apps-with-ionic-2) (Un bon livre à mon avis) 
 
 * [Lien qui mène vers les livres Ionic 2](https://ionicframework.com/docs/v2/resources/books-and-courses) -> voir livre qui sort en octobre
+
+Online resources :
+[Introduction to lists](https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/)
+[Simple guide to navigation] (https://www.joshmorony.com/a-simple-guide-to-navigation-in-ionic-2/)
+
+`ionic serve -c` : launch in browser, `-c` to show logs also in console.
+
+### Git
+
+Rename a folder : `git mv <oldname> <new name>`
+
+
+### Markdown
+Markdown Cheat Sheet : https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet

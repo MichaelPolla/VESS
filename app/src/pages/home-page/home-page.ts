@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 import { GifViewPage } from '../gif-view/gif-view';
+import { CameraPage } from '../camera/camera';
 
 /*
   Generated class for the HomePage page.
@@ -24,5 +25,9 @@ export class HomePage{
 
   goExtractionBloc(){
     this.navCtrl.push(GifViewPage).catch(()=> console.log('should I stay or should I go now'));
+  }
+
+  goCamera(){
+    this.navCtrl.push(CameraPage).catch(()=> console.log('should I stay or should I go now'))
   }
 }

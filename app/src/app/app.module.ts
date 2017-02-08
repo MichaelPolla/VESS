@@ -10,9 +10,11 @@ import { HomePage } from '../pages/home-page/home-page';
 import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
 import { GifViewPage } from '../pages/gif-view/gif-view';
 import { DefiningLayerPage } from '../pages/defining-layer/defining-layer';
+import { CameraPage } from '../pages/camera/camera';
 
 @NgModule({
   declarations: [
+    CameraPage,
     MyApp,
     Notation1Page,
     Notation2Page,
@@ -29,6 +31,7 @@ import { DefiningLayerPage } from '../pages/defining-layer/defining-layer';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    CameraPage,
     MyApp,
     Notation1Page,
     Notation2Page,
