@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home-page/home-page';
-import { ModalPicturePage } from '../modal-picture/modal-picture';
+import { Notation1Page } from '../notation-1/notation-1';
+import { DefiningLayerPage } from '../defining-layer/defining-layer';
 
 /*
   Generated class for the GifView page.
@@ -30,30 +30,27 @@ export class GifViewPage {
     //image in function of step
     switch(this.stepView){
       case 0:
-        this.imageFile='./assets/icon/mignon.gif';
+        this.imageFile='./assets/icon/TERRE_extraction_bloc.jpg';
       break;
-      case 3:
-        this.imageFile='./assets/icon/motte.png';
+      case 2:
+        this.imageFile='./assets/icon/TERRE_ouverture_bloc.jpg';
       break;
     }
   }
 
   validationStep(){
       if(this.stepView==0){
-        this.navCtrl.push(ModalPicturePage, {
+        this.navCtrl.push(DefiningLayerPage, {
           stepView: this.stepView+1,
         }).catch(()=> console.log('should I stay or should I go now'))
       }else{
-        this.navCtrl.push(GifViewPage, {
-          stepView: this.stepView+3,
-        }).catch(()=> console.log('should I stay or should I go now'))
+        this.navCtrl.push(Notation1Page).catch(()=> console.log('should I stay or should I go now'))
       }
 
   }
 
-  cancelButton(){
-    this.navCtrl.push(HomePage, {
-    }).catch(()=> console.log('should I stay or should I go now'))
+  returnButton(){
+    this.navCtrl.pop();
   }
 
 }

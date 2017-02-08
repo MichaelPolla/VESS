@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Toast } from 'ionic-native';
-import { Notation1Page } from '../notation-1/notation-1';
 
 /*
   Generated class for the Notation2 page.
@@ -98,9 +97,8 @@ export class Notation2Page {
     }
   }
 
-  cancelButton(){
-    this.navCtrl.push(Notation1Page, {
-    }).catch(()=> console.log('should I stay or should I go now'))
+  returnButton(){
+    this.navCtrl.pop();
   }
 
 }
