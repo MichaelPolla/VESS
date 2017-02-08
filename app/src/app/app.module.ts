@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { Storage } from '@ionic/storage';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Notation1Page } from '../pages/notation-1/notation-1';
@@ -43,6 +44,6 @@ import { CameraPage } from '../pages/camera/camera';
     GifViewPage,
     DefiningLayerPage
   ],
-  providers: []
+  providers: [Storage]
 })
 export class AppModule {}
