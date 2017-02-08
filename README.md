@@ -41,4 +41,8 @@ Books:
 
 ### Git
 
-Rename a folder : ´git mv <old name> <new name>´
+Rename a folder : `git mv <oldname> <new name>`
+
+
+### Markdown
+Markdown Cheat Sheet : https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
