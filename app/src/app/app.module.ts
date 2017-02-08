@@ -9,9 +9,11 @@ import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
 import { HomePage } from '../pages/home-page/home-page';
 import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
 import { GifViewPage } from '../pages/gif-view/gif-view';
+import { CameraPage } from '../pages/camera/camera';
 
 @NgModule({
   declarations: [
+    CameraPage,
     MyApp,
     Notation1Page,
     Notation2Page,
@@ -27,6 +29,7 @@ import { GifViewPage } from '../pages/gif-view/gif-view';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    CameraPage,
     MyApp,
     Notation1Page,
     Notation2Page,
