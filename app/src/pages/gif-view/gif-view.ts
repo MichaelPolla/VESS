@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home-page/home-page';
+import { ModalPicturePage } from '../modal-picture/modal-picture';
 
 /*
   Generated class for the GifView page.
@@ -15,12 +16,15 @@ import { HomePage } from '../home-page/home-page';
 export class GifViewPage {
   stepView:number;
   imageFile:string;
+  titlePage:string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     //test if is the first step or other step
     if(this.navParams.get('stepView')==null){
       this.stepView = 0;
+      this.titlePage = 'Extraction du bloc';
     }else{
       this.stepView = this.navParams.get('stepView');
+      this.titlePage = 'Ouverture du bloc';
     }
 
     //image in function of step
@@ -35,9 +39,16 @@ export class GifViewPage {
   }
 
   validationStep(){
-      this.navCtrl.push(GifViewPage, {
-        stepView: this.stepView+3,
-      }).catch(()=> console.log('should I stay or should I go now'))
+      if(this.stepView==0){
+        this.navCtrl.push(ModalPicturePage, {
+          stepView: this.stepView+1,
+        }).catch(()=> console.log('should I stay or should I go now'))
+      }else{
+        this.navCtrl.push(GifViewPage, {
+          stepView: this.stepView+3,
+        }).catch(()=> console.log('should I stay or should I go now'))
+      }
+
   }
 
   cancelButton(){
