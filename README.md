@@ -39,6 +39,8 @@ Books:
 
 * [Lien qui mène vers les livres Ionic 2](https://ionicframework.com/docs/v2/resources/books-and-courses) -> voir livre qui sort en octobre
 
+* [Introduction to lists in Ionic 2](https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/)
+
 ### Git
 
 Rename a folder : `git mv <oldname> <new name>`
