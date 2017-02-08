@@ -1,0 +1,37 @@
+<!--
+  Generated template for the DefiningLayer page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Définir couche</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <img src={{imageFile}}/>
+
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Nombre de couche</ion-label>
+      <ion-input type="number" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Taill total du bloc de terre</ion-label>
+      <ion-input type="number" value=""></ion-input>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-buttons >
+        <button ion-button color="light" round (click)="returnButton()">Retour</button>
+        <button ion-button color="light" round>Aide</button>
+        <button ion-button color="light" round (click)="validationStep()" >Suivant</button>
+  </ion-buttons>
+</ion-content>

@@ -9,6 +9,7 @@ import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
 import { HomePage } from '../pages/home-page/home-page';
 import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
 import { GifViewPage } from '../pages/gif-view/gif-view';
+import { DefiningLayerPage } from '../pages/defining-layer/defining-layer';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { GifViewPage } from '../pages/gif-view/gif-view';
     ModalPicturePage,
     HomePage,
     ParcelsTestsPage,
-    GifViewPage
+    GifViewPage,
+    DefiningLayerPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -35,7 +37,8 @@ import { GifViewPage } from '../pages/gif-view/gif-view';
     ModalPicturePage,
     HomePage,
     ParcelsTestsPage,
-    GifViewPage
+    GifViewPage,
+    DefiningLayerPage
   ],
   providers: []
 })
