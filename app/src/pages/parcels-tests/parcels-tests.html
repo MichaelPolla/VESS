@@ -7,7 +7,11 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>parcels-tests</ion-title>
+    <ion-title>{{pageTitle}}</ion-title>
+
+    <ion-buttons end>
+        <button ion-button icon-only (click)="addItem()"><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,17 +20,17 @@
 <ion-content padding>
       <ion-list>
  
-        <ion-item-sliding *ngFor="let note of notes">
+        <ion-item-sliding *ngFor="let item of items">
  
-            <ion-item>
-                {{note}}
+            <ion-item (click)=itemClicked()>
+                {{item.title}}
             </ion-item>
  
             <ion-item-options>
-                <button ion-button icon-only (click)="editNote(note)" light>
+                <button ion-button icon-only (click)="edititem(item)" light>
                     <ion-icon name="paper"></ion-icon>
                 </button>
-                <button ion-button icon-only (click)="deleteNote(note)" danger>
+                <button ion-button icon-only (click)="deleteitem(item)" danger>
                     <ion-icon name="trash"></ion-icon>
                 </button>
             </ion-item-options>
