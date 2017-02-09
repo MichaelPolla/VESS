@@ -14,8 +14,17 @@
 
 
 <ion-content padding>
-    <button (click)="takePicture()">Take a Picture</button>
+    <img src={{imageFile}}>
 
-      Latest Picture:
-      <!--<img [src]="base64Image" *ngIf="base64Image" />-->
+    <button ion-button block color="light" item-center (click)="takePicture()">
+      <ion-icon name="camera"></ion-icon>
+      Prendre la photo
+    </button>
+
+    <ion-buttons >
+          <button ion-button color="light" round (click)="returnButton()">Retour</button>
+          <button ion-button color="light" round>Aide</button>
+          <button ion-button color="light" round (click)="validationStep()" >Suivant</button>
+    </ion-buttons>
+
 </ion-content>

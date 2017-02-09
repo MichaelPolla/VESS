@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Camera, File } from 'ionic-native';
+import { DefiningLayerPage } from '../defining-layer/defining-layer';
 
 /*
   Useful docs :
@@ -15,8 +16,11 @@ declare var cordova;
   templateUrl: 'camera.html'
 })
 export class CameraPage {
-
-  constructor(public navCtrl: NavController) {
+  public imageFile: string;
+  stepView:number;
+  constructor(public navCtrl: NavController,  public navParams: NavParams) {
+    this.stepView = this.navParams.get('stepView');
+    this.imageFile = './assets/icon/mignon.gif';
   }
 
     ionViewDidLoad() {
@@ -25,20 +29,28 @@ export class CameraPage {
 
   takePicture() {
     Camera.getPicture({
-      destinationType: Camera.DestinationType.FILE_URI, //TODO: switch for iOS (see links)
-      encodingType: Camera.EncodingType.JPEG,
+      //destinationType: Camera.DestinationType.FILE_URI, //TODO: switch for iOS (see links)
+      //encodingType: Camera.EncodingType.JPEG,
+      destinationType: Camera.DestinationType.DATA_URL,
       targetWidth: 1000, //TODO: check if it necessary to resize picture, and if so, set correct values
       targetHeight:1000
     }).then((imagePath) => {
-        var currentName = imagePath.replace(/^.*[\\\/]/, '');
-    
-        File.moveFile(cordova.file.tempDirectory, currentName, cordova.file.externalRootDirectory, "test.jpg");
-        
-      
-
-      
+        this.imageFile = "data:image/jpeg;base64," + imagePath;
+        //var currentName = imagePath.replace(/^.*[\\\/]/, '');
+        //File.moveFile(cordova.file.tempDirectory, currentName, cordova.file.externalRootDirectory, "test.jpg");
     }, (err) => {
       console.log(err);
     });
+  }
+
+
+  validationStep(){
+    this.navCtrl.push(DefiningLayerPage, {
+      stepView: this.stepView+1,
+    }).catch(()=> console.log('should I stay or should I go now'))
+  }
+
+  returnButton(){
+    this.navCtrl.pop();
   }
 }

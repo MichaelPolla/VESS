@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Notation1Page } from '../notation-1/notation-1';
-import { DefiningLayerPage } from '../defining-layer/defining-layer';
+import { CameraPage } from '../camera/camera';
 
 /*
   Generated class for the GifView page.
@@ -32,7 +32,7 @@ export class GifViewPage {
       case 0:
         this.imageFile='./assets/icon/TERRE_extraction_bloc.jpg';
       break;
-      case 2:
+      case 3:
         this.imageFile='./assets/icon/TERRE_ouverture_bloc.jpg';
       break;
     }
@@ -40,7 +40,7 @@ export class GifViewPage {
 
   validationStep(){
       if(this.stepView==0){
-        this.navCtrl.push(DefiningLayerPage, {
+        this.navCtrl.push(CameraPage, {
           stepView: this.stepView+1,
         }).catch(()=> console.log('should I stay or should I go now'))
       }else{
