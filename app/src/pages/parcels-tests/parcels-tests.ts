@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
 import { NavController, AlertController } from 'ionic-angular';
 
 /*
@@ -12,15 +13,11 @@ import { NavController, AlertController } from 'ionic-angular';
 })
 export class ParcelsTestsPage {
 
-  pageTitle = "Parcels";
+  pageTitle = "Parcelles";
   items: any = [];
-  tests: any = [];
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
-    this.items = [new Object({title:'parcel 1'}), 
-                  new Object({title:'parcel 2'})];
-    this.tests = [new Object({title:'test 1'}), 
-                  new Object({title:'test 2'})];
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public storage: Storage) {
+    this.getData();
   }
 
   addItem() {
@@ -37,8 +34,8 @@ export class ParcelsTestsPage {
         {
           text: 'Add',
           handler: data => {
-            console.log(data['title']);
             this.items.push(data);
+            this.setData();
           }
         }
       ]
@@ -65,6 +62,7 @@ export class ParcelsTestsPage {
 
             if (index > -1) {
               this.items[index] = data;
+              this.setData();
             }
           }
         }
@@ -81,11 +79,29 @@ export class ParcelsTestsPage {
 
     if (index > -1) {
       this.items.splice(index, 1);
+      this.setData();
     }
   }
 
   itemClicked() {
-    this.pageTitle = "Tests";
+    //TODO : when an item is clicked, update the page to show next step (parcelle -> tests, tests -> couches, etc.)
+    //this.pageTitle = "Tests";
+  }
+
+  setData() {
+      this.storage.set('data', this.items);
+  }
+
+  getData() {
+    this.storage.get('data').then ((data) => {
+      if(data != null) {
+        this.items = data;
+      }
+    });
+  }
+
+  resetStorage() {
+    this.storage.clear();
   }
 
 }
