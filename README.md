@@ -47,7 +47,8 @@ Books:
 [Storage (Ionic docs)](https://ionicframework.com/docs/v2/storage/)  
 [Saving data in Ionic 2 (Josh Morony)](https://www.joshmorony.com/a-simple-guide-to-saving-data-in-ionic-2/)  
 
-`ionic serve -c` : launch in browser, `-c` to show logs also in console.
+`ionic serve -c` : launch in browser, `-c` (--consolelogs) to show logs also in console.
+`ionic emulate android|ios` 
 
 ### Git
 
