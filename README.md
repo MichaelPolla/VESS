@@ -56,3 +56,7 @@ Rename a folder : `git mv <oldname> <new name>`
 
 ### Markdown
 Markdown Cheat Sheet : https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+
+### TypeScript
+[FAQ](https://github.com/Microsoft/TypeScript/wiki/FAQ)
+[Do's and Dont's](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html)
