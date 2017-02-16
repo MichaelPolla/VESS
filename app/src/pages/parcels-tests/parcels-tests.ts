@@ -1,39 +1,65 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { NavController, AlertController } from 'ionic-angular';
+import { AlertController, NavController, NavParams } from 'ionic-angular';
 
 /*
 
   Docs :
    - Introduction to lists : https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/
 */
+
+enum Steps {
+  Parcels,
+  Tests,
+  Layers
+}
+
 @Component({
   selector: 'page-parcels-tests',
   templateUrl: 'parcels-tests.html'
 })
 export class ParcelsTestsPage {
 
-  pageTitle = "Parcelles";
-  items: any = [];
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public storage: Storage) {
+
+  pageTitle:string;
+  step:number;
+  items:any = [];
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
     this.getData();
+    this.step = this.navParams.get('step');
+    switch(this.step) {
+      case Steps.Tests:
+        this.pageTitle = "Tests";
+        break;
+      case Steps.Layers:
+        this.pageTitle = "Couches";
+        break;
+      default:
+        this.step = Steps.Parcels;
+        this.pageTitle = "Parcelles";
+        break;
+    }
+
   }
 
   addItem() {
-
+    //TODO : adjust depending of the step ("Ajouter parcelle", "Ajouter couche"...)
     let prompt = this.alertCtrl.create({
-      title: 'Add Item',
+      title: 'Ajouter un élément',
       inputs: [{
         name: 'title'
       }],
       buttons: [
         {
-          text: 'Cancel'
+          text: 'Annuler'
         },
         {
-          text: 'Add',
+          text: 'Ajouter',
           handler: data => {
+            console.log("données :" + data);
             this.items.push(data);
             this.setData();
           }
@@ -47,16 +73,16 @@ export class ParcelsTestsPage {
   editItem(item) {
 
     let prompt = this.alertCtrl.create({
-      title: 'Edit Note',
+      title: 'Éditer',
       inputs: [{
         name: 'title'
       }],
       buttons: [
         {
-          text: 'Cancel'
+          text: 'Annuler'
         },
         {
-          text: 'Save',
+          text: 'Enregistrer',
           handler: data => {
             let index = this.items.indexOf(item);
 
@@ -86,6 +112,7 @@ export class ParcelsTestsPage {
   itemClicked() {
     //TODO : when an item is clicked, update the page to show next step (parcelle -> tests, tests -> couches, etc.)
     //this.pageTitle = "Tests";
+    this.navCtrl.push(ParcelsTestsPage, {step: this.step+1});
   }
 
   setData() {
