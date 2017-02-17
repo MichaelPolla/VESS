@@ -55,15 +55,15 @@ Books:
 `ionic serve -c` : launch in browser, `-c` (--consolelogs) to show logs also in console.
 `ionic emulate android|ios` 
 
+### TypeScript
+[Coding guidelines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines)  
+[FAQ](https://github.com/Microsoft/TypeScript/wiki/FAQ)  
+[Do's and Dont's](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html)
+
 ### Git
 
-Rename a folder : `git mv <oldname> <new name>`
+Rename a folder : `git mv <oldname> <new name>` 
 
 
 ### Markdown
 Markdown Cheat Sheet : https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
-
-### TypeScript
-[Coding guidelines](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines)  
-[FAQ](https://github.com/Microsoft/TypeScript/wiki/FAQ)
-[Do's and Dont's](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html)
