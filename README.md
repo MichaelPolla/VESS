@@ -46,6 +46,8 @@ Books:
 
 [Storage (Ionic docs)](https://ionicframework.com/docs/v2/storage/)  
 [ionic-storage readme on GitHub](https://github.com/driftyco/ionic-storage/blob/master/README.md)  
+[no more 'query' in Storage - reply from devs](https://github.com/driftyco/ionic/issues/8269#issuecomment-250590367)
+
 [Saving data in Ionic2 (Josh Morony)](https://www.joshmorony.com/a-simple-guide-to-saving-data-in-ionic-2/)  
 [How to use PouchDB + SQLite in Ionic2](http://gonehybrid.com/how-to-use-pouchdb-sqlite-for-local-storage-in-ionic-2/)  
 [Use SQLite in Ionic2](https://www.thepolyglotdeveloper.com/2015/12/use-sqlite-in-ionic-2-instead-of-local-storage/)
