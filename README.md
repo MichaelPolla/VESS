@@ -44,8 +44,8 @@ Books:
 [Introduction to lists](https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/) 
 [Simple guide to navigation](https://www.joshmorony.com/a-simple-guide-to-navigation-in-ionic-2/)  
 
+[Ionic Storage documentation on GitHub] (more complete that the 'official doc' below)(https://github.com/driftyco/ionic-storage/blob/master/README.md)  
 [Storage (Ionic docs)](https://ionicframework.com/docs/v2/storage/)  
-[ionic-storage readme on GitHub](https://github.com/driftyco/ionic-storage/blob/master/README.md)  
 [no more 'query' in Storage - reply from devs](https://github.com/driftyco/ionic/issues/8269#issuecomment-250590367)
 
 [Saving data in Ionic2 (Josh Morony)](https://www.joshmorony.com/a-simple-guide-to-saving-data-in-ionic-2/)  
