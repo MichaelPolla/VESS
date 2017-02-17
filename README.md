@@ -45,9 +45,9 @@ Books:
 [Simple guide to navigation](https://www.joshmorony.com/a-simple-guide-to-navigation-in-ionic-2/)  
 
 [Storage (Ionic docs)](https://ionicframework.com/docs/v2/storage/)  
-[ionic-storage readme on GitHub](https://github.com/driftyco/ionic-storage/blob/master/README.md)
+[ionic-storage readme on GitHub](https://github.com/driftyco/ionic-storage/blob/master/README.md)  
 [Saving data in Ionic2 (Josh Morony)](https://www.joshmorony.com/a-simple-guide-to-saving-data-in-ionic-2/)  
-[How to use PouchDB + SQLite in Ionic2](http://gonehybrid.com/how-to-use-pouchdb-sqlite-for-local-storage-in-ionic-2/)
+[How to use PouchDB + SQLite in Ionic2](http://gonehybrid.com/how-to-use-pouchdb-sqlite-for-local-storage-in-ionic-2/)  
 [Use SQLite in Ionic2](https://www.thepolyglotdeveloper.com/2015/12/use-sqlite-in-ionic-2-instead-of-local-storage/)
 
 `ionic serve -c` : launch in browser, `-c` (--consolelogs) to show logs also in console.
