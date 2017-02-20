@@ -4,12 +4,6 @@ Description du projet
 ## Vue d'ensemble
 ![alt tag](docs/Vue d'ensemble.png)
 
-
-## Autres documents de travail
-[Notes diverses (Google Docs)](https://docs.google.com/document/d/1pNxLah5MT6DlEwIOeLW2vY0EpscrJGEm9EhmgrVvrzo/edit?usp=sharing)
-
-[dossier Dropbox](https://www.dropbox.com/sh/rwesfdqocdsvnh9/AAA97_CvjtJFQ3TB6UcOQE0Oa?dl=0)
-
 ## Documentation
 
 ### Angular 2
