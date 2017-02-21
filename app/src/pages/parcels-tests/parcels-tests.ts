@@ -6,7 +6,11 @@ import { AlertController, NavController, NavParams } from 'ionic-angular';
 
   Docs :
    - Introduction to lists : https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/
+* 
+* TODOs :
+* itemType: use a kind of enum ? to only allow "parcels", "tests" and "layers"
 */
+
 
 enum Steps {
   Parcels,
@@ -20,17 +24,15 @@ enum Steps {
 })
 export class ParcelsTestsPage {
 
-
-
-  pageTitle:string;
-  step:number;
-  items:any = [];
+  pageTitle: string;
+  stepNumber: number;
+  stepName: string;
+  items: any = [];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
-    this.getData();
-    this.step = this.navParams.get('step');
-    switch(this.step) {
+    this.stepNumber = this.navParams.get('step');
+    switch (this.stepNumber) {
       case Steps.Tests:
         this.pageTitle = "Tests";
         break;
@@ -38,19 +40,25 @@ export class ParcelsTestsPage {
         this.pageTitle = "Couches";
         break;
       default:
-        this.step = Steps.Parcels;
+        this.stepNumber = Steps.Parcels;
         this.pageTitle = "Parcelles";
         break;
     }
-
+    this.stepName = Steps[this.stepNumber];
+    this.getData(this.stepName);
   }
 
-  addItem() {
+  /**
+   * Add a new item from a dialog.  
+   * itemType : the kind of item we want to add (parcels, tests, layers)
+   */
+  addItem(itemType: string) {
     //TODO : adjust depending of the step ("Ajouter parcelle", "Ajouter couche"...)
     let prompt = this.alertCtrl.create({
       title: 'Ajouter un élément',
       inputs: [{
-        name: 'title'
+        name: 'title',
+        placeholder: 'Nom'
       }],
       buttons: [
         {
@@ -59,9 +67,8 @@ export class ParcelsTestsPage {
         {
           text: 'Ajouter',
           handler: data => {
-            console.log("données :" + data);
             this.items.push(data);
-            this.setData();
+            this.setData(itemType);
           }
         }
       ]
@@ -70,8 +77,11 @@ export class ParcelsTestsPage {
     prompt.present();
   }
 
-  editItem(item) {
-
+  /**
+   * Show a dialog allowing to edit an item. 
+   * itemType : the kind of item we edit (parcels, tests, layers)
+   */
+  editItem(item, itemType: string) {
     let prompt = this.alertCtrl.create({
       title: 'Éditer',
       inputs: [{
@@ -88,7 +98,7 @@ export class ParcelsTestsPage {
 
             if (index > -1) {
               this.items[index] = data;
-              this.setData();
+              this.setData(itemType);
             }
           }
         }
@@ -99,29 +109,40 @@ export class ParcelsTestsPage {
 
   }
 
-  deleteItem(item) {
+  /**
+   * Delete the selected item. 
+   * itemType : the kind of item that is deleted (parcels, tests, layers).
+   */
+  deleteItem(item, itemType: string) {
 
     let index = this.items.indexOf(item);
 
     if (index > -1) {
       this.items.splice(index, 1);
-      this.setData();
+      this.setData(itemType);
     }
   }
 
   itemClicked() {
-    //TODO : when an item is clicked, update the page to show next step (parcelle -> tests, tests -> couches, etc.)
-    //this.pageTitle = "Tests";
-    this.navCtrl.push(ParcelsTestsPage, {step: this.step+1});
+    //TODO : don't increment stepNumber if already at last step
+    this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1 });
   }
 
-  setData() {
-      this.storage.set('data', this.items);
+  /**
+   * Set data to storage.  
+   * key: the key to which we want to associate the value.
+   */
+  setData(key: string) {
+    this.storage.set(key, this.items);
   }
 
-  getData() {
-    this.storage.get('data').then ((data) => {
-      if(data != null) {
+  /**
+   * Get data from storage.  
+   * key: the key from which we want to retrieve the value.
+   */
+  getData(key: string) {
+    this.storage.get(key).then((data) => {
+      if (data != null) {
         this.items = data;
       }
     });

@@ -18,7 +18,6 @@ export class HomePage{
 
   constructor(public navCtrl: NavController) {}
 
-
   goNotation(){
     this.navCtrl.push(ParcelsTestsPage).catch(()=> console.log('should I stay or should I go now'));
   }
