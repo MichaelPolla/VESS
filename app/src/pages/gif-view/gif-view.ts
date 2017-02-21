@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Notation1Page } from '../notation-1/notation-1';
 import { CameraPage } from '../camera/camera';
+import { LayerListPage } from '../layer-list/layer-list';
+import { Toast  } from 'ionic-native';
 
 /*
   Generated class for the GifView page.
@@ -17,6 +19,7 @@ export class GifViewPage {
   stepView:number;
   imageFile:string;
   titlePage:string;
+  nbLayers:number;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     //test if is the first step or other step
     if(this.navParams.get('stepView')==null){
@@ -25,6 +28,7 @@ export class GifViewPage {
     }else{
       this.stepView = this.navParams.get('stepView');
       this.titlePage = 'Ouverture du bloc';
+      this.nbLayers = 3;
     }
 
     //image in function of step
@@ -44,7 +48,9 @@ export class GifViewPage {
           stepView: this.stepView+1,
         }).catch(()=> console.log('should I stay or should I go now'))
       }else{
-        this.navCtrl.push(Notation1Page).catch(()=> console.log('should I stay or should I go now'))
+        this.navCtrl.push(LayerListPage, {
+          nbLayers: this.nbLayers,
+        }).catch(()=> console.log('should I stay or should I go now'))
       }
 
   }

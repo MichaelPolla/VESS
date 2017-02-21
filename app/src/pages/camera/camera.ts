@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Camera, File, Transfer, Toast  } from 'ionic-native';
+import { Camera, File, Toast  } from 'ionic-native';
 import { DefiningLayerPage } from '../defining-layer/defining-layer';
 
 /*
