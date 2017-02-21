@@ -23,25 +23,17 @@ export class CameraPage {
 
   constructor(public navCtrl: NavController,  public navParams: NavParams) {
     this.stepView = this.navParams.get('stepView');
-    this.imageFile = './assets/icon/mignon.gif';
 
     //check if file exist
-    File.checkFile(this.pathImgBlock, "newImg").then(_ => {
-      Toast.show("Ca existe youpi", "long", "bottom").subscribe(toast => {console.log(toast);});
+    File.checkFile(cordova.file.dataDirectory, "imgBlock/newImg.jpg").then(_ => {
       //read picture
-      File.readAsBinaryString(this.pathImgBlock, "newImg").then((imagePath) => {
+      File.readAsBinaryString(cordova.file.dataDirectory, "imgBlock/newImg.jpg").then((imagePath) => {
         this.imageFile = "data:image/jpeg;base64," + imagePath;
       });
     }).catch(err => {
-      Toast.show("Ca existe pas :(", "long", "bottom").subscribe(toast => {console.log(toast);});
-      File.readAsBinaryString(this.pathImgBlock, "newImg").then((imagePath) => {
-        this.imageFile = "data:image/jpeg;base64," + imagePath;
-      });
+      //file doesn't exist, so display exemple picture for how to take photo
+      this.imageFile = './assets/icon/mignon.gif';
     });
-  }
-
-    ionViewDidLoad() {
-    console.log('Hello CameraPage Page');
   }
 
   takePicture() {
@@ -52,16 +44,15 @@ export class CameraPage {
     }).then((imagePath) => {
         //read new image
         this.imageFile = "data:image/jpeg;base64," + imagePath;
-
         //check if directory exist
         File.checkDir(cordova.file.dataDirectory, "imgBlock").then(success=>{
           //Directory is already created, so write imgFile
-          File.writeFile(this.pathImgBlock, "newImg", imagePath, true)
+          File.writeFile(cordova.file.dataDirectory, "imgBlock/newImg.jpg", imagePath, true)
         }, error => {
           //Directory is not created, so you have to create it
           File.createDir(cordova.file.dataDirectory, "imgBlock", true).then(success => {
             //Directory is created, so you have to create image file
-            File.writeFile(this.pathImgBlock, "newImg", imagePath, true);
+            File.writeFile(cordova.file.dataDirectory, "imgBlock/newImg.jpg", imagePath, true);
           }, error => {
             Toast.show("Error when created directory", "long", "bottom").subscribe(toast => {console.log(toast);});
           });
