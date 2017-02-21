@@ -28,7 +28,7 @@ export class GifViewPage {
     }else{
       this.stepView = this.navParams.get('stepView');
       this.titlePage = 'Ouverture du bloc';
-      this.nbLayers = 3;
+      this.nbLayers = this.navParams.get('nbLayers');
     }
 
     //image in function of step
