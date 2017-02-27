@@ -50,6 +50,7 @@ export class GifViewPage {
       }else{
         this.navCtrl.push(LayerListPage, {
           nbLayers: this.nbLayers,
+          stepView: this.stepView+1,
         }).catch(()=> console.log('should I stay or should I go now'))
       }
 

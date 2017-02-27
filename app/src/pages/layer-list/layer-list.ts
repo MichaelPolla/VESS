@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Notation1Page } from '../notation-1/notation-1';
+import { CameraPage } from '../camera/camera';
 
 /*
   Generated class for the LayerList page.
@@ -15,8 +16,10 @@ import { Notation1Page } from '../notation-1/notation-1';
 export class LayerListPage {
   nbLayers:number;
   items:Array<{title: string, id:number}>;
+  stepView:number;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.nbLayers = this.navParams.get('nbLayers');
+    this.stepView = this.navParams.get('stepView');
     this.items=[];
     for (var i=1; i<=this.nbLayers;i++){
       this.items.push({title: "Couche "+i, id: i})
@@ -25,8 +28,9 @@ export class LayerListPage {
   }
 
   layerSelected(item){
-    this.navCtrl.push(Notation1Page, {
+    this.navCtrl.push(CameraPage, {
       idLayer: item,
+      stepView: this.stepView+1,
     }).catch(()=> console.log('should I stay or should I go now'))
   }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Camera, File, Toast  } from 'ionic-native';
 import { DefiningLayerPage } from '../defining-layer/defining-layer';
+import { Notation1Page } from '../notation-1/notation-1';
 
 /*
   Useful docs :
@@ -20,19 +21,36 @@ export class CameraPage {
   public imageFile: string;
   stepView:number;
   pathImgBlock:string = cordova.file.dataDirectory+"/imgBlock";
+  imageNamePath:string;
+  dirName:string;
+  idLayer: number;
 
   constructor(public navCtrl: NavController,  public navParams: NavParams) {
     this.stepView = this.navParams.get('stepView');
+    this.idLayer = this.navParams.get('idLayer');
+
+    //image in function of step
+    switch(this.stepView){
+      case 1:
+        this.dirName= "imgBlock";
+        this.imageNamePath ="imgBlock/newImgBlock.jpg";
+        this.imageFile = './assets/icon/mignon.gif';
+      break;
+      case 5:
+        this.dirName= "imgLayer";
+        this.imageNamePath ="imgBlock/newImgLayer.jpg";
+        this.imageFile = './assets/icon/mignon.gif.jpg';
+      break;
+    }
 
     //check if file exist
-    File.checkFile(cordova.file.dataDirectory, "imgBlock/newImg.jpg").then(_ => {
+    File.checkFile(cordova.file.dataDirectory, this.imageNamePath).then(_ => {
       //read picture
-      File.readAsBinaryString(cordova.file.dataDirectory, "imgBlock/newImg.jpg").then((imagePath) => {
+      File.readAsBinaryString(cordova.file.dataDirectory, this.imageNamePath).then((imagePath) => {
         this.imageFile = "data:image/jpeg;base64," + imagePath;
       });
     }).catch(err => {
       //file doesn't exist, so display exemple picture for how to take photo
-      this.imageFile = './assets/icon/mignon.gif';
     });
   }
 
@@ -45,14 +63,14 @@ export class CameraPage {
         //read new image
         this.imageFile = "data:image/jpeg;base64," + imagePath;
         //check if directory exist
-        File.checkDir(cordova.file.dataDirectory, "imgBlock").then(success=>{
+        File.checkDir(cordova.file.dataDirectory, this.dirName).then(success=>{
           //Directory is already created, so write imgFile
-          File.writeFile(cordova.file.dataDirectory, "imgBlock/newImg.jpg", imagePath, true)
+          File.writeFile(cordova.file.dataDirectory, this.imageNamePath, imagePath, true)
         }, error => {
           //Directory is not created, so you have to create it
-          File.createDir(cordova.file.dataDirectory, "imgBlock", true).then(success => {
+          File.createDir(cordova.file.dataDirectory, this.dirName, true).then(success => {
             //Directory is created, so you have to create image file
-            File.writeFile(cordova.file.dataDirectory, "imgBlock/newImg.jpg", imagePath, true);
+            File.writeFile(cordova.file.dataDirectory, this.imageNamePath, imagePath, true);
           }, error => {
             Toast.show("Error when created directory", "long", "bottom").subscribe(toast => {console.log(toast);});
           });
@@ -63,18 +81,21 @@ export class CameraPage {
     });
   }
 
-  createFileName() {
-    var d = new Date(),
-    n = d.getTime(),
-    newFileName =  n + ".jpg";
-    return newFileName;
-  }
-
 
   validationStep(){
-    this.navCtrl.push(DefiningLayerPage, {
-      stepView: this.stepView+1,
-    }).catch(()=> console.log('should I stay or should I go now'))
+    switch(this.stepView){
+      case 1:
+        this.navCtrl.push(DefiningLayerPage, {
+          stepView: this.stepView+1,
+        }).catch(()=> console.log('should I stay or should I go now'))
+      break;
+      case 5:
+        this.navCtrl.push(Notation1Page, {
+          idLayer: this.idLayer,
+          stepView: this.stepView+1,
+        }).catch(()=> console.log('should I stay or should I go now'))
+      break;
+    }
   }
 
   returnButton(){
