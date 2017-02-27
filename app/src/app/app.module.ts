@@ -12,11 +12,13 @@ import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
 import { GifViewPage } from '../pages/gif-view/gif-view';
 import { DefiningLayerPage } from '../pages/defining-layer/defining-layer';
 import { CameraPage } from '../pages/camera/camera';
+import { LayerListPage } from '../pages/layer-list/layer-list';
 
 @NgModule({
   declarations: [
     CameraPage,
     MyApp,
+    LayerListPage,
     Notation1Page,
     Notation2Page,
     ItemDetailsPage,
@@ -34,6 +36,7 @@ import { CameraPage } from '../pages/camera/camera';
   entryComponents: [
     CameraPage,
     MyApp,
+    LayerListPage,
     Notation1Page,
     Notation2Page,
     ItemDetailsPage,
