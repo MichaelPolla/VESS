@@ -29,15 +29,18 @@
     "typescript": "2.0.6"
   },
   "cordovaPlugins": [
-    "cordova-plugin-whitelist",
     "cordova-plugin-console",
-    "cordova-plugin-statusbar",
-    "cordova-plugin-device",
     "cordova-plugin-splashscreen",
+    "cordova-plugin-device",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-plugin-x-toast",
     "cordova-plugin-camera",
-    "cordova-plugin-compat"
+    "cordova-plugin-compat",
+    "cordova-plugin-file-transfer",
+    "cordova-plugin-file",
+    "cordova-plugin-filepath"
   ],
   "cordovaPlatforms": [
     {
