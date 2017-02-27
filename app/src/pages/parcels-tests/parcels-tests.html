@@ -17,9 +17,9 @@
 <ion-content padding>
   <button ion-button (click)="resetStorage()">Reset </button>
   <ion-list>
-    <ion-item-sliding *ngFor="let item of items">
-      <ion-item (click)=itemClicked()> 
-        {{item.title}}
+    <ion-item-sliding *ngFor="let item of parcels">
+      <ion-item (click)=itemClicked(item)> 
+        {{item.name}}
       </ion-item>
 
       <ion-item-options>

@@ -8,6 +8,7 @@ import { AlertController, NavController, NavParams } from 'ionic-angular';
    - Introduction to lists : https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/
 * 
 * TODOs :
+* refactor addItem, editItem and deleteItem ; could be a unique function with action (add, edit, delete) passed in parameter
 * itemType: use a kind of enum ? to only allow "parcels", "tests" and "layers"
 */
 
@@ -16,6 +17,21 @@ enum Steps {
   Parcels,
   Tests,
   Layers
+}
+
+class Parcel {
+  public name: string;
+  public tests: Test[];
+}
+
+class Test {
+  public name: string;
+  public blocks : Block[];
+}
+
+class Block {
+  public name: string;
+
 }
 
 @Component({
@@ -28,10 +44,15 @@ export class ParcelsTestsPage {
   stepNumber: number;
   stepName: string;
   items: any = [];
+  parcels: Parcel[] = [];
+  index: number;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
     this.stepNumber = this.navParams.get('step');
+    this.index = this.navParams.get('index');
+    //console.log(this.index);
+    this.stepName = Steps[Steps.Parcels]; // TODO : remove
     switch (this.stepNumber) {
       case Steps.Tests:
         this.pageTitle = "Tests";
@@ -42,10 +63,10 @@ export class ParcelsTestsPage {
       default:
         this.stepNumber = Steps.Parcels;
         this.pageTitle = "Parcelles";
+        this.getData("parcels");
         break;
     }
-    this.stepName = Steps[this.stepNumber];
-    this.getData(this.stepName);
+    //this.stepName = Steps[this.stepNumber]; // TODO : uncomment
   }
 
   /**
@@ -57,7 +78,7 @@ export class ParcelsTestsPage {
     let prompt = this.alertCtrl.create({
       title: 'Ajouter un élément',
       inputs: [{
-        name: 'title',
+        name: 'name',
         placeholder: 'Nom'
       }],
       buttons: [
@@ -67,8 +88,11 @@ export class ParcelsTestsPage {
         {
           text: 'Ajouter',
           handler: data => {
-            this.items.push(data);
-            this.setData(itemType);
+            let parcel = new Parcel();
+            parcel.name = data['name'];
+            parcel.tests = [];
+            this.parcels.push(parcel);
+            this.setData("parcels");
           }
         }
       ]
@@ -85,7 +109,8 @@ export class ParcelsTestsPage {
     let prompt = this.alertCtrl.create({
       title: 'Éditer',
       inputs: [{
-        name: 'title'
+        name: 'name',
+        placeholder: 'Nom'
       }],
       buttons: [
         {
@@ -94,11 +119,12 @@ export class ParcelsTestsPage {
         {
           text: 'Enregistrer',
           handler: data => {
-            let index = this.items.indexOf(item);
+            let index = this.parcels.indexOf(item);
+            let parcel = this.parcels[index];
 
             if (index > -1) {
-              this.items[index] = data;
-              this.setData(itemType);
+              parcel.name = data['name'];
+              this.setData("parcels");
             }
           }
         }
@@ -115,17 +141,18 @@ export class ParcelsTestsPage {
    */
   deleteItem(item, itemType: string) {
 
-    let index = this.items.indexOf(item);
+    let index = this.parcels.indexOf(item);
 
     if (index > -1) {
-      this.items.splice(index, 1);
-      this.setData(itemType);
+      this.parcels.splice(index, 1);
+      this.setData("parcels");
     }
   }
 
-  itemClicked() {
+  itemClicked(item) {
     //TODO : don't increment stepNumber if already at last step
-    this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1 });
+    let itemIndex = this.items.indexOf(item);
+    this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1,  index: itemIndex});
   }
 
   /**
@@ -133,7 +160,7 @@ export class ParcelsTestsPage {
    * key: the key to which we want to associate the value.
    */
   setData(key: string) {
-    this.storage.set(key, this.items);
+    this.storage.set(key, JSON.stringify(this.parcels));
   }
 
   /**
@@ -143,7 +170,10 @@ export class ParcelsTestsPage {
   getData(key: string) {
     this.storage.get(key).then((data) => {
       if (data != null) {
-        this.items = data;
+        this.parcels = JSON.parse(data);
+        this.parcels.forEach(parcel => {
+          this.items.push(parcel.name);
+        });
       }
     });
   }
