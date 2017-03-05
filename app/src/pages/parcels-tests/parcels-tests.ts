@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 
-import { Parcel } from '../../app/parcel';
+import { Parcel, Test, Block } from '../../app/parcel';
 
 import { ParcelService } from '../../providers/parcel-service';
 
@@ -13,14 +13,14 @@ import { ParcelService } from '../../providers/parcel-service';
 * 
 * TODOs :
 * refactor addItem, editItem and deleteItem ; could be a unique function with action (add, edit, delete) passed in parameter
-* itemType: use a kind of enum ? to only allow "parcels", "tests" and "layers"
+* itemType: use a kind of enum ? to only allow "parcels", "tests" and "blocks"
 */
 
 
 enum Steps {
   Parcels,
   Tests,
-  Layers
+  Blocks
 }
 
 @Component({
@@ -32,42 +32,47 @@ export class ParcelsTestsPage {
   pageTitle: string;
   stepNumber: number;
   stepName: string;
-  items: any = [];
+  listItems: any = [];
   parcels: Parcel[] = [];
-  parcels2: any = [];
-  index: number;
+  indexes: number[] = [];
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public parcelService: ParcelService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public parcelService: ParcelService) { }
 
   ionViewDidLoad() {
     this.stepNumber = this.navParams.get('step');
-    this.index = this.navParams.get('index');
-    //console.log(this.index);
-    this.parcelService.getParcels().then((value) => {
-      this.parcels = value;
-    });
-    switch (this.stepNumber) {
-      case Steps.Tests:
-        this.pageTitle = "Tests";
-        break;
-      case Steps.Layers:
-        this.pageTitle = "Couches";
-        break;
-      default:
-        this.stepNumber = Steps.Parcels;
-        this.pageTitle = "Parcelles";
-        break;
+    if (this.navParams.get('indexes') != null) {
+      this.indexes = this.navParams.get('indexes');
     }
-    this.stepName = Steps[this.stepNumber];
+    this.parcelService.getParcels().then((value) => {
+      if (value != null) {
+        this.parcels = value;
+      }
+      switch (this.stepNumber) {
+        case Steps.Tests:
+          this.pageTitle = "Tests";
+          this.listItems = this.parcels[this.indexes[0]].tests;
+          break;
+
+        case Steps.Blocks:
+          this.pageTitle = "Blocs";
+          this.listItems = this.parcels[this.indexes[0]].tests[this.indexes[1]].blocks;
+          break;
+
+        default: // Steps.Parcels, hopefully
+          this.stepNumber = Steps.Parcels;
+          this.pageTitle = "Parcelles";
+          this.listItems = this.parcels;
+          break;
+      }
+      this.stepName = Steps[this.stepNumber];
+    });
   }
 
   /**
    * Add a new item from a dialog.  
-   * itemType : the kind of item we want to add (parcels, tests, layers)
    */
-  addItem(itemType: string) {
-    //TODO : adjust depending of the step ("Ajouter parcelle", "Ajouter couche"...)
+  addItem() {
     let prompt = this.alertCtrl.create({
       title: 'Ajouter un élément',
       inputs: [{
@@ -81,10 +86,23 @@ export class ParcelsTestsPage {
         {
           text: 'Ajouter',
           handler: data => {
-            let parcel = new Parcel();
-            parcel.name = data['name'];
-            //parcel.tests = [];
-            this.parcels.push(parcel);
+            if (this.stepNumber === Steps.Parcels) {
+              let parcel = new Parcel();
+              parcel.name = data['name'];
+              parcel.tests = [];
+              this.parcels.push(parcel);
+            }
+            else if (this.stepNumber === Steps.Tests) {
+              let test = new Test();
+              test.name = data['name']
+              test.blocks = [];
+              this.parcels[this.indexes[0]].tests.push(test);
+            } else { // Blocks
+              let block = new Block();
+              block.name = data['name']
+              this.parcels[this.indexes[0]].tests[this.indexes[1]].blocks.push(block);
+            }
+
             this.setData("parcels");
           }
         }
@@ -96,7 +114,7 @@ export class ParcelsTestsPage {
 
   /**
    * Show a dialog allowing to edit an item. 
-   * itemType : the kind of item we edit (parcels, tests, layers)
+   * itemType : the kind of item we edit (parcels, tests, blocks)
    */
   editItem(item, itemType: string) {
     let prompt = this.alertCtrl.create({
@@ -130,7 +148,7 @@ export class ParcelsTestsPage {
 
   /**
    * Delete the selected item. 
-   * itemType : the kind of item that is deleted (parcels, tests, layers).
+   * itemType : the kind of item that is deleted (parcels, tests, blocks).
    */
   deleteItem(item, itemType: string) {
 
@@ -143,9 +161,11 @@ export class ParcelsTestsPage {
   }
 
   itemClicked(item) {
-    //TODO : don't increment stepNumber if already at last step
-    let itemIndex = this.items.indexOf(item);
-    this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1,  index: itemIndex});
+    if (this.stepNumber < Steps.Blocks) {
+      let itemIndex = this.listItems.indexOf(item);
+      this.indexes[this.stepNumber] = itemIndex;
+      this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1, indexes: this.indexes });
+    }
   }
 
   /**
