@@ -8,9 +8,11 @@ import { Notation1Page } from '../pages/notation-1/notation-1';
 import { HomePage } from '../pages/home-page/home-page';
 import { ListPage } from '../pages/list/list';
 
+import { ParcelService } from '../providers/parcel-service';
+
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -21,9 +23,12 @@ export class MyApp {
 
   constructor(
     public platform: Platform,
-    public menu: MenuController
+    public menu: MenuController,
+    public parcelService: ParcelService
   ) {
     this.initializeApp();
+
+    //parcelService.getParcelsStub();
 
     // set our app's pages
     this.pages = [

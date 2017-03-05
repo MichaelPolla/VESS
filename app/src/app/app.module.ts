@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { IonicApp, IonicModule } from 'ionic-angular';
+
 import { MyApp } from './app.component';
+
 import { Notation1Page } from '../pages/notation-1/notation-1';
 import { Notation2Page } from '../pages/notation-2/notation-2';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
@@ -13,6 +15,8 @@ import { GifViewPage } from '../pages/gif-view/gif-view';
 import { DefiningLayerPage } from '../pages/defining-layer/defining-layer';
 import { CameraPage } from '../pages/camera/camera';
 import { LayerListPage } from '../pages/layer-list/layer-list';
+
+import { ParcelService } from '../providers/parcel-service';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,6 @@ import { LayerListPage } from '../pages/layer-list/layer-list';
     GifViewPage,
     DefiningLayerPage
   ],
-  providers: [Storage]
+  providers: [ParcelService, Storage]
 })
 export class AppModule {}
