@@ -7,10 +7,12 @@ import { StatusBar } from 'ionic-native';
 import { Notation1Page } from '../pages/notation-1/notation-1';
 import { HomePage } from '../pages/home-page/home-page';
 import { ListPage } from '../pages/list/list';
+import { ParcelService } from '../providers/parcel-service';
 
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [ParcelService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -21,7 +23,8 @@ export class MyApp {
 
   constructor(
     public platform: Platform,
-    public menu: MenuController
+    public menu: MenuController,
+    private parcelService: ParcelService
   ) {
     this.initializeApp();
 

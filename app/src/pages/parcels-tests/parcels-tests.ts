@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
+import { ParcelService } from '../../providers/parcel-service';
 
 /*
 
@@ -36,7 +37,8 @@ class Block {
 
 @Component({
   selector: 'page-parcels-tests',
-  templateUrl: 'parcels-tests.html'
+  templateUrl: 'parcels-tests.html',
+  providers: [ParcelService]
 })
 export class ParcelsTestsPage {
 
@@ -45,10 +47,11 @@ export class ParcelsTestsPage {
   stepName: string;
   items: any = [];
   parcels: Parcel[] = [];
+  parcels2: any = [];
   index: number;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, private parcelService: ParcelService) {
     this.stepNumber = this.navParams.get('step');
     this.index = this.navParams.get('index');
     //console.log(this.index);
@@ -63,7 +66,8 @@ export class ParcelsTestsPage {
       default:
         this.stepNumber = Steps.Parcels;
         this.pageTitle = "Parcelles";
-        this.getData("parcels");
+        this.getParcels();
+        //this.getData("parcels");
         break;
     }
     //this.stepName = Steps[this.stepNumber]; // TODO : uncomment
@@ -153,6 +157,10 @@ export class ParcelsTestsPage {
     //TODO : don't increment stepNumber if already at last step
     let itemIndex = this.items.indexOf(item);
     this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1,  index: itemIndex});
+  }
+
+  getParcels(): void {
+    this.parcels2 = this.parcelService.getParcels();
   }
 
   /**
