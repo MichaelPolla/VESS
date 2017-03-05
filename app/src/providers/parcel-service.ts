@@ -7,14 +7,14 @@ export class ParcelService {
 
   data: any;
 
-  constructor(public storage: Storage) {}
+  constructor(public storage: Storage) { }
 
   /**
    * Get data from Storage.
    * key : the key associated to the desired values.
-   * return : a Promise (from Storage)
+   * Return : a Promise (from Storage)
    */
-    load(key: string): Promise<any> {
+  load(key: string): Promise<any> {
     return this.storage.get(key).then((value) => {
       if (value != null) {
         this.data = JSON.parse(value);
@@ -25,15 +25,17 @@ export class ParcelService {
     });
   }
 
+  /**
+   * Get parcels data.
+   * Return : a Promise
+   */
   public getParcels(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      if(this.data) {
-        console.log("données existantes");
+    return new Promise((resolve: any, reject: any) => {
+      if (this.data) { // data were previously loaded ; simply return them.
         resolve(this.data);
-      } else {
-        console.log("données vides");
-       this.load("parcels").then(() => { resolve(this.data) });
-    }
+      } else {  // Must load data first.
+        this.load("parcels").then(() => { resolve(this.data) });
+      }
     });
   }
 }
