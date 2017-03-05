@@ -23,21 +23,6 @@ enum Steps {
   Layers
 }
 
-// class Parcel {
-//   public name: string;
-//   public tests: Test[];
-// }
-
-class Test {
-  public name: string;
-  public blocks : Block[];
-}
-
-class Block {
-  public name: string;
-
-}
-
 @Component({
   selector: 'page-parcels-tests',
   templateUrl: 'parcels-tests.html',
@@ -59,7 +44,6 @@ export class ParcelsTestsPage {
     this.stepNumber = this.navParams.get('step');
     this.index = this.navParams.get('index');
     //console.log(this.index);
-    this.stepName = Steps[Steps.Parcels]; // TODO : remove
     this.parcelService.getParcels().then((value) => {
       this.parcels = value;
     });
@@ -73,10 +57,9 @@ export class ParcelsTestsPage {
       default:
         this.stepNumber = Steps.Parcels;
         this.pageTitle = "Parcelles";
-        //this.getParcels();
         break;
     }
-    //this.stepName = Steps[this.stepNumber]; // TODO : uncomment
+    this.stepName = Steps[this.stepNumber];
   }
 
   /**
@@ -163,10 +146,6 @@ export class ParcelsTestsPage {
     //TODO : don't increment stepNumber if already at last step
     let itemIndex = this.items.indexOf(item);
     this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1,  index: itemIndex});
-  }
-
-  getParcels(): void {
-    this.parcels2 = this.parcelService.getParcels();
   }
 
   /**
