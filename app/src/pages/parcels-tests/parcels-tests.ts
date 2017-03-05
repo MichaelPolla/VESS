@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
+
+import { Parcel } from '../../app/parcel';
+
 import { ParcelService } from '../../providers/parcel-service';
 
 /*
@@ -20,10 +23,10 @@ enum Steps {
   Layers
 }
 
-class Parcel {
-  public name: string;
-  public tests: Test[];
-}
+// class Parcel {
+//   public name: string;
+//   public tests: Test[];
+// }
 
 class Test {
   public name: string;
@@ -38,7 +41,6 @@ class Block {
 @Component({
   selector: 'page-parcels-tests',
   templateUrl: 'parcels-tests.html',
-  providers: [ParcelService]
 })
 export class ParcelsTestsPage {
 
@@ -51,11 +53,16 @@ export class ParcelsTestsPage {
   index: number;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, private parcelService: ParcelService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public parcelService: ParcelService) {}
+
+  ionViewDidLoad() {
     this.stepNumber = this.navParams.get('step');
     this.index = this.navParams.get('index');
     //console.log(this.index);
     this.stepName = Steps[Steps.Parcels]; // TODO : remove
+    this.parcelService.getParcels().then((value) => {
+      this.parcels = value;
+    });
     switch (this.stepNumber) {
       case Steps.Tests:
         this.pageTitle = "Tests";
@@ -66,8 +73,7 @@ export class ParcelsTestsPage {
       default:
         this.stepNumber = Steps.Parcels;
         this.pageTitle = "Parcelles";
-        this.getParcels();
-        //this.getData("parcels");
+        //this.getParcels();
         break;
     }
     //this.stepName = Steps[this.stepNumber]; // TODO : uncomment
@@ -94,7 +100,7 @@ export class ParcelsTestsPage {
           handler: data => {
             let parcel = new Parcel();
             parcel.name = data['name'];
-            parcel.tests = [];
+            //parcel.tests = [];
             this.parcels.push(parcel);
             this.setData("parcels");
           }
@@ -169,21 +175,6 @@ export class ParcelsTestsPage {
    */
   setData(key: string) {
     this.storage.set(key, JSON.stringify(this.parcels));
-  }
-
-  /**
-   * Get data from storage.  
-   * key: the key from which we want to retrieve the value.
-   */
-  getData(key: string) {
-    this.storage.get(key).then((data) => {
-      if (data != null) {
-        this.parcels = JSON.parse(data);
-        this.parcels.forEach(parcel => {
-          this.items.push(parcel.name);
-        });
-      }
-    });
   }
 
   resetStorage() {
