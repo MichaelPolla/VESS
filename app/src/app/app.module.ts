@@ -4,10 +4,9 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 
+// Pages
 import { Notation1Page } from '../pages/notation-1/notation-1';
 import { Notation2Page } from '../pages/notation-2/notation-2';
-import { ItemDetailsPage } from '../pages/item-details/item-details';
-import { ListPage } from '../pages/list/list';
 import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
 import { HomePage } from '../pages/home-page/home-page';
 import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
@@ -16,6 +15,7 @@ import { DefiningLayerPage } from '../pages/defining-layer/defining-layer';
 import { CameraPage } from '../pages/camera/camera';
 import { LayerListPage } from '../pages/layer-list/layer-list';
 
+// Providers
 import { ParcelService } from '../providers/parcel-service';
 
 @NgModule({
@@ -25,8 +25,6 @@ import { ParcelService } from '../providers/parcel-service';
     LayerListPage,
     Notation1Page,
     Notation2Page,
-    ItemDetailsPage,
-    ListPage,
     ModalPicturePage,
     HomePage,
     ParcelsTestsPage,
@@ -43,8 +41,6 @@ import { ParcelService } from '../providers/parcel-service';
     LayerListPage,
     Notation1Page,
     Notation2Page,
-    ItemDetailsPage,
-    ListPage,
     ModalPicturePage,
     HomePage,
     ParcelsTestsPage,

@@ -4,10 +4,11 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { StatusBar } from 'ionic-native';
 
+// Pages
 import { Notation1Page } from '../pages/notation-1/notation-1';
 import { HomePage } from '../pages/home-page/home-page';
-import { ListPage } from '../pages/list/list';
 
+// Providers
 import { ParcelService } from '../providers/parcel-service';
 
 
@@ -33,7 +34,6 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'Hello Ionic', component: Notation1Page },
-      { title: 'My First List', component: ListPage }
     ];
   }
 
