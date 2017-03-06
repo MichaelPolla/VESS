@@ -11,6 +11,9 @@ import { Toast  } from 'ionic-native';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+
+declare var plugins;
+
 @Component({
   selector: 'page-gif-view',
   templateUrl: 'gif-view.html'
@@ -20,6 +23,8 @@ export class GifViewPage {
   imageFile:string;
   titlePage:string;
   nbLayers:number;
+  scale:number=10;
+  g:number=5.947694038228347;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     //test if is the first step or other step
     if(this.navParams.get('stepView')==null){
@@ -40,6 +45,18 @@ export class GifViewPage {
         this.imageFile='./assets/icon/TERRE_ouverture_bloc.jpg';
       break;
     }
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady() {
+      plugins.screensize.get(successCallback, function(){});
+    }
+
+    function successCallback(result) {
+      //this.scale = (dpi/(2.54*density))*15.10714  = height en pixel
+      Toast.show(result.densityValue, "long", "bottom").subscribe(toast => {console.log(toast);});
+    }
+
   }
 
   validationStep(){
