@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Toast } from 'ionic-native';
+// Providers
 import { RulerService } from '../../providers/ruler-service';
 
-/*
-  Generated class for the Notation2 page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-notation-2',
   templateUrl: 'notation-2.html'

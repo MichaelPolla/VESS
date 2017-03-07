@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Notation1Page } from '../notation-1/notation-1';
 import { CameraPage } from '../camera/camera';
 import { LayerListPage } from '../layer-list/layer-list';
-import { Toast  } from 'ionic-native';
 
 
 /*

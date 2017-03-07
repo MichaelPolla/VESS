@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home-page/home-page';
 import { GifViewPage } from '../gif-view/gif-view';
 import { Toast  } from 'ionic-native';
 /*
