@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Toast } from 'ionic-native';
+import { RulerService } from '../../providers/ruler-service';
 
 /*
   Generated class for the Notation2 page.
@@ -18,8 +19,18 @@ export class Notation2Page {
   title:string;
   code:number;
   code2:number;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  heightRuler:number;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public rulerService: RulerService) {
     this.code = this.navParams.get('code');
+
+    // Get Height of Ruler in px with param1: height of image ruler in px and param 2: number of px for one centimeter in the image.
+    this.rulerService.getHeightStyle(846,56).then((value:number) => {
+      this.heightRuler=value;
+    }).catch((error:string)=>{
+      Toast.show(error, "long", "bottom").subscribe(toast => {console.log(toast);});
+    });
+
     switch(this.code){
 
       case 1:
