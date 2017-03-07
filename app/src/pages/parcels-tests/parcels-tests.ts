@@ -3,7 +3,9 @@ import { Storage } from '@ionic/storage';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 
 import { Parcel, Test, Block } from '../../app/parcel';
-
+// Pages
+import { GifViewPage } from '../gif-view/gif-view';
+// Providers
 import { ParcelService } from '../../providers/parcel-service';
 
 /*
@@ -165,6 +167,8 @@ export class ParcelsTestsPage {
       let itemIndex = this.listItems.indexOf(item);
       this.indexes[this.stepNumber] = itemIndex;
       this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1, indexes: this.indexes });
+    } else if (this.stepNumber === Steps.Blocks) {
+        this.navCtrl.push(GifViewPage);
     }
   }
 
