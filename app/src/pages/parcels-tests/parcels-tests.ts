@@ -104,8 +104,7 @@ export class ParcelsTestsPage {
               block.name = data['name']
               this.parcels[this.indexes[0]].tests[this.indexes[1]].blocks.push(block);
             }
-
-            this.setData("parcels");
+            this.parcelService.save("parcels", this.parcels);
           }
         }
       ]
@@ -137,7 +136,7 @@ export class ParcelsTestsPage {
 
             if (index > -1) {
               parcel.name = data['name'];
-              this.setData("parcels");
+              this.parcelService.save("parcels", this.parcels);
             }
           }
         }
@@ -158,7 +157,7 @@ export class ParcelsTestsPage {
 
     if (index > -1) {
       this.parcels.splice(index, 1);
-      this.setData("parcels");
+      this.parcelService.save("parcels", this.parcels);
     }
   }
 
@@ -170,14 +169,6 @@ export class ParcelsTestsPage {
     } else if (this.stepNumber === Steps.Blocks) {
         this.navCtrl.push(GifViewPage);
     }
-  }
-
-  /**
-   * Set data to storage.  
-   * key: the key to which we want to associate the value.
-   */
-  setData(key: string) {
-    this.storage.set(key, JSON.stringify(this.parcels));
   }
 
   resetStorage() {

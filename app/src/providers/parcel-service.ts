@@ -10,8 +10,8 @@ export class ParcelService {
   constructor(public storage: Storage) { }
 
   /**
-   * Get data from Storage.
-   * key : the key associated to the desired values.
+   * Get data from Storage.  
+   * key : the key associated to the desired values.  
    * Return : a Promise (from Storage)
    */
   load(key: string): Promise<any> {
@@ -26,10 +26,19 @@ export class ParcelService {
   }
 
   /**
-   * Get parcels data.
+   * Save data using ionic Storage (key/value pair).  
+   * key : key associated to the value.  
+   * value : the value to save. 
+   */
+  save(key: string, value: any) {
+    this.storage.set(key, JSON.stringify(value));
+  }
+
+  /**
+   * Get parcels data.  
    * Return : a Promise
    */
-  public getParcels(): Promise<any> {
+  getParcels(): Promise<any> {
     return new Promise((resolve: any, reject: any) => {
       if (this.data) { // data were previously loaded ; simply return them.
         resolve(this.data);
