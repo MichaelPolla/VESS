@@ -19,6 +19,7 @@ declare var cordova;
 })
 export class CameraPage {
   public imageFile: string;
+  pageTitle: string;
   stepView:number;
   pathImgBlock:string = cordova.file.dataDirectory+"/imgBlock";
   imageNamePath:string;
@@ -28,30 +29,23 @@ export class CameraPage {
   constructor(public navCtrl: NavController,  public navParams: NavParams) {
     this.stepView = this.navParams.get('stepView');
     this.idLayer = this.navParams.get('idLayer');
+    
 
     //image in function of step
     switch(this.stepView){
       case 1:
+      this.pageTitle = "Photo du bloc entier";
         this.dirName= "imgBlock";
         this.imageNamePath ="imgBlock/newImgBlock.jpg";
-        this.imageFile = './assets/icon/mignon.gif';
+        this.imageFile = "./assets/icon/generic-image.png";
       break;
       case 5:
+        this.pageTitle = "Photo de la couche";
         this.dirName= "imgLayer";
         this.imageNamePath ="imgBlock/newImgLayer.jpg";
-        this.imageFile = './assets/icon/mignon.gif.jpg';
+        this.imageFile = "./assets/icon/two-layers-example.png";
       break;
     }
-
-    //check if file exist
-    File.checkFile(cordova.file.dataDirectory, this.imageNamePath).then(_ => {
-      //read picture
-      File.readAsBinaryString(cordova.file.dataDirectory, this.imageNamePath).then((imagePath) => {
-        this.imageFile = "data:image/jpeg;base64," + imagePath;
-      });
-    }).catch(err => {
-      //file doesn't exist, so display exemple picture for how to take photo
-    });
   }
 
   takePicture() {
@@ -87,13 +81,13 @@ export class CameraPage {
       case 1:
         this.navCtrl.push(DefiningLayerPage, {
           stepView: this.stepView+1,
-        }).catch(()=> console.log('should I stay or should I go now'))
+        })
       break;
       case 5:
         this.navCtrl.push(Notation1Page, {
           idLayer: this.idLayer,
           stepView: this.stepView+1,
-        }).catch(()=> console.log('should I stay or should I go now'))
+        })
       break;
     }
   }
