@@ -17,6 +17,7 @@ import { LayerListPage } from '../pages/layer-list/layer-list';
 
 // Providers
 import { ParcelService } from '../providers/parcel-service';
+import { RulerService } from '../providers/ruler-service';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,6 @@ import { ParcelService } from '../providers/parcel-service';
     GifViewPage,
     DefiningLayerPage
   ],
-  providers: [ParcelService, Storage]
+  providers: [ParcelService, Storage, RulerService]
 })
 export class AppModule {}
