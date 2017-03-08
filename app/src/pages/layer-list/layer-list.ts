@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Notation1Page } from '../notation-1/notation-1';
 import { CameraPage } from '../camera/camera';
 
-/*
-  Generated class for the LayerList page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-layer-list',
   templateUrl: 'layer-list.html'

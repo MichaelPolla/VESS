@@ -14,7 +14,7 @@ import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
 import { Notation1Page } from '../pages/notation-1/notation-1';
 import { Notation2Page } from '../pages/notation-2/notation-2';
 import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
-import { ResultsPage } from '../pages/parcels-tests/results';
+import { ResultsPage } from '../pages/results/results';
 
 // Providers
 import { NotationService } from '../providers/notation-service';

@@ -16,4 +16,8 @@ export class ResultsPage {
     this.noteOf = "de la couche"
   }
 
+  nextStep() {
+    
+  }
+
 }
