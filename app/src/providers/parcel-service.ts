@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class ParcelService {
 
-  data: any;
+  private data: any;
 
   constructor(public storage: Storage) { }
 
