@@ -8,9 +8,6 @@ import { StatusBar } from 'ionic-native';
 import { Notation1Page } from '../pages/notation-1/notation-1';
 import { HomePage } from '../pages/home-page/home-page';
 
-// Providers
-import { ParcelService } from '../providers/parcel-service';
-
 
 @Component({
   templateUrl: 'app.html',
@@ -18,18 +15,15 @@ import { ParcelService } from '../providers/parcel-service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  // make HelloIonicPage the root (or first) page
+  // Define the root (or first) page
   rootPage: any = HomePage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
     public platform: Platform,
     public menu: MenuController,
-    public parcelService: ParcelService
   ) {
     this.initializeApp();
-
-    //parcelService.getParcelsStub();
 
     // set our app's pages
     this.pages = [
