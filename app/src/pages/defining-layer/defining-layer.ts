@@ -18,7 +18,7 @@ export class DefiningLayerPage {
   nbLayers:number;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.stepView = this.navParams.get('stepView');
-    this.imageFile = './assets/icon/mignon.gif';
+    this.imageFile = this.navParams.get('picture');
   }
 
   validationStep(){
@@ -26,7 +26,7 @@ export class DefiningLayerPage {
       this.navCtrl.push(GifViewPage, {
         stepView: this.stepView+1,
         nbLayers: this.nbLayers,
-      }).catch(()=> console.log('should I stay or should I go now'))
+      })
     }else{
       Toast.show("Veuillez entrer les champs correctement", "long", "top").subscribe(toast => {console.log(toast);});
     }
