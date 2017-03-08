@@ -15,7 +15,21 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+//#####NAVBAR########
+.toolbar-background {
+  background-color: #426114;
+  color:white;
+}
 
+.toolbar-title-md {
+  color: #fff;
+}
+.bar-button{
+  color: #fff;
+}
+//##################
+
+//modal
 ion-thumbnail {
   z-index:1;
 }

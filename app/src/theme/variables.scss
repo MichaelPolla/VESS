@@ -27,15 +27,30 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  green:      (
+    base:#426a14,
+    contrast:#fff
+  ),
+  brown:      (
+    base:#ab9371,
+    contrast:#fff
+  )
+  ,
+  sky:        (
+    base: #c9deef,
+    contrast: #41729b
+  ),
+  yellow:     (
+    base:#f2d78b,
+    contrast:#fff
+  )
 );
 
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
-
 
 
 // App Material Design Variables

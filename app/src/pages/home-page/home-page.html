@@ -7,23 +7,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Home Page</ion-title>
+    <ion-title>VESS</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content >
-  <div id="splitSquare">
-    <button ion-button color="light" id="btn" (click)="goNotation()">Notation d'une parcelle</button>
-  </div>
-  <div id="splitSquare">
-    <button ion-button color="secondary" id="btn" (click)="goExtractionBloc()">Type de qualité structural</button>
-  </div>
-  <div id="splitSquare">
-    <button ion-button color="default" id="btn">Tutoriel à la réalisation</button>
-  </div>
-  <div id="splitSquare">
-    <button ion-button color="danger" id="btn" (click)="goCamera()">Autres rubriques (test caméra)</button>
-  </div>
+  <ion-list>
+    <button ion-item (click)="goNotation()">
+      <ion-icon class="icon" name="ios-paper" item-left color="brown"></ion-icon>
+      Notation d'une parcelle
+    </button>
+    <button ion-item (click)="goExtractionBloc()">
+      <ion-icon class="icon" name="ios-medal" item-left color="brown"></ion-icon>
+      Type de qualité structural
+    </button>
+    <button ion-item (click)="goNotation()">
+      <ion-icon class="icon" name="ios-information-circle" item-left color="brown"></ion-icon>
+      Tutoriel à la réalisation
+    </button>
+  </ion-list>
 </ion-content>
