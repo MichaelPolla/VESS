@@ -36,11 +36,11 @@
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard",
     "cordova-plugin-x-toast",
-    "cordova-plugin-camera",
     "cordova-plugin-compat",
     "cordova-plugin-file",
     "cordova-sqlite-storage",
-    "cordova-plugin-screensize"
+    "cordova-plugin-screensize",
+    "cordova-plugin-camera"
   ],
   "cordovaPlatforms": [
     {
