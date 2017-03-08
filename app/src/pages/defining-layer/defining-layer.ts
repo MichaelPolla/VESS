@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { GifViewPage } from '../gif-view/gif-view';
 import { Toast  } from 'ionic-native';
-/*
-  Generated class for the DefiningLayer page.
+// Pages
+import { GifViewPage } from '../gif-view/gif-view';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-defining-layer',
   templateUrl: 'defining-layer.html'
