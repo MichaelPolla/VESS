@@ -37,13 +37,13 @@ export class CameraPage {
       this.pageTitle = "Photo du bloc entier";
         this.dirName= "imgBlock";
         this.imageNamePath ="imgBlock/newImgBlock.jpg";
-        this.imageFile = "./assets/icon/generic-image.png";
+        this.imageFile = "./assets/icon/two-layers-example.png";
       break;
       case 5:
         this.pageTitle = "Photo de la couche";
         this.dirName= "imgLayer";
         this.imageNamePath ="imgBlock/newImgLayer.jpg";
-        this.imageFile = "./assets/icon/two-layers-example.png";
+        this.imageFile = "./assets/icon/generic-image.png";
       break;
     }
   }
