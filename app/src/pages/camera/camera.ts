@@ -25,6 +25,7 @@ export class CameraPage {
   imageNamePath: string;
   dirName: string;
   idLayer: number;
+  description : string;
   defaultBlockPicture: string = "./assets/icon/two-layers-example.png";
   defaultLayerPicture: string = "./assets/icon/generic-image.png";
 
@@ -40,12 +41,14 @@ export class CameraPage {
         this.dirName = "imgBlock";
         this.imageNamePath = "imgBlock/newImgBlock.jpg";
         this.imageFile = this.defaultBlockPicture;
+        this.description = "Prenez une photo montrant le bloc entier et ses différentes couches, ainsi que le trou dont il est extrait :";
         break;
       case 5:
         this.pageTitle = "Photo de la couche";
         this.dirName = "imgLayer";
         this.imageNamePath = "imgBlock/newImgLayer.jpg";
         this.imageFile = this.defaultLayerPicture;
+        this.description = "Prenez une photo de la couche :";
         break;
     }
   }
