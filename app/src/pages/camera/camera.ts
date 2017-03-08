@@ -91,8 +91,4 @@ export class CameraPage {
       break;
     }
   }
-
-  returnButton(){
-    this.navCtrl.pop();
-  }
 }
