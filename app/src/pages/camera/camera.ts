@@ -52,7 +52,8 @@ export class CameraPage {
     Camera.getPicture({
       destinationType: Camera.DestinationType.DATA_URL,
       targetWidth: 1000, //TODO: check if it necessary to resize picture, and if so, set correct values
-      targetHeight:1000
+      targetHeight:1000,
+      correctOrientation: true
     }).then((imagePath) => {
         //read new image
         this.imageFile = "data:image/jpeg;base64," + imagePath;
