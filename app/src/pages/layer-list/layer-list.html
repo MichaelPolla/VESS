@@ -9,8 +9,8 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="layerSelected(item.id)">
-      {{ item.title }}
+    <button ion-item *ngFor="let item of listItems" (click)="layerSelected(item.index)">
+      {{ item.title }} {{item.score}}
     </button>
   </ion-list>
 </ion-content>

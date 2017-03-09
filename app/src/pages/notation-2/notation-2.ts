@@ -4,6 +4,7 @@ import { Toast } from 'ionic-native';
 // Pages
 import { LayerListPage } from '../layer-list/layer-list';
 // Providers
+import { NotationService } from '../../providers/notation-service';
 import { RulerService } from '../../providers/ruler-service';
 
 @Component({
@@ -16,12 +17,16 @@ export class Notation2Page {
   title: string;
   code: number;
   code2: number;
+  layerNumber: number;
   heightRuler: number;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
+    public notationService: NotationService,
     public rulerService: RulerService) {
+      
     this.code = this.navParams.get('code');
+    this.layerNumber = this.notationService.actualLayer.num;
 
     // Get Height of Ruler in px with :
     // param1: height of image ruler in px 

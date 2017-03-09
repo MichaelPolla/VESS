@@ -24,7 +24,7 @@ export class Notation1Page {
       { title: 'Présence possible de mottes fermées', checked: false, imgSrc: './assets/icon/motte.png', code: 2 },
       { title: 'Présence majoritaire de mottes fermées', checked: false, imgSrc: './assets/icon/motte.png', code: 3 }
     ];
-    this.layerNumber = this.notationService.actualLayer;
+    this.layerNumber = this.notationService.actualLayer.num;
   }
 
   validationStep() {

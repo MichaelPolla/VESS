@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-  class Layer {
+  export class Layer { // Todo: should move elsewhere
     num: number;
-    note: number;
+    score: number;
     picture: any;
 
     constructor(num: number) {
@@ -14,7 +14,7 @@ import { Injectable } from '@angular/core';
 export class NotationService {
 
   layers: Layer[];
-  actualLayer: number;
+  actualLayer: Layer;
   constructor() {}
 
   /**
@@ -26,6 +26,14 @@ export class NotationService {
     for (var i = 1; i <= num; i++) {
       this.layers.push(new Layer(i));
     }
+  }
+
+  /**
+   * Set the actual layer.
+   * index: the index of the layer, in this.layers.
+   */
+  setActualLayer(index: number) {
+    this.actualLayer = this.layers[index];
   }
 
 }
