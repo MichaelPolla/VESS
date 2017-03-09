@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
+// Pages
 import { CameraPage } from '../camera/camera';
+import { DefiningLayerPage } from '../defining-layer/defining-layer';
 import { LayerListPage } from '../layer-list/layer-list';
 
 
@@ -18,49 +20,58 @@ declare var plugins;
   templateUrl: 'gif-view.html'
 })
 export class GifViewPage {
-  stepView:number;
-  imageFile:string;
-  titlePage:string;
-  nbLayers:number;
+  stepView: number;
+  imageFile: string;
+  titlePage: string;
+  nbLayers: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform) {
     //test if is the first step or other step
-    if(this.navParams.get('stepView')==null){
+    if (this.navParams.get('stepView') == null) {
       this.stepView = 0;
       this.titlePage = 'Extraction du bloc';
-    }else{
+    } else {
       this.stepView = this.navParams.get('stepView');
       this.titlePage = 'Ouverture du bloc';
       this.nbLayers = this.navParams.get('nbLayers');
     }
 
     //image in function of step
-    switch(this.stepView){
+    switch (this.stepView) {
       case 0:
-        this.imageFile='./assets/icon/TERRE_extraction_bloc.jpg';
-      break;
+        this.imageFile = './assets/icon/TERRE_extraction_bloc.jpg';
+        break;
       case 3:
-        this.imageFile='./assets/icon/TERRE_ouverture_bloc.jpg';
-      break;
+        this.imageFile = './assets/icon/TERRE_ouverture_bloc.jpg';
+        break;
     }
 
   }
 
-  validationStep(){
-      if(this.stepView==0){
+  validationStep() {
+    if (this.stepView == 0) {
+      if (this.platform.is('core')) {
+        // Running on desktop
+        // Skipping CameraPage as it requires Cordova, unavailable on regular browser
+        this.navCtrl.push(DefiningLayerPage, {
+          stepView: this.stepView + 2,
+        })
+
+      } else {
         this.navCtrl.push(CameraPage, {
-          stepView: this.stepView+1,
-        }).catch(()=> console.log('should I stay or should I go now'))
-      }else{
-        this.navCtrl.push(LayerListPage, {
-          nbLayers: this.nbLayers,
-          stepView: this.stepView+1,
-        }).catch(()=> console.log('should I stay or should I go now'))
+          stepView: this.stepView + 1,
+        })
       }
+    } else {
+      this.navCtrl.push(LayerListPage, {
+        nbLayers: this.nbLayers,
+        stepView: this.stepView + 1,
+      })
+    }
 
   }
 
-  returnButton(){
+  returnButton() {
     this.navCtrl.pop();
   }
 
