@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Toast  } from 'ionic-native';
 // Pages
 import { GifViewPage } from '../gif-view/gif-view';
+//Providers
+import { NotationService } from '../../providers/notation-service';
 
 @Component({
   selector: 'page-defining-layer',
@@ -12,13 +14,16 @@ export class DefiningLayerPage {
   stepView:number;
   imageFile:string;
   nbLayers:number;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public notationService: NotationService) {
     this.stepView = this.navParams.get('stepView');
     this.imageFile = this.navParams.get('picture');
   }
 
   validationStep(){
     if(this.nbLayers>1){
+      this.notationService.setLayers(this.nbLayers);
       this.navCtrl.push(GifViewPage, {
         stepView: this.stepView+1,
         nbLayers: this.nbLayers,

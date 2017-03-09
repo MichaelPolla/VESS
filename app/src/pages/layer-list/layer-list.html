@@ -1,9 +1,3 @@
-<!--
-  Generated template for the LayerList page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -15,7 +9,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="layerSelected(item)">
+    <button ion-item *ngFor="let item of items" (click)="layerSelected(item.id)">
       {{ item.title }}
     </button>
   </ion-list>

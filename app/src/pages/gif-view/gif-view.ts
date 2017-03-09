@@ -5,16 +5,6 @@ import { CameraPage } from '../camera/camera';
 import { DefiningLayerPage } from '../defining-layer/defining-layer';
 import { LayerListPage } from '../layer-list/layer-list';
 
-
-/*
-  Generated class for the GifView page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
-
-declare var plugins;
-
 @Component({
   selector: 'page-gif-view',
   templateUrl: 'gif-view.html'

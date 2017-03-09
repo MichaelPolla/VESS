@@ -1,39 +1,48 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 // Pages
+import { LayerListPage } from '../layer-list/layer-list';
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { Notation2Page } from '../notation-2/notation-2';
+//Providers
+import { NotationService } from '../../providers/notation-service';
 
 @Component({
   selector: 'page-notation-1',
   templateUrl: 'notation-1.html'
 })
 export class Notation1Page {
-
-  //declaration of field
   items: Array<{ title: string, checked: Boolean, imgSrc: String, code: number }>;
   code: number;
   layerNumber: number;
 
-
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-    //construction of the list
+  constructor(public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    public notationService: NotationService) {
     this.items = [
       { title: 'Pas de motte fermée', checked: false, imgSrc: './assets/icon/motte.png', code: 1 },
       { title: 'Présence possible de mottes fermées', checked: false, imgSrc: './assets/icon/motte.png', code: 2 },
       { title: 'Présence majoritaire de mottes fermées', checked: false, imgSrc: './assets/icon/motte.png', code: 3 }
     ];
+    this.layerNumber = this.notationService.actualLayer;
   }
 
-  //Methods
   validationStep() {
-    this.navCtrl.push(Notation2Page, {
-      code: this.code,
-    })
+    if (this.code) {
+      if (this.code == 2) { // => SQ3
+        this.navCtrl.push(LayerListPage, {
+          score: 3
+        })
+      } else {
+        this.navCtrl.push(Notation2Page, {
+          code: this.code,
+        })
+      }
+    }
+
   }
 
   updateCheckedBox(position, item) {
-    //declar var
     let cnt: number = 0;
 
     for (let item of this.items) {
@@ -46,10 +55,6 @@ export class Notation1Page {
       }
       cnt++;
     }
-  }
-
-  returnButton() {
-    this.navCtrl.pop();
   }
 
   showModal(item_index) {

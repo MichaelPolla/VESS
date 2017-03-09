@@ -38,8 +38,11 @@ export class ParcelsTestsPage {
   parcels: Parcel[] = [];
   indexes: number[] = [];
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public storage: Storage, public parcelService: ParcelService) { }
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public storage: Storage,
+    public parcelService: ParcelService) { }
 
   ionViewDidLoad() {
     this.stepNumber = this.navParams.get('step');
@@ -167,7 +170,7 @@ export class ParcelsTestsPage {
       this.indexes[this.stepNumber] = itemIndex;
       this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1, indexes: this.indexes });
     } else if (this.stepNumber === Steps.Blocks) {
-        this.navCtrl.push(GifViewPage);
+      this.navCtrl.push(GifViewPage);
     }
   }
 
