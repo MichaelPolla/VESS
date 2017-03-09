@@ -5,6 +5,7 @@ import { Toast  } from 'ionic-native';
 import { GifViewPage } from '../gif-view/gif-view';
 //Providers
 import { NotationService } from '../../providers/notation-service';
+import { RulerService } from '../../providers/ruler-service';
 
 @Component({
   selector: 'page-defining-layer',
@@ -14,11 +15,23 @@ export class DefiningLayerPage {
   stepView:number;
   imageFile:string;
   nbLayers:number;
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              public notationService: NotationService) {
+  heightRuler: number;
+  
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public notationService: NotationService,
+              public rulerService: RulerService) {
     this.stepView = this.navParams.get('stepView');
     this.imageFile = this.navParams.get('picture');
+
+    // Get Height of Ruler in px with :
+    // param1: height of image ruler in px
+    // param 2: number of px for one centimeter in the image.
+    this.rulerService.getHeightStyle(846, 56).then((value: number) => {
+      this.heightRuler = value;
+    }).catch((error: string) => {
+      Toast.show(error, "long", "bottom").subscribe(toast => { console.log(toast); });
+    });
   }
 
   validationStep(){
