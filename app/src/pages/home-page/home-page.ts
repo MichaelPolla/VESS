@@ -4,12 +4,6 @@ import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 import { GifViewPage } from '../gif-view/gif-view';
 import { CameraPage } from '../camera/camera';
 
-/*
-  Generated class for the HomePage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-home-page',
   templateUrl: 'home-page.html'

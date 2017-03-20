@@ -119,8 +119,9 @@ export class ParcelsTestsPage {
   /**
    * Show a dialog allowing to edit an item. 
    * itemType : the kind of item we edit (parcels, tests, blocks)
+   * action : the action to do with the item (add, edit or delete)
    */
-  editItem(item, itemType: string) {
+  editItem(item, itemType: string, action: string) {
     let prompt = this.alertCtrl.create({
       title: 'Éditer',
       inputs: [{
