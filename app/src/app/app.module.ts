@@ -20,6 +20,8 @@ import { ResultsPage } from '../pages/results/results';
 import { NotationService } from '../providers/notation-service';
 import { ParcelService } from '../providers/parcel-service';
 import { RulerService } from '../providers/ruler-service';
+
+// Component
 import { FooterComponent } from '../components/footer/footer';
 
 @NgModule({
