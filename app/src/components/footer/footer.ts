@@ -9,7 +9,14 @@ export class FooterComponent {
 
   @Output() onValidationStep = new EventEmitter<void>();
 
+  constructor(public navCtrl: NavController) {
+  }
+
   validationStep() {
     this.onValidationStep.emit();
+  }
+
+  returnButton() {
+    this.navCtrl.pop();
   }
 }

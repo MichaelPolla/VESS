@@ -16,7 +16,7 @@ export class DefiningLayerPage {
   imageFile:string;
   nbLayers:number;
   heightRuler: number;
-  
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public notationService: NotationService,
@@ -44,10 +44,6 @@ export class DefiningLayerPage {
     }else{
       Toast.show("Veuillez entrer les champs correctement", "long", "top").subscribe(toast => {console.log(toast);});
     }
-  }
-
-  returnButton(){
-    this.navCtrl.pop();
   }
 
 }
