@@ -20,6 +20,7 @@ import { ResultsPage } from '../pages/results/results';
 import { NotationService } from '../providers/notation-service';
 import { ParcelService } from '../providers/parcel-service';
 import { RulerService } from '../providers/ruler-service';
+import { FooterComponent } from '../components/footer/footer';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { RulerService } from '../providers/ruler-service';
     MyApp,
     Notation2Page,
     ParcelsTestsPage,
-    ResultsPage
+    ResultsPage,
+    FooterComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -50,7 +52,8 @@ import { RulerService } from '../providers/ruler-service';
     Notation1Page,
     Notation2Page,
     ParcelsTestsPage,
-    ResultsPage
+    ResultsPage,
+    FooterComponent
   ],
   providers: [NotationService, ParcelService, RulerService, Storage]
 })
