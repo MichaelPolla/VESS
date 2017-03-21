@@ -15,6 +15,7 @@ import { Notation1Page } from '../pages/notation-1/notation-1';
 import { Notation2Page } from '../pages/notation-2/notation-2';
 import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
 import { ResultsPage } from '../pages/results/results';
+import { VerifNotationPage } from '../pages/verif-notation/verif-notation';
 
 // Providers
 import { NotationService } from '../providers/notation-service';
@@ -37,6 +38,7 @@ import { FooterComponent } from '../components/footer/footer';
     Notation2Page,
     ParcelsTestsPage,
     ResultsPage,
+    VerifNotationPage,
     FooterComponent
   ],
   imports: [
@@ -55,6 +57,7 @@ import { FooterComponent } from '../components/footer/footer';
     Notation2Page,
     ParcelsTestsPage,
     ResultsPage,
+    VerifNotationPage,
     FooterComponent
   ],
   providers: [NotationService, ParcelService, RulerService, Storage]
