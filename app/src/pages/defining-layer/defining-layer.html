@@ -17,14 +17,26 @@
   <p> Indiquez le nombre de couches (min. 2) composant le bloc, et sa taille totale (cm).
   <ion-list>
     <ion-item>
-      <ion-label stacked color="brown">Nombre de couches</ion-label>
-      <ion-input type="number" [(ngModel)]="nbLayers"></ion-input>
+      <ion-label stacked color="brown">Nombre de couches </ion-label>
+      <ion-range min="1" max="4" [(ngModel)]="nbLayers" color="green" snaps="true" (ionChange)="changeNbLayers(nbLayers)">
+        <ion-label range-right>{{nbLayers}}</ion-label>
+      </ion-range>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked color="brown">Taille totale du bloc de terre (cm)</ion-label>
-      <ion-input type="number" value=""></ion-input>
+      <ion-label stacked color="brown">Taille totale du bloc de terre {{sizeOfParcel}}}</ion-label>
+      <ion-range min="0" max="60" step="5" [(ngModel)]="sizeOfParcel" color="green" snaps="true">
+        <ion-label range-right>{{sizeOfParcel}} (cm)</ion-label>
+      </ion-range>
     </ion-item>
+
+    <ion-item *ngFor="let layer of listLayers">
+      <ion-label stacked color="brown">Taille couche {{layer.numLayer}}: </ion-label>
+      <ion-range min="0" max="60" step="5" [(ngModel)]="layer.sizeLayer" color="green" snaps="true">
+        <ion-label range-right>{{layer.sizeLayer}} (cm)</ion-label>
+      </ion-range>
+    </ion-item>
+
   </ion-list>
 
   <img src={{imageFile}}/>
