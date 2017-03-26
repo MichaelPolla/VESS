@@ -51,15 +51,18 @@ export class ParcelsTestsPage {
       if (value != null) {
         this.parcels = value;
       }
+
+      let selectedParcel = this.parcels[this.indexes[0]];
+      let selectedTest = selectedParcel ? this.parcels[this.indexes[0]].tests[this.indexes[1]] : null;
       switch (this.stepNumber) {
         case Steps.Tests:
-          this.pageTitle = "Tests";
-          this.listItems = this.parcels[this.indexes[0]].tests;
+          this.pageTitle = selectedParcel.name;
+          this.listItems = selectedParcel.tests;
           break;
 
         case Steps.Blocks:
-          this.pageTitle = "Blocs";
-          this.listItems = this.parcels[this.indexes[0]].tests[this.indexes[1]].blocks;
+          this.pageTitle = selectedParcel.name + " - " + selectedTest.name;
+          this.listItems = selectedTest.blocks;
           break;
 
         default: // Steps.Parcels, hopefully
