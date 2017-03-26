@@ -9,12 +9,10 @@ import { GifViewPage } from '../gif-view/gif-view';
 import { ParcelService } from '../../providers/parcel-service';
 
 /*
-
   Docs :
    - Introduction to lists : https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/
 * 
 * TODOs :
-* refactor addItem, editItem and deleteItem ; could be a unique function with action (add, edit, delete) passed in parameter
 * itemType: use a kind of enum ? to only allow "parcels", "tests" and "blocks"
 */
 
@@ -75,93 +73,78 @@ export class ParcelsTestsPage {
   }
 
   /**
-   * Add a new item from a dialog.  
-   */
-  addItem() {
-    let prompt = this.alertCtrl.create({
-      title: 'Ajouter un élément',
-      inputs: [{
-        name: 'name',
-        placeholder: 'Nom'
-      }],
-      buttons: [
-        {
-          text: 'Annuler'
-        },
-        {
-          text: 'Ajouter',
-          handler: data => {
-            if (this.stepNumber === Steps.Parcels) {
-              let parcel = new Parcel();
-              parcel.name = data['name'];
-              parcel.tests = [];
-              this.parcels.push(parcel);
-            }
-            else if (this.stepNumber === Steps.Tests) {
-              let test = new Test();
-              test.name = data['name']
-              test.blocks = [];
-              this.parcels[this.indexes[0]].tests.push(test);
-            } else { // Blocks
-              let block = new Block();
-              block.name = data['name']
-              this.parcels[this.indexes[0]].tests[this.indexes[1]].blocks.push(block);
-            }
-            this.parcelService.save("parcels", this.parcels);
-          }
-        }
-      ]
-    });
-
-    prompt.present();
-  }
-
-  /**
-   * Show a dialog allowing to edit an item. 
-   * itemType : the kind of item we edit (parcels, tests, blocks)
+   * Add, edit or delete an item.
    * action : the action to do with the item (add, edit or delete)
+   * item : the selected item.
+   * itemType : the kind of item we edit (parcels, tests, blocks)
    */
-  editItem(item, itemType: string, action: string) {
-    let prompt = this.alertCtrl.create({
-      title: 'Éditer',
-      inputs: [{
-        name: 'name',
-        placeholder: 'Nom'
-      }],
-      buttons: [
-        {
-          text: 'Annuler'
-        },
-        {
-          text: 'Enregistrer',
-          handler: data => {
-            let index = this.parcels.indexOf(item);
-            let parcel = this.parcels[index];
+  manageItem(action: string, item, itemType: string) {
+    let title;
+    switch (action) {
+      case "add":
+        title = "Ajouter";
+        break;
+      case "edit":
+        title = "Éditer"
+        break;
+    }
+    if (action == "add" || action == "edit") {
+      let prompt = this.alertCtrl.create({
+        title: title,
+        inputs: [{
+          name: 'name',
+          placeholder: 'Nom'
+        }],
+        buttons: [
+          {
+            text: 'Annuler'
+          },
+          {
+            text: 'Valider',
+            handler: data => {
+              if (action == "add") {
+                if (this.stepNumber === Steps.Parcels) {
+                  let parcel = new Parcel();
+                  parcel.name = data['name'];
+                  parcel.tests = [];
+                  this.parcels.push(parcel);
+                }
+                else if (this.stepNumber === Steps.Tests) {
+                  let test = new Test();
+                  test.name = data['name']
+                  test.blocks = [];
+                  this.parcels[this.indexes[0]].tests.push(test);
+                } else { // Blocks
+                  let block = new Block();
+                  block.name = data['name']
+                  this.parcels[this.indexes[0]].tests[this.indexes[1]].blocks.push(block);
+                }
+                this.parcelService.save("parcels", this.parcels);
 
-            if (index > -1) {
-              parcel.name = data['name'];
-              this.parcelService.save("parcels", this.parcels);
+              } else { // edit
+                let index = this.parcels.indexOf(item);
+                let parcel = this.parcels[index];
+
+                if (index > -1) {
+                  parcel.name = data['name'];
+                  this.parcelService.save("parcels", this.parcels);
+                }
+              }
             }
           }
-        }
-      ]
-    });
+        ]
+      });
+      prompt.present();
+    }
 
-    prompt.present();
+    // TODO : add deletion confirmation
+    else if (action == "delete") {
+      let index = this.parcels.indexOf(item);
 
-  }
-
-  /**
-   * Delete the selected item. 
-   * itemType : the kind of item that is deleted (parcels, tests, blocks).
-   */
-  deleteItem(item, itemType: string) {
-
-    let index = this.parcels.indexOf(item);
-
-    if (index > -1) {
-      this.parcels.splice(index, 1);
-      this.parcelService.save("parcels", this.parcels);
+      if (index > -1) {
+        this.parcels.splice(index, 1);
+        this.parcelService.save("parcels", this.parcels);
+      }
     }
   }
 
@@ -178,5 +161,4 @@ export class ParcelsTestsPage {
   resetStorage() {
     this.storage.clear();
   }
-
 }

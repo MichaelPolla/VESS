@@ -3,7 +3,7 @@
     <ion-title>{{pageTitle}}</ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="addItem()"><ion-icon name="add"></ion-icon></button>
+      <button ion-button icon-only (click)="manageItem('add')"><ion-icon name="add"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 
@@ -17,10 +17,10 @@
         </ion-item>
 
         <ion-item-options>
-          <button ion-button icon-only (click)="editItem(item, stepNumber)" light>
+          <button ion-button icon-only (click)="manageItem('edit', item, stepNumber)" light>
                     <ion-icon name="paper"></ion-icon>
                 </button>
-          <button ion-button icon-only (click)="deleteItem(item, stepNumber)" danger>
+          <button ion-button icon-only (click)="manageItem('delete', item, stepNumber)" danger>
                     <ion-icon name="trash"></ion-icon>
                 </button>
         </ion-item-options>
