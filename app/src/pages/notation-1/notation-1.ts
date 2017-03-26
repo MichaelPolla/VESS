@@ -29,17 +29,10 @@ export class Notation1Page {
 
   validationStep() {
     if (this.code) {
-      if (this.code == 2) { // => SQ3
-        this.navCtrl.push(LayerListPage, {
-          score: 3
-        })
-      } else {
-        this.navCtrl.push(Notation2Page, {
-          code: this.code,
-        })
-      }
+      this.navCtrl.push(Notation2Page, {
+        code: this.code,
+      })
     }
-
   }
 
   updateCheckedBox(position, item) {

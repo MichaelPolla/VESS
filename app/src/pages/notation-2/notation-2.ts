@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Toast } from 'ionic-native';
 // Pages
 import { LayerListPage } from '../layer-list/layer-list';
+import { VerifNotationPage } from '../verif-notation/verif-notation';
 // Providers
 import { NotationService } from '../../providers/notation-service';
 import { RulerService } from '../../providers/ruler-service';
@@ -24,12 +25,12 @@ export class Notation2Page {
     public navParams: NavParams,
     public notationService: NotationService,
     public rulerService: RulerService) {
-      
+
     this.code = this.navParams.get('code');
     this.layerNumber = this.notationService.actualLayer.num;
 
     // Get Height of Ruler in px with :
-    // param1: height of image ruler in px 
+    // param1: height of image ruler in px
     // param 2: number of px for one centimeter in the image.
     this.rulerService.getHeightStyle(846, 56).then((value: number) => {
       this.heightRuler = value;
@@ -40,26 +41,22 @@ export class Notation2Page {
     switch (this.code) {
 
       case 1:
-        this.title = 'La plupart des agrégats obtenus en appliquant une très faible pression mesurent :';
+        this.title = 'La plupart des agrégats mesurent :';
         this.items = [
-          { title: 'Moins de 6 mm', checked: false, code2: 1 },
+          { title: 'Moins de 1 cm', checked: false, code2: 1 },
           { title: 'Jusqu\'à 7 cm', checked: false, code2: 2 }
         ];
         break;
 
       case 2:
-        Toast.show("Le niveau de terre est SQ3", "long", "bottom").subscribe(
-          toast => {
-            console.log(toast);
-          }
-        );
+        this.title = 'Principalement agrégats de 1 à 10cm et moins de 30\% des agrégats font moins de 1cm';
         break;
 
       case 3:
         this.title = 'Les mottes fermées font généralement plus de 10 cm';
         this.items = [
-          { title: 'Moins de 30\% des mottes fermées mesurent moins de 7cm', checked: false, code2: 1 },
-          { title: 'Presqu\'aucune motte ne mesure moins de 7 cm', checked: false, code2: 2 }
+          { title: 'Moins de 30\% des agrégats mesurent moins de 7cm', checked: false, code2: 1 },
+          { title: 'Presqu\'aucun agrégats ne mesure moins de 7 cm', checked: false, code2: 2 }
         ];
         break;
     }
@@ -75,7 +72,9 @@ export class Notation2Page {
         layerScore = 2;
       }
 
-    } else if (this.code == 3) {
+    } else if (this.code == 2) { // => SQ3
+      layerScore = 3;
+    }else if (this.code == 3) {
       if (this.code2 == 1) {  // => SQ4
         layerScore = 4;
 
@@ -85,7 +84,7 @@ export class Notation2Page {
     }
 
     if (layerScore) {
-      this.navCtrl.push(LayerListPage, {
+      this.navCtrl.push(VerifNotationPage, {
         score: layerScore
       })
     }

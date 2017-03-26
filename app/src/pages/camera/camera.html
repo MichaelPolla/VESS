@@ -19,9 +19,4 @@
 
 </ion-content>
 
-<ion-footer>
-  <ion-buttons class="bottomButton">
-        <button ion-button color="sky" round>Aide</button>
-        <button ion-button color="sky" round (click)="validationStep()" >Suivant</button>
-  </ion-buttons>
-</ion-footer>
+<component-footer-view (onValidationStep)="validationStep()"></component-footer-view>

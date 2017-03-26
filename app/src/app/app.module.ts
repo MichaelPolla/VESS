@@ -15,11 +15,15 @@ import { Notation1Page } from '../pages/notation-1/notation-1';
 import { Notation2Page } from '../pages/notation-2/notation-2';
 import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
 import { ResultsPage } from '../pages/results/results';
+import { VerifNotationPage } from '../pages/verif-notation/verif-notation';
 
 // Providers
 import { NotationService } from '../providers/notation-service';
 import { ParcelService } from '../providers/parcel-service';
 import { RulerService } from '../providers/ruler-service';
+
+// Component
+import { FooterComponent } from '../components/footer/footer';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,9 @@ import { RulerService } from '../providers/ruler-service';
     MyApp,
     Notation2Page,
     ParcelsTestsPage,
-    ResultsPage
+    ResultsPage,
+    VerifNotationPage,
+    FooterComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -50,7 +56,9 @@ import { RulerService } from '../providers/ruler-service';
     Notation1Page,
     Notation2Page,
     ParcelsTestsPage,
-    ResultsPage
+    ResultsPage,
+    VerifNotationPage,
+    FooterComponent
   ],
   providers: [NotationService, ParcelService, RulerService, Storage]
 })

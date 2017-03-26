@@ -15,8 +15,12 @@ export class DefiningLayerPage {
   stepView:number;
   imageFile:string;
   nbLayers:number;
+  nbLayersOld:number;
+  sizeOfParcel:number;
   heightRuler: number;
-  
+
+  listLayers:Array<{numLayer:number, sizeLayer:number}>;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public notationService: NotationService,
@@ -32,10 +36,26 @@ export class DefiningLayerPage {
     }).catch((error: string) => {
       Toast.show(error, "long", "bottom").subscribe(toast => { console.log(toast); });
     });
+
+    //init nbLayers and listLayers and sizeOfParcel
+    this.nbLayers = 1;
+    this.sizeOfParcel=0;
+    this.nbLayersOld= this.nbLayers;
+    this.listLayers=[{numLayer:1,sizeLayer:0}];
+
+  }
+
+  changeNbLayers(nbLayers){
+    if(nbLayers < this.nbLayersOld){
+      this.listLayers.pop();
+    }else{
+      this.listLayers.push({numLayer:nbLayers,sizeLayer:0});
+    }
+    this.nbLayersOld = nbLayers;
   }
 
   validationStep(){
-    if(this.nbLayers>1){
+    if(this.nbLayers>=1 && this.nbLayers < 4){
       this.notationService.setLayers(this.nbLayers);
       this.navCtrl.push(GifViewPage, {
         stepView: this.stepView+1,
@@ -44,10 +64,6 @@ export class DefiningLayerPage {
     }else{
       Toast.show("Veuillez entrer les champs correctement", "long", "top").subscribe(toast => {console.log(toast);});
     }
-  }
-
-  returnButton(){
-    this.navCtrl.pop();
   }
 
 }

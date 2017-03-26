@@ -61,8 +61,4 @@ export class GifViewPage {
 
   }
 
-  returnButton() {
-    this.navCtrl.pop();
-  }
-
 }
