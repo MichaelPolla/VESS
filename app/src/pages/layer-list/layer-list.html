@@ -12,5 +12,6 @@
     <button ion-item *ngFor="let item of listItems" (click)="layerSelected(item.index)">
       {{ item.title }} {{item.score}}
     </button>
+    <button ion-button color="sky" round (click)="blockScore()">Score global</button>
   </ion-list>
 </ion-content>
