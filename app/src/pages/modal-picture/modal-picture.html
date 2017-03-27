@@ -6,6 +6,11 @@
   </ion-buttons>
   <ion-title>Sample Modal</ion-title>
 </ion-navbar>
-<ion-content padding class="sample-modal-page" (click)="dismiss()">
-  <img src={{imgSrc}} >
+<ion-content padding class="sample-modal-page" (click)="dismiss()" [ngSwitch]="type">
+  <div *ngSwitchCase="'picture'">
+    <component-slide-picture-view [imgSrc]="imgSrc"></component-slide-picture-view>
+  </div>
+  <div *ngSwitchCase="'help'">
+    <component-help-view [helpNumber]="helpNumber"></component-help-view>
+  </div>
 </ion-content>

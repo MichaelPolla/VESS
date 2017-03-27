@@ -17,6 +17,7 @@ import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
 import { ResultsPage } from '../pages/results/results';
 import { VerifNotationPage } from '../pages/verif-notation/verif-notation';
 
+
 // Providers
 import { NotationService } from '../providers/notation-service';
 import { ParcelService } from '../providers/parcel-service';
@@ -24,6 +25,8 @@ import { RulerService } from '../providers/ruler-service';
 
 // Component
 import { FooterComponent } from '../components/footer/footer';
+import { HelpComponent } from '../components/help/help';
+import { SlidePictureComponent } from '../components/slide-picture/slide-picture';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { FooterComponent } from '../components/footer/footer';
     ParcelsTestsPage,
     ResultsPage,
     VerifNotationPage,
-    FooterComponent
+    FooterComponent,
+    HelpComponent,
+    SlidePictureComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -58,7 +63,9 @@ import { FooterComponent } from '../components/footer/footer';
     ParcelsTestsPage,
     ResultsPage,
     VerifNotationPage,
-    FooterComponent
+    FooterComponent,
+    HelpComponent,
+    SlidePictureComponent
   ],
   providers: [NotationService, ParcelService, RulerService, Storage]
 })

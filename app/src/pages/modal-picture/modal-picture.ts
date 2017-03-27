@@ -13,8 +13,19 @@ import { ViewController, NavParams } from 'ionic-angular';
 export class ModalPicturePage {
 
   imgSrc:string;
+  type:string;
+  helpNumber:number;
   constructor(public viewCtrl: ViewController, public navParams: NavParams) {
-      this.imgSrc = this.navParams.get('imgSrc');
+      this.type = this.navParams.get('type');
+      switch(this.type){
+        case 'picture':
+          this.imgSrc = this.navParams.get('imgSrc');
+        break;
+        case 'help':
+          this.helpNumber = 1;
+        break;
+      }
+
   }
 
   dismiss() {
@@ -22,7 +33,6 @@ export class ModalPicturePage {
   }
 
   ionViewDidLoad() {
-    console.log('Hello ModalPicturePage Page');
   }
 
 }
