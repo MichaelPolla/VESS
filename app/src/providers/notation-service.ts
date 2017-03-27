@@ -1,14 +1,5 @@
 import { Injectable } from '@angular/core';
-
-  export class Layer { // Todo: should move elsewhere
-    num: number;
-    score: number;
-    picture: any;
-
-    constructor(num: number) {
-      this.num = num;
-    }
-  }
+import { Layer } from './../app/parcel';
 
 @Injectable()
 export class NotationService {

@@ -15,3 +15,13 @@ export class Block {
   public name: string;
   public blockScore: number;
 }
+
+export class Layer {
+  num: number;
+  score: number;
+  picture: any;
+
+  constructor(num: number) {
+    this.num = num;
+  }
+}
