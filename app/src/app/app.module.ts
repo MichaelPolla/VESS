@@ -21,6 +21,7 @@ import { VerifNotationPage } from '../pages/verif-notation/verif-notation';
 import { NotationService } from '../providers/notation-service';
 import { ParcelService } from '../providers/parcel-service';
 import { RulerService } from '../providers/ruler-service';
+import { Toasts } from '../providers/toasts';
 
 // Component
 import { FooterComponent } from '../components/footer/footer';
@@ -60,6 +61,6 @@ import { FooterComponent } from '../components/footer/footer';
     VerifNotationPage,
     FooterComponent
   ],
-  providers: [NotationService, ParcelService, RulerService, Storage]
+  providers: [NotationService, ParcelService, RulerService, Storage, Toasts]
 })
 export class AppModule { }
