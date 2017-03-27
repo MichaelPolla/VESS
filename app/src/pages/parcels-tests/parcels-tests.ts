@@ -89,11 +89,17 @@ export class ParcelsTestsPage {
         break;
     }
     if (action == "add" || action == "edit") {
-      let inputsList:any = [{ name: 'name', placeholder: 'Nom' }];
+      let inputsList: any = [{ name: 'name', placeholder: 'Nom' }];
       switch (itemType) {
+        case Steps.Blocks:
+          inputsList[0].value = "Bloc ";
+          break;
+        case Steps.Parcels:
+          inputsList.push({ name : 'ofag', placeholder: 'Identifiant OFAG'});
+          break;
         case Steps.Tests:
-        inputsList.push({name: 'date', placeholder: 'Date', value: '28-03-2017'})
-        break;
+          inputsList.push({ name: 'date', placeholder: 'Date', value: '28-03-2017' });
+          break;
       }
       let prompt = this.alertCtrl.create({
         title: title,
@@ -111,6 +117,7 @@ export class ParcelsTestsPage {
                   case Steps.Parcels:
                     let parcel = new Parcel();
                     parcel.name = data['name'];
+                    parcel.ofag = data['ofag'];
                     parcel.tests = [];
                     this.parcels.push(parcel);
                     break;

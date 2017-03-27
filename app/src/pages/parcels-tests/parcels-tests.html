@@ -13,7 +13,7 @@
   <ion-list>
       <ion-item-sliding *ngFor="let item of listItems">
         <ion-item (click)=itemClicked(item)>
-          <span *ngIf="item.date">{{item.date}} - </span> {{item.name}}
+          <span *ngIf="item.date">{{item.date}} </span> {{item.name}} <span *ngIf="item.ofag">(OFAG : {{item.ofag}})</span>
         </ion-item>
 
         <ion-item-options>

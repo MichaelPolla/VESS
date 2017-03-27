@@ -1,6 +1,7 @@
 export class Parcel {
-  name: string;
-  tests: Test[];
+  public name: string;
+  public ofag: string;
+  public tests: Test[];
 }
 
 export class Test {
