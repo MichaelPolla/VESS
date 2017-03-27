@@ -9,9 +9,6 @@ import { GifViewPage } from '../gif-view/gif-view';
 import { ParcelService } from '../../providers/parcel-service';
 
 /*
-  Docs :
-   - Introduction to lists : https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/
-*
 * TODOs :
 * itemType: use a kind of enum ? to only allow "parcels", "tests" and "blocks"
 */
@@ -53,15 +50,15 @@ export class ParcelsTestsPage {
       }
 
       let selectedParcel = this.parcels[this.indexes[0]];
-      let selectedTest = selectedParcel ? this.parcels[this.indexes[0]].tests[this.indexes[1]] : null;
+      let selectedTest = selectedParcel ? selectedParcel.tests[this.indexes[1]] : null;
       switch (this.stepNumber) {
         case Steps.Tests:
-          this.pageTitle = selectedParcel.name;
+          this.pageTitle = 'Parcelle "' + selectedParcel.name + '" - Tests';
           this.listItems = selectedParcel.tests;
           break;
 
         case Steps.Blocks:
-          this.pageTitle = selectedParcel.name + " - " + selectedTest.name;
+          this.pageTitle = 'Parcelle "' + selectedParcel.name + '" - Test "' + selectedTest.name + '" - Blocs ';
           this.listItems = selectedTest.blocks;
           break;
 
