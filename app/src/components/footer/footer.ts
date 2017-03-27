@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
+
+//pages
+import { ModalPicturePage } from '../../pages/modal-picture/modal-picture';
 
 @Component({
   selector: 'component-footer-view',
@@ -9,14 +12,21 @@ export class FooterComponent {
 
   @Output() onValidationStep = new EventEmitter<void>();
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
   }
 
   validationStep() {
     this.onValidationStep.emit();
   }
 
+
+
   returnButton() {
     this.navCtrl.pop();
+  }
+
+  helpButton(){
+    let helpModal = this.modalCtrl.create(ModalPicturePage, { helpNumber: 1, type:"help" });
+    helpModal.present();
   }
 }
