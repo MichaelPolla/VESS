@@ -31,7 +31,7 @@ export class ParcelsTestsPage {
   stepName: string;
   listItems: any = [];
   parcels: Parcel[] = [];
-  indexes: number[] = [];
+  selected: number[];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -41,16 +41,14 @@ export class ParcelsTestsPage {
 
   ionViewDidLoad() {
     this.stepNumber = this.navParams.get('step');
-    if (this.navParams.get('indexes') != null) {
-      this.indexes = this.navParams.get('indexes');
-    }
+    this.selected = this.parcelService.selected;
     this.parcelService.getParcels().then((value) => {
       if (value != null) {
         this.parcels = value;
       }
 
-      let selectedParcel = this.parcels[this.indexes[0]];
-      let selectedTest = selectedParcel ? selectedParcel.tests[this.indexes[1]] : null;
+      let selectedParcel = this.parcels[this.selected[0]];
+      let selectedTest = selectedParcel ? selectedParcel.tests[this.selected[1]] : null;
       switch (this.stepNumber) {
         case Steps.Tests:
           this.pageTitle = 'Parcelle "' + selectedParcel.name + '" - Tests';
@@ -95,7 +93,7 @@ export class ParcelsTestsPage {
           inputsList[0].value = "Bloc ";
           break;
         case Steps.Parcels:
-          inputsList.push({ name : 'ofag', placeholder: 'Identifiant OFAG'});
+          inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG' });
           break;
         case Steps.Tests:
           inputsList.push({ name: 'date', placeholder: 'Date', value: '28-03-2017' });
@@ -126,12 +124,12 @@ export class ParcelsTestsPage {
                     test.name = data['name'];
                     test.date = data['date'];
                     test.blocks = [];
-                    this.parcels[this.indexes[0]].tests.push(test);
+                    this.parcels[this.selected[0]].tests.push(test);
                     break;
                   case Steps.Blocks:
                     let block = new Block();
                     block.name = data['name'];
-                    this.parcels[this.indexes[0]].tests[this.indexes[1]].blocks.push(block);
+                    this.parcels[this.selected[0]].tests[this.selected[1]].blocks.push(block);
                     break;
                 }
                 this.parcelService.save("parcels", this.parcels);
@@ -166,8 +164,9 @@ export class ParcelsTestsPage {
   itemClicked(item) {
     if (this.stepNumber < Steps.Blocks) {
       let itemIndex = this.listItems.indexOf(item);
-      this.indexes[this.stepNumber] = itemIndex;
-      this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1, indexes: this.indexes });
+      this.selected[this.stepNumber] = itemIndex;
+      this.parcelService.selected = this.selected;
+      this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1});
     } else if (this.stepNumber === Steps.Blocks) {
       this.navCtrl.push(GifViewPage);
     }
