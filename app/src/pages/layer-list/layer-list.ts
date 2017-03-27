@@ -14,7 +14,7 @@ import { Toasts } from './../../providers/toasts';
 })
 export class LayerListPage {
   nbLayers: number;
-  listItems: Array<{ title: string, index: number, score: string }> = [];
+  listItems: Array<{ title: string, index: number, score: number }> = [];
   stepView: number;
   score: number;
   layers: Layer[];
@@ -38,13 +38,11 @@ export class LayerListPage {
     }
 
     for (var i = 0; i < this.layers.length; i++) {
-      let scoreParam = "";
       this.layersWithScore = 0;
       if (this.layers[i].score) {
-        scoreParam = " — score : " + this.layers[i].score;
         this.layersWithScore += 1;
       }
-      this.listItems.push({ title: "Couche " + (i + 1), index: i, score: scoreParam })
+      this.listItems.push({ title: "Couche " + (i + 1), index: i, score: this.layers[i].score })
     }
   }
 
