@@ -18,6 +18,7 @@ export class DefiningLayerPage {
   nbLayersOld:number;
   sizeOfParcel:number;
   heightRuler: number;
+  totalSize:number;
 
   listLayers:Array<{numLayer:number, sizeLayer:number}>;
 
@@ -42,6 +43,7 @@ export class DefiningLayerPage {
     this.sizeOfParcel=0;
     this.nbLayersOld= this.nbLayers;
     this.listLayers=[{numLayer:1,sizeLayer:0}];
+    this.calcTotalSize();
 
   }
 
@@ -52,6 +54,16 @@ export class DefiningLayerPage {
       this.listLayers.push({numLayer:nbLayers,sizeLayer:0});
     }
     this.nbLayersOld = nbLayers;
+    this.calcTotalSize();
+  }
+  changeSizeLayers(){
+    this.calcTotalSize();
+  }
+  calcTotalSize(){
+    this.totalSize=0;
+    for (let layer of this.listLayers) {
+        this.totalSize += layer.sizeLayer;
+    }
   }
 
   validationStep(){
