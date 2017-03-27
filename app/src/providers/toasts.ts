@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
 import { Platform, ToastController } from 'ionic-angular';
 import { Toast } from 'ionic-native';
 
 @Injectable()
 export class Toasts {
 
-  constructor(http: Http, private platform: Platform, private toastCtrl: ToastController) {}
+  constructor(private platform: Platform, private toastCtrl: ToastController) {}
   
   /** Shows a native or non-native Toast, depending of the platform.  
    *  If no duration is provided, default is 3500.
