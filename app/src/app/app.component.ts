@@ -7,6 +7,7 @@ import { StatusBar } from 'ionic-native';
 // Pages
 import { Notation1Page } from '../pages/notation-1/notation-1';
 import { HomePage } from '../pages/home-page/home-page';
+import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
 
 
 @Component({
@@ -27,7 +28,10 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: Notation1Page },
+      { title: 'Home', component: HomePage },
+      { title: 'Liste des parcelles', component: ParcelsTestsPage },
+      { title: 'Type de qualité structural', component: HomePage },
+      { title: 'Tutoriel à la réalisation', component: HomePage }
     ];
   }
 
