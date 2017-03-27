@@ -11,7 +11,7 @@ import { ParcelService } from '../../providers/parcel-service';
 /*
   Docs :
    - Introduction to lists : https://www.joshmorony.com/an-introduction-to-lists-in-ionic-2/
-* 
+*
 * TODOs :
 * itemType: use a kind of enum ? to only allow "parcels", "tests" and "blocks"
 */
@@ -81,7 +81,7 @@ export class ParcelsTestsPage {
    * item : the selected item.
    * itemType : the kind of item we edit (parcels, tests, blocks)
    */
-  manageItem(action: string, item, itemType: string) {
+  manageItem(action: string, item, itemType: number) {
     let title;
     switch (action) {
       case "add":
@@ -106,13 +106,13 @@ export class ParcelsTestsPage {
             text: 'Valider',
             handler: data => {
               if (action == "add") {
-                if (this.stepNumber === Steps.Parcels) {
+                if (itemType === Steps.Parcels) {
                   let parcel = new Parcel();
                   parcel.name = data['name'];
                   parcel.tests = [];
                   this.parcels.push(parcel);
                 }
-                else if (this.stepNumber === Steps.Tests) {
+                else if (itemType === Steps.Tests) {
                   let test = new Test();
                   test.name = data['name']
                   test.blocks = [];
