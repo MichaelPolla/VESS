@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, ToastController } from 'ionic-angular';
-import { Toast } from 'ionic-native';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 
 // Pages
 import { CameraPage } from '../camera/camera';
 import { Notation1Page } from '../notation-1/notation-1';
 //Providers
 import { NotationService, Layer } from '../../providers/notation-service';
+import { Toasts } from './../../providers/toasts';
 
 @Component({
   selector: 'page-layer-list',
@@ -24,7 +24,7 @@ export class LayerListPage {
     public navParams: NavParams,
     public notationService: NotationService,
     public platform: Platform,
-    public toastCtrl: ToastController) { }
+    public toasts: Toasts) { }
 
   ionViewDidLoad() {
     this.layers = this.notationService.layers;
@@ -33,16 +33,8 @@ export class LayerListPage {
     if (this.navParams.get('score') != null) {
       this.score = this.navParams.get('score');
       this.notationService.actualLayer.score = this.score;
-      let toastMsg = "La qualité de la couche est SQ" + this.score;
-      if (!this.platform.is('core')) {
-        Toast.show(toastMsg, "long", "bottom").subscribe( // Todo: add name of layer (...couche X est...)
-          toast => {
-            console.log(toast);
-          }
-        );
-      } else {
-
-      }
+      let toastMsg = "La qualité de la couche " + this.notationService.actualLayer.num + " est SQ" + this.score;
+      this.toasts.showToast(toastMsg);
     }
 
     for (var i = 0; i < this.layers.length; i++) {
@@ -62,7 +54,6 @@ export class LayerListPage {
       // Running on desktop
       // Skipping CameraPage as it requires Cordova, unavailable on regular browser
       this.navCtrl.push(Notation1Page)
-
     } else {
       this.navCtrl.push(CameraPage, { stepView: 5 })
     }
@@ -73,27 +64,7 @@ export class LayerListPage {
       // Show block score
     } else {
       let toastMsg = "La notation n'a pas été effectuée pour toutes les couches.";
-      if (!this.platform.is('core')) {
-        Toast.show(toastMsg, "long", "bottom").subscribe(
-          toast => {
-            console.log(toast);
-          }
-        );
-      } else {
-        this.showToast(toastMsg);
-      }
+      this.toasts.showToast(toastMsg);
     }
   }
-
-  /** Shows a native Toast  
-   *  message: the text to show.
-   */
-  showToast(message: string) {
-    let toast = this.toastCtrl.create({
-      message: message,
-      duration: 3000
-    });
-    toast.present();
-  }
-
 }
