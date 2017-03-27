@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'component-footer-view',
