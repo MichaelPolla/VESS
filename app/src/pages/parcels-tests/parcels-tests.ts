@@ -89,12 +89,15 @@ export class ParcelsTestsPage {
         break;
     }
     if (action == "add" || action == "edit") {
+      let inputsList:any = [{ name: 'name', placeholder: 'Nom' }];
+      switch (itemType) {
+        case Steps.Tests:
+        inputsList.push({name: 'date', placeholder: 'Date', value: '28-03-2017'})
+        break;
+      }
       let prompt = this.alertCtrl.create({
         title: title,
-        inputs: [{
-          name: 'name',
-          placeholder: 'Nom'
-        }],
+        inputs: inputsList,
         buttons: [
           {
             text: 'Annuler'
@@ -102,22 +105,27 @@ export class ParcelsTestsPage {
           {
             text: 'Valider',
             handler: data => {
+
               if (action == "add") {
-                if (itemType === Steps.Parcels) {
-                  let parcel = new Parcel();
-                  parcel.name = data['name'];
-                  parcel.tests = [];
-                  this.parcels.push(parcel);
-                }
-                else if (itemType === Steps.Tests) {
-                  let test = new Test();
-                  test.name = data['name']
-                  test.blocks = [];
-                  this.parcels[this.indexes[0]].tests.push(test);
-                } else { // Blocks
-                  let block = new Block();
-                  block.name = data['name']
-                  this.parcels[this.indexes[0]].tests[this.indexes[1]].blocks.push(block);
+                switch (itemType) {
+                  case Steps.Parcels:
+                    let parcel = new Parcel();
+                    parcel.name = data['name'];
+                    parcel.tests = [];
+                    this.parcels.push(parcel);
+                    break;
+                  case Steps.Tests:
+                    let test = new Test();
+                    test.name = data['name'];
+                    test.date = data['date'];
+                    test.blocks = [];
+                    this.parcels[this.indexes[0]].tests.push(test);
+                    break;
+                  case Steps.Blocks:
+                    let block = new Block();
+                    block.name = data['name'];
+                    this.parcels[this.indexes[0]].tests[this.indexes[1]].blocks.push(block);
+                    break;
                 }
                 this.parcelService.save("parcels", this.parcels);
 
