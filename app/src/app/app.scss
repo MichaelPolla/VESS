@@ -37,9 +37,22 @@ ion-thumbnail {
 
 //######ruler#######
 .ruler{
-    width: 20px;
-    position: absolute;
-    right: 0px;
-    top:0px;
-    margin-top: 0px;
+  width: 20px;
+  position: absolute;
+  right: 0px;
+  top:0px;
+  margin-top: 0px;
+}
+
+
+.average {
+  color:darkorange;
+}
+
+.bad {
+  color: red;
+}
+
+.good {
+  color: green;
 }

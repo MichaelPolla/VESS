@@ -13,7 +13,9 @@
   <ion-list>
       <ion-item-sliding *ngFor="let item of listItems">
         <ion-item (click)=itemClicked(item)>
-          <span *ngIf="item.date">{{item.date}} </span> {{item.name}} <span *ngIf="item.ofag">(OFAG : {{item.ofag}})</span>
+          <span *ngIf="item.date">{{item.date}} </span> {{item.name}} 
+          <span *ngIf="item.ofag">(OFAG : {{item.ofag}})</span>
+          <strong *ngIf="item.score" [ngClass]="{'good' : item.score < 3, 'average' : item.score == 3, 'bad' : item.score > 3}"> — score : {{item.score}} </strong>
         </ion-item>
 
         <ion-item-options>

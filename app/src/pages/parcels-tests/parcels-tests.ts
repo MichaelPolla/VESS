@@ -58,6 +58,9 @@ export class ParcelsTestsPage {
         case Steps.Blocks:
           this.pageTitle = 'Parcelle "' + selectedParcel.name + '" - Test "' + selectedTest.name + '" - Blocs ';
           this.listItems = selectedTest.blocks;
+          if (this.navParams.get('blockScore') != null) {
+            selectedTest.blocks[this.selected[2]].score = this.navParams.get('blockScore');
+          }
           break;
 
         default: // Steps.Parcels, hopefully
@@ -129,6 +132,7 @@ export class ParcelsTestsPage {
                   case Steps.Blocks:
                     let block = new Block();
                     block.name = data['name'];
+                    block.layers = [];
                     this.parcels[this.selected[0]].tests[this.selected[1]].blocks.push(block);
                     break;
                 }
@@ -162,12 +166,13 @@ export class ParcelsTestsPage {
   }
 
   itemClicked(item) {
+    let itemIndex = this.listItems.indexOf(item);
     if (this.stepNumber < Steps.Blocks) {
-      let itemIndex = this.listItems.indexOf(item);
       this.selected[this.stepNumber] = itemIndex;
       this.parcelService.selected = this.selected;
-      this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1});
+      this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1 });
     } else if (this.stepNumber === Steps.Blocks) {
+      this.selected[this.stepNumber] = itemIndex;
       this.navCtrl.push(GifViewPage);
     }
   }

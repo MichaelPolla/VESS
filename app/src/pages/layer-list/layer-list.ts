@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
-
+import { Layer } from './../../app/parcel';
 // Pages
 import { CameraPage } from '../camera/camera';
 import { Notation1Page } from '../notation-1/notation-1';
+import { ParcelsTestsPage } from './../parcels-tests/parcels-tests';
 //Providers
-import { NotationService, Layer } from '../../providers/notation-service';
+import { NotationService } from '../../providers/notation-service';
 import { Toasts } from './../../providers/toasts';
 
 @Component({
@@ -18,7 +19,6 @@ export class LayerListPage {
   stepView: number;
   score: number;
   layers: Layer[];
-  layersWithScore: number;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,11 +37,7 @@ export class LayerListPage {
       this.toasts.showToast(toastMsg);
     }
 
-    for (var i = 0; i < this.layers.length; i++) {
-      this.layersWithScore = 0;
-      if (this.layers[i].score) {
-        this.layersWithScore += 1;
-      }
+    for (let i = 0; i < this.layers.length; i++) {
       this.listItems.push({ title: "Couche " + (i + 1), index: i, score: this.layers[i].score })
     }
   }
@@ -58,8 +54,19 @@ export class LayerListPage {
   }
 
   blockScore() {
-    if (this.layersWithScore == this.layers.length) {
-      // Show block score
+    let blockScore = 0;
+    let layersWithScore = 0;
+    for (let i = 0; i < this.layers.length; i++) {
+      blockScore += this.layers[i].score;
+      if (this.layers[i].score) {
+        layersWithScore += 1;
+      }
+    }
+    // TODO: temporary, should use the correct formula, taking in account the layers sizes
+    blockScore /= this.layers.length;
+
+    if (layersWithScore == this.layers.length) {
+      this.navCtrl.push(ParcelsTestsPage, { step: 2, blockScore: blockScore });
     } else {
       let toastMsg = "La notation n'a pas été effectuée pour toutes les couches.";
       this.toasts.showToast(toastMsg);

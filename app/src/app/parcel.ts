@@ -7,19 +7,21 @@ export class Parcel {
 export class Test {
   public name: string;
   public date: string;
-  public testScore: number;
+  public score: number;
   public blocks: Block[];
 }
 
 export class Block {
   public name: string;
-  public blockScore: number;
+  public score: number;
+  public picture: any;
+  public layers: Layer[];
 }
 
 export class Layer {
-  num: number;
-  score: number;
-  picture: any;
+  public num: number;
+  public score: number;
+  public picture: any;
 
   constructor(num: number) {
     this.num = num;
