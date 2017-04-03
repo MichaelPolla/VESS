@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { Toast } from 'ionic-native';
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { LayerListPage } from '../layer-list/layer-list';
@@ -26,7 +26,8 @@ export class VerifNotationPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    public rulerService: RulerService ) {}
+    public rulerService: RulerService,
+    public alertCtrl: AlertController) {}
 
   ionViewDidLoad() {
 
@@ -99,6 +100,15 @@ export class VerifNotationPage {
     testModal.present();
   }
 
+  showAlert(Title, subTitle, buttons) {
+    let alert = this.alertCtrl.create({
+      title: Title,
+      subTitle: subTitle,
+      buttons: buttons
+    });
+    alert.present();
+  }
+
 
   validationStep(){
     //cnt nb check and nb criteria
@@ -115,13 +125,30 @@ export class VerifNotationPage {
 
     //Condition of criteria
     if(((cntChecked >= 2) && (cntCriteria==3)) || ((cntChecked >=3) && (cntCriteria==4))){//Notation ok
+      this.showAlert('Validation','Les critères sont correctes votre qualité est de type: '+this.score, ['OK']);
       this.navCtrl.push(LayerListPage, {
         score: this.score
       });
     }else if(cntChecked == 0){//Return to decision tree on wrong result
+      this.showAlert('Critère Incorrectes','Les critères sont incorrectes vous devez recommencer la notation'+this.score, ['OK']);
       this.navCtrl.push(Notation1Page);
     }else{//suggest to return to decision tree or valid notation
       console.log("Suggere de valider ou de retour arbre de decision")
+      this.showAlert('Validation','Voulez vous valider les critères entrés avec le score de: '+this.score, [
+        {
+          text: 'Non, recommencer la notation',
+          handler: data => {
+            this.navCtrl.push(Notation1Page);
+          }
+        },
+        {
+          text: 'Oui',
+          handler: data => {
+            this.navCtrl.push(LayerListPage, {
+              score: this.score
+            });
+          }
+        }]);
     }
   }
 
