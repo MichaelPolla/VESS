@@ -127,11 +127,13 @@ export class ParcelsTestsPage {
                     test.name = data['name'];
                     test.date = data['date'];
                     test.blocks = [];
+                    for (let i = 1; i <= 3; i++) {
+                      test.blocks.push(new Block({ name: "Bloc " + i}));
+                    }
                     this.parcels[this.selected[0]].tests.push(test);
                     break;
                   case Steps.Blocks:
-                    let block = new Block();
-                    block.name = data['name'];
+                    let block = new Block({name : "Bloc " + this.parcels[this.selected[0]].tests[this.selected[1]].blocks.length + 1});
                     block.layers = [];
                     this.parcels[this.selected[0]].tests[this.selected[1]].blocks.push(block);
                     break;
