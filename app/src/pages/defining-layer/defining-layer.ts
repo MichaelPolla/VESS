@@ -67,7 +67,7 @@ export class DefiningLayerPage {
   }
 
   validationStep(){
-    if(this.nbLayers>=1 && this.nbLayers < 4){
+    if(this.nbLayers>=1 && this.nbLayers <= 5){
       this.notationService.setLayers(this.nbLayers);
       this.navCtrl.push(GifViewPage, {
         stepView: this.stepView+1,
