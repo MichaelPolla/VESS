@@ -26,12 +26,13 @@ enum Steps {
 })
 export class ParcelsTestsPage {
 
-  pageTitle: string;
-  stepNumber: number;
-  stepName: string;
-  listItems: any = [];
-  parcels: Parcel[] = [];
-  selected: number[];
+  private pageTitle: string;
+  private listHeader: string;
+  private stepNumber: number;
+  private stepName: string;
+  private listItems: any = [];
+  private parcels: Parcel[] = [];
+  private selected: number[];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -51,12 +52,14 @@ export class ParcelsTestsPage {
       let selectedTest = selectedParcel ? selectedParcel.tests[this.selected[1]] : null;
       switch (this.stepNumber) {
         case Steps.Tests:
-          this.pageTitle = 'Parcelle "' + selectedParcel.name + '" - Tests';
+          this.pageTitle = "Tests";
+          this.listHeader = "Parcelle : " + selectedParcel.name;
           this.listItems = selectedParcel.tests;
           break;
 
         case Steps.Blocks:
-          this.pageTitle = 'Parcelle "' + selectedParcel.name + '" - Test "' + selectedTest.name + '" - Blocs ';
+          this.pageTitle = "Blocs";
+          this.listHeader = "Parcelle : " + selectedParcel.name + " / Test : " + selectedTest.name;
           this.listItems = selectedTest.blocks;
           if (this.navParams.get('blockScore') != null) {
             selectedTest.blocks[this.selected[2]].score = this.navParams.get('blockScore');
@@ -120,11 +123,11 @@ export class ParcelsTestsPage {
               if (action == "add") {
                 switch (itemType) {
                   case Steps.Parcels:
-                    let parcel = new Parcel({name: data['name'], ofag: data['ofag'], tests: []});
+                    let parcel = new Parcel({ name: data['name'], ofag: data['ofag'], tests: [] });
                     this.parcels.push(parcel);
                     break;
                   case Steps.Tests:
-                    let test = new Test({name: data['name'], date: data['date'], blocks: []});
+                    let test = new Test({ name: data['name'], date: data['date'], blocks: [] });
                     for (let i = 1; i <= 3; i++) {
                       test.blocks.push(new Block({ name: "Bloc " + i }));
                     }
