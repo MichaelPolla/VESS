@@ -13,9 +13,13 @@ export class Test {
 
 export class Block {
   public name: string;
-  public score: number;
-  public picture: any;
-  public layers: Layer[];
+  public score?: number;
+  public picture?: any;
+  public layers?: Layer[];
+
+  public constructor(init: Block) {
+    Object.assign(this, init);
+  }
 }
 
 export class Layer {
