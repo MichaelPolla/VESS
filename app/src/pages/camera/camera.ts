@@ -5,13 +5,6 @@ import { Camera, File, Toast } from 'ionic-native';
 import { DefiningLayerPage } from '../defining-layer/defining-layer';
 import { Notation1Page } from '../notation-1/notation-1';
 
-/*
-  Useful docs :
-  - Camera in Ionic2 doc : https://ionicframework.com/docs/v2/native/camera
-  - Camera with Ionic2 tutorial : http://blog.ionic.io/10-minutes-with-ionic-2-using-the-camera-with-ionic-native
-  - Capturing image and save in phone Ionci2 doc: https://ionicframework.com/docs/v2/native/file/
-*/
-
 declare var cordova;
 
 @Component({
