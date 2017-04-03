@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
 // Pages
-import { LayerListPage } from '../layer-list/layer-list';
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { Notation2Page } from '../notation-2/notation-2';
 //Providers

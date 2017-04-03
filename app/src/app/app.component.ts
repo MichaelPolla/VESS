@@ -5,7 +5,6 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 // Pages
-import { Notation1Page } from '../pages/notation-1/notation-1';
 import { HomePage } from '../pages/home-page/home-page';
 import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
 

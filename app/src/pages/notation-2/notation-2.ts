@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Toast } from 'ionic-native';
 // Pages
-import { LayerListPage } from '../layer-list/layer-list';
 import { VerifNotationPage } from '../verif-notation/verif-notation';
 // Providers
 import { NotationService } from '../../providers/notation-service';
