@@ -89,12 +89,16 @@ export class ParcelsTestsPage {
         title = "Éditer"
         break;
     }
-    if (action == "add" || action == "edit") {
+    // Adding a new Block
+    if (action == "add" && itemType == Steps.Blocks) {
+      let block = new Block({ name: "Bloc " + (this.parcels[this.selected[0]].tests[this.selected[1]].blocks.length + 1), layers: [] });
+      this.parcels[this.selected[0]].tests[this.selected[1]].blocks.push(block);
+      this.parcelService.save("parcels", this.parcels);
+    }
+    // Adding or Editing a Parcel or Test
+    else if (action == "add" || action == "edit") {
       let inputsList: any = [{ name: 'name', placeholder: 'Nom' }];
       switch (itemType) {
-        case Steps.Blocks:
-          inputsList[0].value = "Bloc ";
-          break;
         case Steps.Parcels:
           inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG' });
           break;
@@ -116,26 +120,15 @@ export class ParcelsTestsPage {
               if (action == "add") {
                 switch (itemType) {
                   case Steps.Parcels:
-                    let parcel = new Parcel();
-                    parcel.name = data['name'];
-                    parcel.ofag = data['ofag'];
-                    parcel.tests = [];
+                    let parcel = new Parcel({name: data['name'], ofag: data['ofag'], tests: []});
                     this.parcels.push(parcel);
                     break;
                   case Steps.Tests:
-                    let test = new Test();
-                    test.name = data['name'];
-                    test.date = data['date'];
-                    test.blocks = [];
+                    let test = new Test({name: data['name'], date: data['date'], blocks: []});
                     for (let i = 1; i <= 3; i++) {
-                      test.blocks.push(new Block({ name: "Bloc " + i}));
+                      test.blocks.push(new Block({ name: "Bloc " + i }));
                     }
                     this.parcels[this.selected[0]].tests.push(test);
-                    break;
-                  case Steps.Blocks:
-                    let block = new Block({name : "Bloc " + this.parcels[this.selected[0]].tests[this.selected[1]].blocks.length + 1});
-                    block.layers = [];
-                    this.parcels[this.selected[0]].tests[this.selected[1]].blocks.push(block);
                     break;
                 }
                 this.parcelService.save("parcels", this.parcels);
@@ -156,10 +149,10 @@ export class ParcelsTestsPage {
       prompt.present();
     }
 
+    // Deleting
     // TODO : add deletion confirmation
     else if (action == "delete") {
       let index = this.parcels.indexOf(item);
-
       if (index > -1) {
         this.parcels.splice(index, 1);
         this.parcelService.save("parcels", this.parcels);
