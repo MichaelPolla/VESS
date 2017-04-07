@@ -23,6 +23,7 @@ import { NotationService } from '../providers/notation-service';
 import { ParcelService } from '../providers/parcel-service';
 import { RulerService } from '../providers/ruler-service';
 import { Toasts } from '../providers/toasts';
+import { Utils } from './../providers/utils';
 
 // Component
 import { FooterComponent } from '../components/footer/footer';
@@ -68,6 +69,6 @@ import { SlidePictureComponent } from '../components/slide-picture/slide-picture
     HelpComponent,
     SlidePictureComponent
   ],
-  providers: [NotationService, ParcelService, RulerService, Storage, Toasts]
+  providers: [NotationService, ParcelService, RulerService, Storage, Toasts, Utils]
 })
 export class AppModule { }
