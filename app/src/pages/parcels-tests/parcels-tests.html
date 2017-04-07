@@ -12,21 +12,21 @@
   <!--<button ion-button (click)="resetStorage()">Reset </button>-->
   <ion-list>
     <ion-list-header>{{listHeader}}</ion-list-header>
-        <ion-item-sliding *ngFor="let item of listItems">
-          <ion-item (click)=itemClicked(item)>
-            <span *ngIf="item.date">{{item.date}} </span> {{item.name}}
-            <span *ngIf="item.ofag">(OFAG : {{item.ofag}})</span>
-            <strong *ngIf="item.score" [ngClass]="{'good' : item.score < 3, 'average' : item.score == 3, 'bad' : item.score > 3}"> — score : {{item.score}} </strong>
-          </ion-item>
+    <ion-item *ngFor="let item of listItems" (click)=itemClicked(item)>
+      <span *ngIf="item.date">{{item.date}} </span> {{item.name}}
+      <span *ngIf="item.ofag">(OFAG : {{item.ofag}})</span>
+      <strong *ngIf="item.score" [ngClass]="{'good' : item.score < 3, 'average' : item.score == 3, 'bad' : item.score > 3}"> — score : {{item.score}} </strong>
 
-          <ion-item-options>
-            <button ion-button icon-only (click)="manageItem('edit', item, stepNumber)" light>
+      <button ion-button item-right icon-only (click)="manageItem('edit', item, stepNumber)" light>
                     <ion-icon name="paper"></ion-icon>
                 </button>
-            <button ion-button icon-only (click)="manageItem('delete', item, stepNumber)" danger>
+      <button ion-button item-right icon-only (click)="manageItem('delete', item, stepNumber)" danger>
                     <ion-icon name="trash"></ion-icon>
                 </button>
-          </ion-item-options>
-        </ion-item-sliding>
+
+    </ion-item>
+
+
+
   </ion-list>
 </ion-content>

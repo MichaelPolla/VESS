@@ -9,7 +9,7 @@ export class Parcel {
 }
 
 export class Test {
-  public name: string;
+  public name?: string;
   public date: string;
   public score?: number;
   public blocks?: Block[];
