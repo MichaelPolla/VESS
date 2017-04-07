@@ -7,6 +7,7 @@ import { Parcel, Test, Block } from '../../app/parcel';
 import { GifViewPage } from '../gif-view/gif-view';
 // Providers
 import { ParcelService } from '../../providers/parcel-service';
+import { Utils } from './../../providers/utils';
 
 /*
 * TODOs :
@@ -38,7 +39,8 @@ export class ParcelsTestsPage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public storage: Storage,
-    public parcelService: ParcelService) { }
+    public parcelService: ParcelService,
+    private utils: Utils) { }
 
   ionViewDidLoad() {
     this.stepNumber = this.navParams.get('step');
@@ -106,7 +108,7 @@ export class ParcelsTestsPage {
           inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG' });
           break;
         case Steps.Tests:
-          inputsList.push({ name: 'date', placeholder: 'Date', value: '28-03-2017' });
+          inputsList.push({ name: 'date', placeholder: 'Date', value: this.utils.getCurrentDate() });
           break;
       }
       let prompt = this.alertCtrl.create({
