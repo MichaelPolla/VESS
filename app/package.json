@@ -42,7 +42,6 @@
     "cordova-plugin-x-toast",
     "cordova-plugin-compat",
     "cordova-plugin-file",
-    "cordova-sqlite-storage",
     "cordova-plugin-screensize",
     "cordova-plugin-camera"
   ],
