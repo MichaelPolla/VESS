@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Camera, File, Toast } from 'ionic-native';
+import { Camera, File } from 'ionic-native';
 // Pages
 import { DefiningLayerPage } from '../defining-layer/defining-layer';
 import { Notation1Page } from '../notation-1/notation-1';
+// Providers
+import { Toasts } from './../../providers/toasts';
+import { Utils } from './../../providers/utils';
 
 declare var cordova;
 
@@ -13,16 +16,18 @@ declare var cordova;
 })
 export class CameraPage {
   public imageFile: string;
+  private isOfagUser: boolean = false;
   pageTitle: string;
   stepView: number;
-  pathImgBlock: string = cordova.file.dataDirectory + "/imgBlock";
   imageNamePath: string;
   dirName: string;
-  description : string;
+  description: string;
   defaultBlockPicture: string = "./assets/icon/two-layers-example.png";
   defaultLayerPicture: string = "./assets/icon/generic-image.png";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private toasts: Toasts) {
     this.stepView = this.navParams.get('stepView');
 
 
@@ -30,19 +35,20 @@ export class CameraPage {
     switch (this.stepView) {
       case 1:
         this.pageTitle = "Photo du bloc entier";
-        this.dirName = "imgBlock";
-        this.imageNamePath = "imgBlock/newImgBlock.jpg";
+        this.dirName = "blocks";
+
         this.imageFile = this.defaultBlockPicture;
         this.description = "Prenez une photo montrant le bloc entier et ses différentes couches, ainsi que le trou dont il est extrait :";
         break;
       case 5:
         this.pageTitle = "Photo de la couche";
-        this.dirName = "imgLayer";
-        this.imageNamePath = "imgBlock/newImgLayer.jpg";
+        this.dirName = "layers";
         this.imageFile = this.defaultLayerPicture;
         this.description = "Prenez une photo de la couche :";
         break;
     }
+    this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
+
   }
 
   takePicture() {
@@ -64,12 +70,12 @@ export class CameraPage {
           //Directory is created, so you have to create image file
           File.writeFile(cordova.file.dataDirectory, this.imageNamePath, imagePath, true);
         }, error => {
-          Toast.show("Error when created directory", "long", "bottom").subscribe(toast => { console.log(toast); });
+          this.toasts.showToast("Erreur lors de la création du répertoire de l'image.");
         });
       });
 
     }, (err) => {
-      Toast.show("Error picture", "long", "bottom").subscribe(toast => { console.log(toast); });
+      this.toasts.showToast("Erreur lors de la création de l'image.");
     });
   }
 
@@ -77,20 +83,20 @@ export class CameraPage {
   validationStep() {
     switch (this.stepView) {
       case 1:
-        if (this.imageFile != this.defaultBlockPicture) {
+        if (this.isOfagUser && this.imageFile == this.defaultBlockPicture) { // OFAG user must take a picture
+          this.toasts.showToast("Veuillez prendre une photo.");
+        } else {
           this.navCtrl.push(DefiningLayerPage, {
             stepView: this.stepView + 1,
             picture: this.imageFile
           })
-        } else {
-          Toast.show("Veuillez prendre une photo", "long", "bottom").subscribe(toast => { console.log(toast); });
         }
         break;
       case 5:
-        if (this.imageFile != this.defaultLayerPicture) {
-          this.navCtrl.push(Notation1Page)
+        if (this.isOfagUser && this.imageFile == this.defaultLayerPicture) { // OFAG user must take a picture
+          this.toasts.showToast("Veuillez prendre une photo.");
         } else {
-          Toast.show("Veuillez prendre une photo", "long", "bottom").subscribe(toast => { console.log(toast); });
+          this.navCtrl.push(Notation1Page)
         }
         break;
     }
