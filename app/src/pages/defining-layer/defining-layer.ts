@@ -6,6 +6,7 @@ import { GifViewPage } from '../gif-view/gif-view';
 //Providers
 import { NotationService } from '../../providers/notation-service';
 import { RulerService } from '../../providers/ruler-service';
+import { Toasts } from './../../providers/toasts';
 
 @Component({
   selector: 'page-defining-layer',
@@ -25,7 +26,8 @@ export class DefiningLayerPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public notationService: NotationService,
-              public rulerService: RulerService) {
+              public rulerService: RulerService,
+              private toasts: Toasts) {
     this.stepView = this.navParams.get('stepView');
     this.imageFile = this.navParams.get('picture');
 
@@ -74,7 +76,7 @@ export class DefiningLayerPage {
         nbLayers: this.nbLayers,
       })
     }else{
-      Toast.show("Veuillez entrer les champs correctement", "long", "top").subscribe(toast => {console.log(toast);});
+      this.toasts.showToast("Veuillez correctement renseigner les champs.");
     }
   }
 
