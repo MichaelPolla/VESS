@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Toast  } from 'ionic-native';
 // Pages
 import { GifViewPage } from '../gif-view/gif-view';
 //Providers
@@ -37,7 +36,7 @@ export class DefiningLayerPage {
     this.rulerService.getHeightStyle(846, 56).then((value: number) => {
       this.heightRuler = value;
     }).catch((error: string) => {
-      Toast.show(error, "long", "bottom").subscribe(toast => { console.log(toast); });
+      this.toasts.showToast("Veuillez correctement renseigner les champs.");
     });
 
     //init nbLayers and listLayers and sizeOfParcel
