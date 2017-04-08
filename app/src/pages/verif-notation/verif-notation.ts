@@ -1,45 +1,46 @@
+import { Layer } from './../../app/parcel';
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
-import { Toast } from 'ionic-native';
+import { NavController, NavParams, ModalController, Platform, AlertController } from 'ionic-angular';
+// Pages
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { LayerListPage } from '../layer-list/layer-list';
 import { Notation1Page } from '../notation-1/notation-1';
-//service
+// Providers
+import { ParcelService } from './../../providers/parcel-service';
 import { RulerService } from '../../providers/ruler-service';
+import { Toasts } from './../../providers/toasts';
 
-/*
-  Generated class for the VerifNotation page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-verif-notation',
   templateUrl: 'verif-notation.html'
 })
 export class VerifNotationPage {
-  //declaration of field
   heightRuler: number;
   score: number;
-  items: Array<{ title: string, checked: Boolean, imgSrc?:string, code: number }>;
-  criterias: Array<{ title:string, array :Array<{ title: string, checked: Boolean, imgSrc?:string, code: number }>}>;
+  items: Array<{ title: string, checked: Boolean, imgSrc?: string, code: number }>;
+  criterias: Array<{ title: string, array: Array<{ title: string, checked: Boolean, imgSrc?: string, code: number }> }>;
+  private currentLayer: Layer;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
+    private parcelService: ParcelService,
+    private platform: Platform,
     public rulerService: RulerService,
-    public alertCtrl: AlertController) {}
+    private toasts: Toasts,
+    public alertCtrl: AlertController) { }
 
   ionViewDidLoad() {
+    this.currentLayer = this.parcelService.getCurrentLayer();
 
-
-    // Get Height of Ruler in px with :
-    // param1: height of image ruler in px
-    // param 2: number of px for one centimeter in the image.
-    this.rulerService.getHeightStyle(846, 56).then((value: number) => {
-      this.heightRuler = value;
-    }).catch((error: string) => {
-      Toast.show(error, "long", "bottom").subscribe(toast => { console.log(toast); });
-    });
+    if (!this.platform.is('core')) {
+      this.rulerService.getHeightStyle(846, 56).then((value: number) => {
+        this.heightRuler = value;
+      }).catch((error: string) => {
+        this.toasts.showToast(error);
+      });
+    }
 
     if (this.navParams.get('score') != null) {
       this.score = this.navParams.get('score');
@@ -49,10 +50,10 @@ export class VerifNotationPage {
         case 1:
           this.items = [
             { title: 'Très poreux, grumeleux (photo A)', checked: false, imgSrc: './assets/pictures/a-2.png', code: 1 },
-            { title: 'Se séparent spontanément ou après une très pression', checked: false, code: 2 },
+            { title: 'Se séparent spontanément ou après une très faible pression', checked: false, code: 2 },
             { title: 'Sont maintenus entre eux par de nombreuses racines (photo B)', checked: false, imgSrc: './assets/pictures/b-1.png', code: 3 }
           ];
-          this.criterias = [{title : 'Les agrégats d’environ 1cm sont :', array:this.items}];
+          this.criterias = [{ title: 'Les agrégats d’environ 1cm sont :', array: this.items }];
 
           break;
 
@@ -62,7 +63,7 @@ export class VerifNotationPage {
             { title: 'Se séparent spontanément ou après une très faible pression', checked: false, code: 2 },
             { title: 'Contiennent des racines (photo D)', checked: false, code: 3 }
           ];
-          this.criterias = [{title :'Les agrégats d’environ 1cm sont :', array:this.items}];
+          this.criterias = [{ title: 'Les agrégats d’environ 1cm sont :', array: this.items }];
           break;
         case 3:
           this.items = [
@@ -70,25 +71,25 @@ export class VerifNotationPage {
             { title: 'Relativement facile à rompre', checked: false, code: 2 },
             { title: 'Contiennent des racines (photo D)', checked: false, code: 3 }
           ];
-          this.criterias = [{title :'Les agrégats d’environ 1cm sont :', array:this.items}];
-          this.criterias.push({title :'Présence possible de fragments* de sol non poreux, ne contenant pas ou peu de racines (photo E)', array: [{ title: 'Oui', checked: false, code: 1 }]});
+          this.criterias = [{ title: 'Les agrégats d’environ 1cm sont :', array: this.items }];
+          this.criterias.push({ title: 'Présence possible de fragments* de sol non poreux, ne contenant pas ou peu de racines (photo E)', array: [{ title: 'Oui', checked: false, code: 1 }] });
           break;
         case 4:
           this.items = [
             { title: 'Non poreux, de forme cubique, aux bords anguleux', checked: false, code: 1 },
             { title: 'Contiennent très peu de racines', checked: false, code: 2 }
           ];
-          this.criterias = [{title :'Les fragments de sol d’environ 1 cm sont :', array:this.items}];
-          this.criterias.push({title :'Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles', array:[{ title: 'Oui', checked: false, code: 1 }]});
+          this.criterias = [{ title: 'Les fragments de sol d’environ 1 cm sont :', array: this.items }];
+          this.criterias.push({ title: 'Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, code: 1 }] });
           break;
         case 5:
           this.items = [
             { title: 'Difficiles à obtenir ( sol compact)', checked: false, code: 1 },
             { title: 'Contiennent très peu ou pas de racines', checked: false, code: 2 }
           ];
-          this.criterias = [{title :'Les fragments de sol d’environ 1 cm sont :', array:this.items}];
-          this.criterias.push({title :'Les racines se situent autour principalement des mottes ou au sein des pores grossiers visibles', array:[{ title: 'Oui', checked: false, code: 1 }]});
-          this.criterias.push({title :'Anoxie possible, couleur gris-bleu (odeur d’œuf pourri)', array:[{ title: 'Oui', checked: false, code: 1 }]});
+          this.criterias = [{ title: 'Les fragments de sol d’environ 1 cm sont :', array: this.items }];
+          this.criterias.push({ title: 'Les racines se situent autour principalement des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, code: 1 }] });
+          this.criterias.push({ title: 'Anoxie possible, couleur gris-bleu (odeur d’œuf pourri)', array: [{ title: 'Oui', checked: false, code: 1 }] });
           break;
       }
     }
@@ -110,31 +111,31 @@ export class VerifNotationPage {
   }
 
 
-  validationStep(){
+  validationStep() {
     //cnt nb check and nb criteria
-    let cntCriteria=0;
-    let cntChecked=0;
+    let cntCriteria = 0;
+    let cntChecked = 0;
     for (let criteria of this.criterias) {
-      for (let item of criteria.array){
-        cntCriteria+=1;
-        if(item.checked==true){
-          cntChecked+=1;
+      for (let item of criteria.array) {
+        cntCriteria += 1;
+        if (item.checked == true) {
+          cntChecked += 1;
         }
       }
     }
 
     //Condition of criteria
-    if(((cntChecked >= 2) && (cntCriteria==3)) || ((cntChecked >=3) && (cntCriteria==4))){//Notation ok
-      this.showAlert('Validation','Les critères sont correctes votre qualité est de type: '+this.score, ['OK']);
+    if (((cntChecked >= 2) && (cntCriteria == 3)) || ((cntChecked >= 3) && (cntCriteria == 4))) {//Notation ok
+      this.showAlert('Validation', 'Les critères sont correctes votre qualité est de type: ' + this.score, ['OK']);
       this.navCtrl.push(LayerListPage, {
         score: this.score
       });
-    }else if(cntChecked == 0){//Return to decision tree on wrong result
-      this.showAlert('Critère Incorrectes','Les critères sont incorrectes vous devez recommencer la notation'+this.score, ['OK']);
+    } else if (cntChecked == 0) {//Return to decision tree on wrong result
+      this.showAlert('Critère Incorrectes', 'Les critères sont incorrectes vous devez recommencer la notation' + this.score, ['OK']);
       this.navCtrl.push(Notation1Page);
-    }else{//suggest to return to decision tree or valid notation
+    } else {//suggest to return to decision tree or valid notation
       console.log("Suggere de valider ou de retour arbre de decision")
-      this.showAlert('Validation','Voulez vous valider les critères entrés avec le score de: '+this.score, [
+      this.showAlert('Validation', 'Voulez vous valider les critères entrés avec le score de: ' + this.score, [
         {
           text: 'Non, recommencer la notation',
           handler: data => {
@@ -144,6 +145,7 @@ export class VerifNotationPage {
         {
           text: 'Oui',
           handler: data => {
+            this.currentLayer.score = this.score;
             this.navCtrl.push(LayerListPage, {
               score: this.score
             });

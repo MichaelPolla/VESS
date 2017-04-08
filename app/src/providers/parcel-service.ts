@@ -1,17 +1,17 @@
+import { Block, Parcel, Layer } from './../app/parcel';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class ParcelService {
 
-  public selected: number[] = [];
-  private data: any;
+  public selected: number[] = [0,0,0,0];
+  private data: Parcel[];
 
   constructor(public storage: Storage) { }
 
   /**
    * Get parcels data.  
-   * Return : a Promise
    */
   public getParcels(): Promise<any> {
     return new Promise((resolve: any, reject: any) => {
@@ -21,6 +21,20 @@ export class ParcelService {
         this.load("parcels").then(() => { resolve(this.data) });
       }
     });
+  }
+
+  /**
+   * Get the current (selected) Block.
+   */
+  public getCurrentBlock(): Block {
+    return this.data[this.selected[0]].tests[this.selected[1]].blocks[this.selected[2]];
+  }
+
+  /**
+   * Get the current (selected) Layer.
+   */
+  public getCurrentLayer(): Layer {
+        return this.getCurrentBlock().layers[this.selected[3]];
   }
 
     /**

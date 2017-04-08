@@ -1,11 +1,12 @@
+import { ParcelService } from './../../providers/parcel-service';
+import { Layer } from './../../app/parcel';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { Toast } from 'ionic-native';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 // Pages
 import { VerifNotationPage } from '../verif-notation/verif-notation';
 // Providers
-import { NotationService } from '../../providers/notation-service';
 import { RulerService } from '../../providers/ruler-service';
+import { Toasts } from './../../providers/toasts';
 
 @Component({
   selector: 'page-notation-2',
@@ -19,23 +20,27 @@ export class Notation2Page {
   code2: number;
   layerNumber: number;
   heightRuler: number;
+  private currentLayer: Layer;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public notationService: NotationService,
-    public rulerService: RulerService) {
+    private parcelService: ParcelService,
+    private platform: Platform,
+    public rulerService: RulerService,
+    private toasts: Toasts) { }
 
+  ionViewDidLoad() {
+    this.currentLayer = this.parcelService.getCurrentLayer();
+    this.layerNumber = this.currentLayer.num;
     this.code = this.navParams.get('code');
-    this.layerNumber = this.notationService.actualLayer.num;
 
-    // Get Height of Ruler in px with :
-    // param1: height of image ruler in px
-    // param 2: number of px for one centimeter in the image.
-    this.rulerService.getHeightStyle(846, 56).then((value: number) => {
-      this.heightRuler = value;
-    }).catch((error: string) => {
-      Toast.show(error, "long", "bottom").subscribe(toast => { console.log(toast); });
-    });
+    if (!this.platform.is('core')) {
+      this.rulerService.getHeightStyle(846, 56).then((value: number) => {
+        this.heightRuler = value;
+      }).catch((error: string) => {
+        this.toasts.showToast(error);
+      });
+    }
 
     switch (this.code) {
 
@@ -73,7 +78,7 @@ export class Notation2Page {
 
     } else if (this.code == 2) { // => SQ3
       layerScore = 3;
-    }else if (this.code == 3) {
+    } else if (this.code == 3) {
       if (this.code2 == 1) {  // => SQ4
         layerScore = 4;
 

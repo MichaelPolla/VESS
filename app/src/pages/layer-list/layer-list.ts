@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
-import { Layer } from './../../app/parcel';
+import { Block, Layer } from './../../app/parcel';
 // Pages
 import { CameraPage } from '../camera/camera';
 import { Notation1Page } from '../notation-1/notation-1';
 import { ParcelsTestsPage } from './../parcels-tests/parcels-tests';
 //Providers
-import { NotationService } from '../../providers/notation-service';
+import { ParcelService } from './../../providers/parcel-service';
 import { Toasts } from './../../providers/toasts';
 
 @Component({
@@ -19,21 +19,23 @@ export class LayerListPage {
   stepView: number;
   score: number;
   layers: Layer[];
+  private currentLayer: Layer;
+  private currentBlock: Block;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public notationService: NotationService,
-    public platform: Platform,
+    private parcelService: ParcelService,
+    private platform: Platform,
     public toasts: Toasts) { }
 
   ionViewDidLoad() {
-    this.layers = this.notationService.layers;
     this.stepView = this.navParams.get('stepView');
+    this.currentBlock = this.parcelService.getCurrentBlock();
+    this.layers = this.currentBlock.layers;
 
     if (this.navParams.get('score') != null) {
-      this.score = this.navParams.get('score');
-      this.notationService.actualLayer.score = this.score;
-      let toastMsg = "La qualité de la couche " + this.notationService.actualLayer.num + " est SQ" + this.score;
+      this.currentLayer = this.parcelService.getCurrentLayer();
+      let toastMsg = "La qualité de la couche " + this.currentLayer.num + " est SQ" + this.currentLayer.score;
       this.toasts.showToast(toastMsg);
     }
 
@@ -43,7 +45,7 @@ export class LayerListPage {
   }
 
   layerSelected(layerIndex: number) {
-    this.notationService.setActualLayer(layerIndex);
+    this.parcelService.selected[3] = layerIndex;
     if (this.platform.is('core')) {
       // Running on desktop
       // Skipping CameraPage as it requires Cordova, unavailable on regular browser
