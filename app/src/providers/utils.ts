@@ -8,15 +8,27 @@ import { DatePipe } from '@angular/common';
 @Injectable()
 export class Utils {
 
-  constructor() {}
+  constructor() { }
 
   /**
-   * Return the current date, formatted as : dd/mm/yyyy.  
-   * Uses DatePipe : https://angular.io/docs/ts/latest/api/common/index/DatePipe-pipe.html
+   * Returns the current date and time, formatted as specified in argument.  
+   * Uses DatePipe : https://angular.io/docs/ts/latest/api/common/index/DatePipe-pipe.html.
+   * Check this doc to see all the formatting options available.  
+   * 
+   * Examples : dd/MM/y  => 08/04/2017
    */
-  public getCurrentDate(): string {
-          let datePipe = new DatePipe('fr-FR');
-          return datePipe.transform(new Date(), 'dd/MM/yyyy');
+  public static getCurrentDatetime(format: string): string {
+    let datePipe = new DatePipe('fr-FR');
+    return datePipe.transform(new Date(), format);
   }
+
+  /**
+   * Returns a filename base on the current date and time, with the extension passed in argument.  
+   * fileExt : the file extension, prefixed by '.'  (.jpg, .png...)
+   */
+  public static getDatetimeFilename(fileExt: string): string {
+    return this.getCurrentDatetime('ddMMy_HHmmss') + fileExt;
+  }
+
 
 }
