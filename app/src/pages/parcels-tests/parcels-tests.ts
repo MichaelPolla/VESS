@@ -39,8 +39,7 @@ export class ParcelsTestsPage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public storage: Storage,
-    public parcelService: ParcelService,
-    private utils: Utils) { }
+    public parcelService: ParcelService) { }
 
   ionViewDidLoad() {
     this.stepNumber = this.navParams.get('step');
@@ -108,7 +107,7 @@ export class ParcelsTestsPage {
           inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG' });
           break;
         case Steps.Tests:
-          inputsList.push({ name: 'date', placeholder: 'Date', value: this.utils.getCurrentDate() });
+          inputsList.push({ name: 'date', placeholder: 'Date', value: Utils.getCurrentDatetime('dd/MM/y')});
           break;
       }
       let prompt = this.alertCtrl.create({
