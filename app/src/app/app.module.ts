@@ -29,6 +29,7 @@ import { Utils } from './../providers/utils';
 import { FooterComponent } from '../components/footer/footer';
 import { HelpComponent } from '../components/help/help';
 import { SlidePictureComponent } from '../components/slide-picture/slide-picture';
+import { ResumeComponent } from '../components/resume/resume';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { SlidePictureComponent } from '../components/slide-picture/slide-picture
     VerifNotationPage,
     FooterComponent,
     HelpComponent,
-    SlidePictureComponent
+    SlidePictureComponent,
+    ResumeComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -67,7 +69,8 @@ import { SlidePictureComponent } from '../components/slide-picture/slide-picture
     VerifNotationPage,
     FooterComponent,
     HelpComponent,
-    SlidePictureComponent
+    SlidePictureComponent,
+    ResumeComponent
   ],
   providers: [NotationService, ParcelService, RulerService, Storage, Toasts, Utils]
 })
