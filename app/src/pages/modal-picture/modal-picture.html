@@ -1,12 +1,12 @@
 <ion-navbar *navbar>
   <ion-buttons start>
-    <button (click)="dismiss()">
+    <button (click)="closeModal()">
       Cancel
     </button>
   </ion-buttons>
   <ion-title>Sample Modal</ion-title>
 </ion-navbar>
-<ion-content padding class="sample-modal-page" (click)="dismiss()" [ngSwitch]="type">
+<ion-content padding class="sample-modal-page" (click)="closeModal()" [ngSwitch]="type">
   <div *ngSwitchCase="'picture'">
     <component-slide-picture-view [imgSrc]="imgSrc"></component-slide-picture-view>
   </div>

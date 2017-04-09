@@ -17,10 +17,10 @@ export class ModalPicturePage {
   helpNumber: number;
   constructor(public viewCtrl: ViewController,
     public navParams: NavParams,
-    private platform: Platform) {
-
+    private platform: Platform) { }
+  ionViewDidLoad() {
     this.platform.registerBackButtonAction(() => {
-      this.viewCtrl.dismiss()
+      this.closeModal();
     });
     this.type = this.navParams.get('type');
     switch (this.type) {
@@ -31,14 +31,9 @@ export class ModalPicturePage {
         this.helpNumber = 1;
         break;
     }
-
   }
 
-  dismiss() {
+  private closeModal() {
     this.viewCtrl.dismiss();
   }
-
-  ionViewDidLoad() {
-  }
-
 }
