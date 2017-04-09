@@ -37,6 +37,16 @@ export class DataService {
         return this.getCurrentBlock().layers[this.selected[3]];
   }
 
+  public getBlockPicture(): any {
+    return this.getCurrentBlock().picture;
+  }
+  /**
+   * Set the block picture
+   */
+  public setBlockPicture(filepath: string) {
+    this.getCurrentBlock().picture = filepath;
+  }
+
     /**
    * Save data using ionic Storage (key/value pair).  
    * key : key associated to the value.  
