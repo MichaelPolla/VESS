@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController, NavParams } from 'ionic-angular';
+import { ViewController, NavParams, Platform } from 'ionic-angular';
 
 /*
   Ionic2 modals :
@@ -12,19 +12,25 @@ import { ViewController, NavParams } from 'ionic-angular';
 })
 export class ModalPicturePage {
 
-  imgSrc:string;
-  type:string;
-  helpNumber:number;
-  constructor(public viewCtrl: ViewController, public navParams: NavParams) {
-      this.type = this.navParams.get('type');
-      switch(this.type){
-        case 'picture':
-          this.imgSrc = this.navParams.get('imgSrc');
+  imgSrc: string;
+  type: string;
+  helpNumber: number;
+  constructor(public viewCtrl: ViewController,
+    public navParams: NavParams,
+    private platform: Platform) {
+
+    this.platform.registerBackButtonAction(() => {
+      this.viewCtrl.dismiss()
+    });
+    this.type = this.navParams.get('type');
+    switch (this.type) {
+      case 'picture':
+        this.imgSrc = this.navParams.get('imgSrc');
         break;
-        case 'help':
-          this.helpNumber = 1;
+      case 'help':
+        this.helpNumber = 1;
         break;
-      }
+    }
 
   }
 
