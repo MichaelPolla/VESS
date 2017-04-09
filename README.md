@@ -1,9 +1,10 @@
 # VESS
 Visual Evaluation of Soil Structure (VESS)
 
-![alt tag](docs/VESS-Icon2.png)
+<img src="/docs/VESS-Icon2.png" width="200">
 
 ## Palette de couleur
-![alt tag](docs/colorApp.png)
+<img src="/docs/colorApp.png" width="200">
+
 ## Vue d'ensemble
-![alt tag](docs/Vue d'ensemble.png)
+<img src="docs/Vue d'ensemble.png" width="100%">
