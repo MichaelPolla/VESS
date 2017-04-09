@@ -4,9 +4,9 @@ import { NavController, NavParams, Platform } from 'ionic-angular';
 // Pages
 import { GifViewPage } from '../gif-view/gif-view';
 //Providers
-import { ParcelService } from './../../providers/parcel-service';
+import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
-import { Toasts } from './../../providers/toasts';
+import { Toasts } from '../../providers/toasts';
 
 @Component({
   selector: 'page-defining-layer',
@@ -26,7 +26,7 @@ export class DefiningLayerPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private parcelService: ParcelService,
+    private dataService: DataService,
     private platform: Platform,
     public rulerService: RulerService,
     private toasts: Toasts) { }
@@ -34,7 +34,7 @@ export class DefiningLayerPage {
   ionViewDidLoad() {
     this.stepView = this.navParams.get('stepView');
     this.imageFile = this.navParams.get('picture');
-    this.currentBlock = this.parcelService.getCurrentBlock();
+    this.currentBlock = this.dataService.getCurrentBlock();
 
     if (!this.platform.is('core')) {
       // Get Height of Ruler in px with :

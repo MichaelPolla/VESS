@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 @Injectable()
-export class ParcelService {
+export class DataService {
 
   public selected: number[] = [0,0,0,0];
   private data: Parcel[];

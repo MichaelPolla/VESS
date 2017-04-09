@@ -6,8 +6,8 @@ import { CameraPage } from '../camera/camera';
 import { Notation1Page } from '../notation-1/notation-1';
 import { ParcelsTestsPage } from './../parcels-tests/parcels-tests';
 //Providers
-import { ParcelService } from './../../providers/parcel-service';
-import { Toasts } from './../../providers/toasts';
+import { DataService } from '../../providers/data-service';
+import { Toasts } from '../../providers/toasts';
 
 @Component({
   selector: 'page-layer-list',
@@ -24,17 +24,17 @@ export class LayerListPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private parcelService: ParcelService,
+    private dataService: DataService,
     private platform: Platform,
     public toasts: Toasts) { }
 
   ionViewDidLoad() {
     this.stepView = this.navParams.get('stepView');
-    this.currentBlock = this.parcelService.getCurrentBlock();
+    this.currentBlock = this.dataService.getCurrentBlock();
     this.layers = this.currentBlock.layers;
 
     if (this.navParams.get('score') != null) {
-      this.currentLayer = this.parcelService.getCurrentLayer();
+      this.currentLayer = this.dataService.getCurrentLayer();
       let toastMsg = "La qualité de la couche " + this.currentLayer.num + " est SQ" + this.currentLayer.score;
       this.toasts.showToast(toastMsg);
     }
@@ -45,7 +45,7 @@ export class LayerListPage {
   }
 
   layerSelected(layerIndex: number) {
-    this.parcelService.selected[3] = layerIndex;
+    this.dataService.selected[3] = layerIndex;
     if (this.platform.is('core')) {
       // Running on desktop
       // Skipping CameraPage as it requires Cordova, unavailable on regular browser

@@ -5,7 +5,7 @@ import { ModalController, NavController } from 'ionic-angular';
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { Notation2Page } from '../notation-2/notation-2';
 //Providers
-import { ParcelService } from './../../providers/parcel-service';
+import { DataService } from '../../providers/data-service';
 
 @Component({
   selector: 'page-notation-1',
@@ -19,10 +19,10 @@ export class Notation1Page {
 
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
-    private parcelService: ParcelService) { }
+    private dataService: DataService) { }
 
   ionViewDidLoad() {
-    this.currentLayer = this.parcelService.getCurrentLayer();
+    this.currentLayer = this.dataService.getCurrentLayer();
     this.layerNumber = this.currentLayer.num;
     this.items = [
       { title: 'Pas de motte fermée', checked: false, imgSrc: './assets/icon/motte.png', code: 1 },

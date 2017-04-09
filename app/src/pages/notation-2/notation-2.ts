@@ -1,12 +1,12 @@
-import { ParcelService } from './../../providers/parcel-service';
 import { Layer } from './../../app/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 // Pages
 import { VerifNotationPage } from '../verif-notation/verif-notation';
 // Providers
+import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
-import { Toasts } from './../../providers/toasts';
+import { Toasts } from '../../providers/toasts';
 
 @Component({
   selector: 'page-notation-2',
@@ -24,13 +24,13 @@ export class Notation2Page {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private parcelService: ParcelService,
+    private dataService: DataService,
     private platform: Platform,
     public rulerService: RulerService,
     private toasts: Toasts) { }
 
   ionViewDidLoad() {
-    this.currentLayer = this.parcelService.getCurrentLayer();
+    this.currentLayer = this.dataService.getCurrentLayer();
     this.layerNumber = this.currentLayer.num;
     this.code = this.navParams.get('code');
 

@@ -6,9 +6,9 @@ import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { LayerListPage } from '../layer-list/layer-list';
 import { Notation1Page } from '../notation-1/notation-1';
 // Providers
-import { ParcelService } from './../../providers/parcel-service';
+import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
-import { Toasts } from './../../providers/toasts';
+import { Toasts } from '../../providers/toasts';
 
 
 @Component({
@@ -25,14 +25,14 @@ export class VerifNotationPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    private parcelService: ParcelService,
+    private dataService: DataService,
     private platform: Platform,
     public rulerService: RulerService,
     private toasts: Toasts,
     public alertCtrl: AlertController) { }
 
   ionViewDidLoad() {
-    this.currentLayer = this.parcelService.getCurrentLayer();
+    this.currentLayer = this.dataService.getCurrentLayer();
 
     if (!this.platform.is('core')) {
       this.rulerService.getHeightStyle(846, 56).then((value: number) => {

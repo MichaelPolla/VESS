@@ -19,11 +19,10 @@ import { VerifNotationPage } from '../pages/verif-notation/verif-notation';
 
 
 // Providers
-import { NotationService } from '../providers/notation-service';
-import { ParcelService } from '../providers/parcel-service';
+import { DataService } from '../providers/data-service';
 import { RulerService } from '../providers/ruler-service';
 import { Toasts } from '../providers/toasts';
-import { Utils } from './../providers/utils';
+import { Utils } from '../providers/utils';
 
 // Component
 import { FooterComponent } from '../components/footer/footer';
@@ -72,6 +71,6 @@ import { ResumeComponent } from '../components/resume/resume';
     SlidePictureComponent,
     ResumeComponent
   ],
-  providers: [NotationService, ParcelService, RulerService, Storage, Toasts, Utils]
+  providers: [DataService, RulerService, Storage, Toasts, Utils]
 })
 export class AppModule { }

@@ -6,8 +6,8 @@ import { Parcel, Test, Block } from '../../app/parcel';
 // Pages
 import { GifViewPage } from '../gif-view/gif-view';
 // Providers
-import { ParcelService } from '../../providers/parcel-service';
-import { Utils } from './../../providers/utils';
+import { DataService } from '../../providers/data-service';
+import { Utils } from '../../providers/utils';
 
 /*
 * TODOs :
@@ -39,12 +39,12 @@ export class ParcelsTestsPage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public storage: Storage,
-    public parcelService: ParcelService) { }
+    public dataService: DataService) { }
 
   ionViewDidLoad() {
     this.stepNumber = this.navParams.get('step');
-    this.selected = this.parcelService.selected;
-    this.parcelService.getParcels().then((value) => {
+    this.selected = this.dataService.selected;
+    this.dataService.getParcels().then((value) => {
       if (value != null) {
         this.parcels = value;
       }
@@ -97,7 +97,7 @@ export class ParcelsTestsPage {
     if (action == "add" && itemType == Steps.Blocks) {
       let block = new Block({ name: "Bloc " + (this.parcels[this.selected[0]].tests[this.selected[1]].blocks.length + 1), layers: [] });
       this.parcels[this.selected[0]].tests[this.selected[1]].blocks.push(block);
-      this.parcelService.save("parcels", this.parcels);
+      this.dataService.save("parcels", this.parcels);
     }
     // Adding or Editing a Parcel or Test
     else if (action == "add" || action == "edit") {
@@ -135,7 +135,7 @@ export class ParcelsTestsPage {
                     this.parcels[this.selected[0]].tests.push(test);
                     break;
                 }
-                this.parcelService.save("parcels", this.parcels);
+                this.dataService.save("parcels", this.parcels);
 
               } else { // edit
                 let index = this.parcels.indexOf(item);
@@ -143,7 +143,7 @@ export class ParcelsTestsPage {
 
                 if (index > -1) {
                   parcel.name = data['name'];
-                  this.parcelService.save("parcels", this.parcels);
+                  this.dataService.save("parcels", this.parcels);
                 }
               }
             }
@@ -159,7 +159,7 @@ export class ParcelsTestsPage {
       let index = this.parcels.indexOf(item);
       if (index > -1) {
         this.parcels.splice(index, 1);
-        this.parcelService.save("parcels", this.parcels);
+        this.dataService.save("parcels", this.parcels);
       }
     }
   }
@@ -168,7 +168,7 @@ export class ParcelsTestsPage {
     let itemIndex = this.listItems.indexOf(item);
     if (this.stepNumber < Steps.Blocks) {
       this.selected[this.stepNumber] = itemIndex;
-      this.parcelService.selected = this.selected;
+      this.dataService.selected = this.selected;
       this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1 });
     } else if (this.stepNumber === Steps.Blocks) {
       this.selected[this.stepNumber] = itemIndex;
