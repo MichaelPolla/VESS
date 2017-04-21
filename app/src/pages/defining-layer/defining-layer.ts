@@ -1,8 +1,9 @@
 import { Block, Layer } from './../../app/parcel';
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 // Pages
 import { GifViewPage } from '../gif-view/gif-view';
+import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 //Providers
 import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
@@ -20,6 +21,7 @@ export class DefiningLayerPage {
   sizeOfParcel: number;
   heightRuler: number;
   totalSize: number;
+  thickness:number;
   private currentBlock: Block;
 
   listLayers: Array<{ numLayer: number, sizeLayer: number }>;
@@ -29,7 +31,8 @@ export class DefiningLayerPage {
     private dataService: DataService,
     private platform: Platform,
     public rulerService: RulerService,
-    private toasts: Toasts) { }
+    private toasts: Toasts,
+    public alertCtrl: AlertController) { }
 
   ionViewDidLoad() {
     this.stepView = this.navParams.get('stepView');
@@ -49,9 +52,10 @@ export class DefiningLayerPage {
 
     //init nbLayers and listLayers and sizeOfParcel
     this.nbLayers = 1;
+    this.thickness = 30;
     this.sizeOfParcel = 0;
     this.nbLayersOld = this.nbLayers;
-    this.listLayers = [{ numLayer: 1, sizeLayer: 0 }];
+    this.listLayers = [{ numLayer: 1, sizeLayer: 1 }];
     this.calcTotalSize();
 
   }
@@ -60,7 +64,7 @@ export class DefiningLayerPage {
     if (nbLayers < this.nbLayersOld) {
       this.listLayers.pop();
     } else {
-      this.listLayers.push({ numLayer: nbLayers, sizeLayer: 0 });
+      this.listLayers.push({ numLayer: nbLayers, sizeLayer: 1 });
     }
     this.nbLayersOld = nbLayers;
     this.calcTotalSize();
@@ -77,16 +81,86 @@ export class DefiningLayerPage {
 
   validationStep() {
     if (this.nbLayers >= 1 && this.nbLayers <= 5) {
+      /* ################ ICI L'APP PLANTE ##################################
       for (var i = 1; i <= this.nbLayers; i++) {
         this.currentBlock.layers.push(new Layer(i));
       }
-      this.navCtrl.push(GifViewPage, {
-        stepView: this.stepView + 1,
-        nbLayers: this.nbLayers,
-      })
+      */
+      if(this.thickness == this.totalSize){
+        if(this.thickness>=30){
+          this.navCtrl.push(GifViewPage, {
+            stepView: this.stepView + 1,
+            nbLayers: this.nbLayers,
+          });
+        }else{
+          this.showRadioAlert();
+        }
+      }else{
+        this.showAlert("Erreur","La taille totale des couches n'égal pas l'épaisseur entrée, veuillez renseigner correctement les champs");
+      }
+
     } else {
-      this.toasts.showToast("Veuillez correctement renseigner les champs.");
+      this.showAlert("Erreur","Veuillez correctement renseigner les champs.");
     }
+  }
+
+  showAlert(title, text) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showRadioAlert() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Épaisseur de la motte incorrecte');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Sol caillouteux',
+      value: 'stony',
+      checked: true
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Sol trop sec',
+      value: 'dry',
+      checked: false
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Sol trop dur',
+      value: 'hard',
+      checked: false
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        switch(data){
+          case 'stony':
+            this.showAlert('Sol caillouteux', 'Le resultat du test à la bêche sera donc basé sur les tests déjà renseignées.');
+            this.navCtrl.push(ParcelsTestsPage, { step: 2 });
+          break;
+          case 'dry':
+            this.showAlert('Sol trop sec', 'Veuillez sortir une nouvelle motte');
+            this.navCtrl.push(GifViewPage).catch(()=> console.log('should I stay or should I go now'));
+          break;
+          case 'hard':
+            this.showAlert('Sol trop dur', 'On affecte la notte de 5 à la couche compacte de '+this.thickness+' (cm)');
+            //#########################il faudra enregistrer la note ici###################################3
+          break;
+
+        }
+      }
+    });
+
+    alert.present();
   }
 
 }
