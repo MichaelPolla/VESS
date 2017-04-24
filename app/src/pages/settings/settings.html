@@ -1,0 +1,59 @@
+<!--
+  Generated template for the Settings page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form  [formGroup]="userTypeForm">
+  <ion-list radio-group layout="row" formControlName="userTypeControl">
+    <ion-list-header>
+      Type d'utilisateur
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Anonyme</ion-label>
+      <ion-radio checked="true" value="anonymous" color="green" (click)="userRadioChange()"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>OFAG</ion-label>
+      <ion-radio color="green" value="ofag" (click)="userRadioChange()"></ion-radio>
+    </ion-item>
+  </ion-list>
+  </form>
+
+  <ion-list>
+    <ion-list-header>
+      Coordonnées utilisateur
+    </ion-list-header>
+    <ion-item>
+      <ion-label floating>Nom</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Prénom</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Adresse mail</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="userType=='ofag'">
+      <ion-label floating>Identifiant OFAG</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>

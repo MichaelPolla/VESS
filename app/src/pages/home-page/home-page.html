@@ -4,26 +4,34 @@
     <ion-title>VESS</ion-title>
   </ion-navbar>
 
+  <ion-buttons end>
+    <button ion-button icon-only (click)="manageItem('add', null, stepNumber)"><ion-icon name="settings"></ion-icon></button>
+  </ion-buttons>
+
 </ion-header>
 
 
 <ion-content >
   <ion-list>
     <button ion-item (click)="goNotation()">
-      <ion-icon class="icon" name="ios-paper" item-left color="brown"></ion-icon>
+      <ion-icon class="icon" name="paper" item-left color="brown"></ion-icon>
       Notation d'une parcelle
     </button>
     <button ion-item (click)="goConsultation()">
-      <ion-icon class="icon" name="ios-archive" item-left color="brown"></ion-icon>
+      <ion-icon class="icon" name="archive" item-left color="brown"></ion-icon>
       Consultation des tests
     </button>
     <button ion-item>
-      <ion-icon class="icon" name="ios-medal" item-left color="brown"></ion-icon>
+      <ion-icon class="icon" name="medal" item-left color="brown"></ion-icon>
       Type de qualité structurale
     </button>
     <button ion-item (click)="goResume()">
-      <ion-icon class="icon" name="ios-information-circle" item-left color="brown"></ion-icon>
+      <ion-icon class="icon" name="information-circle" item-left color="brown"></ion-icon>
       Tutoriel à la réalisation
+    </button>
+    <button ion-item (click)="goSettings()">
+      <ion-icon class="icon" name="settings" item-left color="brown"></ion-icon>
+      Paramètres
     </button>
   </ion-list>
 </ion-content>

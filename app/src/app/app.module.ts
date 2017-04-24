@@ -17,6 +17,7 @@ import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
 import { ResultsPage } from '../pages/results/results';
 import { VerifNotationPage } from '../pages/verif-notation/verif-notation';
 import { ConsultationParcelsPage} from '../pages/consultation-parcels/consultation-parcels'
+import { SettingsPage } from '../pages/settings/settings';
 
 
 // Providers
@@ -49,7 +50,8 @@ import { ResumeComponent } from '../components/resume/resume';
     HelpComponent,
     SlidePictureComponent,
     ResumeComponent,
-    ConsultationParcelsPage
+    ConsultationParcelsPage,
+    SettingsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -72,7 +74,8 @@ import { ResumeComponent } from '../components/resume/resume';
     HelpComponent,
     SlidePictureComponent,
     ResumeComponent,
-    ConsultationParcelsPage
+    ConsultationParcelsPage,
+    SettingsPage
   ],
   providers: [DataService, RulerService, Storage, Toasts, Utils]
 })
