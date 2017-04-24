@@ -1,4 +1,4 @@
-import { Layer } from './../../app/parcel';
+import { Layer } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 // Pages

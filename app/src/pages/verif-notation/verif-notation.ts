@@ -1,4 +1,4 @@
-import { Layer } from './../../app/parcel';
+import { Layer } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, Platform, AlertController } from 'ionic-angular';
 // Pages
@@ -148,7 +148,7 @@ export class VerifNotationPage {
         }]);
     }
   }
-  
+
   private goToLayerListPage() {
     this.currentLayer.score = this.score;
     this.navCtrl.push(LayerListPage, {

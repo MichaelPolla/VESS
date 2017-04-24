@@ -1,4 +1,4 @@
-import { Test, Parcel, Layer } from './../app/parcel';
+import { Test, Parcel, Layer } from './../models/parcel';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 

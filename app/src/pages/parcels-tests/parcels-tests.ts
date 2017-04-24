@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 
-import { Parcel, Test } from '../../app/parcel';
+import { Parcel, Test } from '../../models/parcel';
 // Pages
 import { GifViewPage } from '../gif-view/gif-view';
 // Providers

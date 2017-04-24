@@ -1,4 +1,4 @@
-import { Test, Layer } from './../../app/parcel';
+import { Test, Layer } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 // Pages
@@ -8,6 +8,7 @@ import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
 import { Toasts } from '../../providers/toasts';
+
 
 @Component({
   selector: 'page-defining-layer',
