@@ -101,7 +101,7 @@ export class ConsultationParcelsPage {
       let inputsList: any ;
       switch (itemType) {
         case Steps.Parcels:
-          inputsList= [{ name: 'name', placeholder: 'Nom' }];
+          inputsList= [{ name: 'name', placeholder: 'Nom' , value : 'Parcelle '}];
           inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG'});
           break;
         case Steps.Tests:
@@ -134,13 +134,24 @@ export class ConsultationParcelsPage {
                 this.dataService.save("parcels", this.parcels);
 
               } else { // edit
-                let index = this.parcels.indexOf(item);
-                let parcel = this.parcels[index];
 
-                if (index > -1) {
-                  parcel.name = data['name'];
-                  this.dataService.save("parcels", this.parcels);
+                switch (itemType) {
+                  case Steps.Parcels:
+                    let indexParcel = this.parcels.indexOf(item);
+                    let parcel = this.parcels[indexParcel];
+                    if (indexParcel > -1) {
+                      parcel.name = data['name'];
+                    }
+                    break;
+                  case Steps.Tests:
+                    let indexTest = this.parcels[this.selected[0]].tests.indexOf(item);
+                    let test = this.parcels[this.selected[0]].tests[indexTest];
+                    if (indexTest > -1) {
+                      test.name = data['name'];
+                    }
+                    break;
                 }
+                this.dataService.save("parcels", this.parcels);
               }
             }
           }
