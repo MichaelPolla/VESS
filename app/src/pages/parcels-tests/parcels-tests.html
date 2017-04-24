@@ -11,14 +11,14 @@
 <ion-content padding>
   <!--<button ion-button (click)="resetStorage()">Reset </button>-->
   <ion-list>
-    <ion-list-header>{{listHeader}}</ion-list-header>
+    <ion-list-header *ngIf="listHeader!=null">{{listHeader}}</ion-list-header>
     <ion-item *ngFor="let item of listItems" (click)=itemClicked(item)>
 
       <span *ngIf="item.date">{{item.date}} </span> {{item.name}}
       <span *ngIf="item.ofag">(OFAG : {{item.ofag}})</span>
 
       <strong *ngIf="item.score" [ngClass]="{'good' : item.score < 3, 'average' : item.score == 3, 'bad' : item.score > 3}"> — score : {{item.score}} </strong>
-      <button ion-button item-right icon-only>
+      <!--<button ion-button item-right icon-only>
         <ion-icon name="information-circle"></ion-icon>
       </button>
       <button ion-button item-right icon-only (click)="manageItem('edit', item, stepNumber)">
@@ -26,7 +26,7 @@
       </button>
       <button ion-button item-right icon-only (click)="manageItem('delete', item, stepNumber)">
         <ion-icon name="trash"></ion-icon>
-      </button>
+      </button>-->
 
     </ion-item>
 

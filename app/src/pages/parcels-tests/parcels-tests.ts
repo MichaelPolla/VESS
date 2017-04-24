@@ -17,8 +17,7 @@ import { Utils } from '../../providers/utils';
 
 enum Steps {
   Parcels,
-  Tests,
-  Blocks
+  Tests
 }
 
 @Component({
@@ -87,12 +86,14 @@ export class ParcelsTestsPage {
 
     // Adding or Editing a Parcel or Test
     if (action == "add" || action == "edit") {
-      let inputsList: any = [{ name: 'name', placeholder: 'Nom' }];
+      let inputsList: any;
       switch (itemType) {
         case Steps.Parcels:
+          inputsList= [{ name: 'name', placeholder: 'Nom' , value : 'Parcelle '}];
           inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG' });
           break;
         case Steps.Tests:
+          inputsList= [{ name: 'name', placeholder: 'Nom' , value : 'Test '}];
           inputsList.push({ name: 'date', placeholder: 'Date', value: Utils.getCurrentDatetime('dd/MM/y')});
           break;
       }
