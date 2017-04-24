@@ -37,7 +37,7 @@ export class CameraPage {
         this.pageTitle = "Photo du bloc entier";
         this.dirName = "blocks";
 
-        let blockPicture = this.dataService.getBlockPicture();
+        let blockPicture = this.dataService.getTestPicture();
         if (blockPicture != null) {
           File.resolveDirectoryUrl(cordova.file.dataDirectory).then(
             (directoryEntry: DirectoryEntry) => {

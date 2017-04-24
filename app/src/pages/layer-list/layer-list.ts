@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
-import { Block, Layer } from './../../app/parcel';
+import { Test, Layer } from './../../app/parcel';
 // Pages
 import { CameraPage } from '../camera/camera';
 import { Notation1Page } from '../notation-1/notation-1';
@@ -20,7 +20,7 @@ export class LayerListPage {
   score: number;
   layers: Layer[];
   private currentLayer: Layer;
-  private currentBlock: Block;
+  private currentTest: Test;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -30,8 +30,8 @@ export class LayerListPage {
 
   ionViewDidLoad() {
     this.stepView = this.navParams.get('stepView');
-    this.currentBlock = this.dataService.getCurrentBlock();
-    this.layers = this.currentBlock.layers;
+    this.currentTest = this.dataService.getCurrentTest();
+    this.layers = this.currentTest.layers;
 
     if (this.navParams.get('score') != null) {
       this.currentLayer = this.dataService.getCurrentLayer();

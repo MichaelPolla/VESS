@@ -1,4 +1,4 @@
-import { Block, Layer } from './../../app/parcel';
+import { Test, Layer } from './../../app/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 // Pages
@@ -22,7 +22,7 @@ export class DefiningLayerPage {
   heightRuler: number;
   totalSize: number;
   thickness:number;
-  private currentBlock: Block;
+  private currentTest: Test;
 
   listLayers: Array<{ numLayer: number, sizeLayer: number }>;
 
@@ -37,7 +37,8 @@ export class DefiningLayerPage {
   ionViewDidLoad() {
     this.stepView = this.navParams.get('stepView');
     this.imageFile = this.navParams.get('picture');
-    this.currentBlock = this.dataService.getCurrentBlock();
+    this.currentTest = this.dataService.getCurrentTest();
+    console.log(this.currentTest)
 
     if (!this.platform.is('core')) {
       // Get Height of Ruler in px with :
@@ -81,11 +82,11 @@ export class DefiningLayerPage {
 
   validationStep() {
     if (this.nbLayers >= 1 && this.nbLayers <= 5) {
-      /* ################ ICI L'APP PLANTE ##################################
+
       for (var i = 1; i <= this.nbLayers; i++) {
-        this.currentBlock.layers.push(new Layer(i));
+        this.currentTest.layers.push(new Layer(i));
       }
-      */
+
       if(this.thickness == this.totalSize){
         if(this.thickness>=30){
           this.navCtrl.push(GifViewPage, {

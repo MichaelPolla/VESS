@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 
-import { Parcel, Test, Block } from '../../app/parcel';
+import { Parcel, Test } from '../../app/parcel';
 // Pages
 import { GifViewPage } from '../gif-view/gif-view';
 // Providers
@@ -58,15 +58,6 @@ export class ParcelsTestsPage {
           this.listItems = selectedParcel.tests;
           break;
 
-        case Steps.Blocks:
-          this.pageTitle = "Blocs";
-          this.listHeader = "Parcelle : " + selectedParcel.name + " / Test : " + selectedTest.name;
-          this.listItems = selectedTest.blocks;
-          if (this.navParams.get('blockScore') != null) {
-            selectedTest.blocks[this.selected[2]].score = this.navParams.get('blockScore');
-          }
-          break;
-
         default: // Steps.Parcels, hopefully
           this.stepNumber = Steps.Parcels;
           this.pageTitle = "Parcelles";
@@ -93,14 +84,9 @@ export class ParcelsTestsPage {
         title = "Éditer"
         break;
     }
-    // Adding a new Block
-    if (action == "add" && itemType == Steps.Blocks) {
-      let block = new Block({ name: "Bloc " + (this.parcels[this.selected[0]].tests[this.selected[1]].blocks.length + 1), layers: [] });
-      this.parcels[this.selected[0]].tests[this.selected[1]].blocks.push(block);
-      this.dataService.save("parcels", this.parcels);
-    }
+
     // Adding or Editing a Parcel or Test
-    else if (action == "add" || action == "edit") {
+    if (action == "add" || action == "edit") {
       let inputsList: any = [{ name: 'name', placeholder: 'Nom' }];
       switch (itemType) {
         case Steps.Parcels:
@@ -128,10 +114,7 @@ export class ParcelsTestsPage {
                     this.parcels.push(parcel);
                     break;
                   case Steps.Tests:
-                    let test = new Test({ name: data['name'], date: data['date'], blocks: [] });
-                    for (let i = 1; i <= 3; i++) {
-                      test.blocks.push(new Block({ name: "Bloc " + i, layers: [] }));
-                    }
+                    let test = new Test({ name: data['name'], date: data['date'], layers: [] });
                     this.parcels[this.selected[0]].tests.push(test);
                     break;
                 }
@@ -166,11 +149,11 @@ export class ParcelsTestsPage {
 
   itemClicked(item) {
     let itemIndex = this.listItems.indexOf(item);
-    if (this.stepNumber < Steps.Blocks) {
+    if (this.stepNumber < Steps.Tests) {
       this.selected[this.stepNumber] = itemIndex;
       this.dataService.selected = this.selected;
       this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1 });
-    } else if (this.stepNumber === Steps.Blocks) {
+    } else if (this.stepNumber === Steps.Tests) {
       this.selected[this.stepNumber] = itemIndex;
       this.navCtrl.push(GifViewPage);
     }
