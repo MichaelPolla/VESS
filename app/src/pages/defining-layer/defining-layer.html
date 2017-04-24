@@ -33,7 +33,7 @@
     <ion-item>
       <ion-label stacked color="brown">Taille totale couches en fonction des champs renseigner: </ion-label>
       <ion-label range-right [ngClass]="{'good' : totalSize == thickness, 'bad' : totalSize != thickness}" *ngIf="totalSize != thickness">
-        Les tailles des couches renseignées sont incorrectes, car elles donnent un total de {{totalSize}} (cm) et il faudrait obtenir un total égal à l'épaisseur de la motte ({{thickness}}) (cm).
+        Les tailles des couches renseignées sont incorrectes, car elles donnent un total de {{totalSize}} (cm) et il faudrait obtenir un total égal à l'épaisseur de la motte {{thickness}} (cm).
       </ion-label>
       <ion-label range-right [ngClass]="{'good' : totalSize == thickness, 'bad' : totalSize != thickness}" *ngIf="totalSize == thickness">
         Les tailles renseigner sont correctes et le total donne {{totalSize}} (cm).
