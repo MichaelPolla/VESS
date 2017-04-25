@@ -1,4 +1,5 @@
 import { Test, Parcel, Layer } from './../models/parcel';
+import { User } from './../models/user';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
@@ -7,6 +8,7 @@ export class DataService {
 
   public selected: number[] = [0,0,0,0];
   private data: Parcel[];
+  private userData: User;
 
   constructor(public storage: Storage) { }
 
@@ -19,6 +21,19 @@ export class DataService {
         resolve(this.data);
       } else {  // Must load data first.
         this.load("parcels").then(() => { resolve(this.data) });
+      }
+    });
+  }
+
+  /**
+   * Get the user info.
+   */
+  public getUserInfo(): Promise<any> {
+    return new Promise((resolve: any, reject: any) => {
+      if (this.userData) { // data were previously loaded ; simply return them.
+        resolve(this.userData);
+      } else {  // Must load data first.
+        this.load("user").then(() => { resolve(this.userData) });
       }
     });
   }
@@ -64,7 +79,15 @@ export class DataService {
   private load(key: string): Promise<any> {
     return this.storage.get(key).then((value) => {
       if (value != null) {
-        this.data = JSON.parse(value);
+        switch(key){
+          case 'parcels':
+            this.data = JSON.parse(value);
+          break;
+          case 'user':
+            this.userData = JSON.parse(value);
+          break;
+        }
+
       }
       else {
         console.log("Storage empty.");
