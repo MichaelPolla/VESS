@@ -64,9 +64,14 @@ export class DefiningLayerPage {
 
   changeNbLayers(nbLayers) {
     if (nbLayers < this.nbLayersOld) {
-      this.listLayers.pop();
+      for(let i=0; i< this.nbLayersOld-nbLayers; i++){
+        this.listLayers.pop();
+      }
     } else {
-      this.listLayers.push({ numLayer: nbLayers, sizeLayer: 1 });
+      for(let i=0; i< nbLayers-this.nbLayersOld; i++){
+        this.listLayers.push({ numLayer: this.nbLayersOld+i+1, sizeLayer: 1 });
+      }
+
     }
     this.nbLayersOld = nbLayers;
     this.calcTotalSize();
