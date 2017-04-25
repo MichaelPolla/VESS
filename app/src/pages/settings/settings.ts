@@ -35,7 +35,11 @@ export class SettingsPage {
   }
 
   ionViewDidLoad() {
-
+    this.firstName = "";
+    this.lastName = "";
+    this.userType = "";
+    this.mail = "";
+    this.idOfag = "";
     //init
     this.dataService.getUserInfo().then((value) => {
       if (value != null) {
@@ -47,8 +51,9 @@ export class SettingsPage {
         this.mail = this.user.mail;
         this.idOfag = this.user.idOfag;
       }else{
-
+        this.userType = "anonymous"
         this.user = new User({ firstName: "", lastName: "", userType: "", mail: "", idOfag:""});
+
       }
     });
 
@@ -70,13 +75,20 @@ export class SettingsPage {
     this.user.userType = this.userType;
     this.user.mail = this.mail;
     this.user.idOfag = this.idOfag;
-    if(this.firstName!="" && this.lastName!="" && this.mail!="" && this.userType != "ofag"){
+
+
+    if(this.firstName!="" && this.lastName!="" && this.mail!="" &&
+    this.userType == "ofag" && this.idOfag !="" && this.firstName!=null
+    && this.lastName!=null && this.mail!=null && this.idOfag !=null){
       this.dataService.save("user", this.user);
-    }else if(this.firstName!="" && this.lastName!="" && this.mail!="" && this.userType == "ofag" && this.idOfag !=""){
+    }else if(this.firstName!="" && this.lastName!="" && this.mail!="" &&
+    this.userType == "anonymous"&& this.firstName!=null && this.lastName!=null
+    && this.mail!=null){
       this.dataService.save("user", this.user);
     }else{
       this.showAlert("Error", "Veuillez remplir les champs correctement")
     }
+
   }
 
 

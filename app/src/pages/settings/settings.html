@@ -38,22 +38,22 @@
     </ion-list-header>
     <ion-item>
       <ion-label floating>Nom</ion-label>
-      <ion-input type="text" [(ngModel)]="lastName"></ion-input>
+      <ion-input type="text" [(ngModel)]="lastName" color="green"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Prénom</ion-label>
-      <ion-input type="text" [(ngModel)]="firstName"></ion-input>
+      <ion-input type="text" [(ngModel)]="firstName" color="green"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Adresse mail</ion-label>
-      <ion-input type="text" [(ngModel)]="mail"></ion-input>
+      <ion-input type="text" [(ngModel)]="mail" color="green"></ion-input>
     </ion-item>
 
     <ion-item *ngIf="userType=='ofag'">
       <ion-label floating>Identifiant OFAG</ion-label>
-      <ion-input type="text" [(ngModel)]="idOfag"></ion-input>
+      <ion-input type="text" [(ngModel)]="idOfag" color="green"></ion-input>
     </ion-item>
   </ion-list>
 

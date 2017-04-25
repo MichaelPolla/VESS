@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 
 import { Parcel, Test } from '../../models/parcel';
+import { User } from '../../models/user';
 // Pages
 import { GifViewPage } from '../gif-view/gif-view';
 // Providers
@@ -33,6 +34,7 @@ export class ParcelsTestsPage {
   private listItems: any = [];
   private parcels: Parcel[] = [];
   private selected: number[];
+  private user: User;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -65,6 +67,14 @@ export class ParcelsTestsPage {
       }
       this.stepName = Steps[this.stepNumber];
     });
+
+    this.dataService.getUserInfo().then((value) => {
+      if (value != null) {
+        this.user = value;
+      }else{
+        this.user = new User({ firstName: "", lastName: "", userType: "", mail: "", idOfag:""});
+      }
+    });
   }
 
   /**
@@ -90,7 +100,7 @@ export class ParcelsTestsPage {
       switch (itemType) {
         case Steps.Parcels:
           inputsList= [{ name: 'name', placeholder: 'Nom' , value : 'Parcelle '}];
-          inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG' });
+          inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG', value: this.user.idOfag });
           break;
         case Steps.Tests:
           inputsList= [{ name: 'name', placeholder: 'Nom' , value : 'Test '}];
