@@ -1,16 +1,9 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl} from '@angular/forms';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { User } from '../../models/user';
+import { User, UserType } from '../../models/user';
 import { DataService } from '../../providers/data-service';
 import { Storage } from '@ionic/storage';
 
-/*
-  Generated class for the Settings page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html'
@@ -18,7 +11,7 @@ import { Storage } from '@ionic/storage';
 export class SettingsPage {
   userTypeControl;
   userTypeForm;
-  userType: any;
+  userType: UserType;
 
   firstName:string;
   lastName:string;
@@ -34,13 +27,7 @@ export class SettingsPage {
               public alertCtrl: AlertController) {
   }
 
-  ionViewDidLoad() {
-    this.firstName = "";
-    this.lastName = "";
-    this.userType = "";
-    this.mail = "";
-    this.idOfag = "";
-    //init
+  ionViewDidLoad() {    
     this.dataService.getUserInfo().then((value) => {
       if (value != null) {
         this.user = value;
@@ -51,13 +38,10 @@ export class SettingsPage {
         this.mail = this.user.mail;
         this.idOfag = this.user.idOfag;
       }else{
-        this.userType = "anonymous"
-        this.user = new User({ firstName: "", lastName: "", userType: "", mail: "", idOfag:""});
-
+        this.userType = UserType.Anonymous;
+        this.user = new User({ firstName: "", lastName: "", userType: this.userType, mail: "", idOfag:""});
       }
     });
-
-
   }
 
   showAlert(title, text) {
@@ -76,21 +60,10 @@ export class SettingsPage {
     this.user.mail = this.mail;
     this.user.idOfag = this.idOfag;
 
-
-    if(this.firstName!="" && this.lastName!="" && this.mail!="" &&
-    this.userType == "ofag" && this.idOfag !="" && this.firstName!=null
-    && this.lastName!=null && this.mail!=null && this.idOfag !=null){
+    if(this.userType == UserType.Ofag && this.idOfag == null) {
+      this.showAlert("Erreur", "Veuillez renseigner l'identifiant OFAG.")
+    } else {
       this.dataService.save("user", this.user);
-    }else if(this.firstName!="" && this.lastName!="" && this.mail!="" &&
-    this.userType == "anonymous"&& this.firstName!=null && this.lastName!=null
-    && this.mail!=null){
-      this.dataService.save("user", this.user);
-    }else{
-      this.showAlert("Error", "Veuillez remplir les champs correctement")
     }
-
   }
-
-
-
 }

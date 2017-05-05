@@ -1,3 +1,4 @@
+import { UserType } from './../../models/user';
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
@@ -68,11 +69,12 @@ export class ParcelsTestsPage {
       this.stepName = Steps[this.stepNumber];
     });
 
+    //Todo : should not create a new user here if non-existent
     this.dataService.getUserInfo().then((value) => {
       if (value != null) {
         this.user = value;
       }else{
-        this.user = new User({ firstName: "", lastName: "", userType: "", mail: "", idOfag:""});
+        this.user = new User({ firstName: "", lastName: "", userType: UserType.Anonymous, mail: "", idOfag:""});
       }
     });
   }
