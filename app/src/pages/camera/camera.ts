@@ -1,3 +1,4 @@
+import { Test } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Camera, File, DirectoryEntry, FileEntry } from 'ionic-native';
@@ -37,17 +38,28 @@ export class CameraPage {
         this.pageTitle = "Photo du bloc entier";
         this.dirName = "blocks";
 
-        let blockPicture = this.dataService.getTestPicture();
-        if (blockPicture != null) {
-          File.resolveDirectoryUrl(cordova.file.dataDirectory).then(
-            (directoryEntry: DirectoryEntry) => {
-              File.getFile(directoryEntry, blockPicture, { create: false }).then(
-                (fileEntry: FileEntry) => {
-                  //this.toasts.showToast("name :" + fileEntry.file['name'] + ",type:"+ fileEntry.file['type'] + ",size:"+ fileEntry.file['size']);
-                });
-            });
-        }
-        this.imageFile = this.defaultBlockPicture;
+        // let blockPicture = this.dataService.getTestPicture();
+        // if (blockPicture != null) {
+        //   File.resolveDirectoryUrl(cordova.file.dataDirectory).then(
+        //     (directoryEntry: DirectoryEntry) => {
+        //       File.getFile(directoryEntry, blockPicture, { create: false }).then(
+        //         (fileEntry: FileEntry) => {
+        //           //this.toasts.showToast("name :" + fileEntry.file['name'] + ",type:"+ fileEntry.file['type'] + ",size:"+ fileEntry.file['size']);
+        //         });
+        //     });
+        // }
+        //check if file exist
+        File.checkFile(cordova.file.dataDirectory, this.dirName + "/" + "Test.jpg").then(_ => {
+          //read picture
+          File.readAsBinaryString(cordova.file.dataDirectory, this.dirName + "/" + "Test.jpg").then((imagePath) => {
+            this.imageFile = "data:image/jpeg;base64," + imagePath;
+          });
+        }).catch(err => {
+          //file doesn't exist, so display exemple picture for how to take photo
+          this.imageFile = this.defaultBlockPicture;
+        });
+
+        //this.imageFile = this.defaultBlockPicture;
         this.description = "Prenez une photo montrant le bloc entier et ses différentes couches, ainsi que le trou dont il est extrait :";
         break;
       case 5:
@@ -57,7 +69,8 @@ export class CameraPage {
         this.description = "Prenez une photo de la couche :";
         break;
     }
-    this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
+    //this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
+    this.imageNamePath = this.dirName + "/" + "Test.jpg";
 
   }
 
