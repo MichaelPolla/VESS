@@ -7,7 +7,7 @@ Anonyme
 <ion-label stacked color="brown">Date du test </ion-label>
 {{resume.date}}
 <ion-label stacked color="brown">Note finale obtenue pour le Test </ion-label>
-4
+<strong *ngIf="resume.score" [ngClass]="{'good' : resume.score < 3, 'average' : resume.score == 3, 'bad' : resume.score > 3}">{{resume.score}} </strong>
 <ion-grid>
   <ion-label stacked color="brown">Photo du bloc </ion-label>
   <ion-row>
@@ -32,7 +32,7 @@ Anonyme
   </ion-row>
   <ion-row>
     <ion-col *ngFor="let layer of resume.layers" col-4>
-      Note: {{layer.score}}
+      <strong *ngIf="layer.score" [ngClass]="{'good' : layer.score < 3, 'average' : layer.score == 3, 'bad' : layer.score > 3}">Note:  {{layer.score}} </strong>
     </ion-col>
   </ion-row>
 </ion-grid>
