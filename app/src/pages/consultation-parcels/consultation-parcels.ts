@@ -190,7 +190,7 @@ export class ConsultationParcelsPage {
       this.navCtrl.push(ConsultationParcelsPage, { step: this.stepNumber + 1 });
     } else if (this.stepNumber === Steps.Tests) {
       this.selected[this.stepNumber] = itemIndex;
-      this.goResume();
+      this.goResume(item);
     }
   }
 
@@ -207,8 +207,11 @@ export class ConsultationParcelsPage {
 
   }
 
-  goResume(){
-    let modal = this.modalCtrl.create(ModalPicturePage, { type:"resume" });
+  goResume(item){
+    let indexTest = this.parcels[this.selected[0]].tests.indexOf(item);
+    let test = this.parcels[this.selected[0]].tests[indexTest];
+
+    let modal = this.modalCtrl.create(ModalPicturePage, { type:"resume", resume: test });
     modal.present();
   }
 }

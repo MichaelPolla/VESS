@@ -9,6 +9,10 @@ export class HelpComponent {
 
   @Input() helpNumber: number;
   constructor(public navCtrl: NavController) {
+    
+  }
+
+  ngOnInit() {
     console.log(this.helpNumber);
   }
 }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Parcel, Test } from '../../models/parcel';
 
 @Component({
   selector: 'component-resume-view',
@@ -7,7 +8,13 @@ import { NavController } from 'ionic-angular';
 })
 export class ResumeComponent {
 
-  constructor(public navCtrl: NavController) {
+  @Input() resume: Test;
 
+  constructor(public navCtrl: NavController) {
+    
+  }
+
+  ngOnInit() {
+    console.log(this.resume);
   }
 }
