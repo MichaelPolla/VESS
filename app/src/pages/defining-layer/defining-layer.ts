@@ -24,7 +24,6 @@ export class DefiningLayerPage {
   thickness:number;
   private currentTest: Test;
 
-  //listLayers: Array<{ numLayer: number, sizeLayer: number }>;
   listLayers: Layer[];
 
   constructor(public navCtrl: NavController,
