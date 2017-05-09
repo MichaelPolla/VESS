@@ -102,7 +102,7 @@ export class CameraPage {
 
   private savePicture(imagePath: any) {
     File.writeFile(cordova.file.dataDirectory, this.imageNamePath, imagePath, true); // Store file
-    this.dataService.setBlockPicture(this.imageNamePath); // Store in block data
+    this.dataService.setTestPicture(this.imageNamePath); // Store in block data
   }
 
   validationStep() {

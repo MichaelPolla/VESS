@@ -95,6 +95,7 @@ export class DefiningLayerPage {
 
       if(this.thickness == this.totalSize){
         if(this.thickness>=30){
+          this.dataService.save("Tests", this.currentTest);
           this.navCtrl.push(GifViewPage, {
             stepView: this.stepView + 1,
             nbLayers: this.nbLayers,

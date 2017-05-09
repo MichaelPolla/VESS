@@ -45,7 +45,7 @@ export class LayerListPage {
   }
 
   layerSelected(layerIndex: number) {
-    this.dataService.selected[3] = layerIndex;
+    this.dataService.selected[2] = layerIndex;
     if (this.platform.is('core')) {
       // Running on desktop
       // Skipping CameraPage as it requires Cordova, unavailable on regular browser

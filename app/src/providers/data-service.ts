@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class DataService {
 
-  public selected: number[] = [0,0,0,0];
+  public selected: number[] = [0,0,0];
   private data: Parcel[];
   private userData: User;
 
@@ -39,7 +39,7 @@ export class DataService {
   }
 
   /**
-   * Get the current (selected) Block.
+   * Get the current (selected) Test.
    */
   public getCurrentTest(): Test {
     return this.data[this.selected[0]].tests[this.selected[1]];
@@ -49,16 +49,16 @@ export class DataService {
    * Get the current (selected) Layer.
    */
   public getCurrentLayer(): Layer {
-        return this.getCurrentTest().layers[this.selected[3]];
+        return this.getCurrentTest().layers[this.selected[2]];
   }
 
   public getTestPicture(): any {
     return this.getCurrentTest().picture;
   }
   /**
-   * Set the block picture
+   * Set the test picture
    */
-  public setBlockPicture(filepath: string) {
+  public setTestPicture(filepath: string) {
     this.getCurrentTest().picture = filepath;
   }
 
