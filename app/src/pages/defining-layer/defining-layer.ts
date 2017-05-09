@@ -19,13 +19,13 @@ export class DefiningLayerPage {
   imageFile: string;
   nbLayers: number;
   nbLayersOld: number;
-  sizeOfParcel: number;
   heightRuler: number;
   totalSize: number;
   thickness:number;
   private currentTest: Test;
 
-  listLayers: Array<{ numLayer: number, sizeLayer: number }>;
+  //listLayers: Array<{ numLayer: number, sizeLayer: number }>;
+  listLayers: Layer[];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -53,11 +53,11 @@ export class DefiningLayerPage {
     }
 
     //init nbLayers and listLayers and sizeOfParcel
-    this.nbLayers = 1;
-    this.thickness = 30;
-    this.sizeOfParcel = 0;
+    this.nbLayers = this.currentTest.layers ? this.currentTest.layers.length : 1;
+    this.thickness = this.currentTest.thickness ? this.currentTest.thickness : 30;
     this.nbLayersOld = this.nbLayers;
-    this.listLayers = [{ numLayer: 1, sizeLayer: 1 }];
+
+    this.listLayers = this.currentTest.layers ? this.currentTest.layers:[(new Layer(1,1))];
     this.calcTotalSize();
 
   }
@@ -69,7 +69,8 @@ export class DefiningLayerPage {
       }
     } else {
       for(let i=0; i< nbLayers-this.nbLayersOld; i++){
-        this.listLayers.push({ numLayer: this.nbLayersOld+i+1, sizeLayer: 1 });
+
+        this.listLayers.push(new Layer(this.nbLayersOld+i+1, 1))
       }
 
     }
@@ -82,23 +83,18 @@ export class DefiningLayerPage {
   calcTotalSize() {
     this.totalSize = 0;
     for (let layer of this.listLayers) {
-      this.totalSize += layer.sizeLayer;
+      this.totalSize += layer.thickness;
     }
   }
 
   validationStep() {
     if (this.nbLayers >= 1 && this.nbLayers <= 5) {
-
-      for (var i = 1; i <= this.nbLayers; i++) {
-        this.currentTest.layers.push(new Layer(i));
-      }
-
       if(this.thickness == this.totalSize){
         if(this.thickness>=30){
-          this.dataService.save("Tests", this.currentTest);
+          this.currentTest.thickness = this.thickness;
+          this.dataService.saveParcels();
           this.navCtrl.push(GifViewPage, {
-            stepView: this.stepView + 1,
-            nbLayers: this.nbLayers,
+            stepView: this.stepView + 1
           });
         }else{
           this.showRadioAlert();

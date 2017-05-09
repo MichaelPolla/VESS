@@ -71,6 +71,10 @@ export class DataService {
     this.storage.set(key, JSON.stringify(value));
   }
 
+  public saveParcels() {
+    this.storage.set("parcels", JSON.stringify(this.data));
+  }
+
     /**
    * Get data from Storage.
    * key : the key associated to the desired values.

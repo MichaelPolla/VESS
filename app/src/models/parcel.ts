@@ -14,6 +14,7 @@ export class Test {
   public score?: number;
   public picture?: any;
   public layers?: Layer[];
+  public thickness?: number;
 
   public constructor(init: Test) {
     Object.assign(this, init);
@@ -24,8 +25,10 @@ export class Layer {
   public num: number;
   public score: number;
   public picture: any;
+  public thickness: number;
 
-  constructor(num: number) {
+  constructor(num: number, thickness: number) {
     this.num = num;
+    this.thickness = thickness;
   }
 }
