@@ -11,7 +11,7 @@
 <ion-content padding>
   <!--<button ion-button (click)="resetStorage()">Reset </button>-->
   <ion-list>
-    <ion-list-header *ngIf="listHeader!=null">{{listHeader}}</ion-list-header>
+    <ion-list-header class="listHeader" *ngIf="listHeader!=null">{{listHeader}}</ion-list-header>
     <ion-item *ngFor="let item of listItems" (click)=itemClicked(item)>
 
       <span *ngIf="item.date">{{item.date}} </span> {{item.name}}
