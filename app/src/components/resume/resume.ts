@@ -15,8 +15,6 @@ export class ResumeComponent {
   }
 
   ngOnInit() {
-    console.log("coucou")
     console.log(this.resume);
-    console.log("coucou")
   }
 }
