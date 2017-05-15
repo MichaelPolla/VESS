@@ -1,7 +1,7 @@
 import { Test } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Camera, File, DirectoryEntry, FileEntry } from 'ionic-native';
+import { Camera, File } from 'ionic-native';
 // Pages
 import { DefiningLayerPage } from '../defining-layer/defining-layer';
 import { Notation1Page } from '../notation-1/notation-1';
@@ -25,8 +25,7 @@ export class CameraPage {
   imageNamePath: string;
   dirName: string;
   description: string;
-  defaultBlockPicture: string = "./assets/icon/two-layers-example.png";
-  defaultLayerPicture: string = "./assets/icon/generic-image.png";
+  defaultPicture: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -35,31 +34,34 @@ export class CameraPage {
     this.stepView = this.navParams.get('stepView');
     this.currentTest = this.dataService.getCurrentTest();
 
+    let filePath = "";
     switch (this.stepView) {
       case 1:
         this.pageTitle = "Photo du bloc entier";
         this.dirName = "blocks";
         //check if file exist
-        let filePath = this.currentTest.picture;
-        File.checkFile(cordova.file.dataDirectory, filePath).then(_ => {
-          //read picture
-          File.readAsBinaryString(cordova.file.dataDirectory, filePath).then((pictureAsBinary) => {
-            this.imageFile = "data:image/jpeg;base64," + pictureAsBinary;
-          });
-        }).catch(err => {
-          //file doesn't exist, so display exemple picture for how to take photo
-          this.imageFile = this.defaultBlockPicture;
-        });
-
+        filePath = this.currentTest.picture;
+        this.defaultPicture = "./assets/icon/two-layers-example.png";
         this.description = "Prenez une photo montrant le bloc entier et ses différentes couches, ainsi que le trou dont il est extrait :";
         break;
       case 5:
         this.pageTitle = "Photo de la couche";
         this.dirName = "layers";
-        this.imageFile = this.defaultLayerPicture;
+        filePath = this.dataService.getCurrentLayer().picture;
+        this.defaultPicture ="./assets/icon/generic-image.png";
         this.description = "Prenez une photo de la couche :";
         break;
     }
+
+    File.checkFile(cordova.file.dataDirectory, filePath).then(_ => {
+      //read picture
+      File.readAsBinaryString(cordova.file.dataDirectory, filePath).then((pictureAsBinary) => {
+        this.imageFile = "data:image/jpeg;base64," + pictureAsBinary;
+      });
+    }).catch(err => {
+      //file doesn't exist, so display exemple picture for how to take photo
+      this.imageFile = this.defaultPicture;
+    });
   }
 
   takePicture() {
@@ -90,21 +92,26 @@ export class CameraPage {
 
   private savePicture(imagePath: any) {
     this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
-    this.toasts.showToast("saved : " + this.imageNamePath);
     File.writeFile(cordova.file.dataDirectory, this.imageNamePath, imagePath, true).then(success => { // Store file
-      this.toasts.showToast("Image enregistrée !");
     }, error => {
       this.toasts.showToast("Erreur lors de l'enregistrement de l'image.");
     });
-    this.currentTest.picture = this.imageNamePath;
-    //this.dataService.setTestPicture(this.imageNamePath); // Store in test data
+    switch (this.stepView) {
+      case 1:
+        this.currentTest.picture = this.imageNamePath;
+      //this.dataService.setTestPicture(this.imageNamePath); // Store in test data
+      case 5:
+        this.dataService.getCurrentLayer().picture = this.imageNamePath;
+    }
+
+
     this.dataService.saveParcels;
   }
 
   validationStep() {
     switch (this.stepView) {
       case 1:
-        if (this.isOfagUser && this.imageFile == this.defaultBlockPicture) { // OFAG user must take a picture
+        if (this.isOfagUser && this.imageFile == this.defaultPicture) { // OFAG user must take a picture
           this.toasts.showToast("Veuillez prendre une photo.");
         } else {
           this.navCtrl.push(DefiningLayerPage, {
@@ -114,7 +121,7 @@ export class CameraPage {
         }
         break;
       case 5:
-        if (this.isOfagUser && this.imageFile == this.defaultLayerPicture) { // OFAG user must take a picture
+        if (this.isOfagUser && this.imageFile == this.defaultPicture) { // OFAG user must take a picture
           this.toasts.showToast("Veuillez prendre une photo.");
         } else {
           this.navCtrl.push(Notation1Page)

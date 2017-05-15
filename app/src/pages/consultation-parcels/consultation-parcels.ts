@@ -4,7 +4,6 @@ import { AlertController, NavController, NavParams, ModalController } from 'ioni
 
 import { Parcel, Test } from '../../models/parcel';
 // Pages
-import { GifViewPage } from '../gif-view/gif-view';
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 // Providers
 import { DataService } from '../../providers/data-service';
@@ -54,7 +53,6 @@ export class ConsultationParcelsPage {
       }
 
       let selectedParcel = this.parcels[this.selected[0]];
-      let selectedTest = selectedParcel ? selectedParcel.tests[this.selected[1]] : null;
       switch (this.stepNumber) {
         case Steps.Tests:
           this.pageTitle = "Tests";
