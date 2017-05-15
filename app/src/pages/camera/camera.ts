@@ -19,6 +19,7 @@ declare var cordova;
 export class CameraPage {
   public imageFile: string;
   private isOfagUser: boolean = false;
+  private currentTest: Test;
   pageTitle: string;
   stepView: number;
   imageNamePath: string;
@@ -32,34 +33,24 @@ export class CameraPage {
     private dataService: DataService,
     private toasts: Toasts) {
     this.stepView = this.navParams.get('stepView');
+    this.currentTest = this.dataService.getCurrentTest();
 
     switch (this.stepView) {
       case 1:
         this.pageTitle = "Photo du bloc entier";
         this.dirName = "blocks";
-
-        // let blockPicture = this.dataService.getTestPicture();
-        // if (blockPicture != null) {
-        //   File.resolveDirectoryUrl(cordova.file.dataDirectory).then(
-        //     (directoryEntry: DirectoryEntry) => {
-        //       File.getFile(directoryEntry, blockPicture, { create: false }).then(
-        //         (fileEntry: FileEntry) => {
-        //           //this.toasts.showToast("name :" + fileEntry.file['name'] + ",type:"+ fileEntry.file['type'] + ",size:"+ fileEntry.file['size']);
-        //         });
-        //     });
-        // }
         //check if file exist
-        File.checkFile(cordova.file.dataDirectory, this.dirName + "/" + "Test.jpg").then(_ => {
+        let filePath = this.currentTest.picture;
+        File.checkFile(cordova.file.dataDirectory, filePath).then(_ => {
           //read picture
-          File.readAsBinaryString(cordova.file.dataDirectory, this.dirName + "/" + "Test.jpg").then((imagePath) => {
-            this.imageFile = "data:image/jpeg;base64," + imagePath;
+          File.readAsBinaryString(cordova.file.dataDirectory, filePath).then((pictureAsBinary) => {
+            this.imageFile = "data:image/jpeg;base64," + pictureAsBinary;
           });
         }).catch(err => {
           //file doesn't exist, so display exemple picture for how to take photo
           this.imageFile = this.defaultBlockPicture;
         });
 
-        //this.imageFile = this.defaultBlockPicture;
         this.description = "Prenez une photo montrant le bloc entier et ses différentes couches, ainsi que le trou dont il est extrait :";
         break;
       case 5:
@@ -69,9 +60,6 @@ export class CameraPage {
         this.description = "Prenez une photo de la couche :";
         break;
     }
-    //this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
-    this.imageNamePath = this.dirName + "/" + "Test.jpg";
-
   }
 
   takePicture() {
@@ -82,15 +70,15 @@ export class CameraPage {
       targetHeight: 1000,
       correctOrientation: true
     }
-    Camera.getPicture(options).then((imagePath) => {
+    Camera.getPicture(options).then((pictureAsBinary) => {
       //read new image
-      this.imageFile = "data:image/jpeg;base64," + imagePath;
+      this.imageFile = "data:image/jpeg;base64," + pictureAsBinary;
       //check if directory exist
       File.checkDir(cordova.file.dataDirectory, this.dirName).then(success => {
-        this.savePicture(imagePath);
+        this.savePicture(pictureAsBinary);
       }, error => {
         File.createDir(cordova.file.dataDirectory, this.dirName, true).then(success => {
-          this.savePicture(imagePath);
+          this.savePicture(pictureAsBinary);
         }, error => {
           this.toasts.showToast("Erreur lors de la création du répertoire de l'image.");
         });
@@ -101,8 +89,16 @@ export class CameraPage {
   }
 
   private savePicture(imagePath: any) {
-    File.writeFile(cordova.file.dataDirectory, this.imageNamePath, imagePath, true); // Store file
-    this.dataService.setTestPicture(this.imageNamePath); // Store in block data
+    this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
+    this.toasts.showToast("saved : " + this.imageNamePath);
+    File.writeFile(cordova.file.dataDirectory, this.imageNamePath, imagePath, true).then(success => { // Store file
+      this.toasts.showToast("Image enregistrée !");
+    }, error => {
+      this.toasts.showToast("Erreur lors de l'enregistrement de l'image.");
+    });
+    this.currentTest.picture = this.imageNamePath;
+    //this.dataService.setTestPicture(this.imageNamePath); // Store in test data
+    this.dataService.saveParcels;
   }
 
   validationStep() {

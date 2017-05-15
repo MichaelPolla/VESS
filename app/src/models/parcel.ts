@@ -12,7 +12,7 @@ export class Test {
   public name?: string;
   public date: string;
   public score?: number;
-  public picture?: any;
+  public picture?: string;
   public layers?: Layer[];
   public thickness?: number;
 
@@ -24,7 +24,7 @@ export class Test {
 export class Layer {
   public num: number;
   public score: number;
-  public picture: any;
+  public picture: string;
   public thickness: number;
 
   constructor(num: number, thickness: number) {

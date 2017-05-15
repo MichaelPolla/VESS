@@ -38,8 +38,7 @@ export class DefiningLayerPage {
     this.stepView = this.navParams.get('stepView');
     this.imageFile = this.navParams.get('picture');
     this.currentTest = this.dataService.getCurrentTest();
-    console.log(this.currentTest)
-
+    
     if (!this.platform.is('core')) {
       // Get Height of Ruler in px with :
       // param1: height of image ruler in px

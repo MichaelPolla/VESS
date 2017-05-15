@@ -91,7 +91,6 @@ export class DataService {
             this.userData = JSON.parse(value);
           break;
         }
-
       }
       else {
         console.log("Storage empty.");
