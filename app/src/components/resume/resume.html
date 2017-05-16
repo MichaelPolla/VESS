@@ -11,7 +11,7 @@ Anonyme
 <ion-grid>
   <ion-label stacked color="brown">Photo du bloc </ion-label>
   <ion-row>
-    <ion-col col-12><img src="'../../assets/pictures/b-2.png" ></ion-col>
+    <ion-col col-12><img src={{imageFileBlock}} ></ion-col>
   </ion-row>
   <ion-label stacked color="brown">Taille du bloc </ion-label>
   {{resume.thickness}} cm
@@ -21,8 +21,8 @@ Anonyme
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col *ngFor="let layer of resume.layers" col-4>
-      <img src="'../../assets/pictures/b-1.png" >
+    <ion-col *ngFor="let imageFileLayer of imageFileLayers" col-4>
+      <img src={{imageFileLayer}} >
     </ion-col>
   </ion-row>
   <ion-row>
