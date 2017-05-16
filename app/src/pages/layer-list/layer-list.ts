@@ -5,6 +5,7 @@ import { Test, Layer } from './../../models/parcel';
 import { CameraPage } from '../camera/camera';
 import { Notation1Page } from '../notation-1/notation-1';
 import { ParcelsTestsPage } from './../parcels-tests/parcels-tests';
+import { HomePage } from './../home-page/home-page';
 //Providers
 import { DataService } from '../../providers/data-service';
 import { Toasts } from '../../providers/toasts';
@@ -68,7 +69,8 @@ export class LayerListPage {
     blockScore /= this.layers.length;
 
     if (layersWithScore == this.layers.length) {
-      this.navCtrl.push(ParcelsTestsPage, { step: 2, blockScore: blockScore });
+      this.dataService.saveParcels();
+      this.navCtrl.push(HomePage);
     } else {
       let toastMsg = "La notation n'a pas été effectuée pour toutes les couches.";
       this.toasts.showToast(toastMsg);
