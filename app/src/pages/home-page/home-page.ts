@@ -11,7 +11,9 @@ import { SettingsPage } from '../settings/settings';
 })
 export class HomePage{
 
-  constructor(public navCtrl: NavController, public modalCtrl:ModalController ) {}
+  constructor(public navCtrl: NavController, public modalCtrl:ModalController ) {
+    this.navCtrl.pop();
+  }
 
   goNotation(){
     this.navCtrl.push(ParcelsTestsPage).catch(()=> console.log('should I stay or should I go now'));
