@@ -2,11 +2,6 @@ import { Component } from '@angular/core';
 import { ViewController, NavParams, Platform } from 'ionic-angular';
 import { Test } from '../../models/parcel';
 
-/*
-  Ionic2 modals :
-    https://ionicframework.com/docs/v2/2.0.0-beta.10/api/components/modal/Modal/
-    https://alexdisler.com/2016/03/27/modals-in-ionic-framework-2/
-*/
 @Component({
   selector: 'page-modal-picture',
   templateUrl: 'modal-picture.html'
