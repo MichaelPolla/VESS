@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams, Platform } from 'ionic-angular';
-import { Parcel, Test } from '../../models/parcel';
+import { Test } from '../../models/parcel';
 
 /*
   Ionic2 modals :
