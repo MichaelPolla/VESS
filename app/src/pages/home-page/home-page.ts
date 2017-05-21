@@ -15,20 +15,21 @@ export class HomePage{
     this.navCtrl.pop();
   }
 
-  goNotation(){
-    this.navCtrl.push(ParcelsTestsPage).catch(()=> console.log('should I stay or should I go now'));
-  }
-
-  goConsultation(){
-    this.navCtrl.push(ConsultationParcelsPage).catch(()=> console.log('should I stay or should I go now'));
-  }
-
-  goResume(){
-    let modal = this.modalCtrl.create(ModalPicturePage, { type:"resume" });
-    modal.present();
-  }
-
-  goSettings(){
-    this.navCtrl.push(SettingsPage).catch(()=> console.log('should I stay or should I go now'));
+  showPage(pageName: String) {
+    switch(pageName) {
+      case "notation":
+        this.navCtrl.push(ParcelsTestsPage);
+        break;
+      case "consultation":
+        this.navCtrl.push(ConsultationParcelsPage);
+        break;
+      case "settings":
+        this.navCtrl.push(SettingsPage);
+        break;
+      case "resume":
+        let modal = this.modalCtrl.create(ModalPicturePage, { type:"resume" });
+        modal.present();
+        break;
+    }
   }
 }

@@ -9,11 +9,11 @@
 
 <ion-content >
   <ion-list>
-    <button ion-item (click)="goNotation()">
+    <button ion-item (click)="showPage('notation')">
       <ion-icon class="icon" name="paper" item-left color="brown"></ion-icon>
       Notation d'une parcelle
     </button>
-    <button ion-item (click)="goConsultation()">
+    <button ion-item (click)="showPage('consultation')">
       <ion-icon class="icon" name="archive" item-left color="brown"></ion-icon>
       Consultation des tests
     </button>
@@ -21,11 +21,11 @@
       <ion-icon class="icon" name="medal" item-left color="brown"></ion-icon>
       Type de qualité structurale
     </button>
-    <button ion-item (click)="goResume()">
+    <button ion-item (click)="showPage('resume')">
       <ion-icon class="icon" name="information-circle" item-left color="brown"></ion-icon>
       Tutoriel à la réalisation
     </button>
-    <button ion-item (click)="goSettings()">
+    <button ion-item (click)="showPage('settings')">
       <ion-icon class="icon" name="settings" item-left color="brown"></ion-icon>
       Paramètres
     </button>
