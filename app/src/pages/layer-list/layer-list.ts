@@ -4,7 +4,6 @@ import { Test, Layer } from './../../models/parcel';
 // Pages
 import { CameraPage } from '../camera/camera';
 import { Notation1Page } from '../notation-1/notation-1';
-import { ParcelsTestsPage } from './../parcels-tests/parcels-tests';
 import { HomePage } from './../home-page/home-page';
 //Providers
 import { DataService } from '../../providers/data-service';

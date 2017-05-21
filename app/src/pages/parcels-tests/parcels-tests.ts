@@ -52,7 +52,6 @@ export class ParcelsTestsPage {
       }
 
       let selectedParcel = this.parcels[this.selected[0]];
-      let selectedTest = selectedParcel ? selectedParcel.tests[this.selected[1]] : null;
       switch (this.stepNumber) {
         case Steps.Tests:
           this.pageTitle = "Tests";

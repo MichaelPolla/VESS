@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Test } from '../../models/parcel';
-import { Camera, File } from 'ionic-native';
+import { File } from 'ionic-native';
 
 declare var cordova;
 
