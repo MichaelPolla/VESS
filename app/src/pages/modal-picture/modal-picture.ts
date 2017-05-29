@@ -10,7 +10,7 @@ export class ModalPicturePage {
 
   imgSrc: string;
   type: string;
-  helpNumber: number;
+  helpId: string;
   resume:Test;
   constructor(public viewCtrl: ViewController,
     public navParams: NavParams,
@@ -28,7 +28,7 @@ export class ModalPicturePage {
         this.imgSrc = this.navParams.get('imgSrc');
         break;
       case 'help':
-        this.helpNumber = 1;
+        this.helpId = this.navParams.get('helpId');
         break;
       case 'resume':
         this.resume = this.navParams.get('resume');

@@ -22,6 +22,7 @@ export class Notation2Page {
   layerNumber: number;
   heightRuler: number;
   private currentLayer: Layer;
+  private helpId: string;
 
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
@@ -52,6 +53,7 @@ export class Notation2Page {
           { title: 'Moins de 1 cm', checked: false, imgSrc: './assets/pictures/agregats_moins_1cm.png', code2: 1 },
           { title: 'Jusqu\'à 7 cm', checked: false, imgSrc: './assets/pictures/aggregats_jusque_7cm.png', code2: 2 }
         ];
+        this.helpId = "pas_motte_fermee";
         break;
 
       case 3:
@@ -60,6 +62,7 @@ export class Notation2Page {
           { title: 'Moins de 30\% des agrégats* ou mottes* sont de taille inférieure à 7cm', checked: false,  imgSrc: './assets/pictures/moins_30pourcent_aggregats_moins_7cm.png', code2: 1 },
           { title: 'Presque pas d\'agrégats* ou mottes* de taille inférieure à 7 cm', checked: false,  imgSrc: './assets/pictures/aucun_aggregat_moins_7cm.png', code2: 2 }
         ];
+        this.helpId = "majoritairement_mottes_fermees";
         break;
     }
   }

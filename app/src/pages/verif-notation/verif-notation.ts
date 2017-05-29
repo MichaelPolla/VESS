@@ -18,6 +18,7 @@ import { Toasts } from '../../providers/toasts';
 export class VerifNotationPage {
   heightRuler: number;
   score: number;
+  private helpId: string;
   items: Array<{ title: string, checked: Boolean, imgSrc?: string, code: number }>;
   criterias: Array<{ title: string, array: Array<{ title: string, checked: Boolean, imgSrc?: string, code: number }> }>;
   private currentLayer: Layer;
@@ -50,11 +51,11 @@ export class VerifNotationPage {
         case 1:
           this.items = [
             { title: 'Très poreux, grumeleux', checked: false, imgSrc: './assets/pictures/aggregat_moins_1cm.png', code: 1 },
-            { title: 'Se séparent spontanément ou après une très faible pression', checked: false,  imgSrc: './assets/pictures/aggregat_moins_1cm.png', code: 2 },
-            { title: 'Sont maintenus entre eux par de nombreuses racines', checked: false,  imgSrc: './assets/pictures/aggregat_moins_1cm.png', code: 3 }
+            { title: 'Se séparent spontanément ou après une très faible pression', checked: false, imgSrc: './assets/pictures/aggregat_moins_1cm.png', code: 2 },
+            { title: 'Sont maintenus entre eux par de nombreuses racines', checked: false, imgSrc: './assets/pictures/aggregat_moins_1cm.png', code: 3 }
           ];
           this.criterias = [{ title: 'Les agrégats d’environ 1,5 cm sont :', array: this.items }];
-
+          this.helpId = "verif_pas_motte_fermee_1cm";
           break;
 
         case 2:
@@ -64,7 +65,9 @@ export class VerifNotationPage {
             { title: 'Contiennent des racines', checked: false, imgSrc: './assets/pictures/aggregat_jusque_7cm.png', code: 3 }
           ];
           this.criterias = [{ title: 'Les agrégats d’environ 1,5 cm sont :', array: this.items }];
+          this.helpId = "verif_pas_motte_fermee_7cm";
           break;
+
         case 3:
           this.items = [
             { title: 'Majoritairement poreux et arrondis', checked: false, imgSrc: './assets/pictures/no_picture.png', code: 1 },
@@ -73,7 +76,9 @@ export class VerifNotationPage {
           ];
           this.criterias = [{ title: 'Les fragments de sol d’environ 1,5 cm sont :', array: this.items }];
           this.criterias.push({ title: 'Présence possible d\'agrégats* non poreux, ne contenant pas ou peu de racines', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/fragment_sans_racine.png', code: 1 }] });
+          this.helpId = "verif_possible_mottes_fermees";
           break;
+
         case 4:
           this.items = [
             { title: 'Non poreux, de forme cubique, aux bords anguleux', checked: false, imgSrc: './assets/pictures/non_poreux.png', code: 1 },
@@ -81,6 +86,7 @@ export class VerifNotationPage {
           ];
           this.criterias = [{ title: 'Les fragments de sol d’environ 1,5 cm sont :', array: this.items }];
           this.criterias.push({ title: 'Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }] });
+          this.helpId = "verif_majoritairement_mottes_fermees";
           break;
         case 5:
           this.items = [
@@ -90,6 +96,7 @@ export class VerifNotationPage {
           this.criterias = [{ title: 'Les agrégats ou fragments de sol d’environ 1,5 cm sont :', array: this.items }];
           this.criterias.push({ title: 'Les racines se situent autour principalement des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }] });
           this.criterias.push({ title: 'Anoxie possible, couleur gris-bleu (odeur d’œuf pourri)', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/anoxie_possible.png', code: 1 }] });
+          this.helpId = "verif_majoritairement_mottes_fermees";
           break;
       }
     }
@@ -97,7 +104,7 @@ export class VerifNotationPage {
 
   showModal(item_index) {
     let imgSrc = this.items[item_index].imgSrc; // TODO: pass this parameter to the modal so it can be used to show the picture.
-    let testModal = this.modalCtrl.create(ModalPicturePage, { imgSrc: imgSrc });
+    let testModal = this.modalCtrl.create(ModalPicturePage, { imgSrc: imgSrc, type: "picture" });
     testModal.present();
   }
 

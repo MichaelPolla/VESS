@@ -1,9 +1,3 @@
-<!--
-  Generated template for the VerifNotation page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -30,4 +24,4 @@
   <img class="ruler" src='./assets/icon/ruler.png' [style.height.px]="heightRuler"/>
 </ion-content>
 
-<component-footer-view (onValidationStep)="validationStep()"></component-footer-view>
+<component-footer-view (onValidationStep)="validationStep()" [helpId]="helpId"></component-footer-view>
