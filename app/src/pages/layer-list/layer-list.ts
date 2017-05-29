@@ -24,7 +24,7 @@ export class LayerListPage {
   private currentTest: Test;
 
   constructor(public navCtrl: NavController,
-    private modalCtrl:ModalController,
+    private modalCtrl: ModalController,
     public navParams: NavParams,
     private dataService: DataService,
     private platform: Platform,
@@ -70,6 +70,12 @@ export class LayerListPage {
     blockScore /= this.layers.length;
 
     if (layersWithScore == this.layers.length) {
+      this.dataService.getUserInfo().then((value) => {
+        if (value != null) {
+          this.currentTest.user = value;
+        }
+      });
+      this.currentTest.completed = true;
       this.dataService.saveParcels();
       this.navCtrl.push(HomePage);
     } else {
@@ -78,10 +84,10 @@ export class LayerListPage {
     }
   }
 
-  goResume(){
-        this.dataService.saveParcels(); // TODO : check if necessary
-    let modal = this.modalCtrl.create(ModalPicturePage, { type:"resume", resume: this.currentTest });
-   modal.present();
+  goResume() {
+    this.dataService.saveParcels(); // TODO : check if necessary
+    let modal = this.modalCtrl.create(ModalPicturePage, { type: "resume", resume: this.currentTest });
+    modal.present();
   }
 
 }
