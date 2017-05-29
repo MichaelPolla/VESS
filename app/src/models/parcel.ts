@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export class Parcel {
   public name: string;
   public ofag?: string;
@@ -15,6 +17,8 @@ export class Test {
   public picture?: string;
   public layers?: Layer[];
   public thickness?: number;
+  public user?: User;
+  public completed?: Boolean = false;
 
   public constructor(init: Test) {
     Object.assign(this, init);

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, ModalController } from 'ionic-angular';
 import { Test, Layer } from './../../models/parcel';
 // Pages
 import { CameraPage } from '../camera/camera';
 import { Notation1Page } from '../notation-1/notation-1';
 import { HomePage } from './../home-page/home-page';
+import { ModalPicturePage } from './../modal-picture/modal-picture';
 //Providers
 import { DataService } from '../../providers/data-service';
 import { Toasts } from '../../providers/toasts';
@@ -23,6 +24,7 @@ export class LayerListPage {
   private currentTest: Test;
 
   constructor(public navCtrl: NavController,
+    private modalCtrl:ModalController,
     public navParams: NavParams,
     private dataService: DataService,
     private platform: Platform,
@@ -75,4 +77,11 @@ export class LayerListPage {
       this.toasts.showToast(toastMsg);
     }
   }
+
+  goResume(){
+        this.dataService.saveParcels(); // TODO : check if necessary
+    let modal = this.modalCtrl.create(ModalPicturePage, { type:"resume", resume: this.currentTest });
+   modal.present();
+  }
+
 }
