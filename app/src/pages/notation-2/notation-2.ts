@@ -1,7 +1,8 @@
 import { Layer } from './../../models/parcel';
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { ModalController, NavController, NavParams, Platform } from 'ionic-angular';
 // Pages
+import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { VerifNotationPage } from '../verif-notation/verif-notation';
 // Providers
 import { DataService } from '../../providers/data-service';
@@ -14,7 +15,7 @@ import { Toasts } from '../../providers/toasts';
 })
 export class Notation2Page {
   //declaration of field
-  items: Array<{ title: string, checked: Boolean, code2: number }>;
+  items: Array<{ title: string, checked: Boolean, imgSrc: String, code2: number }>;
   title: string;
   code: number;
   code2: number;
@@ -23,6 +24,7 @@ export class Notation2Page {
   private currentLayer: Layer;
 
   constructor(public navCtrl: NavController,
+    public modalCtrl: ModalController,
     public navParams: NavParams,
     private dataService: DataService,
     private platform: Platform,
@@ -47,20 +49,16 @@ export class Notation2Page {
       case 1:
         this.title = 'La plupart des agrégats mesurent :';
         this.items = [
-          { title: 'Moins de 1 cm', checked: false, code2: 1 },
-          { title: 'Jusqu\'à 7 cm', checked: false, code2: 2 }
+          { title: 'Moins de 1 cm', checked: false, imgSrc: './assets/pictures/agregats_moins_1cm.png', code2: 1 },
+          { title: 'Jusqu\'à 7 cm', checked: false, imgSrc: './assets/pictures/aggregats_jusque_7cm.png', code2: 2 }
         ];
-        break;
-
-      case 2:
-        this.title = 'Principalement agrégats de 1 à 10cm et moins de 30\% des agrégats font moins de 1cm';
         break;
 
       case 3:
         this.title = 'Les mottes fermées font généralement plus de 10 cm';
         this.items = [
-          { title: 'Moins de 30\% des agrégats mesurent moins de 7cm', checked: false, code2: 1 },
-          { title: 'Presqu\'aucun agrégats ne mesure moins de 7 cm', checked: false, code2: 2 }
+          { title: 'Moins de 30\% des agrégats* ou mottes* sont de taille inférieure à 7cm', checked: false,  imgSrc: './assets/pictures/moins_30pourcent_aggregats_moins_7cm.png', code2: 1 },
+          { title: 'Presque pas d\'agrégats* ou mottes* de taille inférieure à 7 cm', checked: false,  imgSrc: './assets/pictures/aucun_aggregat_moins_7cm.png', code2: 2 }
         ];
         break;
     }
@@ -76,8 +74,6 @@ export class Notation2Page {
         layerScore = 2;
       }
 
-    } else if (this.code == 2) { // => SQ3
-      layerScore = 3;
     } else if (this.code == 3) {
       if (this.code2 == 1) {  // => SQ4
         layerScore = 4;
@@ -107,4 +103,12 @@ export class Notation2Page {
       cnt++;
     }
   }
+
+
+  showModal(item_index) {
+    let imgSrc = this.items[item_index].imgSrc; // TODO: pass this parameter to the modal so it can be used to show the picture.
+    let pictureModal = this.modalCtrl.create(ModalPicturePage, { imgSrc: imgSrc, type: "picture" });
+    pictureModal.present();
+  }
+
 }

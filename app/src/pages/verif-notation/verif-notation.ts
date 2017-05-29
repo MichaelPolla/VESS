@@ -49,47 +49,47 @@ export class VerifNotationPage {
 
         case 1:
           this.items = [
-            { title: 'Très poreux, grumeleux (photo A)', checked: false, imgSrc: './assets/pictures/a-2.png', code: 1 },
-            { title: 'Se séparent spontanément ou après une très faible pression', checked: false, code: 2 },
-            { title: 'Sont maintenus entre eux par de nombreuses racines (photo B)', checked: false, imgSrc: './assets/pictures/b-1.png', code: 3 }
+            { title: 'Très poreux, grumeleux', checked: false, imgSrc: './assets/pictures/aggregat_moins_1cm.png', code: 1 },
+            { title: 'Se séparent spontanément ou après une très faible pression', checked: false,  imgSrc: './assets/pictures/aggregat_moins_1cm.png', code: 2 },
+            { title: 'Sont maintenus entre eux par de nombreuses racines', checked: false,  imgSrc: './assets/pictures/aggregat_moins_1cm.png', code: 3 }
           ];
-          this.criterias = [{ title: 'Les agrégats d’environ 1cm sont :', array: this.items }];
+          this.criterias = [{ title: 'Les agrégats d’environ 1,5 cm sont :', array: this.items }];
 
           break;
 
         case 2:
           this.items = [
-            { title: 'Poreux et arrondis (photo C)', checked: false, code: 1 },
-            { title: 'Se séparent spontanément ou après une très faible pression', checked: false, code: 2 },
-            { title: 'Contiennent des racines (photo D)', checked: false, code: 3 }
+            { title: 'Poreux et arrondis', checked: false, imgSrc: './assets/pictures/aggregat_jusque_7cm.png', code: 1 },
+            { title: 'Se séparent spontanément ou après une très faible pression', imgSrc: './assets/pictures/aggregat_jusque_7cm.png', checked: false, code: 2 },
+            { title: 'Contiennent des racines', checked: false, imgSrc: './assets/pictures/aggregat_jusque_7cm.png', code: 3 }
           ];
-          this.criterias = [{ title: 'Les agrégats d’environ 1cm sont :', array: this.items }];
+          this.criterias = [{ title: 'Les agrégats d’environ 1,5 cm sont :', array: this.items }];
           break;
         case 3:
           this.items = [
-            { title: 'Majoritairement poreux et arrondis (photo C)', checked: false, code: 1 },
-            { title: 'Relativement facile à rompre', checked: false, code: 2 },
-            { title: 'Contiennent des racines (photo D)', checked: false, code: 3 }
+            { title: 'Majoritairement poreux et arrondis', checked: false, imgSrc: './assets/pictures/no_picture.png', code: 1 },
+            { title: 'Relativement facile à rompre', checked: false, imgSrc: './assets/pictures/no_picture.png', code: 2 },
+            { title: 'Contiennent des racines', checked: false, imgSrc: './assets/pictures/fragment_1cm.png', code: 3 }
           ];
-          this.criterias = [{ title: 'Les agrégats d’environ 1cm sont :', array: this.items }];
-          this.criterias.push({ title: 'Présence possible de fragments* de sol non poreux, ne contenant pas ou peu de racines (photo E)', array: [{ title: 'Oui', checked: false, code: 1 }] });
+          this.criterias = [{ title: 'Les fragments de sol d’environ 1,5 cm sont :', array: this.items }];
+          this.criterias.push({ title: 'Présence possible d\'agrégats* non poreux, ne contenant pas ou peu de racines', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/fragment_sans_racine.png', code: 1 }] });
           break;
         case 4:
           this.items = [
-            { title: 'Non poreux, de forme cubique, aux bords anguleux', checked: false, code: 1 },
-            { title: 'Contiennent très peu de racines', checked: false, code: 2 }
+            { title: 'Non poreux, de forme cubique, aux bords anguleux', checked: false, imgSrc: './assets/pictures/non_poreux.png', code: 1 },
+            { title: 'Contiennent très peu de racines', checked: false, imgSrc: './assets/pictures/no_picture.png', code: 2 }
           ];
-          this.criterias = [{ title: 'Les fragments de sol d’environ 1 cm sont :', array: this.items }];
-          this.criterias.push({ title: 'Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, code: 1 }] });
+          this.criterias = [{ title: 'Les fragments de sol d’environ 1,5 cm sont :', array: this.items }];
+          this.criterias.push({ title: 'Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }] });
           break;
         case 5:
           this.items = [
-            { title: 'Difficiles à obtenir ( sol compact)', checked: false, code: 1 },
-            { title: 'Contiennent très peu ou pas de racines', checked: false, code: 2 }
+            { title: 'Difficiles à obtenir (sol compact)', checked: false, imgSrc: './assets/pictures/fragment_difficile_obtenir.png', code: 1 },
+            { title: 'Contiennent très peu ou pas de racines', checked: false, imgSrc: './assets/pictures/no_picture.png', code: 2 }
           ];
-          this.criterias = [{ title: 'Les fragments de sol d’environ 1 cm sont :', array: this.items }];
-          this.criterias.push({ title: 'Les racines se situent autour principalement des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, code: 1 }] });
-          this.criterias.push({ title: 'Anoxie possible, couleur gris-bleu (odeur d’œuf pourri)', array: [{ title: 'Oui', checked: false, code: 1 }] });
+          this.criterias = [{ title: 'Les agrégats ou fragments de sol d’environ 1,5 cm sont :', array: this.items }];
+          this.criterias.push({ title: 'Les racines se situent autour principalement des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }] });
+          this.criterias.push({ title: 'Anoxie possible, couleur gris-bleu (odeur d’œuf pourri)', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/anoxie_possible.png', code: 1 }] });
           break;
       }
     }

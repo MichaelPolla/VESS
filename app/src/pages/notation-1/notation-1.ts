@@ -4,6 +4,7 @@ import { ModalController, NavController } from 'ionic-angular';
 // Pages
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { Notation2Page } from '../notation-2/notation-2';
+import { VerifNotationPage } from './../verif-notation/verif-notation';
 //Providers
 import { DataService } from '../../providers/data-service';
 
@@ -25,17 +26,24 @@ export class Notation1Page {
     this.currentLayer = this.dataService.getCurrentLayer();
     this.layerNumber = this.currentLayer.num;
     this.items = [
-      { title: 'Pas de motte fermée', checked: false, imgSrc: './assets/icon/motte.png', code: 1 },
-      { title: 'Présence possible de mottes fermées', checked: false, imgSrc: './assets/icon/motte.png', code: 2 },
-      { title: 'Présence majoritaire de mottes fermées', checked: false, imgSrc: './assets/icon/motte.png', code: 3 }
+      { title: 'Pas d’agrégats ni mottes fermées. La plupart des agrégats mesurent de 0 à 7 cm.', checked: false, imgSrc: './assets/pictures/pas_motte_fermee.png', code: 1 },
+      { title: 'Présence possible d’agrégats ou mottes fermés. La plupart des agrégats mesurent de 1 à 10 cm, mois de 30% des agrégats mesurent moins de 1 cm.', checked: false, imgSrc: './assets/pictures/possibles_mottes_fermees.png', code: 2 },
+      { title: 'Présence majoritaire de mottes fermées généralement de plus de 10 cm', checked: false, imgSrc: './assets/pictures/majoritaire_mottes_fermees.png', code: 3 }
     ];
   }
 
   validationStep() {
     if (this.code) {
-      this.navCtrl.push(Notation2Page, {
-        code: this.code,
+      if (this.code == 2) {
+      this.navCtrl.push(VerifNotationPage, {
+        score: 3
       })
+      }
+      else {
+        this.navCtrl.push(Notation2Page, {
+          code: this.code,
+        })
+      }
     }
   }
 
@@ -43,7 +51,6 @@ export class Notation1Page {
     let cnt: number = 0;
 
     for (let item of this.items) {
-      //if position selected
       if (position == cnt) {
         item.checked = true;
         this.code = item.code;

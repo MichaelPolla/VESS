@@ -13,12 +13,14 @@
   <ion-list>
     <ion-item class="item-checkbox" *ngFor="let item of items; let i=index">
       <ion-label class="wraptext">{{item.title}}</ion-label>
+      <ion-thumbnail item-left (click)="showModal(i)">
+        <img src={{item.imgSrc}}>
+      </ion-thumbnail>
       <ion-checkbox item-right color="secondary" checked={{item.checked}} (click)="updateCheckedBox(i, item)"></ion-checkbox>
     </ion-item>
   </ion-list>
 
-
-  <img class="ruler" src='./assets/icon/ruler.png' [style.height.px]="heightRuler"/>
+  <img class="ruler" src='./assets/icon/ruler.png' [style.height.px]="heightRuler" />
 
 
 </ion-content>
