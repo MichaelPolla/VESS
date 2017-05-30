@@ -11,9 +11,18 @@
     <button ion-item *ngFor="let item of listItems" (click)="layerSelected(item.index)">
       {{item.title}} <strong *ngIf="item.score" [ngClass]="{'good' : item.score < 3, 'average' : item.score == 3, 'bad' : item.score > 3}"> — score : {{item.score}} </strong>
     </button>
-    <button ion-button color="sky" round (click)="blockScore()">Valider</button>
+    
     <button ion-button block color="brown" item-center (click)="goResume()">
       <p>Afficher le résumé</p>
     </button>
+
+
+
   </ion-list>
 </ion-content>
+
+<ion-footer>
+    <ion-buttons class="bottomButton">
+      <button ion-button color="sky" round (click)="blockScore()">Valider</button>
+    </ion-buttons>
+</ion-footer>

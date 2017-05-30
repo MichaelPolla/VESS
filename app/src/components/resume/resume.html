@@ -1,7 +1,13 @@
 <ion-label stacked color="brown">Nom, Prénom de l'utilisateur</ion-label>
-Anonyme
+{{resume.user.lastName}} {{resume.user.firstName}}
 <ion-label stacked color="brown">Numéro Agate de l’exploitant</ion-label>
-Anonyme
+<span *ngIf="resume.user.userType=='ofag'">
+ {{resume.user.idOfag}}
+</span>
+<span *ngIf="resume.user.userType=='anonymous'">
+ Anonyme
+</span>
+
 <ion-label stacked color="brown">Nom du test</ion-label>
 {{resume.name}}
 <ion-label stacked color="brown">Date du test </ion-label>
@@ -11,7 +17,7 @@ Anonyme
 <ion-grid>
   <ion-label stacked color="brown">Photo du bloc </ion-label>
   <ion-row>
-    <ion-col col-12><img src={{imageFileBlock}} ></ion-col>
+    <ion-col col-12><img src={{imageFileBlock}}></ion-col>
   </ion-row>
   <ion-label stacked color="brown">Taille du bloc </ion-label>
   {{resume.thickness}} cm
@@ -22,7 +28,7 @@ Anonyme
   </ion-row>
   <ion-row>
     <ion-col *ngFor="let imageFileLayer of imageFileLayers" col-4>
-      <img src={{imageFileLayer}} >
+      <img src={{imageFileLayer}}>
     </ion-col>
   </ion-row>
   <ion-row>
