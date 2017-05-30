@@ -99,9 +99,10 @@ export class CameraPage {
     switch (this.stepView) {
       case 1:
         this.currentTest.picture = this.imageNamePath;
-      //this.dataService.setTestPicture(this.imageNamePath); // Store in test data
+      break;
       case 5:
         this.dataService.getCurrentLayer().picture = this.imageNamePath;
+      break;
     }
 
 
