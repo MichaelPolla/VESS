@@ -12,7 +12,6 @@ import { SettingsPage } from '../settings/settings';
 export class HomePage{
 
   constructor(public navCtrl: NavController, public modalCtrl:ModalController ) {
-    this.navCtrl.pop();
   }
 
   showPage(pageName: String) {
