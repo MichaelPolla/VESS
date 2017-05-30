@@ -35,18 +35,28 @@ export class ResumeComponent {
         this.imageFileBlock = this.defaultPicture;
       });
       this.defaultPicture = "./assets/icon/generic-image.png";
+
+      //init array
+      this.imageFileLayers = [];
       for (let layer of this.resume.layers) {
+        console.log(layer.picture);
         //read block
         File.checkFile(cordova.file.dataDirectory, layer.picture).then(_ => {
+          console.log("CheckFile OK");
           //read picture
           File.readAsBinaryString(cordova.file.dataDirectory, layer.picture).then((pictureAsBinary) => {
             this.imageFileLayers.push("data:image/jpeg;base64," + pictureAsBinary);
+            console.log("ReadAsBinary");
+          }).catch(err => {
+            console.log(err);
           });
         }).catch(err => {
           //file doesn't exist, so display example picture for how to take photo
           this.imageFileLayers.push(this.defaultPicture);
+          console.log("check file pas ok");
         });
       }
+      console.log(this.imageFileLayers);
     }
   }
 }
