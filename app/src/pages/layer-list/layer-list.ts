@@ -85,7 +85,6 @@ export class LayerListPage {
   }
 
   goResume() {
-    this.dataService.saveParcels(); // TODO : check if necessary
     let modal = this.modalCtrl.create(ModalPicturePage, { type: "resume", resume: this.currentTest });
     modal.present();
   }
