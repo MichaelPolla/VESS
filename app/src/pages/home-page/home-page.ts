@@ -4,6 +4,7 @@ import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 import { ConsultationParcelsPage } from '../consultation-parcels/consultation-parcels'
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { SettingsPage } from '../settings/settings';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-home-page',
@@ -11,8 +12,13 @@ import { SettingsPage } from '../settings/settings';
 })
 export class HomePage{
 
-  constructor(public navCtrl: NavController, public modalCtrl:ModalController ) {
-  }
+  constructor(
+    public navCtrl: NavController, 
+    public modalCtrl:ModalController,
+    private translate: TranslateService ) 
+    {
+      translate.setDefaultLang('fr');
+    }
 
   showPage(pageName: String) {
     switch(pageName) {

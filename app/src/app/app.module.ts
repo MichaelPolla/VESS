@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicApp, IonicModule } from 'ionic-angular';
-import { BrowserModule } from '@angular/platform-browser'
+import { BrowserModule } from '@angular/platform-browser';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { Http, HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 
 // Ionic Native plugins
-import { Camera } from '@ionic-native/camera'
+import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -40,6 +43,10 @@ import { HelpComponent } from '../components/help/help';
 import { SlidePictureComponent } from '../components/slide-picture/slide-picture';
 import { ResumeComponent } from '../components/resume/resume';
 
+export function createTranslateLoader(http: Http) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 @NgModule({
   declarations: [
     CameraPage,
@@ -63,8 +70,16 @@ import { ResumeComponent } from '../components/resume/resume';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [Http]
+      }
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -100,4 +115,5 @@ import { ResumeComponent } from '../components/resume/resume';
     Utils
   ]
 })
+
 export class AppModule { }
