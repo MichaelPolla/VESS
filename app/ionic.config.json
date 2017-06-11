@@ -1,6 +1,5 @@
 {
   "name": "VESS",
   "app_id": "0c954de9",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }

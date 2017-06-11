@@ -1,8 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 import { IonicApp, IonicModule } from 'ionic-angular';
+import { BrowserModule } from '@angular/platform-browser'
 
 import { MyApp } from './app.component';
+
+// Ionic Native plugins
+import { Camera } from '@ionic-native/camera'
+import { File } from '@ionic-native/file';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
+import { Toast } from '@ionic-native/toast';
 
 // Pages
 import { CameraPage } from '../pages/camera/camera';
@@ -54,7 +62,9 @@ import { ResumeComponent } from '../components/resume/resume';
     SettingsPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -77,6 +87,17 @@ import { ResumeComponent } from '../components/resume/resume';
     ConsultationParcelsPage,
     SettingsPage
   ],
-  providers: [DataService, RulerService, Storage, Toasts, Utils]
+  providers: [
+    Camera,
+    DataService,
+    File,
+    RulerService, 
+    SplashScreen,
+    StatusBar,
+    Storage, 
+    Toast,
+    Toasts, 
+    Utils
+  ]
 })
 export class AppModule { }

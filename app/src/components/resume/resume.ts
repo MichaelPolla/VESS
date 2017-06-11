@@ -2,7 +2,7 @@ import { Layer } from './../../models/parcel';
 import { Component, Input } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { Test } from '../../models/parcel';
-import { File } from 'ionic-native';
+import { File } from '@ionic-native/file';
 
 declare var cordova;
 
@@ -27,18 +27,19 @@ export class ResumeComponent {
 
   public layerArray: LayerInfo[];
   defaultPicture: string;
-  constructor(public navCtrl: NavController,
-    private platform: Platform) {
-
-  }
+  constructor(
+    private file: File,
+    public navCtrl: NavController,
+    private platform: Platform) 
+    { }
 
   ngOnInit() {
     if (!this.platform.is('core')) { // Check that we aren't running on desktop
       this.defaultPicture = "./assets/icon/two-layers-example.png";
       //read block
-      File.checkFile(cordova.file.dataDirectory, this.resume.picture).then(_ => {
+      this.file.checkFile(cordova.file.dataDirectory, this.resume.picture).then(_ => {
         //read picture
-        File.readAsBinaryString(cordova.file.dataDirectory, this.resume.picture).then((pictureAsBinary) => {
+        this.file.readAsBinaryString(cordova.file.dataDirectory, this.resume.picture).then((pictureAsBinary) => {
           this.imageFileBlock = "data:image/jpeg;base64," + pictureAsBinary;
 
 
@@ -58,10 +59,10 @@ export class ResumeComponent {
       for (let layer of this.resume.layers) { //read all layers
 
         //read block
-        File.checkFile(cordova.file.dataDirectory, layer.picture).then(_ => {
+        this.file.checkFile(cordova.file.dataDirectory, layer.picture).then(_ => {
           console.log("CheckFile OK");
           //read picture
-          File.readAsBinaryString(cordova.file.dataDirectory, layer.picture).then((pictureAsBinary) => {
+          this.file.readAsBinaryString(cordova.file.dataDirectory, layer.picture).then((pictureAsBinary) => {
             this.layerArray[layer.num - 1].img = "data:image/jpeg;base64," + pictureAsBinary;
             this.layerArray = this.layerArray.slice(); // Good for re-update the view https://stackoverflow.com/questions/39196766/angular-2-do-not-refresh-view-after-array-push-in-ngoninit-promise?answertab=votes#tab-top
           }).catch(err => {

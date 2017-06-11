@@ -1,7 +1,10 @@
 import { Test } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Camera, File } from 'ionic-native';
+
+import { Camera } from '@ionic-native/camera';
+import { File } from '@ionic-native/file';
+
 // Pages
 import { DefiningLayerPage } from '../defining-layer/defining-layer';
 import { Notation1Page } from '../notation-1/notation-1';
@@ -27,9 +30,12 @@ export class CameraPage {
   description: string;
   defaultPicture: string;
 
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams,
+  constructor(
+    private camera: Camera,
     private dataService: DataService,
+    private file: File,
+    public navCtrl: NavController,
+    public navParams: NavParams,
     private toasts: Toasts) {
     this.stepView = this.navParams.get('stepView');
     this.currentTest = this.dataService.getCurrentTest();
@@ -53,9 +59,9 @@ export class CameraPage {
         break;
     }
 
-    File.checkFile(cordova.file.dataDirectory, filePath).then(_ => {
+    this.file.checkFile(cordova.file.dataDirectory, filePath).then(_ => {
       //read picture
-      File.readAsBinaryString(cordova.file.dataDirectory, filePath).then((pictureAsBinary) => {
+      this.file.readAsBinaryString(cordova.file.dataDirectory, filePath).then((pictureAsBinary) => {
         this.imageFile = "data:image/jpeg;base64," + pictureAsBinary;
       });
     }).catch(err => {
@@ -66,20 +72,20 @@ export class CameraPage {
 
   takePicture() {
     const options = {
-      destinationType: Camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.DATA_URL,
       quality: 90,
       targetWidth: 1000, //TODO: check if it necessary to resize picture, and if so, set correct values
       targetHeight: 1000,
       correctOrientation: true
     }
-    Camera.getPicture(options).then((pictureAsBinary) => {
+    this.camera.getPicture(options).then((pictureAsBinary) => {
       //read new image
       this.imageFile = "data:image/jpeg;base64," + pictureAsBinary;
       //check if directory exist
-      File.checkDir(cordova.file.dataDirectory, this.dirName).then(success => {
+      this.file.checkDir(cordova.file.dataDirectory, this.dirName).then(success => {
         this.savePicture(pictureAsBinary);
       }, error => {
-        File.createDir(cordova.file.dataDirectory, this.dirName, true).then(success => {
+        this.file.createDir(cordova.file.dataDirectory, this.dirName, true).then(success => {
           this.savePicture(pictureAsBinary);
         }, error => {
           this.toasts.showToast("Erreur lors de la création du répertoire de l'image.");
@@ -92,7 +98,7 @@ export class CameraPage {
 
   private savePicture(imagePath: any) {
     this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
-    File.writeFile(cordova.file.dataDirectory, this.imageNamePath, imagePath, true).then(success => { // Store file
+    this.file.writeFile(cordova.file.dataDirectory, this.imageNamePath, imagePath, true).then(success => { // Store file
     }, error => {
       this.toasts.showToast("Erreur lors de l'enregistrement de l'image.");
     });

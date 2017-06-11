@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Platform, ToastController } from 'ionic-angular';
-import { Toast } from 'ionic-native';
+import { Toast } from '@ionic-native/toast';
 
 @Injectable()
 export class Toasts {
 
-  constructor(private platform: Platform, private toastCtrl: ToastController) {}
+  constructor(
+    private platform: Platform, 
+    private toast: Toast,
+    private toastCtrl: ToastController) {}
   
   /** Shows a native or non-native Toast, depending of the platform.  
    *  If no duration is provided, default is 3500.
@@ -14,7 +17,7 @@ export class Toasts {
   public showToast(message: string, duration?: number) {
     if(!duration) duration = 3500;
     if (!this.platform.is('core')) {
-      Toast.show(message, duration.toString(), "bottom").subscribe();
+      this.toast.show(message, duration.toString(), "bottom").subscribe();
     } else {
       this.showNativeToast(message, duration);
     }
