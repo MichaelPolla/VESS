@@ -26,13 +26,14 @@ export class DefiningLayerPage {
 
   listLayers: Layer[];
 
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams,
+  constructor(public alertCtrl: AlertController,
     private dataService: DataService,
+    public navCtrl: NavController,
+    public navParams: NavParams,
     private platform: Platform,
     public rulerService: RulerService,
     private toasts: Toasts,
-    public alertCtrl: AlertController) { }
+    ) { }
 
   ionViewDidLoad() {
     this.stepView = this.navParams.get('stepView');
@@ -98,7 +99,7 @@ export class DefiningLayerPage {
           this.showRadioAlert();
         }
       }else{
-        this.showAlert("Erreur","La taille totale des couches n'égal pas l'épaisseur entrée, veuillez renseigner correctement les champs");
+        this.showAlert("Erreur","La taille totale des couches n'égale pas l'épaisseur saisie. Veuillez renseigner correctement les champs");
       }
 
     } else {
@@ -146,15 +147,15 @@ export class DefiningLayerPage {
       handler: data => {
         switch(data){
           case 'stony':
-            this.showAlert('Sol caillouteux', 'Le resultat du test à la bêche sera donc basé sur les tests déjà renseignées.');
+            this.showAlert('Sol caillouteux', 'Le résultat du test à la bêche sera donc basé sur les tests déjà renseignés.');
             this.navCtrl.push(ParcelsTestsPage, { step: 2 });
           break;
           case 'dry':
             this.showAlert('Sol trop sec', 'Veuillez sortir une nouvelle motte');
-            this.navCtrl.push(GifViewPage).catch(()=> console.log('should I stay or should I go now'));
+            this.navCtrl.push(GifViewPage);
           break;
           case 'hard':
-            this.showAlert('Sol trop dur', 'On affecte la notte de 5 à la couche compacte de '+this.thickness+' (cm)');
+            this.showAlert('Sol trop dur', 'On affecte la note de 5 à la couche compacte de '+this.thickness+' (cm)');
             //#########################il faudra enregistrer la note ici###################################3
           break;
 
