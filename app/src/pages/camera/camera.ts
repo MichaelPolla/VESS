@@ -1,7 +1,7 @@
 import { Test } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { TranslateService } from '@ngx-translate/core';
 import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 
@@ -23,11 +23,11 @@ export class CameraPage {
   public imageFile: string;
   private isOfagUser: boolean = false;
   private currentTest: Test;
-  pageTitle: string;
+  title: string;
   stepView: number;
   imageNamePath: string;
   dirName: string;
-  description: string;
+  instructions: string;
   defaultPicture: string;
 
   constructor(
@@ -36,26 +36,36 @@ export class CameraPage {
     private file: File,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private toasts: Toasts) {
+    private toasts: Toasts,
+    private translate: TranslateService) {
+
     this.stepView = this.navParams.get('stepView');
     this.currentTest = this.dataService.getCurrentTest();
 
     let filePath = "";
     switch (this.stepView) {
       case 1:
-        this.pageTitle = "Photo du bloc entier";
+        translate.get('PICTURE_OF_WHOLE_BLOCK').subscribe((res: string) => {
+          this.title = res;
+        });
         this.dirName = "blocks";
         //check if file exist
         filePath = this.currentTest.picture;
         this.defaultPicture = "./assets/icon/two-layers-example.png";
-        this.description = "Prenez une photo montrant le bloc entier et ses différentes couches, ainsi que le trou dont il est extrait :";
+        translate.get('PICTURE_OF_WHOLE_BLOCK_INSTRUCTIONS').subscribe((res: string) => {
+          this.instructions = res + " :";
+        });
         break;
       case 5:
-        this.pageTitle = "Photo de la couche";
+        translate.get('PICTURE_OF_LAYER').subscribe((res: string) => {
+          this.title = res;
+        });
         this.dirName = "layers";
         filePath = this.dataService.getCurrentLayer().picture;
-        this.defaultPicture ="./assets/icon/generic-image.png";
-        this.description = "Prenez une photo de la couche :";
+        this.defaultPicture = "./assets/icon/generic-image.png";
+        translate.get('PICTURE_OF_LAYER_INSTRUCTIONS').subscribe((res: string) => {
+          this.instructions = res + " :";
+        });
         break;
     }
 
@@ -88,11 +98,15 @@ export class CameraPage {
         this.file.createDir(cordova.file.dataDirectory, this.dirName, true).then(success => {
           this.savePicture(pictureAsBinary);
         }, error => {
-          this.toasts.showToast("Erreur lors de la création du répertoire de l'image.");
+          this.translate.get('ERROR_CREATING_PICTURE_FOLDER').subscribe((res: string) => {
+            this.toasts.showToast(res);
+          });
         });
       });
     }, (err) => {
-      this.toasts.showToast("Erreur lors de la création de l'image.");
+      this.translate.get('ERROR_CREATING_PICTURE').subscribe((res: string) => {
+        this.toasts.showToast(res);
+      });
     });
   }
 
@@ -100,15 +114,17 @@ export class CameraPage {
     this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
     this.file.writeFile(cordova.file.dataDirectory, this.imageNamePath, imagePath, true).then(success => { // Store file
     }, error => {
-      this.toasts.showToast("Erreur lors de l'enregistrement de l'image.");
+      this.translate.get('ERROR_SAVING_PICTURE').subscribe((res: string) => {
+        this.toasts.showToast(res);
+      });
     });
     switch (this.stepView) {
       case 1:
         this.currentTest.picture = this.imageNamePath;
-      break;
+        break;
       case 5:
         this.dataService.getCurrentLayer().picture = this.imageNamePath;
-      break;
+        break;
     }
 
 
@@ -116,24 +132,22 @@ export class CameraPage {
   }
 
   validationStep() {
-    switch (this.stepView) {
-      case 1:
-        if (this.isOfagUser && this.imageFile == this.defaultPicture) { // OFAG user must take a picture
-          this.toasts.showToast("Veuillez prendre une photo.");
-        } else {
+    if (this.isOfagUser && this.imageFile == this.defaultPicture) { // OFAG user must take a picture
+      this.translate.get('PLEASE_TAKE_PICTURE').subscribe((res: string) => {
+        this.toasts.showToast(res);
+      });
+    } else {
+      switch (this.stepView) {
+        case 1:
           this.navCtrl.push(DefiningLayerPage, {
             stepView: this.stepView + 1,
             picture: this.imageFile
           })
-        }
-        break;
-      case 5:
-        if (this.isOfagUser && this.imageFile == this.defaultPicture) { // OFAG user must take a picture
-          this.toasts.showToast("Veuillez prendre une photo.");
-        } else {
+          break;
+        case 5:
           this.navCtrl.push(Notation1Page)
-        }
-        break;
+          break;
+      }
     }
   }
 }

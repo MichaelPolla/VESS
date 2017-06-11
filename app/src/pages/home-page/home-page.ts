@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
+import { TranslateService } from '@ngx-translate/core';
+// Pages
 import { ConsultationParcelsPage } from '../consultation-parcels/consultation-parcels'
 import { ModalPicturePage } from '../modal-picture/modal-picture';
+import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 import { SettingsPage } from '../settings/settings';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-home-page',
@@ -15,8 +16,7 @@ export class HomePage{
   constructor(
     public navCtrl: NavController, 
     public modalCtrl:ModalController,
-    private translate: TranslateService ) 
-    {
+    private translate: TranslateService ) {
       translate.setDefaultLang('fr');
     }
 

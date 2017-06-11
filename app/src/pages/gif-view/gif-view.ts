@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
+
 // Pages
 import { CameraPage } from '../camera/camera';
 import { DefiningLayerPage } from '../defining-layer/defining-layer';
@@ -12,17 +14,26 @@ import { LayerListPage } from '../layer-list/layer-list';
 export class GifViewPage {
   stepView: number;
   imageFile: string;
-  titlePage: string;
+  title: string;
   nbLayers: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private platform: Platform,
+    private translate: TranslateService) {
+
     //test if is the first step or other step
     if (this.navParams.get('stepView') == null) {
       this.stepView = 0;
-      this.titlePage = 'Extraction du bloc';
+      translate.get('BLOCK_EXTRACTION').subscribe((res: string) => {
+        this.title = res;
+      });
     } else {
       this.stepView = this.navParams.get('stepView');
-      this.titlePage = 'Ouverture du bloc';
+      translate.get('BLOCK_OPENING').subscribe((res: string) => {
+        this.title = res;
+      });
       this.nbLayers = this.navParams.get('nbLayers');
     }
 

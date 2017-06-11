@@ -9,6 +9,5 @@ export class SlidePictureComponent {
 
   @Input() imgSrc: string;
   constructor(public navCtrl: NavController) {
-    console.log(this.imgSrc);
   }
 }

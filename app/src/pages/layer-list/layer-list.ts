@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, ModalController } from 'ionic-angular';
 import { Test, Layer } from './../../models/parcel';
+import { TranslateService } from '@ngx-translate/core';
 // Pages
 import { CameraPage } from '../camera/camera';
 import { Notation1Page } from '../notation-1/notation-1';

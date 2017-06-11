@@ -1,18 +1,18 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{pageTitle}}</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-  <p> {{description}} </p>
+  <p> {{instructions}} </p>
     <img src={{imageFile}} (click)="takePicture()">
 
     <button ion-button block color="brown" item-center (click)="takePicture()">
       <ion-icon name="camera"></ion-icon>
-      <p> Prendre la photo</p>
+      <p>{{ 'TAKE_PICTURE' | translate }}</p>
     </button>
 
 

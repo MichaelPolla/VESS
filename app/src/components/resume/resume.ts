@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { Test } from '../../models/parcel';
 import { File } from '@ionic-native/file';
+import { TranslateService } from '@ngx-translate/core';
 
 declare var cordova;
 
@@ -30,8 +31,8 @@ export class ResumeComponent {
   constructor(
     private file: File,
     public navCtrl: NavController,
-    private platform: Platform) 
-    { }
+    private platform: Platform,
+    private translate: TranslateService) {}
 
   ngOnInit() {
     if (!this.platform.is('core')) { // Check that we aren't running on desktop
@@ -60,7 +61,6 @@ export class ResumeComponent {
 
         //read block
         this.file.checkFile(cordova.file.dataDirectory, layer.picture).then(_ => {
-          console.log("CheckFile OK");
           //read picture
           this.file.readAsBinaryString(cordova.file.dataDirectory, layer.picture).then((pictureAsBinary) => {
             this.layerArray[layer.num - 1].img = "data:image/jpeg;base64," + pictureAsBinary;
@@ -72,7 +72,6 @@ export class ResumeComponent {
         }).catch(err => {
           //file doesn't exist, so display example picture for how to take photo
           this.layerArray[layer.num - 1].img = this.defaultPicture;
-          console.log("check file pas ok");
         });
       }
 

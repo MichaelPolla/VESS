@@ -1,13 +1,7 @@
-<!--
-  Generated template for the Settings page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Paramètres</ion-title>
+    <ion-title>{{ 'SETTINGS' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,11 +11,11 @@
 
   <ion-list radio-group layout="col" [(ngModel)]="userType">
     <ion-list-header>
-      Type d'utilisateur
+      {{ 'USER_TYPE' | translate }}
     </ion-list-header>
 
     <ion-item>
-      <ion-label>Anonyme</ion-label>
+      <ion-label>{{ 'ANONYMOUS' | translate }}</ion-label>
       <ion-radio value="anonymous" color="green"></ion-radio>
     </ion-item>
 
@@ -34,30 +28,30 @@
 
   <ion-list>
     <ion-list-header>
-      Coordonnées utilisateur
+      {{ 'CONTACT_INFORMATION' | translate }}
     </ion-list-header>
     <ion-item>
-      <ion-label floating>Nom</ion-label>
+      <ion-label floating>{{ 'NAME' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="lastName" color="green"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Prénom</ion-label>
+      <ion-label floating>{{ 'SURNAME' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="firstName" color="green"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Adresse mail</ion-label>
+      <ion-label floating>{{ 'EMAIL_ADDRESS' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="mail" color="green"></ion-input>
     </ion-item>
 
     <ion-item *ngIf="userType=='ofag'">
-      <ion-label floating>Identifiant OFAG</ion-label>
+      <ion-label floating>{{ 'OFAG_ID' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="idOfag" color="green"></ion-input>
     </ion-item>
   </ion-list>
 
   <div padding>
-    <button ion-button color="brown" (click)="saveUserInfo()" block>Sauvegarder les informations</button>
+    <button ion-button color="brown" (click)="saveUserInfo()" block>{{ 'SAVE' | translate }}</button>
   </div>
 </ion-content>

@@ -13,7 +13,7 @@
     </button>
     
     <button ion-button block color="brown" item-center (click)="goResume()">
-      <p>Afficher le résumé</p>
+      <p>{{ 'SHOW_SUMMARY' | translate }}</p>
     </button>
 
 
@@ -23,6 +23,6 @@
 
 <ion-footer>
     <ion-buttons class="bottomButton">
-      <button ion-button color="sky" round (click)="blockScore()">Valider</button>
+      <button ion-button color="sky" round (click)="blockScore()">{{ 'VALIDATE' | translate }}</button>
     </ion-buttons>
 </ion-footer>
