@@ -44,7 +44,10 @@ export class LayerListPage {
     for (let i = 0; i < this.layers.length; i++) {
       this.listItems.push({ title: "Couche " + (i + 1), index: i, score: this.layers[i].score })
     }
+
+    this.dataService.saveParcels();
   }
+  
 
   layerSelected(layerIndex: number) {
     this.dataService.selected[2] = layerIndex;
