@@ -10,6 +10,7 @@ import { MyApp } from './app.component';
 
 // Ionic Native plugins
 import { Camera } from '@ionic-native/camera';
+import { EmailComposer } from '@ionic-native/email-composer';
 import { File } from '@ionic-native/file';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -18,6 +19,7 @@ import { Toast } from '@ionic-native/toast';
 // Pages
 import { CameraPage } from '../pages/camera/camera';
 import { DefiningLayerPage } from '../pages/defining-layer/defining-layer';
+import { ExportPage } from './../pages/export/export';
 import { GifViewPage } from '../pages/gif-view/gif-view';
 import { HomePage } from '../pages/home-page/home-page';
 import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
@@ -50,6 +52,7 @@ export function createTranslateLoader(http: Http) {
     CameraPage,
     DefiningLayerPage,
     GifViewPage,
+    ExportPage,
     HomePage,
     ModalPicturePage,
     Notation1Page,
@@ -82,6 +85,7 @@ export function createTranslateLoader(http: Http) {
   entryComponents: [
     CameraPage,
     DefiningLayerPage,
+    ExportPage,
     GifViewPage,
     HomePage,
     ModalPicturePage,
@@ -101,6 +105,7 @@ export function createTranslateLoader(http: Http) {
   providers: [
     Camera,
     DataService,
+    EmailComposer,
     File,
     RulerService, 
     SplashScreen,

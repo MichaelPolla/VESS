@@ -3,7 +3,8 @@ import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Test } from './../../models/parcel';
 // Pages
-import { ConsultationParcelsPage } from '../consultation-parcels/consultation-parcels'
+import { ConsultationParcelsPage } from '../consultation-parcels/consultation-parcels';
+import { ExportPage } from './../export/export';
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 import { SettingsPage } from '../settings/settings';
@@ -40,9 +41,8 @@ export class HomePage {
       case "settings":
         this.navCtrl.push(SettingsPage);
         break;
-      case "resume":
-        let modal = this.modalCtrl.create(ModalPicturePage, { type: "resume" });
-        modal.present();
+      case "email":
+        this.navCtrl.push(ExportPage);
         break;
     }
   }
