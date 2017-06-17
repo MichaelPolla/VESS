@@ -10,9 +10,9 @@ export class RulerService {
   constructor() { }
 
   /**
-   * Get Height of Ruler in px.
-   * imgHeightPx : height of image ruler in px
-   * imgCentimeterPerPx : number of px for one centimeter in the image.
+   * Get Height of Ruler in px.  
+   * imgHeightPx : height of image ruler in px  
+   * imgCentimeterPerPx : number of px for one centimeter in the image.  
    * Return : a Promise (height in px)
    */
   public getHeightStyle(imgHeightPx:number, imgCentimeterPerPx:number){

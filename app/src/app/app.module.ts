@@ -20,7 +20,6 @@ import { CameraPage } from '../pages/camera/camera';
 import { DefiningLayerPage } from '../pages/defining-layer/defining-layer';
 import { GifViewPage } from '../pages/gif-view/gif-view';
 import { HomePage } from '../pages/home-page/home-page';
-import { LayerListPage } from '../pages/layer-list/layer-list';
 import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
 import { Notation1Page } from '../pages/notation-1/notation-1';
 import { Notation2Page } from '../pages/notation-2/notation-2';
@@ -29,7 +28,6 @@ import { ResultsPage } from '../pages/results/results';
 import { VerifNotationPage } from '../pages/verif-notation/verif-notation';
 import { ConsultationParcelsPage} from '../pages/consultation-parcels/consultation-parcels'
 import { SettingsPage } from '../pages/settings/settings';
-
 
 // Providers
 import { DataService } from '../providers/data-service';
@@ -53,7 +51,6 @@ export function createTranslateLoader(http: Http) {
     DefiningLayerPage,
     GifViewPage,
     HomePage,
-    LayerListPage,
     ModalPicturePage,
     Notation1Page,
     MyApp,
@@ -87,7 +84,6 @@ export function createTranslateLoader(http: Http) {
     DefiningLayerPage,
     GifViewPage,
     HomePage,
-    LayerListPage,
     ModalPicturePage,
     MyApp,
     Notation1Page,

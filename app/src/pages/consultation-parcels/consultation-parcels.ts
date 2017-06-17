@@ -46,7 +46,6 @@ export class ConsultationParcelsPage {
   ionViewDidLoad() {
     this.editMode=false;
     this.stepNumber = this.navParams.get('step');
-    this.selected = this.dataService.selected;
     this.dataService.getParcels().then((value) => {
       if (value != null) {
         this.parcels = value;
@@ -174,16 +173,17 @@ export class ConsultationParcelsPage {
     }
   }
 
-  itemClicked(event, item) {
-    event.stopPropagation();
+  itemClicked(item) {
     let itemIndex = this.listItems.indexOf(item);
-    if (this.stepNumber < Steps.Tests) {
-      this.selected[this.stepNumber] = itemIndex;
-      this.dataService.selected = this.selected;
-      this.navCtrl.push(ConsultationParcelsPage, { step: this.stepNumber + 1 });
-    } else if (this.stepNumber === Steps.Tests) {
-      this.selected[this.stepNumber] = itemIndex;
-      this.goResume(item);
+    switch (this.stepNumber) {
+      case Steps.Parcels:
+        this.dataService.setCurrentParcel(itemIndex);
+        this.navCtrl.push(ConsultationParcelsPage, { step: this.stepNumber + 1 });
+        break;
+      case Steps.Tests:
+        this.dataService.setCurrentTest(itemIndex);
+        this.goResume(item);
+        break
     }
   }
 

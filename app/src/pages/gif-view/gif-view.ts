@@ -1,3 +1,4 @@
+import { Notation1Page } from './../notation-1/notation-1';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,6 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { CameraPage } from '../camera/camera';
 import { DefiningLayerPage } from '../defining-layer/defining-layer';
 import { LayerListPage } from '../layer-list/layer-list';
+// Providers
+import { DataService } from '../../providers/data-service';
 
 @Component({
   selector: 'page-gif-view',
@@ -15,9 +18,9 @@ export class GifViewPage {
   stepView: number;
   imageFile: string;
   title: string;
-  nbLayers: number;
 
   constructor(
+    private dataService: DataService,
     public navCtrl: NavController,
     public navParams: NavParams,
     private platform: Platform,
@@ -34,7 +37,6 @@ export class GifViewPage {
       translate.get('BLOCK_OPENING').subscribe((res: string) => {
         this.title = res;
       });
-      this.nbLayers = this.navParams.get('nbLayers');
     }
 
     //image in function of step
@@ -55,21 +57,24 @@ export class GifViewPage {
         // Running on desktop
         // Skipping CameraPage as it requires Cordova, unavailable on regular browser
         this.navCtrl.push(DefiningLayerPage, {
-          stepView: this.stepView + 2,
+          stepView: this.stepView + 2
         })
 
       } else {
         this.navCtrl.push(CameraPage, {
-          stepView: this.stepView + 1,
+          stepView: this.stepView + 1
         })
       }
     } else {
-      this.navCtrl.push(LayerListPage, {
-        nbLayers: this.nbLayers,
-        stepView: this.stepView + 1,
-      })
+      this.dataService.setCurrentLayer(0);
+      if (this.platform.is('core')) {
+        // Running on desktop
+        // Skipping CameraPage as it requires Cordova, unavailable on regular browser
+        this.navCtrl.push(Notation1Page)
+      } else {
+        this.navCtrl.push(CameraPage, { stepView: 5 })
+      }
     }
-
   }
 
 }

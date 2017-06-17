@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 /**
- * A provider for various useful methods.
- * As this provider grows, it should be decomposed into more specific providers (like the "toasts" one). 
+ * A provider for various useful methods.  
+ * As this provider grows, it should be decomposed into more specific providers (like the "toasts" one).
  */
 @Injectable()
 export class Utils {
@@ -28,6 +28,17 @@ export class Utils {
    */
   public static getDatetimeFilename(fileExt: string): string {
     return this.getCurrentDatetime('ddMMy_HHmmss') + fileExt;
+  }
+
+  /**
+   * Rounds a number to the precision specified (by default: to nearest whole number).  
+   * - number:    the number to round.  
+   * - precision: the number of decimals wanted (e.g. 2 will give a number rounded as : x.yz)  
+   *   returns : the rounded number.  
+   */
+  public static round(number: number, precision: number) { 
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(number * multiplier) / multiplier;
   }
 
 

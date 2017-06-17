@@ -18,7 +18,7 @@ export class Test {
   public layers?: Layer[];
   public thickness?: number;
   public user?: User;
-  public completed?: Boolean = false;
+  public isCompleted?: Boolean = false;
 
   public constructor(init: Test) {
     Object.assign(this, init);

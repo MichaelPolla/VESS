@@ -34,8 +34,8 @@ export class ParcelsTestsPage {
   private stepName: string;
   private listItems: any = [];
   private parcels: Parcel[] = [];
-  private selected: number[];
   private user: User;
+  private currentParcel: Parcel;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -45,18 +45,18 @@ export class ParcelsTestsPage {
 
   ionViewDidLoad() {
     this.stepNumber = this.navParams.get('step');
-    this.selected = this.dataService.selected;
     this.dataService.getParcels().then((value) => {
       if (value != null) {
         this.parcels = value;
+        this.currentParcel = this.dataService.getCurrentParcel();
       }
 
-      let selectedParcel = this.parcels[this.selected[0]];
+
       switch (this.stepNumber) {
         case Steps.Tests:
           this.pageTitle = "Tests";
-          this.listHeader = "Parcelle : " + selectedParcel.name;
-          this.listItems = selectedParcel.tests;
+          this.listHeader = "Parcelle : " + this.currentParcel.name;
+          this.listItems = this.currentParcel.tests;
           break;
 
         default: // Steps.Parcels, hopefully
@@ -69,13 +69,16 @@ export class ParcelsTestsPage {
     });
 
     //Todo : should not create a new user here if non-existent
-    this.dataService.getUserInfo().then((value) => {
-      if (value != null) {
-        this.user = value;
-      }else{
-        this.user = new User({ firstName: "", lastName: "", userType: UserType.Anonymous, mail: "", idOfag:""});
-      }
-    });
+    if (!this.user) {
+      this.dataService.getUserInfo().then((value) => {
+        if (value != null) {
+          this.user = value;
+        } else {
+          this.user = new User({ firstName: "", lastName: "", userType: UserType.Anonymous, mail: "", idOfag: "" });
+        }
+      });
+    }
+
   }
 
   /**
@@ -100,12 +103,12 @@ export class ParcelsTestsPage {
       let inputsList: any;
       switch (itemType) {
         case Steps.Parcels:
-          inputsList= [{ name: 'name', placeholder: 'Nom' , value : 'Parcelle '}];
+          inputsList = [{ name: 'name', placeholder: 'Nom', value: 'Parcelle ' }];
           inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG', value: this.user.idOfag });
           break;
         case Steps.Tests:
-          inputsList= [{ name: 'name', placeholder: 'Nom' , value : 'Test '}];
-          inputsList.push({ name: 'date', placeholder: 'Date', value: Utils.getCurrentDatetime('dd/MM/y')});
+          inputsList = [{ name: 'name', placeholder: 'Nom', value: 'Test ' }];
+          inputsList.push({ name: 'date', placeholder: 'Date', value: Utils.getCurrentDatetime('dd/MM/y') });
           break;
       }
       let prompt = this.alertCtrl.create({
@@ -127,7 +130,9 @@ export class ParcelsTestsPage {
                     break;
                   case Steps.Tests:
                     let test = new Test({ name: data['name'], date: data['date'], layers: [] });
-                    this.parcels[this.selected[0]].tests.push(test);
+                    let parcelIndex = this.parcels.indexOf(this.dataService.getCurrentParcel());
+                    console.log(parcelIndex);
+                    this.parcels[parcelIndex].tests.push(test);
                     break;
                 }
                 this.dataService.save("parcels", this.parcels);
@@ -161,13 +166,15 @@ export class ParcelsTestsPage {
 
   itemClicked(item) {
     let itemIndex = this.listItems.indexOf(item);
-    if (this.stepNumber < Steps.Tests) {
-      this.selected[this.stepNumber] = itemIndex;
-      this.dataService.selected = this.selected;
-      this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1 });
-    } else if (this.stepNumber === Steps.Tests) {
-      this.selected[this.stepNumber] = itemIndex;
-      this.navCtrl.push(GifViewPage);
+    switch (this.stepNumber) {
+      case Steps.Parcels:
+        this.dataService.setCurrentParcel(itemIndex);
+        this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1 });
+        break;
+      case Steps.Tests:
+        this.dataService.setCurrentTest(itemIndex);
+        this.navCtrl.push(GifViewPage);
+        break
     }
   }
 

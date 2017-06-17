@@ -15,18 +15,18 @@ import { Toasts } from '../../providers/toasts';
   templateUrl: 'defining-layer.html'
 })
 export class DefiningLayerPage {
-  stepView: number;
-  imageFile: string;
-  nbLayers: number;
-  nbLayersOld: number;
-  heightRuler: number;
-  totalSize: number;
-  thickness:number;
   private currentTest: Test;
+  private heightRuler: number;
+  private nbLayers: number;
+  private imageFile: string;
+  private listLayers: Layer[];
+  private nbLayersOld: number;
+  private stepView: number;
+  private thickness:number;
+  private totalSize: number;
 
-  listLayers: Layer[];
-
-  constructor(public alertCtrl: AlertController,
+  constructor(
+    public alertCtrl: AlertController,
     private dataService: DataService,
     public navCtrl: NavController,
     public navParams: NavParams,

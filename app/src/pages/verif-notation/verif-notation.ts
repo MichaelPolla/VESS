@@ -1,14 +1,15 @@
-import { Layer } from './../../models/parcel';
+import { Layer, Test } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, Platform, AlertController } from 'ionic-angular';
 // Pages
+import { HomePage } from './../home-page/home-page';
 import { ModalPicturePage } from '../modal-picture/modal-picture';
-import { LayerListPage } from '../layer-list/layer-list';
 import { Notation1Page } from '../notation-1/notation-1';
 // Providers
 import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
 import { Toasts } from '../../providers/toasts';
+import { Utils } from './../../providers/utils';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class VerifNotationPage {
   items: Array<{ title: string, checked: Boolean, imgSrc?: string, code: number }>;
   criterias: Array<{ title: string, array: Array<{ title: string, checked: Boolean, imgSrc?: string, code: number }> }>;
   private currentLayer: Layer;
+  private currentTest: Test;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,6 +36,7 @@ export class VerifNotationPage {
 
   ionViewDidLoad() {
     this.currentLayer = this.dataService.getCurrentLayer();
+    this.currentTest = this.dataService.getCurrentTest();
 
     if (!this.platform.is('core')) {
       this.rulerService.getHeightStyle(846, 56).then((value: number) => {
@@ -134,7 +137,7 @@ export class VerifNotationPage {
     //Condition of criteria
     if (((cntChecked >= 2) && (cntCriteria == 3)) || ((cntChecked >= 3) && (cntCriteria == 4))) {//Notation ok
       this.showAlert('Validation', 'Nombre suffisant de critères validés, la qualité de la couche est : ' + this.score, ['OK']);
-      this.goToLayerListPage();
+      this.goToNextLayerOrHome();
     } else if (cntChecked == 0) {//Return to decision tree on wrong result
       this.showAlert('Critère Incorrectes', 'Aucun critère ne semble correspondre. Veuillez recommencer la notation' + this.score, ['OK']);
       this.navCtrl.push(Notation1Page);
@@ -150,17 +153,43 @@ export class VerifNotationPage {
         {
           text: 'Oui',
           handler: data => {
-            this.goToLayerListPage();
+            this.goToNextLayerOrHome();
           }
         }]);
     }
   }
 
-  private goToLayerListPage() {
+  // TODO: Add modal, or alert (see above) showing score
+  private goToNextLayerOrHome() {
     this.currentLayer.score = this.score;
-    this.navCtrl.push(LayerListPage, {
-      score: this.score
-    });
+    this.dataService.saveParcels();
+    let nextLayerIndex = this.currentTest.layers.indexOf(this.currentLayer) + 1;
+    if (nextLayerIndex < this.currentTest.layers.length) {
+      this.dataService.setCurrentLayer(nextLayerIndex);
+      this.navCtrl.push(Notation1Page);
+    } else {
+      this.calculateAndShowTestScore();
+    }
   }
 
+  private calculateAndShowTestScore() {
+    let testScore = 0;
+    let blockThickness = this.currentTest.thickness;
+    for (let i = 0; i < this.currentTest.layers.length; i++) {
+      let layer = this.currentTest.layers[i];
+      testScore += (layer.score * layer.thickness) / blockThickness;
+    }
+    testScore = Utils.round(testScore, 1);
+
+    this.dataService.getUserInfo().then((value) => {
+      if (value != null) {
+        this.currentTest.user = value;
+      }
+    });
+    this.currentTest.isCompleted = true;
+    this.dataService.saveParcels();
+    let toastMsg = "Score final : " + testScore;
+    this.toasts.showToast(toastMsg);
+    this.navCtrl.push(HomePage);
+  }
 }
