@@ -6,7 +6,6 @@ import { TranslateService } from '@ngx-translate/core';
 // Pages
 import { CameraPage } from '../camera/camera';
 import { DefiningLayerPage } from '../defining-layer/defining-layer';
-import { LayerListPage } from '../layer-list/layer-list';
 // Providers
 import { DataService } from '../../providers/data-service';
 
