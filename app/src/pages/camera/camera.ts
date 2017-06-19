@@ -30,6 +30,9 @@ export class CameraPage {
   instructions: string;
   defaultPicture: string;
 
+  //TODO: Only Android ; should be something like cordova.file.dataDirectory for iOS
+  private readonly destinationRootDirectory: string = cordova.file.externalDataDirectory; 
+
   constructor(
     private camera: Camera,
     private dataService: DataService,
@@ -69,9 +72,9 @@ export class CameraPage {
         break;
     }
 
-    this.file.checkFile(cordova.file.dataDirectory, filePath).then(_ => {
+    this.file.checkFile(this.destinationRootDirectory, filePath).then(_ => {
       //read picture
-      this.file.readAsBinaryString(cordova.file.dataDirectory, filePath).then((pictureAsBinary) => {
+      this.file.readAsBinaryString(this.destinationRootDirectory, filePath).then((pictureAsBinary) => {
         this.imageFile = "data:image/jpeg;base64," + pictureAsBinary;
       });
     }).catch(err => {
@@ -92,10 +95,10 @@ export class CameraPage {
       //read new image
       this.imageFile = "data:image/jpeg;base64," + pictureAsBinary;
       //check if directory exist
-      this.file.checkDir(cordova.file.dataDirectory, this.dirName).then(success => {
+      this.file.checkDir(this.destinationRootDirectory, this.dirName).then(success => {
         this.savePicture(pictureAsBinary);
       }, error => {
-        this.file.createDir(cordova.file.dataDirectory, this.dirName, true).then(success => {
+        this.file.createDir(this.destinationRootDirectory, this.dirName, true).then(success => {
           this.savePicture(pictureAsBinary);
         }, error => {
           this.translate.get('ERROR_CREATING_PICTURE_FOLDER').subscribe((res: string) => {
@@ -112,7 +115,7 @@ export class CameraPage {
 
   private savePicture(imagePath: any) {
     this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
-    this.file.writeFile(cordova.file.dataDirectory, this.imageNamePath, imagePath, true).then(success => { // Store file
+    this.file.writeFile(this.destinationRootDirectory, this.imageNamePath, imagePath, true).then(success => { // Store file
     }, error => {
       this.translate.get('ERROR_SAVING_PICTURE').subscribe((res: string) => {
         this.toasts.showToast(res);
