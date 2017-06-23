@@ -1,42 +1,38 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Définition des couches</ion-title>
+    <ion-title>{{ 'DEFINITION_OF_LAYERS' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-  <p> Indiquez le nombre de couches (min. 1) composant le bloc, et sa taille totale (cm).
+  <p>{{ 'DEFINING_LAYERS_INSTRUCTIONS' | translate }} :</p>
   <ion-list>
     <ion-item>
-      <ion-label stacked color="brown">Épaisseur de la motte</ion-label>
+      <ion-label stacked color="brown">{{ 'BLOCK_SIZE' | translate }} :</ion-label>
       <ion-range min="15" max="40" [(ngModel)]="thickness" color="green" snaps="true" (ionChange)="changeSizeLayers()">
         <ion-label range-right>{{thickness}} (cm)</ion-label>
       </ion-range>
     </ion-item>
     <ion-item>
-      <ion-label stacked color="brown">Nombre de couches </ion-label>
+      <ion-label stacked color="brown">{{ 'NUMBER_OF_LAYERS' | translate }} :</ion-label>
       <ion-range min="1" max="5" [(ngModel)]="nbLayers" color="green" snaps="true" (ionChange)="changeNbLayers(nbLayers)">
         <ion-label range-right>{{nbLayers}}</ion-label>
       </ion-range>
     </ion-item>
 
     <ion-item *ngFor="let layer of listLayers">
-      <ion-label stacked color="brown">Taille couche {{layer.num}}: </ion-label>
+      <ion-label stacked color="brown">{{ 'LAYER_SIZE' | translate }} {{layer.num}} :</ion-label>
       <ion-range min="1" max="25" step="1" [(ngModel)]="layer.thickness" color="green" snaps="true" (ionChange)="changeSizeLayers()">
-        <ion-label range-right>{{layer.thickness}} (cm)</ion-label>
+        <ion-label range-right>{{layer.thickness}} cm</ion-label>
       </ion-range>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked color="brown">Taille totale couches en fonction des champs renseigner: </ion-label>
-      <ion-label range-right [ngClass]="{'good' : totalSize == thickness, 'bad' : totalSize != thickness}" *ngIf="totalSize != thickness">
-        Les tailles des couches renseignées sont incorrectes, car elles donnent un total de {{totalSize}} (cm) et il faudrait obtenir un total égal à l'épaisseur de la motte {{thickness}} (cm).
-      </ion-label>
-      <ion-label range-right [ngClass]="{'good' : totalSize == thickness, 'bad' : totalSize != thickness}" *ngIf="totalSize == thickness">
-        Les tailles renseigner sont correctes et le total donne {{totalSize}} (cm).
+      <ion-label stacked color="brown">{{ 'TOTAL_LAYERS_SIZE' | translate }} ({{ 'MUST_BE' | translate }} {{thickness}} cm) : </ion-label>
+      <ion-label range-right [ngClass]="{'good' : totalSize == thickness, 'bad' : totalSize != thickness}">
+        {{totalSize}} cm
       </ion-label>
     </ion-item>
 
