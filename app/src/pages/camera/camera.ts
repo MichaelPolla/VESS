@@ -1,7 +1,6 @@
 import { Test } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { TranslateService } from '@ngx-translate/core';
 import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 
@@ -11,6 +10,7 @@ import { Notation1Page } from '../notation-1/notation-1';
 // Providers
 import { DataService } from './../../providers/data-service';
 import { Toasts } from './../../providers/toasts';
+import { TranslateProvider } from '../../providers/translate/translate'
 import { Utils } from './../../providers/utils';
 
 declare var cordova;
@@ -31,7 +31,7 @@ export class CameraPage {
   defaultPicture: string;
 
   //TODO: Only Android ; should be something like cordova.file.dataDirectory for iOS
-  private readonly destinationRootDirectory: string = cordova.file.externalDataDirectory; 
+  private readonly destinationRootDirectory: string = cordova.file.externalDataDirectory;
 
   constructor(
     private camera: Camera,
@@ -40,7 +40,7 @@ export class CameraPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private toasts: Toasts,
-    private translate: TranslateService) {
+    private translate: TranslateProvider) {
 
     this.stepView = this.navParams.get('stepView');
     this.currentTest = this.dataService.getCurrentTest();
@@ -48,27 +48,19 @@ export class CameraPage {
     let filePath = "";
     switch (this.stepView) {
       case 1:
-        translate.get('PICTURE_OF_WHOLE_BLOCK').subscribe((res: string) => {
-          this.title = res;
-        });
+        this.title = translate.get('PICTURE_OF_WHOLE_BLOCK');
         this.dirName = "blocks";
         //check if file exist
         filePath = this.currentTest.picture;
         this.defaultPicture = "./assets/icon/two-layers-example.png";
-        translate.get('PICTURE_OF_WHOLE_BLOCK_INSTRUCTIONS').subscribe((res: string) => {
-          this.instructions = res + " :";
-        });
+        this.instructions = translate.get('PICTURE_OF_WHOLE_BLOCK_INSTRUCTIONS');
         break;
       case 5:
-        translate.get('PICTURE_OF_LAYER').subscribe((res: string) => {
-          this.title = res;
-        });
+        this.title = translate.get('PICTURE_OF_LAYER');
         this.dirName = "layers";
         filePath = this.dataService.getCurrentLayer().picture;
         this.defaultPicture = "./assets/icon/generic-image.png";
-        translate.get('PICTURE_OF_LAYER_INSTRUCTIONS').subscribe((res: string) => {
-          this.instructions = res + " :";
-        });
+        this.instructions = translate.get('PICTURE_OF_LAYER_INSTRUCTIONS');
         break;
     }
 
@@ -101,15 +93,11 @@ export class CameraPage {
         this.file.createDir(this.destinationRootDirectory, this.dirName, true).then(success => {
           this.savePicture(pictureAsBinary);
         }, error => {
-          this.translate.get('ERROR_CREATING_PICTURE_FOLDER').subscribe((res: string) => {
-            this.toasts.showToast(res);
-          });
+          this.toasts.showToast(this.translate.get('ERROR_CREATING_PICTURE_FOLDER'));
         });
       });
     }, (err) => {
-      this.translate.get('ERROR_CREATING_PICTURE').subscribe((res: string) => {
-        this.toasts.showToast(res);
-      });
+      this.toasts.showToast(this.translate.get('ERROR_CREATING_PICTURE'));
     });
   }
 
@@ -117,9 +105,7 @@ export class CameraPage {
     this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
     this.file.writeFile(this.destinationRootDirectory, this.imageNamePath, imagePath, true).then(success => { // Store file
     }, error => {
-      this.translate.get('ERROR_SAVING_PICTURE').subscribe((res: string) => {
-        this.toasts.showToast(res);
-      });
+      this.toasts.showToast(this.translate.get('ERROR_SAVING_PICTURE'));
     });
     switch (this.stepView) {
       case 1:
@@ -136,9 +122,7 @@ export class CameraPage {
 
   validationStep() {
     if (this.isOfagUser && this.imageFile == this.defaultPicture) { // OFAG user must take a picture
-      this.translate.get('PLEASE_TAKE_PICTURE').subscribe((res: string) => {
-        this.toasts.showToast(res);
-      });
+      this.toasts.showToast(this.translate.get('PLEASE_TAKE_PICTURE'));
     } else {
       switch (this.stepView) {
         case 1:
