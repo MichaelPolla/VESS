@@ -1,6 +1,7 @@
 import { Test, Layer } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
+
 // Pages
 import { GifViewPage } from '../gif-view/gif-view';
 import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
@@ -8,6 +9,7 @@ import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
 import { Toasts } from '../../providers/toasts';
+import { TranslateProvider } from '../../providers/translate/translate'
 
 
 @Component({
@@ -33,6 +35,7 @@ export class DefiningLayerPage {
     private platform: Platform,
     public rulerService: RulerService,
     private toasts: Toasts,
+    private translate: TranslateProvider
     ) { }
 
   ionViewDidLoad() {
@@ -41,9 +44,6 @@ export class DefiningLayerPage {
     this.currentTest = this.dataService.getCurrentTest();
     
     if (!this.platform.is('core')) {
-      // Get Height of Ruler in px with :
-      // param1: height of image ruler in px
-      // param 2: number of px for one centimeter in the image.
       this.rulerService.getHeightStyle(846, 56).then((value: number) => {
         this.heightRuler = value;
       }).catch((error: string) => {
@@ -51,7 +51,6 @@ export class DefiningLayerPage {
       });
     }
 
-    //init nbLayers and listLayers and sizeOfParcel
     this.nbLayers = this.currentTest.layers ? this.currentTest.layers.length : 1;
     this.thickness = this.currentTest.thickness ? this.currentTest.thickness : 30;
     this.nbLayersOld = this.nbLayers;
@@ -99,11 +98,11 @@ export class DefiningLayerPage {
           this.showRadioAlert();
         }
       }else{
-        this.showAlert("Erreur","La taille totale des couches n'égale pas l'épaisseur saisie. Veuillez renseigner correctement les champs");
+        this.showAlert(this.translate.get('ERROR'), this.translate.get('ERROR_SIZE_OF_LAYERS'));
       }
 
     } else {
-      this.showAlert("Erreur","Veuillez correctement renseigner les champs.");
+      this.showAlert(this.translate.get('ERROR'), this.translate.get('PLEASE_FILL_IN_FIELDS_CORRECTLY'));
     }
   }
 
@@ -118,25 +117,25 @@ export class DefiningLayerPage {
 
   showRadioAlert() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Épaisseur de la motte incorrecte');
+    alert.setTitle(this.translate.get('BLOCK_SIZE_TOO_SMALL_PLEASE_SPECIFY_WHY'));
 
     alert.addInput({
       type: 'radio',
-      label: 'Sol caillouteux',
+      label: this.translate.get('STONY_SOIL'),
       value: 'stony',
       checked: true
     });
 
     alert.addInput({
       type: 'radio',
-      label: 'Sol trop sec',
+      label: this.translate.get('TOO_DRY_SOIL'),
       value: 'dry',
       checked: false
     });
 
     alert.addInput({
       type: 'radio',
-      label: 'Sol trop dur',
+      label: this.translate.get('TOO_HARD_SOIL'),
       value: 'hard',
       checked: false
     });
@@ -147,15 +146,15 @@ export class DefiningLayerPage {
       handler: data => {
         switch(data){
           case 'stony':
-            this.showAlert('Sol caillouteux', 'Le résultat du test à la bêche sera donc basé sur les tests déjà renseignés.');
+            this.showAlert(this.translate.get('STONY_SOIL'), this.translate.get('STONY_SOIL_NOTATION'));
             this.navCtrl.push(ParcelsTestsPage, { step: 2 });
           break;
           case 'dry':
-            this.showAlert('Sol trop sec', 'Veuillez sortir une nouvelle motte');
+            this.showAlert(this.translate.get('TOO_DRY_SOIL'), this.translate.get('PLEASE_EXTRACT_A_NEW_BLOCK'));
             this.navCtrl.push(GifViewPage);
           break;
           case 'hard':
-            this.showAlert('Sol trop dur', 'On affecte la note de 5 à la couche compacte de '+this.thickness+' (cm)');
+            this.showAlert(this.translate.get('TOO_HARD_SOIL'), this.translate.get('TOO_HARD_SOIL_NOTATION', {size: this.thickness}));
             //#########################il faudra enregistrer la note ici###################################3
           break;
 
