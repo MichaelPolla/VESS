@@ -42,6 +42,7 @@ import { FooterComponent } from '../components/footer/footer';
 import { HelpComponent } from '../components/help/help';
 import { SlidePictureComponent } from '../components/slide-picture/slide-picture';
 import { ResumeComponent } from '../components/resume/resume';
+import { TranslateProvider } from '../providers/translate/translate';
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -113,7 +114,8 @@ export function createTranslateLoader(http: Http) {
     Storage, 
     Toast,
     Toasts, 
-    Utils
+    Utils,
+    TranslateProvider
   ]
 })
 
