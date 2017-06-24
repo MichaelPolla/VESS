@@ -9,6 +9,7 @@ import { Notation1Page } from '../notation-1/notation-1';
 import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
 import { Toasts } from '../../providers/toasts';
+import { TranslateProvider } from '../../providers/translate/translate'
 import { Utils } from './../../providers/utils';
 
 
@@ -26,13 +27,14 @@ export class VerifNotationPage {
   private currentTest: Test;
 
   constructor(public navCtrl: NavController,
+    public alertCtrl: AlertController,
+    private dataService: DataService,
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    private dataService: DataService,
     private platform: Platform,
     public rulerService: RulerService,
     private toasts: Toasts,
-    public alertCtrl: AlertController) { }
+    private translate: TranslateProvider) { }
 
   ionViewDidLoad() {
     this.currentLayer = this.dataService.getCurrentLayer();
@@ -53,52 +55,125 @@ export class VerifNotationPage {
 
         case 1:
           this.items = [
-            { title: 'Très poreux, grumeleux', checked: false, imgSrc: './assets/pictures/aggregat_moins_1cm.png', code: 1 },
-            { title: 'Se séparent spontanément ou après une très faible pression', checked: false, imgSrc: './assets/pictures/aggregat_moins_1cm.png', code: 2 },
-            { title: 'Sont maintenus entre eux par de nombreuses racines', checked: false, imgSrc: './assets/pictures/aggregat_moins_1cm.png', code: 3 }
+            {
+              title: this.translate.get('VERIF_SCORE1_CRITERIA1_CHECK1'),
+              checked: false,
+              imgSrc: './assets/pictures/aggregat_moins_1cm.png',
+              code: 1
+            },
+            {
+              title: this.translate.get('VERIF_SCORE1_CRITERIA1_CHECK2'),
+              checked: false,
+              imgSrc: './assets/pictures/aggregat_moins_1cm.png',
+              code: 2
+            },
+            {
+              title: this.translate.get('VERIF_SCORE1_CRITERIA1_CHECK3'),
+              checked: false,
+              imgSrc: './assets/pictures/aggregat_moins_1cm.png',
+              code: 3
+            }
           ];
-          this.criterias = [{ title: 'Les agrégats d’environ 1,5 cm sont :', array: this.items }];
+          this.criterias = [{ title: this.translate.get('VERIF_SCORE1_CRITERIA1_TITLE'), array: this.items }];
           this.helpId = "verif_pas_motte_fermee_1cm";
           break;
 
         case 2:
           this.items = [
-            { title: 'Poreux et arrondis', checked: false, imgSrc: './assets/pictures/aggregat_jusque_7cm.png', code: 1 },
-            { title: 'Se séparent spontanément ou après une très faible pression', imgSrc: './assets/pictures/aggregat_jusque_7cm.png', checked: false, code: 2 },
-            { title: 'Contiennent des racines', checked: false, imgSrc: './assets/pictures/aggregat_jusque_7cm.png', code: 3 }
+            {
+              title: this.translate.get('VERIF_SCORE2_CRITERIA1_CHECK1'),
+              checked: false,
+              imgSrc: './assets/pictures/aggregat_jusque_7cm.png',
+              code: 1
+            },
+            {
+              title: this.translate.get('VERIF_SCORE2_CRITERIA1_CHECK2'),
+              imgSrc: './assets/pictures/aggregat_jusque_7cm.png',
+              checked: false,
+              code: 2
+            },
+            {
+              title: this.translate.get('VERIF_SCORE2_CRITERIA1_CHECK3'),
+              checked: false,
+              imgSrc: './assets/pictures/aggregat_jusque_7cm.png',
+              code: 3
+            }
           ];
-          this.criterias = [{ title: 'Les agrégats d’environ 1,5 cm sont :', array: this.items }];
+          this.criterias = [{ title: this.translate.get('VERIF_SCORE2_CRITERIA1_TITLE'), array: this.items }];
           this.helpId = "verif_pas_motte_fermee_7cm";
           break;
 
         case 3:
           this.items = [
-            { title: 'Majoritairement poreux et arrondis', checked: false, imgSrc: './assets/pictures/no_picture.png', code: 1 },
-            { title: 'Relativement facile à rompre', checked: false, imgSrc: './assets/pictures/no_picture.png', code: 2 },
-            { title: 'Contiennent des racines', checked: false, imgSrc: './assets/pictures/fragment_1cm.png', code: 3 }
+            {
+              title: this.translate.get('VERIF_SCORE3_CRITERIA1_CHECK1'),
+              checked: false,
+              imgSrc: './assets/pictures/no_picture.png',
+              code: 1
+            },
+            {
+              title: this.translate.get('VERIF_SCORE3_CRITERIA1_CHECK2'),
+              checked: false,
+              imgSrc: './assets/pictures/no_picture.png',
+              code: 2
+            },
+            {
+              title: this.translate.get('VERIF_SCORE3_CRITERIA1_CHECK3'),
+              checked: false,
+              imgSrc: './assets/pictures/fragment_1cm.png',
+              code: 3
+            }
           ];
-          this.criterias = [{ title: 'Les fragments de sol d’environ 1,5 cm sont :', array: this.items }];
-          this.criterias.push({ title: 'Présence possible d\'agrégats* non poreux, ne contenant pas ou peu de racines', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/fragment_sans_racine.png', code: 1 }] });
+          this.criterias = [{ title: this.translate.get('VERIF_SCORE3_CRITERIA1_TITLE'), array: this.items }];
+          this.criterias.push({
+            title: this.translate.get('VERIF_SCORE3_CRITERIA2_TITLE'),
+            array: [{ title: this.translate.get('YES'), checked: false, imgSrc: './assets/pictures/fragment_sans_racine.png', code: 1 }]
+          });
           this.helpId = "verif_possible_mottes_fermees";
           break;
 
         case 4:
           this.items = [
-            { title: 'Non poreux, de forme cubique, aux bords anguleux', checked: false, imgSrc: './assets/pictures/non_poreux.png', code: 1 },
-            { title: 'Contiennent très peu de racines', checked: false, imgSrc: './assets/pictures/no_picture.png', code: 2 }
+            {
+              title: this.translate.get('VERIF_SCORE4_CRITERIA1_CHECK1'),
+              checked: false, imgSrc: './assets/pictures/non_poreux.png',
+              code: 1
+            },
+            {
+              title: this.translate.get('VERIF_SCORE4_CRITERIA1_CHECK2'),
+              checked: false,
+              imgSrc: './assets/pictures/no_picture.png',
+              code: 2
+            }
           ];
-          this.criterias = [{ title: 'Les fragments de sol d’environ 1,5 cm sont :', array: this.items }];
+          this.criterias = [{ title: this.translate.get('VERIF_SCORE4_CRITERIA1_TITLE'), array: this.items }];
           this.criterias.push({ title: 'Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }] });
           this.helpId = "verif_majoritairement_mottes_fermees";
           break;
         case 5:
           this.items = [
-            { title: 'Difficiles à obtenir (sol compact)', checked: false, imgSrc: './assets/pictures/fragment_difficile_obtenir.png', code: 1 },
-            { title: 'Contiennent très peu ou pas de racines', checked: false, imgSrc: './assets/pictures/no_picture.png', code: 2 }
+            {
+              title: this.translate.get('VERIF_SCORE5_CRITERIA1_CHECK1'),
+              checked: false,
+              imgSrc: './assets/pictures/fragment_difficile_obtenir.png',
+              code: 1
+            },
+            {
+              title: this.translate.get('VERIF_SCORE5_CRITERIA1_CHECK2'),
+              checked: false,
+              imgSrc: './assets/pictures/no_picture.png',
+              code: 2
+            }
           ];
-          this.criterias = [{ title: 'Les agrégats ou fragments de sol d’environ 1,5 cm sont :', array: this.items }];
-          this.criterias.push({ title: 'Les racines se situent autour principalement des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }] });
-          this.criterias.push({ title: 'Anoxie possible, couleur gris-bleu (odeur d’œuf pourri)', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/anoxie_possible.png', code: 1 }] });
+          this.criterias = [{ title: this.translate.get('VERIF_SCORE5_CRITERIA1_TITLE'), array: this.items }];
+          this.criterias.push({
+            title: this.translate.get('VERIF_SCORE5_CRITERIA2_TITLE'),
+            array: [{ title: this.translate.get('YES'), checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }]
+          });
+          this.criterias.push({
+            title: this.translate.get('VERIF_SCORE5_CRITERIA3_TITLE'),
+            array: [{ title: this.translate.get('YES'), checked: false, imgSrc: './assets/pictures/anoxie_possible.png', code: 1 }]
+          });
           this.helpId = "verif_majoritairement_mottes_fermees";
           break;
       }
@@ -136,22 +211,25 @@ export class VerifNotationPage {
 
     //Condition of criteria
     if (((cntChecked >= 2) && (cntCriteria == 3)) || ((cntChecked >= 3) && (cntCriteria == 4))) {//Notation ok
-      this.showAlert('Validation', 'Nombre suffisant de critères validés, la qualité de la couche est : ' + this.score, ['OK']);
+      this.showAlert(this.translate.get('VALIDATION'),
+        this.translate.get('VALIDATION_ENOUGH_VALID_CRITERIA', { score: this.score }),
+        ['OK']);
       this.goToNextLayerOrHome();
     } else if (cntChecked == 0) {//Return to decision tree on wrong result
-      this.showAlert('Critère Incorrectes', 'Aucun critère ne semble correspondre. Veuillez recommencer la notation' + this.score, ['OK']);
+      this.showAlert(this.translate.get('NO_VALIDATED_CRITERIA'),
+        this.translate.get('VALIDATION_NO_VALID_CRITERIA'),
+        ['OK']);
       this.navCtrl.push(Notation1Page);
     } else {//suggest to return to decision tree or valid notation
-      console.log("Suggère de valider ou de retourner à l'arbre de décision")
-      this.showAlert('Validation', "Peu de critères validés. Souhaitez-vous néanmoins confirmer la qualité de couche de : " + this.score, [
+      this.showAlert(this.translate.get('VALIDATION'), this.translate.get('VALIDATION_FEW_VALID_CRITERIA'), [
         {
-          text: 'Non, recommencer la notation',
+          text: this.translate.get('NO_REDO_NOTATION'),
           handler: data => {
             this.navCtrl.push(Notation1Page);
           }
         },
         {
-          text: 'Oui',
+          text: this.translate.get('YES'),
           handler: data => {
             this.goToNextLayerOrHome();
           }
@@ -188,8 +266,8 @@ export class VerifNotationPage {
     });
     this.currentTest.isCompleted = true;
     this.dataService.saveParcels();
-    let toastMsg = "Score final : " + testScore;
-    this.toasts.showToast(toastMsg);
+    let toastMsg = this.translate.get('FINAL_SCORE', { score: testScore });
+    this.toasts.showToast(toastMsg, 5000);
     this.navCtrl.push(HomePage);
   }
 }

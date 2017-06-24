@@ -1,13 +1,13 @@
 import { Notation1Page } from './../notation-1/notation-1';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
-import { TranslateService } from '@ngx-translate/core';
 
 // Pages
 import { CameraPage } from '../camera/camera';
 import { DefiningLayerPage } from '../defining-layer/defining-layer';
 // Providers
 import { DataService } from '../../providers/data-service';
+import { TranslateProvider } from '../../providers/translate/translate'
 
 @Component({
   selector: 'page-gif-view',
@@ -23,19 +23,15 @@ export class GifViewPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private platform: Platform,
-    private translate: TranslateService) {
+    private translate: TranslateProvider) {
 
     //test if is the first step or other step
     if (this.navParams.get('stepView') == null) {
       this.stepView = 0;
-      translate.get('BLOCK_EXTRACTION').subscribe((res: string) => {
-        this.title = res;
-      });
+        this.title = translate.get('BLOCK_EXTRACTION');
     } else {
       this.stepView = this.navParams.get('stepView');
-      translate.get('BLOCK_OPENING').subscribe((res: string) => {
-        this.title = res;
-      });
+        this.title = translate.get('BLOCK_OPENING');
     }
 
     //image in function of step
