@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { User, UserType } from '../../models/user';
-import { DataService } from '../../providers/data-service';
 import { Storage } from '@ionic/storage';
-import { TranslateService } from '@ngx-translate/core';
+// Providers
+import { DataService } from '../../providers/data-service';
+import { TranslateProvider } from '../../providers/translate/translate'
 
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
-  userTypeControl;
-  userTypeForm;
   userType: UserType;
-
   firstName: string;
   lastName: string;
   mail: string
@@ -27,7 +25,7 @@ export class SettingsPage {
     public storage: Storage,
     public dataService: DataService,
     public alertCtrl: AlertController,
-    private translate: TranslateService) {
+    private translate: TranslateProvider) {
   }
 
   ionViewDidLoad() {
@@ -64,7 +62,7 @@ export class SettingsPage {
     this.user.idOfag = this.idOfag;
 
     if (this.userType == UserType.Ofag && this.idOfag == null) {
-      this.showAlert("Erreur", "Veuillez renseigner l'identifiant OFAG.")
+      this.showAlert(this.translate.get('ERROR'), this.translate.get('PLEASE_FILL_IN_OFAG_ID'));
     } else {
       this.dataService.save("user", this.user);
     }
