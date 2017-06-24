@@ -8,11 +8,11 @@ export class TranslateProvider {
   constructor(private translate: TranslateService) { }
 
   /**
-   * Gets the string corresponding to the key, in the language currently set.
+   * Gets the translated value of a key.
    */
-  public get(key: string): string {
+  public get(key: string, interpolateParams?: Object): string {
     let result: string;
-    this.translate.get(key).subscribe((res: string) => {
+    this.translate.get(key, interpolateParams).subscribe((res: string) => {
       result = res;
     });
     return result;
