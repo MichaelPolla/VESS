@@ -17,4 +17,11 @@ export class TranslateProvider {
     });
     return result;
   }
+
+  /**
+   * Sets the language to use.
+   */
+  public setLang(lang: string) {
+    this.translate.setDefaultLang(lang);
+  }
 }

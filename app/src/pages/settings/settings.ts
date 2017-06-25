@@ -17,6 +17,7 @@ export class SettingsPage {
   mail: string
   idOfag: string;
   user: User;
+  language: string;
 
 
   constructor(
@@ -38,9 +39,10 @@ export class SettingsPage {
         this.userType = this.user.userType;
         this.mail = this.user.mail;
         this.idOfag = this.user.idOfag;
+        this.language = this.user.language;
       } else {
         this.userType = UserType.Anonymous;
-        this.user = new User({ firstName: "", lastName: "", userType: this.userType, mail: "", idOfag: "" });
+        this.user = new User({ firstName: "", lastName: "", userType: this.userType, mail: "", idOfag: "", language: "en" });
       }
     });
   }
@@ -60,11 +62,17 @@ export class SettingsPage {
     this.user.userType = this.userType;
     this.user.mail = this.mail;
     this.user.idOfag = this.idOfag;
+    this.user.language = this.language;
 
     if (this.userType == UserType.Ofag && this.idOfag == null) {
       this.showAlert(this.translate.get('ERROR'), this.translate.get('PLEASE_FILL_IN_OFAG_ID'));
     } else {
       this.dataService.save("user", this.user);
     }
+  }
+
+  onLanguageChange(value: string) {
+    this.translate.setLang(value);
+    this.saveUserInfo();
   }
 }

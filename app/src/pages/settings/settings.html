@@ -49,6 +49,15 @@
       <ion-label floating>{{ 'OFAG_ID' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="idOfag" color="green"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label>{{ 'LANGUAGE' | translate }}</ion-label>
+      <ion-select interface="popover" #lang (ionChange)="onLanguageChange(lang.value)" [(ngModel)]="language">
+        <!-- These strings are voluntarily not translated (language names in their native form) -->
+        <ion-option value="en">English</ion-option>
+        <ion-option value="fr">Français</ion-option>
+      </ion-select>
+    </ion-item>
   </ion-list>
 
   <div padding>

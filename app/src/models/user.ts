@@ -4,6 +4,7 @@ export class User {
   public userType: UserType;
   public mail: string;
   public idOfag?: string;
+  public language: string = "en";
 
   public constructor(init: User) {
     Object.assign(this, init);

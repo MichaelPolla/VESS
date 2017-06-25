@@ -1,7 +1,8 @@
+import { Test } from './../../models/parcel';
+import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
-import { TranslateService } from '@ngx-translate/core';
-import { Test } from './../../models/parcel';
+
 // Pages
 import { ConsultationParcelsPage } from '../consultation-parcels/consultation-parcels';
 import { ExportPage } from './../export/export';
@@ -9,23 +10,38 @@ import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 import { SettingsPage } from '../settings/settings';
 
+// Providers
+import { DataService } from '../../providers/data-service';
+import { TranslateProvider } from './../../providers/translate/translate';
+
+
 @Component({
   selector: 'page-home-page',
   templateUrl: 'home-page.html'
 })
 export class HomePage {
+  user: User;
 
   constructor(
+    private dataService: DataService,
+    public modalCtrl: ModalController,
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController,
-    private translate: TranslateService) {
-    translate.setDefaultLang('fr');
+    private translate: TranslateProvider) {
   }
 
-  ionViewDidLoad() { 
+  ionViewDidLoad() {
+    this.dataService.getUserInfo().then((value) => {
+      if (value != null) {
+        this.user = value;
+        this.translate.setLang(this.user.language);
+      } else {
+        this.translate.setLang('fr');
+      }
+    });
+
     let showTestResult;
-    if(showTestResult = this.navParams.get('showTestResult') != null) {
+    if (showTestResult = this.navParams.get('showTestResult') != null) {
       this.showResume(showTestResult)
     }
   }
@@ -47,7 +63,7 @@ export class HomePage {
     }
   }
 
-    showResume(currentTest: Test) {
+  showResume(currentTest: Test) {
     let modal = this.modalCtrl.create(ModalPicturePage, { type: "resume", resume: currentTest });
     modal.present();
   }

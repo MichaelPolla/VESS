@@ -77,7 +77,7 @@ export class ParcelsTestsPage {
         if (value != null) {
           this.user = value;
         } else {
-          this.user = new User({ firstName: "", lastName: "", userType: UserType.Anonymous, mail: "", idOfag: "" });
+          this.user = new User({ firstName: "", lastName: "", userType: UserType.Anonymous, mail: "", idOfag: "", language: "" });
         }
       });
     }
