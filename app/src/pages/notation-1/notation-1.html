@@ -3,29 +3,24 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Notation de la couche {{layerNumber}}</ion-title>
+    <ion-title>{{ 'NOTATION_OF_LAYER' | translate}} {{layerNumber}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
 
-  <h3> Apparence de la couche :</h3>
+  <h3> {{ 'LAYER_APPEARANCE' | translate }} :</h3>
 
-  <!--List of criteria-->
   <ion-list class="wrapping-list">
-    <ion-item *ngFor="let item of items; let i=index"> <!-- TODO-optional : check if we can use "enumerate"-like for getting index -->
+    <ion-item *ngFor="let item of items; let i=index">
       <ion-label class="wraptext">{{item.title}}</ion-label>
       <ion-thumbnail item-left (click)="showModal(i)" >
         <img src={{item.imgSrc}}>
       </ion-thumbnail>
       <ion-checkbox item-right color="secondary" checked={{item.checked}} (click)="updateCheckedBox(i, item)"></ion-checkbox>
-
     </ion-item>
   </ion-list>
 
-
-
-
 </ion-content>
-<component-footer-view (onValidationStep)="validationStep()" [helpId]="'apparence_couche'"></component-footer-view>
+<component-footer-view (onValidationStep)="validationStep()" [helpId]="'layer_appearance'"></component-footer-view>

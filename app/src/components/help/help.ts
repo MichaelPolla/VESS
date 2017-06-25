@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateProvider } from './../../providers/translate/translate';
 
 @Component({
   selector: 'component-help-view',
@@ -13,47 +13,39 @@ export class HelpComponent {
   @Input() helpId: string;
   constructor(
     public navCtrl: NavController,
-    private translate: TranslateService) {}
+    private translate: TranslateProvider
+  ) { }
 
   ngOnInit() {
     switch (this.helpId) {
-      case "apparence_couche":
-        this.helpContent = "Cochez la proposition qui se rapproche le plus de votre observation. \
-        Pour cela, caractérisez la taille principale des agrégats directement observables après \
-        l’extraction du bloc (VIDEO N°VESS 1) et la séparation des couches (VIDEO VESS 2). Puis \
-        après avoir rapidement ouvert la couche de sol (VIDEO VESS 5), observez et recherchez la\
-        présence d’agrégats* non poreux et de mottes fermées*.";
+      case "help_verif_score1":
+        this.helpContent = this.translate.get('HELP_VERIF_SCORE1');
         break;
 
-      case "pas_motte_fermee":
-        this.helpContent = "Cochez la proposition qui se rapproche le plus de votre observation. \
-        Pour cela après avoir rapidement ouvert la couche de sol (VIDEO VESS 5), observez la \
-        couche de sol et caractérisez la taille principale des agrégats* directement obtenus lors de l’extraction."
+      case "help_verif_score2":
+      case "help_verif_score3": // same help for score 2 and score 3 verification
+        this.helpContent = this.translate.get('HELP_VERIF_SCORE2');
         break;
 
-      case "verif_pas_motte_fermee_1cm":
-        this.helpContent = "Cochez la ou les proposition(s) qui se rapproche le plus de ce que vous observez.\
-         Observez, manipulez, ouvrez les agrégats* de diamètre égal à 1cm environ."
-
-      case "verif_pas_motte_fermee_7cm":
-      case "verif_possible_mottes_fermees":
-        this.helpContent = "Cochez la ou les proposition(s) qui se rapprochent le plus de votre observation. \
-        Pour cela observez, manipulez, ouvrez les agrégats* de diamètre environ égal à 1,5 cm."
+      case "help_verif_score4":
+      case "help_verif_score5": // same help for score 4 and score 5 verification
+        this.helpContent = this.translate.get('HELP_VERIF_SCORE4');
         break;
 
-      case "majoritairement_mottes_fermees":
-        this.helpContent = "Cochez la ou les proposition(s) qui se rapprochent le plus de votre observation. \
-        Pour cela caractérisez la taille principale des agrégats* et mottes* directement observables après \
-        l’extraction du bloc (VIDEO VESS 1) et la séparation des couches (VIDEO VESS 2)."
+      case "layer_appearance":
+        this.helpContent = this.translate.get('HELP_LAYER_APPEARANCE');
         break;
 
-      case "verif_majoritairement_mottes_fermees": // same for SQ4 and SQ5
-        this.helpContent = "Cochez la ou les proposition(s) qui se rapprochent le plus de votre observation. \
-         Pour cela observez, manipulez et ouvrez les fragments * de sol issus de mottes fermées de diamètre environ égal à 1,5 cm."
+      case "step2_mainly_closed_clods":
+        this.helpContent = this.translate.get('HELP_NOTATION_STEP2_MAINLY_CLOSED_CLODS');
+        break;
+
+      case "step2_no_closed_clods":
+        this.helpContent = this.translate.get('HELP_NOTATION_STEP2_NO_CLOSED_CLODS');
         break;
 
       default:
-        this.helpContent = "Aide non disponible.";
+        this.helpContent = this.translate.get('HELP_UNAVAILABLE');
         break;
     }
   }

@@ -1,13 +1,16 @@
 import { Layer } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { ModalController, NavController, NavParams, Platform } from 'ionic-angular';
+
 // Pages
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { VerifNotationPage } from '../verif-notation/verif-notation';
+
 // Providers
 import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
 import { Toasts } from '../../providers/toasts';
+import { TranslateProvider } from './../../providers/translate/translate';
 
 @Component({
   selector: 'page-notation-2',
@@ -24,13 +27,16 @@ export class Notation2Page {
   private currentLayer: Layer;
   private helpId: string;
 
-  constructor(public navCtrl: NavController,
-    public modalCtrl: ModalController,
-    public navParams: NavParams,
+  constructor(
     private dataService: DataService,
+    public modalCtrl: ModalController,
+    public navCtrl: NavController,
+    public navParams: NavParams,
     private platform: Platform,
     public rulerService: RulerService,
-    private toasts: Toasts) { }
+    private toasts: Toasts,
+    private translate: TranslateProvider
+  ) { }
 
   ionViewDidLoad() {
     this.currentLayer = this.dataService.getCurrentLayer();
@@ -48,21 +54,41 @@ export class Notation2Page {
     switch (this.code) {
 
       case 1:
-        this.title = 'La plupart des agrégats mesurent :';
+        this.title = this.translate.get('NOTATION_STEP2_IF_STEP1_1_OPTIONS_TITLE');
         this.items = [
-          { title: 'Moins de 1 cm', checked: false, imgSrc: './assets/pictures/agregats_moins_1cm.png', code2: 1 },
-          { title: 'Jusqu\'à 7 cm', checked: false, imgSrc: './assets/pictures/aggregats_jusque_7cm.png', code2: 2 }
+          {
+            title: this.translate.get('NOTATION_STEP2_IF_STEP1_1_OPTION1'),
+            checked: false,
+            imgSrc: './assets/pictures/agregats_moins_1cm.png',
+            code2: 1
+          },
+          {
+            title: this.translate.get('NOTATION_STEP2_IF_STEP1_1_OPTION2'),
+            checked: false,
+            imgSrc: './assets/pictures/aggregats_jusque_7cm.png',
+            code2: 2
+          }
         ];
-        this.helpId = "pas_motte_fermee";
+        this.helpId = "step2_no_closed_clods";
         break;
 
       case 3:
-        this.title = 'Les mottes fermées font généralement plus de 10 cm';
+        this.title = this.translate.get('NOTATION_STEP2_IF_STEP1_3_OPTIONS_TITLE');
         this.items = [
-          { title: 'Moins de 30\% des agrégats* ou mottes* sont de taille inférieure à 7cm', checked: false,  imgSrc: './assets/pictures/moins_30pourcent_aggregats_moins_7cm.png', code2: 1 },
-          { title: 'Presque pas d\'agrégats* ou mottes* de taille inférieure à 7 cm', checked: false,  imgSrc: './assets/pictures/aucun_aggregat_moins_7cm.png', code2: 2 }
+          {
+            title: this.translate.get('NOTATION_STEP2_IF_STEP1_3_OPTION1'),
+            checked: false,
+            imgSrc: './assets/pictures/moins_30pourcent_aggregats_moins_7cm.png',
+            code2: 1
+          },
+          {
+            title: this.translate.get('NOTATION_STEP2_IF_STEP1_3_OPTION2'),
+            checked: false,
+            imgSrc: './assets/pictures/aucun_aggregat_moins_7cm.png',
+            code2: 2
+          }
         ];
-        this.helpId = "majoritairement_mottes_fermees";
+        this.helpId = "step2_mainly_closed_clods";
         break;
     }
   }

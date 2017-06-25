@@ -1,19 +1,16 @@
 <span *ngIf="resume.user"> 
-  <ion-label stacked color="brown">Nom, Prénom de l'utilisateur</ion-label>
+  <ion-label stacked color="brown">{{ 'USER_NAME' | translate }} :</ion-label>
   {{resume.user.lastName}} {{resume.user.firstName}}
-  <ion-label stacked color="brown">Numéro Agate de l’exploitant</ion-label>
+  <ion-label *ngIf="resume.user.userType=='ofag'" stacked color="brown">{{ 'AGATE_NUMBER' | translate }} :</ion-label>
   <span *ngIf="resume.user.userType=='ofag'">
   {{resume.user.idOfag}}
-  </span>
-  <span *ngIf="resume.user.userType=='anonymous'">
-  Anonyme
   </span>
 </span>
 <ion-label stacked color="brown">{{ 'TEST_NAME' | translate }}</ion-label>
 {{resume.name}}
 <ion-label stacked color="brown">{{ 'TEST_DATE' | translate }}</ion-label>
 {{resume.date}}
-<ion-label stacked color="brown">Note finale obtenue pour le Test </ion-label>
+<ion-label stacked color="brown">{{ 'FINAL_SCORE_OF_TEST' | translate }} :</ion-label>
 <strong *ngIf="resume.score" [ngClass]="{'good' : resume.score < 3, 'average' : resume.score == 3, 'bad' : resume.score > 3}">{{resume.score}} </strong>
 <ion-grid>
   <ion-label stacked color="brown">{{ 'BLOCK_PICTURE' | translate }}</ion-label>
@@ -27,7 +24,7 @@
       <ion-label stacked color="brown">{{ 'LAYER' | translate }} {{layerInfo.layer.num}}</ion-label>
       <img src={{layerInfo.img}}>
       <span>{{ 'BLOCK_SIZE' | translate }}: {{layerInfo.layer.thickness}} cm</span>
-      <strong *ngIf="layerInfo.layer.score" [ngClass]="{'good' : layerInfo.layer.score < 3, 'average' : layerInfo.layer.score == 3, 'bad' : layerInfo.layer.score > 3}">Note:  {{layerInfo.layer.score}} </strong>
+      <strong *ngIf="layerInfo.layer.score" [ngClass]="{'good' : layerInfo.layer.score < 3, 'average' : layerInfo.layer.score == 3, 'bad' : layerInfo.layer.score > 3}">{{ 'SCORE' | translate }} : {{layerInfo.layer.score}} </strong>
     </ion-col>
   </ion-row>
 </ion-grid>

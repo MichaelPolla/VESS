@@ -75,7 +75,7 @@ export class VerifNotationPage {
             }
           ];
           this.criterias = [{ title: this.translate.get('VERIF_SCORE1_CRITERIA1_TITLE'), array: this.items }];
-          this.helpId = "verif_pas_motte_fermee_1cm";
+          this.helpId = "help_verif_score1";
           break;
 
         case 2:
@@ -100,7 +100,7 @@ export class VerifNotationPage {
             }
           ];
           this.criterias = [{ title: this.translate.get('VERIF_SCORE2_CRITERIA1_TITLE'), array: this.items }];
-          this.helpId = "verif_pas_motte_fermee_7cm";
+          this.helpId = "help_verif_score2";
           break;
 
         case 3:
@@ -129,7 +129,7 @@ export class VerifNotationPage {
             title: this.translate.get('VERIF_SCORE3_CRITERIA2_TITLE'),
             array: [{ title: this.translate.get('YES'), checked: false, imgSrc: './assets/pictures/fragment_sans_racine.png', code: 1 }]
           });
-          this.helpId = "verif_possible_mottes_fermees";
+          this.helpId = "help_verif_score3";
           break;
 
         case 4:
@@ -148,7 +148,7 @@ export class VerifNotationPage {
           ];
           this.criterias = [{ title: this.translate.get('VERIF_SCORE4_CRITERIA1_TITLE'), array: this.items }];
           this.criterias.push({ title: 'Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }] });
-          this.helpId = "verif_majoritairement_mottes_fermees";
+          this.helpId = "help_verif_score4";
           break;
         case 5:
           this.items = [
@@ -174,7 +174,7 @@ export class VerifNotationPage {
             title: this.translate.get('VERIF_SCORE5_CRITERIA3_TITLE'),
             array: [{ title: this.translate.get('YES'), checked: false, imgSrc: './assets/pictures/anoxie_possible.png', code: 1 }]
           });
-          this.helpId = "verif_majoritairement_mottes_fermees";
+          this.helpId = "help_verif_score5";
           break;
       }
     }

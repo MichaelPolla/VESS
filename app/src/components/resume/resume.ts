@@ -42,12 +42,9 @@ export class ResumeComponent {
         //read picture
         this.file.readAsBinaryString(cordova.file.dataDirectory, this.resume.picture).then((pictureAsBinary) => {
           this.imageFileBlock = "data:image/jpeg;base64," + pictureAsBinary;
-
-
-
         });
       }).catch(err => {
-        //file doesn't exist, so display exemple picture for how to take photo
+        //file doesn't exist, so display example picture for how to take photo
         this.imageFileBlock = this.defaultPicture;
       });
       this.defaultPicture = "./assets/icon/generic-image.png";

@@ -17,7 +17,7 @@
       <span *ngIf="item.date">{{item.date}} </span> {{item.name}}
       <span *ngIf="item.ofag">(OFAG : {{item.ofag}})</span>
 
-      <strong *ngIf="item.score" [ngClass]="{'good' : item.score < 3, 'average' : item.score == 3, 'bad' : item.score > 3}"> — score : {{item.score}} </strong>
+      <strong *ngIf="item.score" [ngClass]="{'good' : item.score < 3, 'average' : item.score == 3, 'bad' : item.score > 3}"> — {{ 'SCORE' | translate }} : {{item.score}} </strong>
       <!--<button ion-button item-right icon-only>
         <ion-icon name="information-circle"></ion-icon>
       </button>

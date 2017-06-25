@@ -1,15 +1,13 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Notation de la couche {{layerNumber}}</ion-title>
+    <ion-title>{{ 'NOTATION_OF_LAYER' | translate}} {{layerNumber}}</ion-title>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
 
-  <h3> {{title}}</h3>
+  <h3>{{title}}</h3>
 
-  <!--List of criteria-->
   <ion-list>
     <ion-item class="item-checkbox" *ngFor="let item of items; let i=index">
       <ion-label class="wraptext">{{item.title}}</ion-label>
@@ -21,7 +19,6 @@
   </ion-list>
 
   <img class="ruler" src='./assets/icon/ruler.png' [style.height.px]="heightRuler" />
-
 
 </ion-content>
 

@@ -9,6 +9,7 @@ import { User } from '../../models/user';
 import { GifViewPage } from '../gif-view/gif-view';
 // Providers
 import { DataService } from '../../providers/data-service';
+import { TranslateProvider } from '../../providers/translate/translate'
 import { Utils } from '../../providers/utils';
 
 /*
@@ -38,10 +39,12 @@ export class ParcelsTestsPage {
   private currentParcel: Parcel;
 
   constructor(public navCtrl: NavController,
-    public navParams: NavParams,
     public alertCtrl: AlertController,
+    public dataService: DataService,
+    public navParams: NavParams,
     public storage: Storage,
-    public dataService: DataService) { }
+    private translate: TranslateProvider
+  ) { }
 
   ionViewDidLoad() {
     this.stepNumber = this.navParams.get('step');
@@ -54,14 +57,14 @@ export class ParcelsTestsPage {
 
       switch (this.stepNumber) {
         case Steps.Tests:
-          this.pageTitle = "Tests";
-          this.listHeader = "Parcelle : " + this.currentParcel.name;
+          this.pageTitle = this.translate.get('TESTS');
+          this.listHeader = this.translate.get('PARCEL_NAME', {name: this.currentParcel.name});
           this.listItems = this.currentParcel.tests;
           break;
 
         default: // Steps.Parcels, hopefully
           this.stepNumber = Steps.Parcels;
-          this.pageTitle = "Parcelles";
+          this.pageTitle = this.translate.get('PARCELS');
           this.listItems = this.parcels;
           break;
       }
@@ -91,10 +94,10 @@ export class ParcelsTestsPage {
     let title;
     switch (action) {
       case "add":
-        title = "Ajouter";
+        title = this.translate.get('ADD');
         break;
       case "edit":
-        title = "Éditer"
+        title = this.translate.get('EDIT');
         break;
     }
 
@@ -103,12 +106,12 @@ export class ParcelsTestsPage {
       let inputsList: any;
       switch (itemType) {
         case Steps.Parcels:
-          inputsList = [{ name: 'name', placeholder: 'Nom', value: 'Parcelle ' }];
+          inputsList = [{ name: 'name', placeholder: this.translate.get('NAME'), value: this.translate.get('PARCEL') + " "}];
           inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG', value: this.user.idOfag });
           break;
         case Steps.Tests:
-          inputsList = [{ name: 'name', placeholder: 'Nom', value: 'Test ' }];
-          inputsList.push({ name: 'date', placeholder: 'Date', value: Utils.getCurrentDatetime('dd/MM/y') });
+          inputsList = [{ name: 'name', placeholder: this.translate.get('NAME'), value: 'Test ' }];
+          inputsList.push({ name: 'date', placeholder: this.translate.get('DATE'), value: Utils.getCurrentDatetime('dd/MM/y') });
           break;
       }
       let prompt = this.alertCtrl.create({
@@ -116,10 +119,10 @@ export class ParcelsTestsPage {
         inputs: inputsList,
         buttons: [
           {
-            text: 'Annuler'
+            text: this.translate.get('CANCEL'),
           },
           {
-            text: 'Valider',
+            text: this.translate.get('VALIDATE'),
             handler: data => {
 
               if (action == "add") {
