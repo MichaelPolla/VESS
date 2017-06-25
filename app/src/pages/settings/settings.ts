@@ -64,7 +64,7 @@ export class SettingsPage {
     this.user.idOfag = this.idOfag;
     this.user.language = this.language;
 
-    if (this.userType == UserType.Ofag && this.idOfag == null) {
+    if (this.userType == UserType.Ofag && (this.idOfag == null || this.idOfag == "")) {
       this.showAlert(this.translate.get('ERROR'), this.translate.get('PLEASE_FILL_IN_OFAG_ID'));
     } else {
       this.dataService.save("user", this.user);

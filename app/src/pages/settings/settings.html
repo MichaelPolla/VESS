@@ -9,22 +9,18 @@
 
 <ion-content padding>
 
-  <ion-list radio-group layout="col" [(ngModel)]="userType">
-    <ion-list-header>
-      {{ 'USER_TYPE' | translate }}
-    </ion-list-header>
-
-    <ion-item>
-      <ion-label>{{ 'ANONYMOUS' | translate }}</ion-label>
-      <ion-radio value="anonymous" color="green"></ion-radio>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>OFAG</ion-label>
-      <ion-radio color="green" value="ofag"></ion-radio>
-    </ion-item>
-  </ion-list>
-
+  <ion-item>
+    <ion-label>{{ 'USER_TYPE' | translate }}</ion-label>
+    <ion-select interface="popover" [(ngModel)]="userType">
+      <ion-option value="anonymous">{{ 'ANONYMOUS' | translate }}</ion-option>
+      <ion-option value="ofag">OFAG</ion-option>
+    </ion-select>
+  </ion-item>
+  
+  <ion-item *ngIf="userType=='ofag'">
+    <ion-label floating>{{ 'OFAG_ID' | translate }}</ion-label>
+    <ion-input type="text" [(ngModel)]="idOfag" color="green"></ion-input>
+  </ion-item>
 
   <ion-list>
     <ion-list-header>
@@ -43,11 +39,6 @@
     <ion-item>
       <ion-label floating>{{ 'EMAIL_ADDRESS' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="mail" color="green"></ion-input>
-    </ion-item>
-
-    <ion-item *ngIf="userType=='ofag'">
-      <ion-label floating>{{ 'OFAG_ID' | translate }}</ion-label>
-      <ion-input type="text" [(ngModel)]="idOfag" color="green"></ion-input>
     </ion-item>
 
     <ion-item>
