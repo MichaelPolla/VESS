@@ -9,7 +9,6 @@
   "BLOCK_SIZE": "Taille du bloc",
   "BLOCK_SIZE_TOO_SMALL_PLEASE_SPECIFY_WHY": "Le bloc fait moins de 30 cm. Merci de préciser pourquoi :",
   "CANCEL": "Annuler",
-  "CONTACT_INFORMATION": "Coordonnées de l'utilisateur",
   "DATE": "Date",
   "DEFINING_LAYERS_INSTRUCTIONS": "Indiquez le nombre de couches composant le bloc, et sa taille totale",
   "DEFINITION_OF_LAYERS": "Définition des couches",

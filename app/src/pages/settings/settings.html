@@ -16,16 +16,12 @@
       <ion-option value="ofag">OFAG</ion-option>
     </ion-select>
   </ion-item>
-  
+
   <ion-item *ngIf="userType=='ofag'">
     <ion-label floating>{{ 'OFAG_ID' | translate }}</ion-label>
     <ion-input type="text" [(ngModel)]="idOfag" color="green"></ion-input>
   </ion-item>
 
-  <ion-list>
-    <ion-list-header>
-      {{ 'CONTACT_INFORMATION' | translate }}
-    </ion-list-header>
     <ion-item>
       <ion-label floating>{{ 'NAME' | translate }}</ion-label>
       <ion-input type="text" [(ngModel)]="lastName" color="green"></ion-input>
@@ -49,7 +45,6 @@
         <ion-option value="fr">Français</ion-option>
       </ion-select>
     </ion-item>
-  </ion-list>
 
   <div padding>
     <button ion-button color="brown" (click)="saveUserInfo()" block>{{ 'SAVE' | translate }}</button>

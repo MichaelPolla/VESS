@@ -9,7 +9,6 @@
   "BLOCK_SIZE": "Block size",
   "BLOCK_SIZE_TOO_SMALL_PLEASE_SPECIFY_WHY": "The block size is under 30 cm. Please specify why:",
   "CANCEL": "Cancel",
-  "CONTACT_INFORMATION": "Contact information",
   "DATE": "Date",
   "DEFINING_LAYERS_INSTRUCTIONS": "Specify the number of layers composing the block, and its total size",
   "DEFINITION_OF_LAYERS": "Defining layers",
