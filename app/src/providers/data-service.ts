@@ -6,7 +6,6 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class DataService {
 
-  //public selected: number[] = [0,0,0];
   private currentLayer: Layer;
   private currentParcel: Parcel;
   private currentTest: Test;
@@ -109,6 +108,9 @@ export class DataService {
     this.storage.set(key, JSON.stringify(value));
   }
 
+  /**
+   * Save parcels data.
+   */
   public saveParcels() {
     this.storage.set("parcels", JSON.stringify(this.data));
   }
