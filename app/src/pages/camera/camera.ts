@@ -1,4 +1,4 @@
-import { Test } from './../../models/parcel';
+import { Test, Layer } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
@@ -23,6 +23,8 @@ export class CameraPage {
   public imageFile: string;
   private isOfagUser: boolean = false;
   private currentTest: Test;
+  public layerNumber: number;
+  private currentLayer: Layer;
   title: string;
   stepView: number;
   imageNamePath: string;
@@ -47,7 +49,7 @@ export class CameraPage {
 
     let filePath = "";
     switch (this.stepView) {
-      case 1:
+      case 1://test
         this.title = translate.get('PICTURE_OF_WHOLE_BLOCK');
         this.dirName = "blocks";
         //check if file exist
@@ -55,8 +57,11 @@ export class CameraPage {
         this.defaultPicture = "./assets/icon/two-layers-example.png";
         this.instructions = translate.get('PICTURE_OF_WHOLE_BLOCK_INSTRUCTIONS');
         break;
-      case 5:
-        this.title = translate.get('PICTURE_OF_LAYER');
+      case 5://block
+        this.currentLayer = this.dataService.getCurrentLayer();
+        this.layerNumber = this.currentLayer.num;
+
+        this.title = translate.get('PICTURE_OF_LAYER')+" "+this.layerNumber;
         this.dirName = "layers";
         filePath = this.dataService.getCurrentLayer().picture;
         this.defaultPicture = "./assets/icon/generic-image.png";
