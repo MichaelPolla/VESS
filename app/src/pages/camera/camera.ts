@@ -61,7 +61,7 @@ export class CameraPage {
         this.currentLayer = this.dataService.getCurrentLayer();
         this.layerNumber = this.currentLayer.num;
 
-        this.title = translate.get('PICTURE_OF_LAYER')+" "+this.layerNumber;
+        this.title = translate.get('PICTURE_OF_LAYER') + " " + this.layerNumber;
         this.dirName = "layers";
         filePath = this.dataService.getCurrentLayer().picture;
         this.defaultPicture = "./assets/icon/generic-image.png";
@@ -84,6 +84,8 @@ export class CameraPage {
     const options = {
       destinationType: this.camera.DestinationType.DATA_URL,
       quality: 90,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
       targetWidth: 1000, //TODO: check if it necessary to resize picture, and if so, set correct values
       targetHeight: 1000,
       correctOrientation: true
@@ -93,10 +95,10 @@ export class CameraPage {
       this.imageFile = "data:image/jpeg;base64," + pictureAsBinary;
       //check if directory exist
       this.file.checkDir(this.destinationRootDirectory, this.dirName).then(success => {
-        this.savePicture(pictureAsBinary);
+        this.savePicture(this.imageFile);
       }, error => {
         this.file.createDir(this.destinationRootDirectory, this.dirName, true).then(success => {
-          this.savePicture(pictureAsBinary);
+          this.savePicture(this.imageFile);
         }, error => {
           this.toasts.showToast(this.translate.get('ERROR_CREATING_PICTURE_FOLDER'));
         });
@@ -106,9 +108,17 @@ export class CameraPage {
     });
   }
 
-  private savePicture(imagePath: any) {
+  private savePicture(imageBase64: any) {
+    // Convert the base64 string in a Blob
+    let imgWithMeta = imageBase64.split(",") 
+    // base64 data
+    let imgData = imgWithMeta[1].trim();
+    // content type
+    let imgType = imgWithMeta[0].trim().split(";")[0].split(":")[1];
+
+    let dataBlob:Blob = this.b64toBlob(imgData,imgType,512);
     this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
-    this.file.writeFile(this.destinationRootDirectory, this.imageNamePath, imagePath, true).then(success => { // Store file
+    this.file.writeFile(this.destinationRootDirectory, this.imageNamePath, dataBlob, true).then(success => { // Store file
     }, error => {
       this.toasts.showToast(this.translate.get('ERROR_SAVING_PICTURE'));
     });
@@ -141,5 +151,33 @@ export class CameraPage {
           break;
       }
     }
+  }
+
+  // convert base64 to Blob
+  // Copy from https://github.com/ionic-team/ionic-native/issues/806
+  b64toBlob(b64Data, contentType, sliceSize) {
+    let byteCharacters = atob(b64Data);
+
+    let byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      let slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      let byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      let byteArray = new Uint8Array(byteNumbers);
+
+      byteArrays.push(byteArray);
+
+    }
+    let blob = new Blob(byteArrays, { type: contentType });
+
+    // alternative way WITHOUT chunking the base64 data
+    // let blob = new Blob([atob(b64Data)],  {type: contentType});
+
+    return blob;
   }
 }
