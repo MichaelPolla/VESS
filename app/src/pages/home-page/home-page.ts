@@ -21,6 +21,7 @@ import { TranslateProvider } from './../../providers/translate/translate';
 })
 export class HomePage {
   user: User;
+  appVersion: string = "1.0.0"; // Could be useful for compatibility purpose in the future
 
   constructor(
     private dataService: DataService,
