@@ -115,11 +115,11 @@ export class ConsultationParcelsPage {
               if (action == "add") {
                 switch (itemType) {
                   case Steps.Parcels:
-                    let parcel = new Parcel({ name: data['name'], ofag: data['ofag'], tests: [] });
+                    let parcel = new Parcel({id:0, name: data['name'], ofag: data['ofag'], tests: [] });
                     this.parcels.push(parcel);
                     break;
                   case Steps.Tests:
-                    let test = new Test({ name: data['name'], date: data['date'], layers: [] });
+                    let test = new Test({id:0, name: data['name'], date: data['date'], layers: [] });
                     this.parcels[this.selected[0]].tests.push(test);
                     break;
                 }

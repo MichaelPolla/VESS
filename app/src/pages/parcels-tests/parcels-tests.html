@@ -3,13 +3,13 @@
     <ion-title>{{pageTitle}}</ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="manageItem('add', null, stepNumber)"><ion-icon name="add"></ion-icon></button>
+      <button ion-button icon-only (click)="addItem()"><ion-icon name="add"></ion-icon></button>
+      <button ion-button icon-only (click)="switchEditMode()"><ion-icon name="create"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 <ion-content padding>
-  <!--<button ion-button (click)="resetStorage()">Reset </button>-->
   <ion-list>
     <ion-list-header class="listHeader" *ngIf="listHeader!=null">{{listHeader}}</ion-list-header>
     <ion-item *ngFor="let item of listItems" (click)=itemClicked(item)>
@@ -18,19 +18,18 @@
       <span *ngIf="item.ofag">(OFAG : {{item.ofag}})</span>
 
       <strong *ngIf="item.score" [ngClass]="{'good' : item.score < 3, 'average' : item.score == 3, 'bad' : item.score > 3}"> — {{ 'SCORE' | translate }} : {{item.score}} </strong>
-      <!--<button ion-button item-right icon-only>
+
+      <!--      <button ion-button item-right icon-only *ngIf="editMode">
         <ion-icon name="information-circle"></ion-icon>
-      </button>
-      <button ion-button item-right icon-only (click)="manageItem('edit', item, stepNumber)">
+      </button>-->
+      <button ion-button item-right icon-only color="yellow" *ngIf="editMode" (click)="editItem(item)">
         <ion-icon name="paper"></ion-icon>
       </button>
-      <button ion-button item-right icon-only (click)="manageItem('delete', item, stepNumber)">
+      <button ion-button item-right icon-only color="danger" *ngIf="editMode" (click)="deleteItem(item)">
         <ion-icon name="trash"></ion-icon>
-      </button>-->
+      </button>
 
     </ion-item>
-
-
 
   </ion-list>
 </ion-content>

@@ -66,9 +66,19 @@ export class DataService {
   /**
    * Set the current Parcel.
    */
-  public setCurrentParcel(parcelIndex: number) {
-    this.currentParcel = this.data[parcelIndex];
-    console.log(this.currentParcel);
+  public setCurrentParcel(parcelId: number) {
+    this.currentParcel = this.data.find(parcel => parcel.id == parcelId);
+  }
+
+  /**
+   * Delete a Parcel.
+   * parcel : the Parcel to delete.
+   */
+  public deleteParcel(parcel: Parcel) {
+    let index = this.data.indexOf(parcel);
+    if (index > -1) {
+      this.data.splice(index, 1);
+    }
   }
 
   /**
@@ -81,8 +91,19 @@ export class DataService {
   /**
    * Set the current Test.
    */
-  public setCurrentTest(testIndex: number) {
-    this.currentTest = this.getCurrentParcel().tests[testIndex];
+  public setCurrentTest(testId: number): void {
+    this.currentTest = this.getCurrentParcel().tests.find(test => test.id == testId);
+  }
+
+  /**
+   * Delete a test (in the current Parcel)
+   * test: the Test to delete.
+   */
+  public deleteTest(test: Test): void {
+    let index = this.getCurrentParcel().tests.indexOf(test);
+    if (index > -1) {
+      this.getCurrentParcel().tests.splice(index, 1);
+    }
   }
 
   /**

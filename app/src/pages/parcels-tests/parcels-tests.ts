@@ -1,7 +1,8 @@
+import { ModalPicturePage } from './../modal-picture/modal-picture';
 import { UserType } from './../../models/user';
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { AlertController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { Parcel, Test } from '../../models/parcel';
 import { User } from '../../models/user';
@@ -9,6 +10,7 @@ import { User } from '../../models/user';
 import { GifViewPage } from '../gif-view/gif-view';
 // Providers
 import { DataService } from '../../providers/data-service';
+import { Toasts } from './../../providers/toasts';
 import { TranslateProvider } from '../../providers/translate/translate'
 import { Utils } from '../../providers/utils';
 
@@ -37,16 +39,21 @@ export class ParcelsTestsPage {
   private parcels: Parcel[] = [];
   private user: User;
   private currentParcel: Parcel;
+  private editMode: Boolean = false;
+  private isConsultation: Boolean;
 
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
     public dataService: DataService,
+    public modalCtrl: ModalController,
     public navParams: NavParams,
     public storage: Storage,
+    private toasts: Toasts,
     private translate: TranslateProvider
   ) { }
 
   ionViewDidLoad() {
+    this.isConsultation = this.navParams.get('isConsultation');
     this.stepNumber = this.navParams.get('step');
     this.dataService.getParcels().then((value) => {
       if (value != null) {
@@ -58,8 +65,12 @@ export class ParcelsTestsPage {
       switch (this.stepNumber) {
         case Steps.Tests:
           this.pageTitle = this.translate.get('TESTS');
-          this.listHeader = this.translate.get('PARCEL_NAME', {name: this.currentParcel.name});
-          this.listItems = this.currentParcel.tests;
+          this.listHeader = this.translate.get('PARCEL_NAME', { name: this.currentParcel.name });
+
+          // Gets the completed tests if in Consultation mode, or the not completed ones if in Notation mode.
+          console.dir(this.currentParcel);
+          console.log("isConsultation :" + this.isConsultation);
+          this.listItems = this.currentParcel.tests.filter(test => test.isCompleted === this.isConsultation);
           break;
 
         default: // Steps.Parcels, hopefully
@@ -84,104 +95,177 @@ export class ParcelsTestsPage {
 
   }
 
+
+
+
   /**
-   * Add, edit or delete an item.
-   * action : the action to do with the item (add, edit or delete)
-   * item : the selected item.
-   * itemType : the kind of item we edit (parcels, tests, blocks)
+   * Add a new item (Parcel or Test, depending on which step we are in).
    */
-  manageItem(action: string, item, itemType: number) {
-    let title;
-    switch (action) {
-      case "add":
-        title = this.translate.get('ADD');
-        break;
-      case "edit":
-        title = this.translate.get('EDIT');
-        break;
-    }
-
-    // Adding or Editing a Parcel or Test
-    if (action == "add" || action == "edit") {
-      let inputsList: any;
-      switch (itemType) {
-        case Steps.Parcels:
-          inputsList = [{ name: 'name', placeholder: this.translate.get('NAME'), value: this.translate.get('PARCEL') + " "}];
-          inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG', value: this.user.idOfag });
-          break;
-        case Steps.Tests:
-          inputsList = [{ name: 'name', placeholder: this.translate.get('NAME'), value: 'Test ' }];
-          inputsList.push({ name: 'date', placeholder: this.translate.get('DATE'), value: Utils.getCurrentDatetime('dd/MM/y') });
-          break;
-      }
-      let prompt = this.alertCtrl.create({
-        title: title,
-        inputs: inputsList,
-        buttons: [
-          {
-            text: this.translate.get('CANCEL'),
-          },
-          {
-            text: this.translate.get('VALIDATE'),
-            handler: data => {
-
-              if (action == "add") {
-                switch (itemType) {
-                  case Steps.Parcels:
-                    let parcel = new Parcel({ name: data['name'], ofag: data['ofag'], tests: [] });
-                    this.parcels.push(parcel);
-                    break;
-                  case Steps.Tests:
-                    let test = new Test({ name: data['name'], date: data['date'], layers: [] });
-                    let parcelIndex = this.parcels.indexOf(this.dataService.getCurrentParcel());
-                    console.log(parcelIndex);
-                    this.parcels[parcelIndex].tests.push(test);
-                    break;
-                }
-                this.dataService.save("parcels", this.parcels);
-
-              } else { // edit
-                let index = this.parcels.indexOf(item);
-                let parcel = this.parcels[index];
-
-                if (index > -1) {
-                  parcel.name = data['name'];
-                  this.dataService.save("parcels", this.parcels);
-                }
-              }
-            }
-          }
-        ]
-      });
-      prompt.present();
-    }
-
-    // Deleting
-    // TODO : add deletion confirmation
-    else if (action == "delete") {
-      let index = this.parcels.indexOf(item);
-      if (index > -1) {
-        this.parcels.splice(index, 1);
-        this.dataService.save("parcels", this.parcels);
-      }
-    }
-  }
-
-  itemClicked(item) {
-    let itemIndex = this.listItems.indexOf(item);
+  protected addItem() {
+    let inputsList: any;
     switch (this.stepNumber) {
       case Steps.Parcels:
-        this.dataService.setCurrentParcel(itemIndex);
-        this.navCtrl.push(ParcelsTestsPage, { step: this.stepNumber + 1 });
+        inputsList = [
+          { name: 'name', placeholder: this.translate.get('NAME'), value: this.translate.get('PARCEL') + " " },
+          { name: 'ofag', placeholder: 'Identifiant OFAG', value: this.user.idOfag }
+        ];
         break;
       case Steps.Tests:
-        this.dataService.setCurrentTest(itemIndex);
-        this.navCtrl.push(GifViewPage);
-        break
+        inputsList = [
+          { name: 'name', placeholder: this.translate.get('NAME'), value: 'Test ' },
+          { name: 'date', placeholder: this.translate.get('DATE'), value: Utils.getCurrentDatetime('dd/MM/y') }
+        ];
+        break;
+
+    }
+
+    let prompt = this.alertCtrl.create({
+      title: this.translate.get('ADD'),
+      inputs: inputsList,
+      buttons: [
+        {
+          text: this.translate.get('CANCEL'),
+        },
+        {
+          text: this.translate.get('VALIDATE'),
+          handler: data => {
+            switch (this.stepNumber) {
+              case Steps.Parcels:
+                let parcelId = this.parcels.length > 0 ? this.parcels[this.parcels.length - 1].id + 1 : 1;
+                let parcel = new Parcel({ id: parcelId, name: data['name'], ofag: data['ofag'], tests: [] });
+                this.parcels.push(parcel);
+                break;
+              case Steps.Tests:
+                let testId = this.currentParcel.tests.length > 0 ? this.currentParcel.tests[this.currentParcel.tests.length - 1].id + 1 : 1;
+                let test = new Test({ id: testId, name: data['name'], date: data['date'], layers: [] });
+                let parcelIndex = this.parcels.indexOf(this.dataService.getCurrentParcel());
+                console.log(parcelIndex);
+                this.parcels[parcelIndex].tests.push(test);
+                break;
+            }
+            this.dataService.saveParcels();
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+
+  protected editItem(item: Parcel | Test) {
+    // TODO
+    // Basically the same as AddItem, except we need to get the item selected
+    // and show its actual values in the formular.
+    // See also the manageItem method ; it wasn't complete but shows a way to 
+    // get the selected item.
+    this.toasts.showToast("Fonctionnalité temporairement indisponible.");
+  }
+
+  /**
+   * OLD FUNCTION - not used anymore. Kept to help making the new editItem method.
+   * Edit an item.
+   * event : event that was fired.
+   * action : the action to do with the item (add, edit or delete)
+   * item : the selected item.
+   * itemType : the kind of item we edit (parcels, tests)
+   */
+  // manageItem(event, action: string, item: any, itemType: number) {
+  //   event.stopPropagation();
+
+  //   let title;
+  //   let itemId;
+  //   if (item instanceof Parcel) {
+  //     console.log("it's a Parcel");
+  //   }
+  //   switch (action) {
+  //     case "edit":
+  //       title = this.translate.get('EDIT');
+  //       break;
+  //   }
+
+  //   // Editing a Parcel or Test
+  //   if (action == "edit") {
+
+  //     // Setting the form fields
+  //     let inputsList: any;
+  //     switch (itemType) {
+  //       case Steps.Parcels:
+  //         inputsList = [{ name: 'name', placeholder: this.translate.get('NAME'), value: this.translate.get('PARCEL') + " " }];
+  //         inputsList.push({ name: 'ofag', placeholder: 'Identifiant OFAG', value: this.user.idOfag });
+  //         break;
+  //       case Steps.Tests:
+  //         inputsList = [{ name: 'name', placeholder: this.translate.get('NAME'), value: 'Test ' }];
+  //         inputsList.push({ name: 'date', placeholder: this.translate.get('DATE'), value: Utils.getCurrentDatetime('dd/MM/y') });
+  //         break;
+  //     }
+  //     let prompt = this.alertCtrl.create({
+  //       title: title,
+  //       inputs: inputsList,
+  //       buttons: [
+  //         {
+  //           text: this.translate.get('CANCEL'),
+  //         },
+  //         {
+  //           text: this.translate.get('VALIDATE'),
+  //           handler: data => {
+
+  //             if (action == "edit") {
+  //               let index = this.parcels.indexOf(item);
+  //               let parcel = this.parcels[index];
+
+  //               if (index > -1) {
+  //                 parcel.name = data['name'];
+  //                 this.dataService.save("parcels", this.parcels);
+  //               }
+  //             }
+  //           }
+  //         }
+  //       ]
+  //     });
+  //     prompt.present();
+  //   }
+  // }
+
+  protected deleteItem(item: Test | Parcel) {
+    switch (this.stepNumber) {
+      case Steps.Parcels:
+        this.dataService.deleteParcel(item as Parcel);
+        break;
+      case Steps.Tests:
+        this.dataService.deleteTest(item as Test);
+        break;
+    }
+    this.dataService.saveParcels();
+  }
+
+  protected itemClicked(item) {
+    switch (this.stepNumber) {
+      case Steps.Parcels:
+        this.dataService.setCurrentParcel((item as Parcel).id);
+        this.navCtrl.push(ParcelsTestsPage, { isConsultation: this.isConsultation, step: this.stepNumber + 1 });
+        break;
+      case Steps.Tests:
+        if (this.isConsultation) {
+          this.showSummary(item);
+        } else {
+          this.dataService.setCurrentTest((item as Test).id);
+          this.navCtrl.push(GifViewPage);
+          break
+        }
+
     }
   }
 
-  resetStorage() {
-    this.storage.clear();
+  private showSummary(test: Test) {
+    this.modalCtrl.create(ModalPicturePage, {type: "resume", resume: test}).present();
+  }
+
+  protected switchEditMode() {
+    if (this.editMode) {
+      this.editMode = false;
+    } else {
+      this.editMode = true;
+    }
+
   }
 }

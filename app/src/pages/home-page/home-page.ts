@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
 
 // Pages
-import { ConsultationParcelsPage } from '../consultation-parcels/consultation-parcels';
 import { ExportPage } from './../export/export';
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
@@ -49,10 +48,10 @@ export class HomePage {
   showPage(pageName: String) {
     switch (pageName) {
       case "notation":
-        this.navCtrl.push(ParcelsTestsPage);
+        this.navCtrl.push(ParcelsTestsPage, {isConsultation: false});
         break;
       case "consultation":
-        this.navCtrl.push(ConsultationParcelsPage);
+        this.navCtrl.push(ParcelsTestsPage, {isConsultation: true});
         break;
       case "settings":
         this.navCtrl.push(SettingsPage);
