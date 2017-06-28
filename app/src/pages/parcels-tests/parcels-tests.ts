@@ -142,6 +142,7 @@ export class ParcelsTestsPage {
                 break;
             }
             this.dataService.saveParcels();
+            this.listItems = this.currentParcel.tests.filter(test => test.isCompleted === this.isConsultation);
           }
         }
       ]
