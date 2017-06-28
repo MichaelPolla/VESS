@@ -5,6 +5,7 @@ import { NavController, NavParams, Platform, AlertController } from 'ionic-angul
 // Pages
 import { GifViewPage } from '../gif-view/gif-view';
 import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
+import { HomePage } from './../home-page/home-page';
 //Providers
 import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
@@ -24,7 +25,7 @@ export class DefiningLayerPage {
   private listLayers: Layer[];
   private nbLayersOld: number;
   private stepView: number;
-  private thickness:number;
+  private thickness: number;
   private totalSize: number;
 
   constructor(
@@ -36,13 +37,13 @@ export class DefiningLayerPage {
     public rulerService: RulerService,
     private toasts: Toasts,
     private translate: TranslateProvider
-    ) { }
+  ) { }
 
   ionViewDidLoad() {
     this.stepView = this.navParams.get('stepView');
     this.imageFile = this.navParams.get('picture');
     this.currentTest = this.dataService.getCurrentTest();
-    
+
     if (!this.platform.is('core')) {
       this.rulerService.getHeightStyle(846, 56).then((value: number) => {
         this.heightRuler = value;
@@ -55,20 +56,20 @@ export class DefiningLayerPage {
     this.thickness = this.currentTest.thickness ? this.currentTest.thickness : 30;
     this.nbLayersOld = this.nbLayers;
 
-    this.listLayers = this.currentTest.layers ? this.currentTest.layers:[(new Layer(1,1))];
+    this.listLayers = this.currentTest.layers ? this.currentTest.layers : [(new Layer(1, 1))];
     this.calcTotalSize();
 
   }
 
   changeNbLayers(nbLayers) {
     if (nbLayers < this.nbLayersOld) {
-      for(let i=0; i< this.nbLayersOld-nbLayers; i++){
+      for (let i = 0; i < this.nbLayersOld - nbLayers; i++) {
         this.listLayers.pop();
       }
     } else {
-      for(let i=0; i< nbLayers-this.nbLayersOld; i++){
+      for (let i = 0; i < nbLayers - this.nbLayersOld; i++) {
 
-        this.listLayers.push(new Layer(this.nbLayersOld+i+1, 1))
+        this.listLayers.push(new Layer(this.nbLayersOld + i + 1, 1))
       }
 
     }
@@ -87,17 +88,17 @@ export class DefiningLayerPage {
 
   validationStep() {
     if (this.nbLayers >= 1 && this.nbLayers <= 5) {
-      if(this.thickness == this.totalSize){
-        if(this.thickness>=30){
+      if (this.thickness == this.totalSize) {
+        if (this.thickness >= 30) {
           this.currentTest.thickness = this.thickness;
           this.dataService.saveParcels();
           this.navCtrl.push(GifViewPage, {
             stepView: this.stepView + 1
           });
-        }else{
+        } else {
           this.showRadioAlert();
         }
-      }else{
+      } else {
         this.showAlert(this.translate.get('ERROR'), this.translate.get('ERROR_SIZE_OF_LAYERS'));
       }
 
@@ -144,19 +145,30 @@ export class DefiningLayerPage {
     alert.addButton({
       text: 'OK',
       handler: data => {
-        switch(data){
+        switch (data) {
           case 'stony':
             this.showAlert(this.translate.get('STONY_SOIL'), this.translate.get('STONY_SOIL_NOTATION'));
-            this.navCtrl.push(ParcelsTestsPage, { step: 2 });
-          break;
+            this.navCtrl.push(ParcelsTestsPage, { isConsultation: false });
+            break;
           case 'dry':
             this.showAlert(this.translate.get('TOO_DRY_SOIL'), this.translate.get('PLEASE_EXTRACT_A_NEW_BLOCK'));
             this.navCtrl.push(GifViewPage);
-          break;
+            break;
           case 'hard':
-            this.showAlert(this.translate.get('TOO_HARD_SOIL'), this.translate.get('TOO_HARD_SOIL_NOTATION', {size: this.thickness}));
-            //#########################il faudra enregistrer la note ici###################################3
-          break;
+            this.showAlert(this.translate.get('TOO_HARD_SOIL'), this.translate.get('TOO_HARD_SOIL_NOTATION', { size: this.thickness }));
+            this.dataService.getUserInfo().then((value) => {
+              if (value != null) {
+                this.currentTest.user = value;
+                this.dataService.saveParcels();
+              }
+            });
+            this.currentTest.isCompleted = true;
+            this.currentTest.score = 5;
+            this.dataService.saveParcels();
+            let toastMsg = this.translate.get('FINAL_SCORE', { score: 5 });
+            this.toasts.showToast(toastMsg, 5000);
+            this.navCtrl.push(HomePage);
+            break;
 
         }
       }

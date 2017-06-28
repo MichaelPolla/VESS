@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { User, UserType } from '../../models/user';
 import { Storage } from '@ionic/storage';
+import { Toasts } from './../../providers/toasts';
 // Providers
 import { DataService } from '../../providers/data-service';
 import { TranslateProvider } from '../../providers/translate/translate'
@@ -26,6 +27,7 @@ export class SettingsPage {
     public storage: Storage,
     public dataService: DataService,
     public alertCtrl: AlertController,
+    private toasts: Toasts,
     private translate: TranslateProvider) {
   }
 
@@ -69,6 +71,7 @@ export class SettingsPage {
     if (this.userType == UserType.Ofag && (this.idOfag == null || this.idOfag == "")) {
       this.showAlert(this.translate.get('ERROR'), this.translate.get('PLEASE_FILL_IN_OFAG_ID'));
     } else {
+      this.toasts.showToast(this.translate.get('SETTINGS_SAVE'));
       this.dataService.save("user", this.user);
     }
   }

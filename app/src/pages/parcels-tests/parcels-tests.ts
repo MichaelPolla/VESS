@@ -103,10 +103,17 @@ export class ParcelsTestsPage {
     let inputsList: any;
     switch (this.stepNumber) {
       case Steps.Parcels:
-        inputsList = [
-          { name: 'name', placeholder: this.translate.get('NAME'), value: this.translate.get('PARCEL') + " " },
-          { name: 'ofag', placeholder: 'Identifiant OFAG', value: this.user.idOfag }
-        ];
+        if(this.user.userType==UserType.Ofag){
+          inputsList = [
+            { name: 'name', placeholder: this.translate.get('NAME'), value: this.translate.get('PARCEL') + " " },
+            { name: 'ofag', placeholder: 'Identifiant OFAG', value: this.user.idOfag }
+          ];
+        }else{
+          inputsList = [
+            { name: 'name', placeholder: this.translate.get('NAME'), value: this.translate.get('PARCEL') + " " }
+          ];
+        }
+        
         break;
       case Steps.Tests:
         inputsList = [
@@ -132,6 +139,7 @@ export class ParcelsTestsPage {
                 let parcelId = this.parcels.length > 0 ? this.parcels[this.parcels.length - 1].id + 1 : 1;
                 let parcel = new Parcel({ id: parcelId, name: data['name'], ofag: data['ofag'], tests: [] });
                 this.parcels.push(parcel);
+                this.dataService.saveParcels();
                 break;
               case Steps.Tests:
                 let testId = this.currentParcel.tests.length > 0 ? this.currentParcel.tests[this.currentParcel.tests.length - 1].id + 1 : 1;
@@ -139,10 +147,11 @@ export class ParcelsTestsPage {
                 let parcelIndex = this.parcels.indexOf(this.dataService.getCurrentParcel());
                 console.log(parcelIndex);
                 this.parcels[parcelIndex].tests.push(test);
+                this.dataService.saveParcels();
+                this.listItems = this.currentParcel.tests.filter(test => test.isCompleted === this.isConsultation);
                 break;
             }
-            this.dataService.saveParcels();
-            this.listItems = this.currentParcel.tests.filter(test => test.isCompleted === this.isConsultation);
+            
           }
         }
       ]
@@ -225,13 +234,15 @@ export class ParcelsTestsPage {
   //   }
   // }
 
-  protected deleteItem(item: Test | Parcel) {
+  protected deleteItem(event,item: Test | Parcel) {
+    event.stopPropagation();
     switch (this.stepNumber) {
       case Steps.Parcels:
         this.dataService.deleteParcel(item as Parcel);
         break;
       case Steps.Tests:
         this.dataService.deleteTest(item as Test);
+        this.listItems = this.currentParcel.tests.filter(test => test.isCompleted === this.isConsultation);
         break;
     }
     this.dataService.saveParcels();
