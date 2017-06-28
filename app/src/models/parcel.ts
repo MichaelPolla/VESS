@@ -1,3 +1,4 @@
+import { Geoloc } from './geoloc';
 import { User } from './user';
 
 export class Parcel {
@@ -17,7 +18,7 @@ export class Test {
   public date: string;
   public score?: number;
   public picture?: string;
-  public geolocation?: Coordinates;
+  public geolocation?: Geoloc;
   public layers?: Layer[];
   public thickness?: number;
   public user?: User;

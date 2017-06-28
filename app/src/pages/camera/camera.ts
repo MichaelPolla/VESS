@@ -1,3 +1,4 @@
+import { Geoloc } from './../../models/geoloc';
 import { Test, Layer } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -12,6 +13,7 @@ import { DataService } from './../../providers/data-service';
 import { Toasts } from './../../providers/toasts';
 import { TranslateProvider } from '../../providers/translate/translate'
 import { Utils } from './../../providers/utils';
+import { Geolocation } from '@ionic-native/geolocation';
 
 declare var cordova;
 
@@ -42,7 +44,8 @@ export class CameraPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private toasts: Toasts,
-    private translate: TranslateProvider) {
+    private translate: TranslateProvider,
+    private geolocation: Geolocation) {
 
     this.stepView = this.navParams.get('stepView');
     this.currentTest = this.dataService.getCurrentTest();
@@ -71,8 +74,8 @@ export class CameraPage {
 
     this.file.checkFile(this.destinationRootDirectory, filePath).then(_ => {
       //read picture
-      this.file.readAsBinaryString(this.destinationRootDirectory, filePath).then((pictureAsBinary) => {
-        this.imageFile = "data:image/jpeg;base64," + pictureAsBinary;
+      this.file.readAsDataURL(this.destinationRootDirectory, filePath).then((pictureAsBase64) => {
+        this.imageFile = pictureAsBase64;
       });
     }).catch(err => {
       //file doesn't exist, so display exemple picture for how to take photo
@@ -110,13 +113,13 @@ export class CameraPage {
 
   private savePicture(imageBase64: any) {
     // Convert the base64 string in a Blob
-    let imgWithMeta = imageBase64.split(",") 
+    let imgWithMeta = imageBase64.split(",")
     // base64 data
     let imgData = imgWithMeta[1].trim();
     // content type
     let imgType = imgWithMeta[0].trim().split(";")[0].split(":")[1];
 
-    let dataBlob:Blob = this.b64toBlob(imgData,imgType,512);
+    let dataBlob: Blob = this.b64toBlob(imgData, imgType, 512);
     this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
     this.file.writeFile(this.destinationRootDirectory, this.imageNamePath, dataBlob, true).then(success => { // Store file
     }, error => {
@@ -125,6 +128,15 @@ export class CameraPage {
     switch (this.stepView) {
       case 1:
         this.currentTest.picture = this.imageNamePath;
+        //take geoloc
+        this.geolocation.getCurrentPosition().then((resp) => {
+          this.dataService.getCurrentTest().geolocation = new Geoloc(resp.coords);
+          this.dataService.saveParcels();
+        }).catch((error) => {
+          console.log('Error getting location', error);
+        });
+
+
         break;
       case 5:
         this.dataService.getCurrentLayer().picture = this.imageNamePath;
@@ -132,7 +144,7 @@ export class CameraPage {
     }
 
 
-    this.dataService.saveParcels;
+    this.dataService.saveParcels();
   }
 
   validationStep() {

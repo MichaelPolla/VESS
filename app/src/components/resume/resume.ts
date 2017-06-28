@@ -37,7 +37,9 @@ export class ResumeComponent {
   ngOnInit() {
     if (!this.platform.is('core')) { // Check that we aren't running on desktop
       this.defaultPicture = "./assets/icon/two-layers-example.png";
-
+      console.log(this.resume.geolocation.latitude);
+      console.log(this.resume.geolocation.longitude);
+      console.log(this.resume.geolocation);
       //read block
       this.file.checkFile(cordova.file.externalDataDirectory, this.resume.picture).then(_ => {
         //read picture
