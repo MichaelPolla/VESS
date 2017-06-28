@@ -63,7 +63,7 @@ export class HomePage {
       case "notation":
         console.dir(this.user);
         if (!this.user) {
-          this.toasts.showToast("créer user");
+          this.toasts.showToast(this.translate.get('PLEASE_SET_YOUR_USER_INFO_IN_SETTINGS_FIRST'));
         } else {
           this.navCtrl.push(ParcelsTestsPage, { isConsultation: false });
         }
