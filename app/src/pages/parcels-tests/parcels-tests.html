@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>{{pageTitle}}</ion-title>
 
-    <ion-buttons end>
+    <ion-buttons end *ngIf="!isConsultation">
       <button ion-button icon-only (click)="addItem()"><ion-icon name="add"></ion-icon></button>
       <button ion-button icon-only (click)="switchEditMode()"><ion-icon name="create"></ion-icon></button>
     </ion-buttons>
