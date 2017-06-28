@@ -16,6 +16,7 @@ import { Geolocation} from '@ionic-native/geolocation';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Toast } from '@ionic-native/toast';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 // Pages
 import { CameraPage } from '../pages/camera/camera';
@@ -110,6 +111,7 @@ export function createTranslateLoader(http: Http) {
     EmailComposer,
     File,
     Geolocation,
+    InAppBrowser,
     RulerService, 
     SplashScreen,
     StatusBar,

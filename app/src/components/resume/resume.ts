@@ -4,6 +4,7 @@ import { NavController, Platform } from 'ionic-angular';
 import { Test } from '../../models/parcel';
 import { File } from '@ionic-native/file';
 import { TranslateService } from '@ngx-translate/core';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 declare var cordova;
 
@@ -32,14 +33,12 @@ export class ResumeComponent {
     private file: File,
     public navCtrl: NavController,
     private platform: Platform,
-    private translate: TranslateService) {}
+    private translate: TranslateService,
+    private iab: InAppBrowser) {}
 
   ngOnInit() {
     if (!this.platform.is('core')) { // Check that we aren't running on desktop
       this.defaultPicture = "./assets/icon/two-layers-example.png";
-      console.log(this.resume.geolocation.latitude);
-      console.log(this.resume.geolocation.longitude);
-      console.log(this.resume.geolocation);
       //read block
       this.file.checkFile(cordova.file.externalDataDirectory, this.resume.picture).then(_ => {
         //read picture
@@ -77,5 +76,12 @@ export class ResumeComponent {
 
 
     }
+  }
+
+  openMap(event) {
+    event.stopPropagation();
+
+    const browser = this.iab.create("http://maps.google.com/maps?q="+this.resume.geolocation.latitude+","+this.resume.geolocation.longitude);
+    browser.show();
   }
 }

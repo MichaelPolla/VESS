@@ -223,7 +223,7 @@ export class VerifNotationPage {
         ['OK']);
       this.navCtrl.push(Notation1Page);
     } else {//suggest to return to decision tree or valid notation
-      this.showAlert(this.translate.get('VALIDATION'), this.translate.get('VALIDATION_FEW_VALID_CRITERIA'), [
+      this.showAlert(this.translate.get('VALIDATION'), this.translate.get('VALIDATION_FEW_VALID_CRITERIA', { score: this.score }), [
         {
           text: this.translate.get('NO_REDO_NOTATION'),
           handler: data => {
@@ -264,9 +264,11 @@ export class VerifNotationPage {
     this.dataService.getUserInfo().then((value) => {
       if (value != null) {
         this.currentTest.user = value;
+        this.dataService.saveParcels();
       }
     });
     this.currentTest.isCompleted = true;
+    this.currentTest.score = testScore;
     this.dataService.saveParcels();
     let toastMsg = this.translate.get('FINAL_SCORE', { score: testScore });
     this.toasts.showToast(toastMsg, 5000);
