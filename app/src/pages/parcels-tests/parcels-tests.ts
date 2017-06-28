@@ -68,8 +68,6 @@ export class ParcelsTestsPage {
           this.listHeader = this.translate.get('PARCEL_NAME', { name: this.currentParcel.name });
 
           // Gets the completed tests if in Consultation mode, or the not completed ones if in Notation mode.
-          console.dir(this.currentParcel);
-          console.log("isConsultation :" + this.isConsultation);
           this.listItems = this.currentParcel.tests.filter(test => test.isCompleted === this.isConsultation);
           break;
 
