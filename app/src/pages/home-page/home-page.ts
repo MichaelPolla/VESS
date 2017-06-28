@@ -11,6 +11,7 @@ import { SettingsPage } from '../settings/settings';
 
 // Providers
 import { DataService } from '../../providers/data-service';
+import { Toasts } from './../../providers/toasts';
 import { TranslateProvider } from './../../providers/translate/translate';
 
 
@@ -26,6 +27,7 @@ export class HomePage {
     public modalCtrl: ModalController,
     public navCtrl: NavController,
     public navParams: NavParams,
+    private toasts: Toasts,
     private translate: TranslateProvider) {
   }
 
@@ -35,7 +37,7 @@ export class HomePage {
         this.user = value;
         this.translate.setLang(this.user.language);
       } else {
-        this.translate.setLang('fr');
+        this.translate.setLang('fr'); // Default language (before the user sets the one s/he prefers).
       }
     });
 
@@ -45,19 +47,38 @@ export class HomePage {
     }
   }
 
+  ionViewDidEnter() {
+    // Used to update the user after getting back from settings if none were existent.
+    if (!this.user) {
+      this.dataService.getUserInfo().then((value) => {
+        if (value != null) {
+          this.user = value;
+        }
+      });
+    }
+  }
+
   showPage(pageName: String) {
     switch (pageName) {
       case "notation":
-        this.navCtrl.push(ParcelsTestsPage, {isConsultation: false});
+        console.dir(this.user);
+        if (!this.user) {
+          this.toasts.showToast("créer user");
+        } else {
+          this.navCtrl.push(ParcelsTestsPage, { isConsultation: false });
+        }
         break;
       case "consultation":
-        this.navCtrl.push(ParcelsTestsPage, {isConsultation: true});
+        this.navCtrl.push(ParcelsTestsPage, { isConsultation: true });
         break;
       case "settings":
         this.navCtrl.push(SettingsPage);
         break;
       case "email":
         this.navCtrl.push(ExportPage);
+        break;
+      case "notImplemented":
+        this.toasts.showToast("Cette fonctionnalité n'est pas encore disponible.");
         break;
     }
   }
