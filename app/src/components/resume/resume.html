@@ -10,7 +10,7 @@
 {{resume.name}}
 <ion-label stacked color="brown">{{ 'TEST_DATE' | translate }}</ion-label>
 {{resume.date}}
-<ion-label stacked color="brown">{{ 'FINAL_SCORE_OF_TEST' | translate }} :</ion-label>
+<ion-label stacked color="brown">{{ 'FINAL_SCORE_OF_TEST' | translate }} </ion-label>
 <strong *ngIf="resume.score" [ngClass]="{'good' : resume.score < 3, 'average' : resume.score == 3, 'bad' : resume.score > 3}">{{resume.score}} </strong>
 <ion-grid>
   <ion-label stacked color="brown">{{ 'BLOCK_PICTURE' | translate }}</ion-label>

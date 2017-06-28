@@ -37,11 +37,12 @@ export class ResumeComponent {
   ngOnInit() {
     if (!this.platform.is('core')) { // Check that we aren't running on desktop
       this.defaultPicture = "./assets/icon/two-layers-example.png";
+
       //read block
-      this.file.checkFile(cordova.file.dataDirectory, this.resume.picture).then(_ => {
+      this.file.checkFile(cordova.file.externalDataDirectory, this.resume.picture).then(_ => {
         //read picture
-        this.file.readAsBinaryString(cordova.file.dataDirectory, this.resume.picture).then((pictureAsBinary) => {
-          this.imageFileBlock = "data:image/jpeg;base64," + pictureAsBinary;
+        this.file.readAsDataURL(cordova.file.externalDataDirectory, this.resume.picture).then((pictureAsBase64) => {
+          this.imageFileBlock = pictureAsBase64;
         });
       }).catch(err => {
         //file doesn't exist, so display example picture for how to take photo
@@ -57,10 +58,10 @@ export class ResumeComponent {
       for (let layer of this.resume.layers) { //read all layers
 
         //read block
-        this.file.checkFile(cordova.file.dataDirectory, layer.picture).then(_ => {
+        this.file.checkFile(cordova.file.externalDataDirectory, layer.picture).then(_ => {
           //read picture
-          this.file.readAsBinaryString(cordova.file.dataDirectory, layer.picture).then((pictureAsBinary) => {
-            this.layerArray[layer.num - 1].img = "data:image/jpeg;base64," + pictureAsBinary;
+          this.file.readAsDataURL(cordova.file.externalDataDirectory, layer.picture).then((pictureAsBase64) => {
+            this.layerArray[layer.num - 1].img =  pictureAsBase64;
             this.layerArray = this.layerArray.slice(); // Good for re-update the view https://stackoverflow.com/questions/39196766/angular-2-do-not-refresh-view-after-array-push-in-ngoninit-promise?answertab=votes#tab-top
           }).catch(err => {
             console.log(err);
