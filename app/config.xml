@@ -61,4 +61,7 @@
     <plugin name="cordova-plugin-x-toast" spec="~2.5.2" />
     <plugin name="cordova-sqlite-storage" spec="~2.0.2" />
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
+    <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value=" " />
+    </plugin>
 </widget>

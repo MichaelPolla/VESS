@@ -1,6 +1,7 @@
 import { User } from './user';
 
 export class Parcel {
+  public id: number;
   public name: string;
   public ofag?: string;
   public tests?: Test[];
@@ -11,10 +12,12 @@ export class Parcel {
 }
 
 export class Test {
+  public id: number;
   public name?: string;
   public date: string;
   public score?: number;
   public picture?: string;
+  public geolocation?: Coordinates;
   public layers?: Layer[];
   public thickness?: number;
   public user?: User;
@@ -26,6 +29,7 @@ export class Test {
 }
 
 export class Layer {
+  public id: number;
   public num: number;
   public score: number;
   public picture: string;
