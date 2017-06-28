@@ -42,7 +42,9 @@ export class SettingsPage {
         this.language = this.user.language;
       } else {
         this.userType = UserType.Anonymous;
-        this.user = new User({ firstName: "", lastName: "", userType: this.userType, mail: "", idOfag: "", language: "en" });
+        let defaultLanguage = "fr";
+        this.user = new User({ firstName: "", lastName: "", userType: this.userType, mail: "", idOfag: "", language: defaultLanguage });
+        this.language = defaultLanguage;
       }
     });
   }
