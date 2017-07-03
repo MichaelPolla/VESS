@@ -5,6 +5,7 @@ import { Test } from '../../models/parcel';
 import { File } from '@ionic-native/file';
 import { TranslateService } from '@ngx-translate/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { ExportPage } from '../../pages/export/export';
 
 declare var cordova;
 
@@ -83,5 +84,9 @@ export class ResumeComponent {
 
     const browser = this.iab.create("http://maps.google.com/maps?q="+this.resume.geolocation.latitude+","+this.resume.geolocation.longitude);
     browser.show();
+  }
+
+  exportTest(event){
+    this.navCtrl.push(ExportPage, { test: this.resume });
   }
 }

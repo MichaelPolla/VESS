@@ -1,23 +1,54 @@
-<span *ngIf="resume.user"> 
-  <ion-label stacked color="brown">{{ 'USER_NAME' | translate }} :</ion-label>
-  {{resume.user.lastName}} {{resume.user.firstName}}
-  <ion-label *ngIf="resume.user.userType=='ofag'" stacked color="brown">{{ 'AGATE_NUMBER' | translate }} :</ion-label>
-  <span *ngIf="resume.user.userType=='ofag'">
-  {{resume.user.idOfag}}
-  </span>
-</span>
-<ion-label stacked color="brown">{{ 'TEST_NAME' | translate }}</ion-label>
-{{resume.name}}
-<ion-label stacked color="brown">{{ 'TEST_DATE' | translate }}</ion-label>
-{{resume.date}}
-<ion-label stacked color="brown">{{ 'FINAL_SCORE_OF_TEST' | translate }} </ion-label>
-<strong *ngIf="resume.score" [ngClass]="{'good' : resume.score < 3, 'average' : resume.score == 3, 'bad' : resume.score > 3}">{{resume.score}} </strong>
-<br/>
-<button ion-button item-right icon-only color="blue" (click)="openMap($event)">
-        <ion-icon name="locate"></ion-icon>
-</button>
 <ion-grid>
-  <ion-label stacked color="brown">{{ 'BLOCK_PICTURE' | translate }}</ion-label>
+  <ion-row>
+    <ion-col col-9>
+      <ion-label stacked color="brown">{{ 'TEST_NAME' | translate }}</ion-label>
+      {{resume.name}}
+    </ion-col>
+    <ion-col col-3>
+      <button ion-button item-right icon-only color="green" (click)="exportTest($event)">
+        <ion-icon name="download"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-9>
+      <ion-label stacked color="brown">{{ 'TEST_DATE' | translate }}</ion-label>
+      {{resume.date}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-9>
+      <span *ngIf="resume.user"> 
+        <ion-label stacked color="brown">{{ 'USER_NAME' | translate }} :</ion-label>
+        {{resume.user.lastName}} {{resume.user.firstName}}
+        <ion-label *ngIf="resume.user.userType=='ofag'" stacked color="brown">{{ 'AGATE_NUMBER' | translate }} :</ion-label>
+        <span *ngIf="resume.user.userType=='ofag'">
+        {{resume.user.idOfag}}
+        </span>
+      </span>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-9>
+      <ion-label stacked color="brown">{{ 'FINAL_SCORE_OF_TEST' | translate }} </ion-label>
+      <strong *ngIf="resume.score" [ngClass]="{'good' : resume.score < 3, 'average' : resume.score == 3, 'bad' : resume.score > 3}">{{resume.score}} </strong>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-2>
+      <button ion-button item-right icon-only color="blue" (click)="openMap($event)">
+              <ion-icon name="locate"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-grid>
+  <ion-row>
+    <ion-col col-12>
+      <ion-label stacked color="brown">{{ 'BLOCK_PICTURE' | translate }}</ion-label>
+    </ion-col>
+  </ion-row>
   <ion-row>
     <ion-col col-12><img src={{imageFileBlock}}></ion-col>
   </ion-row>
