@@ -68,7 +68,6 @@ export class ResumeComponent {
           }).catch(err => {
             console.log(err);
           });
-          console.log(this.layerArray);
         }).catch(err => {
           //file doesn't exist, so display example picture for how to take photo
           this.layerArray[layer.num - 1].img = this.defaultPicture;
