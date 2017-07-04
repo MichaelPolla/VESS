@@ -19,10 +19,11 @@ export class Test {
   public score?: number;
   public picture?: string;
   public geolocation?: Geoloc;
-  public layers?: Layer[];
   public thickness?: number;
   public user?: User;
   public isCompleted?: Boolean = false;
+  public comment?: string;
+  public layers?: Layer[];
 
   public constructor(init: Test) {
     Object.assign(this, init);

@@ -27,6 +27,9 @@ export class VerifNotationPage {
   criterias: Array<{ title: string, array: Array<{ title: string, checked: Boolean, imgSrc?: string, code: number }> }>;
   private currentLayer: Layer;
   private currentTest: Test;
+  private nextLayerIndex:number;
+  private lastLayer:Boolean= false;
+  private comment:string;
 
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -41,6 +44,10 @@ export class VerifNotationPage {
   ionViewDidLoad() {
     this.currentLayer = this.dataService.getCurrentLayer();
     this.currentTest = this.dataService.getCurrentTest();
+    this.nextLayerIndex = this.currentTest.layers.indexOf(this.currentLayer) + 1;
+    if (this.nextLayerIndex == this.currentTest.layers.length) {
+      this.lastLayer = true;
+    }
 
     if (!this.platform.is('core')) {
       this.rulerService.getHeightStyle(846, 56).then((value: number) => {
@@ -243,9 +250,9 @@ export class VerifNotationPage {
   private goToNextLayerOrHome() {
     this.currentLayer.score = this.score;
     this.dataService.saveParcels();
-    let nextLayerIndex = this.currentTest.layers.indexOf(this.currentLayer) + 1;
-    if (nextLayerIndex < this.currentTest.layers.length) {
-      this.dataService.setCurrentLayer(nextLayerIndex);
+    
+    if (this.nextLayerIndex < this.currentTest.layers.length) {
+      this.dataService.setCurrentLayer(this.nextLayerIndex);
       this.navCtrl.push(CameraPage, {stepView: 5 });
     } else {
       this.calculateAndShowTestScore();
@@ -269,6 +276,7 @@ export class VerifNotationPage {
     });
     this.currentTest.isCompleted = true;
     this.currentTest.score = testScore;
+    this.currentTest.comment = this.comment;
     this.dataService.saveParcels();
     let toastMsg = this.translate.get('FINAL_SCORE', { score: testScore });
     this.toasts.showToast(toastMsg, 5000);

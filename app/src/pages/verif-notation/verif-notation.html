@@ -13,15 +13,17 @@
     <ion-list>
       <ion-item class="item-checkbox" *ngFor="let item of criteria.array; let i=index">
         <ion-label class="wraptext">{{item.title}}</ion-label>
-        <ion-thumbnail item-left (click)="showModal(i)" >
+        <ion-thumbnail item-left (click)="showModal(i)">
           <img src={{item.imgSrc}}>
         </ion-thumbnail>
         <ion-checkbox item-right color="secondary" [(ngModel)]="item.checked"></ion-checkbox>
       </ion-item>
     </ion-list>
   </h3>
+  <h3 *ngIf="lastLayer"> {{'VALIDATION_ADD_COMMENT'| translate }} </h3>
+  <ion-textarea placeholder="Enter a description" *ngIf="lastLayer" [(ngModel)]="comment"></ion-textarea>
 
-  <img class="ruler" src='./assets/icon/ruler.png' [style.height.px]="heightRuler"/>
+  <img class="ruler" src='./assets/icon/ruler.png' [style.height.px]="heightRuler" />
 </ion-content>
 
 <component-footer-view (onValidationStep)="validationStep()" [helpId]="helpId"></component-footer-view>
