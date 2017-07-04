@@ -14,6 +14,7 @@ export class ExportPage {
   private userInfo: User;
   private parcels: Parcel;
   private test:Test;
+  
   constructor(
     private emailComposer: EmailComposer,
     public navCtrl: NavController,
@@ -22,6 +23,7 @@ export class ExportPage {
 
   ionViewDidLoad() {
     this.test = this.navParams.get('test');
+
     this.dataService.getUserInfo().then((user) => {
       if (user != null) {
         this.userInfo = user;
@@ -42,7 +44,7 @@ export class ExportPage {
               body: "",
               isHtml: true,
               attachments: [
-                'base64:export.csv//' + btoa(JSON.stringify(this.test))
+                'base64:'+this.test.name+'.csv//' + btoa(this.strJSONToCSV(JSON.stringify(this.test)))
               ]
             };
 
@@ -57,20 +59,28 @@ export class ExportPage {
 
   }
 
-  ConvertToCSV = function (objArray) {
-    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-    var str = '';
+  strJSONToCSV(string) {
+    //split substring 
 
-    for (var i = 0; i < array.length; i++) {
-      var line = '';
-      for (var index in array[i]) {
-        if (line != '') line += ','
+    //creat layer string
+    var layerString = string.substring(string.lastIndexOf('[')+1,string.lastIndexOf(']')) 
+    layerString = layerString.replace(/num/g, '\r\nLayer num'); //g for delet all 
 
-        line += array[i][index];
-      }
+    //creat field string
+    var fieldString1 = string.substring(0,string.lastIndexOf('"layers":['))
+    var fieldString2 = string.substring(string.lastIndexOf(']')+2, string.length)
+    var fieldString = fieldString1 + fieldString2;
 
-      str += line + '\r\n';
-    }
-    return str;
+    //delete { } ""
+    fieldString = fieldString.replace(/{/g, ''); //g for delet all 
+    fieldString = fieldString.replace(/}/g, '');
+    fieldString = fieldString.replace(/"/g, '');
+
+    layerString = layerString.replace(/{/g, ''); //g for delet all 
+    layerString = layerString.replace(/}/g, '');
+    layerString = layerString.replace(/"/g, '');
+
+    return fieldString+"\r\n"+layerString;
   }
+
 }
