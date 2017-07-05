@@ -177,6 +177,7 @@ export class ExportPage {
 
       // Send a text message using default options
       this.emailComposer.open(email);
+      this.navCtrl.pop();
     }
   }
 
