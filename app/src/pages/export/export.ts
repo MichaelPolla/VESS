@@ -61,27 +61,18 @@ export class ExportPage {
   }
 
   strJSONToCSV(string) {
-    //split substring 
-
-    //creat layer string
-    var layerString = string.substring(string.lastIndexOf('[') + 1, string.lastIndexOf(']'))
-    layerString = layerString.replace(/num/g, '\r\nLayer num'); //g for delet all 
-
-    //creat field string
-    var fieldString1 = string.substring(0, string.lastIndexOf('"layers":['))
-    var fieldString2 = string.substring(string.lastIndexOf(']') + 2, string.length)
-    var fieldString = fieldString1 + fieldString2;
-
-    //delete { } ""
-    fieldString = fieldString.replace(/{/g, ''); //g for delet all 
-    fieldString = fieldString.replace(/}/g, '');
-    fieldString = fieldString.replace(/"/g, '');
-
-    layerString = layerString.replace(/{/g, ''); //g for delet all 
-    layerString = layerString.replace(/}/g, '');
-    layerString = layerString.replace(/"/g, '');
-
-    return fieldString + "\r\n" + layerString;
+    var csv= ',firstName,lastName,userType,mail\r\n';
+    csv += 'userInfo,'+this.test.user.firstName+','+this.test.user.lastName+','+this.test.user.userType+','+this.test.user.mail+'\r\n';
+    csv += '\r\n';
+    csv += ',Identifiant,thickness,score,picture,date,comment\r\n';
+    for(let layer of this.test.layers){
+      let pathFileLayer = layer.picture.split("/"); //split path 
+      csv += 'layer,'+layer.num+','+layer.thickness+','+layer.score+','+pathFileLayer[1]+'\r\n';
+    }
+    let pathFileBloc = this.test.picture.split("/"); //split path
+    csv += 'test,'+this.test.name+','+this.test.thickness+','+this.test.score+','+pathFileBloc[1]+','+this.test.date+','+this.test.comment+'\r\n';
+    //return fieldString + "\r\n" + layerString;
+    return csv;
   }
 
   /**
@@ -157,9 +148,16 @@ export class ExportPage {
   sendEmail(cntReadPicture) {
     // test if all picture are read because promise are async
     if (cntReadPicture == this.test.layers.length + 1) {
-      let json = '{ "SpadeTest":' + JSON.stringify(this.test) + '}';//add spadetest to json
-      this.attachements.push('base64:' + this.test.name + '.csv//' + btoa(this.strJSONToCSV(json)));
-      this.attachements.push('base64:' + this.test.name + '.json//' + btoa(json))
+      let testJson = this.test;
+
+      //delete field
+      delete testJson.isCompleted;
+      delete testJson.id;
+      delete testJson.user.language;
+
+      let newJson = '{ "SpadeTest":' + JSON.stringify(testJson) + '}';//add spadetest to json
+      this.attachements.push('base64:' + this.test.name + '.csv//' + btoa(this.strJSONToCSV(newJson)));
+      this.attachements.push('base64:' + this.test.name + '.json//' + btoa(newJson))
 
       this.emailComposer.isAvailable().then((available: boolean) => {
         if (available) {
