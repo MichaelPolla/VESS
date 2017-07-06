@@ -1,3 +1,4 @@
+import { AboutPage } from './../pages/about/about';
 import { NgModule } from '@angular/core';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicApp, IonicModule } from 'ionic-angular';
@@ -52,6 +53,7 @@ export function createTranslateLoader(http: Http) {
 
 @NgModule({
   declarations: [
+    AboutPage,
     CameraPage,
     DefiningLayerPage,
     GifViewPage,
@@ -86,6 +88,7 @@ export function createTranslateLoader(http: Http) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    AboutPage,
     CameraPage,
     DefiningLayerPage,
     ExportPage,

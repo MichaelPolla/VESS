@@ -1,4 +1,10 @@
 {
+  "APP_TITLE":"VESS (Beta)",
+  "APP_VERSION":"0.9.0",
+  "ABOUT":"About",
+  "ABOUT_AUTORS_LABEL":"Autors",
+  "ABOUT_AUTORS":"Polla Michael, Cicciu Salvatore, Boivin Pascal, Albuquerque Paul, Gondret Karine, Johannes Alice",
+  "ABOUT_CONTENT" : "This application allows to perform a VESS test.",
   "ADD": "Add",
   "AGATE_NUMBER": "Agate number",
   "ANONYMOUS": "Anonymous",

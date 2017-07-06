@@ -1,4 +1,10 @@
 {
+  "APP_TITLE":"VESS (Beta)",
+  "APP_VERSION":"0.9.0",
+  "ABOUT":"À propos",
+  "ABOUT_AUTORS_LABEL":"Auteurs",
+  "ABOUT_AUTORS":"Polla Michael, Cicciu Salvatore, Boivin Pascal, Albuquerque Paul, Gondret Karine, Johannes Alice",
+  "ABOUT_CONTENT" : "Cette application permet d'effectuer le test à la bêche (VESS).",
   "ADD": "Ajouter",
   "AGATE_NUMBER": "Numéro Agate",
   "ANONYMOUS": "Anonyme",

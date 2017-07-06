@@ -1,3 +1,4 @@
+import { AboutPage } from './../about/about';
 import { Test } from './../../models/parcel';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
@@ -77,6 +78,9 @@ export class HomePage {
         break;
       case "email":
         this.navCtrl.push(ExportPage);
+        break;
+      case "about":
+        this.navCtrl.push(AboutPage);
         break;
       case "notImplemented":
         this.toasts.showToast("Cette fonctionnalité n'est pas encore disponible.");

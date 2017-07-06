@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>VESS</ion-title>
+    <ion-title>{{ 'APP_TITLE' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,24 +10,28 @@
 <ion-content>
   <ion-list>
     <button ion-item (click)="showPage('notation')">
-      <ion-icon class="icon" name="paper" item-left color="brown"></ion-icon>
+      <ion-icon class="icon" name="create" item-left color="brown"></ion-icon>
       {{ 'PARCEL_NOTATION' | translate }}
     </button>
     <button ion-item (click)="showPage('consultation')">
-      <ion-icon class="icon" name="archive" item-left color="brown"></ion-icon>
+      <ion-icon class="icon" name="document" item-left color="brown"></ion-icon>
       {{ 'TESTS_CONSULTATION' | translate }}
     </button>
     <button ion-item (click)="showPage('notImplemented')">
-      <ion-icon class="icon" name="medal" item-left color="brown"></ion-icon>
+      <ion-icon class="icon" name="podium" item-left color="brown"></ion-icon>
       {{ 'STRUCTURAL_QUALITY' | translate }}
     </button>
     <button ion-item (click)="showPage('notImplemented')">
-      <ion-icon class="icon" name="information-circle" item-left color="brown"></ion-icon>
+      <ion-icon class="icon" name="book" item-left color="brown"></ion-icon>
       {{ 'TUTORIAL' | translate }}
     </button>
     <button ion-item (click)="showPage('settings')">
       <ion-icon class="icon" name="settings" item-left color="brown"></ion-icon>
       {{ 'SETTINGS' | translate }}
+    </button>
+    <button ion-item (click)="showPage('about')">
+      <ion-icon class="icon" name="information-circle" item-left color="brown"></ion-icon>
+      {{ 'ABOUT' | translate }}
     </button>
   </ion-list>
 </ion-content>
