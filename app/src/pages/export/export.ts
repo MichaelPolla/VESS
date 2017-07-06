@@ -1,3 +1,4 @@
+import { Geoloc } from './../../models/geoloc';
 import { Component } from '@angular/core';
 import { Layer } from './../../models/parcel';
 import { NavController, NavParams, Platform } from 'ionic-angular';
@@ -61,17 +62,24 @@ export class ExportPage {
   }
 
   strJSONToCSV(string) {
-    var csv= ',firstName,lastName,userType,mail\r\n';
+    var csv= ',first name,last name,user type,mail\r\n';
     csv += 'userInfo,'+this.test.user.firstName+','+this.test.user.lastName+','+this.test.user.userType+','+this.test.user.mail+'\r\n';
     csv += '\r\n';
-    csv += ',Identifiant,thickness,score,picture,date,comment\r\n';
+    csv += ',identifiant,thickness,score,picture,date,comment,latitude,longitude\r\n';
     for(let layer of this.test.layers){
-      let pathFileLayer = layer.picture.split("/"); //split path 
-      csv += 'layer,'+layer.num+','+layer.thickness+','+layer.score+','+pathFileLayer[1]+'\r\n';
+      if(layer.picture!=undefined){
+        let pathFileLayer = layer.picture.split("/"); //split path 
+        csv += 'layer,'+layer.num+','+layer.thickness+','+layer.score+','+pathFileLayer[1]+'\r\n';
+      }else{
+        csv += 'layer,'+layer.num+','+layer.thickness+','+layer.score+','+'no image'+'\r\n';
+      }
     }
     let pathFileBloc = this.test.picture.split("/"); //split path
-    csv += 'test,'+this.test.name+','+this.test.thickness+','+this.test.score+','+pathFileBloc[1]+','+this.test.date+','+this.test.comment+'\r\n';
-    //return fieldString + "\r\n" + layerString;
+
+    if(this.test.geolocation!=undefined)
+      csv += 'test,'+this.test.name+','+this.test.thickness+','+this.test.score+','+pathFileBloc[1]+','+this.test.date+','+this.test.comment+','+this.test.geolocation.latitude+','+this.test.geolocation.longitude+'\r\n';
+    else
+      csv += 'test,'+this.test.name+','+this.test.thickness+','+this.test.score+','+pathFileBloc[1]+','+this.test.date+','+this.test.comment+','+''+','+''+'\r\n';
     return csv;
   }
 
