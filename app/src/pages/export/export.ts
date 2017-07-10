@@ -157,7 +157,7 @@ export class ExportPage {
   sendEmail(cntReadPicture) {
     // test if all picture are read because promise are async
     if (cntReadPicture == this.test.layers.length + 1) {
-      let testJson = this.test;
+      let testJson:any=Object.assign({},this.test); // copy object
 
       //delete field
       delete testJson.isCompleted;
