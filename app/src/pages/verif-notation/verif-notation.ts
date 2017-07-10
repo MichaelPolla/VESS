@@ -276,11 +276,11 @@ export class VerifNotationPage {
     switch (this.currentTest.state) {
       case "STONY_SOIL":
         this.currentTest.layers.push({ num: this.currentLayer.num + 1, thickness: 30 - this.currentTest.thickness, score: 3, 
-          comment: this.translate.get('STONY_SOIL'), minThickness: this.currentLayer.thickness + 1, maxThickness: this.currentLayer.minThickness + this.currentLayer.thickness })
+          comment: this.translate.get('STONY_SOIL'), minThickness: this.currentLayer.minThickness + this.currentLayer.thickness, maxThickness: 30 })
         break;
       case "TOO_HARD_SOIL":
         this.currentTest.layers.push({ num: this.currentLayer.num + 1, thickness: 30 - this.currentTest.thickness, score: 5, 
-          comment: this.translate.get('TOO_HARD_SOIL'), minThickness: this.currentLayer.thickness + 1, maxThickness: this.currentLayer.minThickness + this.currentLayer.thickness })
+          comment: this.translate.get('TOO_HARD_SOIL'), minThickness: this.currentLayer.minThickness + this.currentLayer.thickness, maxThickness: 30 })
         break;
     }
 
