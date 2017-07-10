@@ -257,7 +257,10 @@ export class VerifNotationPage {
 
     if (this.nextLayerIndex < this.currentTest.layers.length) {
       this.dataService.setCurrentLayer(this.nextLayerIndex);
-      this.navCtrl.push(CameraPage, { stepView: 5 });
+      if (!this.platform.is('core'))  // Check that we aren't running on desktop
+        this.navCtrl.push(CameraPage, { stepView: 5 });
+      else
+        this.navCtrl.push(Notation1Page);
     } else {
       this.calculateAndShowTestScore();
     }
