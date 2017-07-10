@@ -27,7 +27,7 @@ export class ResumeComponent {
   @Input() resume: Test;
 
   public imageFileBlock: string;
-
+  public lastNumLayer: number;
   public layerArray: LayerInfo[];
   defaultPicture: string;
   constructor(
@@ -38,6 +38,8 @@ export class ResumeComponent {
     private iab: InAppBrowser) {}
 
   ngOnInit() {
+    console.log(this.resume);
+    this.lastNumLayer = this.resume.layers.length;
     if (!this.platform.is('core')) { // Check that we aren't running on desktop
       this.defaultPicture = "./assets/icon/two-layers-example.png";
       //read block

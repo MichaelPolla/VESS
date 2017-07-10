@@ -1,8 +1,8 @@
 <ion-grid>
   <ion-row>
     <ion-col col-9>
-      <ion-label stacked color="brown">{{ 'TEST_NAME' | translate }}</ion-label>
-      {{resume.name}}
+      <!--<ion-label stacked color="brown">{{ 'TEST_NAME' | translate }}</ion-label>-->
+      <ion-label color="brown" id="title">{{resume.name}}</ion-label>
     </ion-col>
     <ion-col col-3>
       <button ion-button item-right icon-only color="green" (click)="exportTest($event)">
@@ -28,13 +28,31 @@
       </span>
     </ion-col>
   </ion-row>
+
+  <!-- BLOCK -->
   <ion-row>
     <ion-col col-9>
-      <ion-label stacked color="brown">{{ 'FINAL_SCORE_OF_TEST' | translate }} </ion-label>
-      <strong *ngIf="resume.score" [ngClass]="{'good' : resume.score < 3, 'average' : resume.score == 3, 'bad' : resume.score > 3}">{{resume.score}} </strong>
+      <ion-label color="brown" id="subtitle">{{ 'BLOCK_TITLE' | translate }}</ion-label>
     </ion-col>
   </ion-row>
   <ion-row>
+    <ion-col col-9>
+      <ion-label stacked color="brown">{{ 'FINAL_SCORE_OF_TEST' | translate }} </ion-label>
+      <strong *ngIf="resume.score" [ngClass]="{'good' : resume.score < 3, 'average' : resume.score == 3, 'bad' : resume.score > 3}">
+        {{resume.score}} 
+        <span *ngIf="resume.state=='STONY_SOIL' || resume.state=='TOO_HARD_SOIL'">
+          {{ 'SCORE_RELIABILITY' | translate}}
+        </span>
+      </strong>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="resume.state=='STONY_SOIL' || resume.state=='TOO_HARD_SOIL'">
+    <ion-col col-9>
+      <ion-label stacked color="brown">{{ 'TYPE_OF_SOIL' | translate }}: </ion-label>
+      {{resume.state | translate}}
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="resume.geolocation">
     <ion-col col-2>
       <button ion-button item-right icon-only color="blue" (click)="openMap($event)">
               <ion-icon name="locate"></ion-icon>
@@ -52,14 +70,44 @@
   <ion-row>
     <ion-col col-12><img src={{imageFileBlock}}></ion-col>
   </ion-row>
-  <ion-label stacked color="brown">{{ 'BLOCK_SIZE' | translate }}</ion-label>
-  {{resume.thickness}} cm
+  <p> 
+    <ion-label stacked color="brown">{{ 'BLOCK_SIZE' | translate }}</ion-label>
+    {{resume.thickness}} cm
+  </p>
+  <label *ngIf="resume.comment">{{ 'COMMENT' | translate }}: </label> <p>{{resume.comment}}</p>
+
+
+  <!-- LAYERS -->
   <ion-row>
-    <ion-col *ngFor="let layerInfo of layerArray" col-4>
-      <ion-label stacked color="brown">{{ 'LAYER' | translate }} {{layerInfo.layer.num}}</ion-label>
-      <img src={{layerInfo.img}}>
-      <span>{{ 'BLOCK_SIZE' | translate }}: {{layerInfo.layer.thickness}} cm</span>
-      <strong *ngIf="layerInfo.layer.score" [ngClass]="{'good' : layerInfo.layer.score < 3, 'average' : layerInfo.layer.score == 3, 'bad' : layerInfo.layer.score > 3}">{{ 'SCORE' | translate }} : {{layerInfo.layer.score}} </strong>
+    <ion-col col-9>
+      <ion-label color="brown" id="subtitle">{{ 'LAYER_TITLE' | translate }}</ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col *ngFor="let layerInfo of layerArray" col-6>
+      <ion-label stacked color="brown">
+        {{ 'LAYER' | translate }} {{layerInfo.layer.num}} 
+        <br/>
+        <span *ngIf="layerInfo.layer.minThickness!=undefined && layerInfo.layer.maxThickness!=undefined"> 
+          ({{layerInfo.layer.minThickness}} - {{layerInfo.layer.maxThickness}} cm)
+        </span>
+        <br/>
+      </ion-label>
+      <div id="layerImg"><img src={{layerInfo.img}}></div>
+      <div id="layerDetails">
+      <p>
+        <strong *ngIf="layerInfo.layer.score" [ngClass]="{'good' : layerInfo.layer.score < 3, 'average' : layerInfo.layer.score == 3, 'bad' : layerInfo.layer.score > 3}">{{ 'SCORE' | translate }} : {{layerInfo.layer.score}} 
+        <span *ngIf="(resume.state=='STONY_SOIL' || resume.state=='TOO_HARD_SOIL') && layerInfo.layer.num ==lastNumLayer ">
+            {{ 'SCORE_RELIABILITY' | translate}}
+        </span>
+        </strong>
+      </p>
+      <p>
+        <label>{{ 'BLOCK_SIZE' | translate }}: </label> 
+        {{layerInfo.layer.thickness}} cm
+      </p>
+      <label *ngIf="layerInfo.layer.comment">{{ 'COMMENT' | translate }}: </label> <p>{{layerInfo.layer.comment}}</p>
+      </div>
     </ion-col>
   </ion-row>
 </ion-grid>

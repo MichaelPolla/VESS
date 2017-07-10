@@ -1,5 +1,22 @@
 component-resume-view {
   ion-label.label.label-md.label-md-brown{
-    font-size: large;
+    font-size: medium;
+  }
+
+  #layerImg{
+    height: 280px;
+    display: block;
+  }
+
+  #layerDetails{
+    display: block;
+  }
+
+  #title{
+    font-size: xx-large;
+  }
+
+  #subtitle{
+    font-size: x-large;
   }
 }

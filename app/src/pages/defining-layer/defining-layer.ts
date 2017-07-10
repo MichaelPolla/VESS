@@ -98,7 +98,7 @@ export class DefiningLayerPage {
       if (this.thickness == this.totalSize) {
         this.currentTest.thickness = this.thickness;
         if (this.thickness >= 30) {
-          this.currentTest.state = "NORMAL_SOIL";
+          this.currentTest.state = 'NORMAL_SOIL';
           this.dataService.saveParcels();
           this.navCtrl.push(GifViewPage, {
             stepView: this.stepView + 1
@@ -156,7 +156,7 @@ export class DefiningLayerPage {
         switch (data) {
           case 'stony':
             this.showAlert(this.translate.get('STONY_SOIL'), this.translate.get('STONY_SOIL_NOTATION', { size: this.thickness }));
-            this.currentTest.state = "STONY_SOIL";
+            this.currentTest.state = 'STONY_SOIL';
             this.dataService.saveParcels();
             this.navCtrl.push(GifViewPage, {
               stepView: this.stepView + 1
@@ -164,13 +164,13 @@ export class DefiningLayerPage {
             break;
           case 'dry':
             this.showAlert(this.translate.get('TOO_DRY_SOIL'), this.translate.get('PLEASE_EXTRACT_A_NEW_BLOCK'));
-            this.currentTest.state = "TOO_DRY_SOIL";
+            this.currentTest.state = 'TOO_DRY_SOIL';
             this.dataService.saveParcels();
             this.navCtrl.push(GifViewPage);
             break;
           case 'hard':
             this.showAlert(this.translate.get('TOO_HARD_SOIL'), this.translate.get('TOO_HARD_SOIL_NOTATION', { size: this.thickness }));
-            this.currentTest.state = "TOO_HARD_SOIL";
+            this.currentTest.state = 'TOO_HARD_SOIL';
             this.dataService.saveParcels();
             this.navCtrl.push(GifViewPage, {
               stepView: this.stepView + 1
