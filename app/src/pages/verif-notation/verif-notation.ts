@@ -30,6 +30,8 @@ export class VerifNotationPage {
   private nextLayerIndex: number;
   private lastLayer: Boolean = false;
   private comment: string;
+  public title:string;
+  public layerNumber: number;
 
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -44,6 +46,8 @@ export class VerifNotationPage {
   ionViewDidLoad() {
     this.currentLayer = this.dataService.getCurrentLayer();
     this.currentTest = this.dataService.getCurrentTest();
+    this.layerNumber = this.currentLayer.num;
+    this.title = this.translate.get('NOTATION_VERIFICATION') + " " + this.layerNumber + "  ("+this.currentLayer.minThickness+"-"+this.currentLayer.maxThickness+" cm)";
     this.nextLayerIndex = this.currentTest.layers.indexOf(this.currentLayer) + 1;
     if (this.nextLayerIndex == this.currentTest.layers.length) {
       this.lastLayer = true;

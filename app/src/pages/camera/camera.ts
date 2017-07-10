@@ -63,8 +63,8 @@ export class CameraPage {
       case 5://block
         this.currentLayer = this.dataService.getCurrentLayer();
         this.layerNumber = this.currentLayer.num;
-
-        this.title = translate.get('PICTURE_OF_LAYER') + " " + this.layerNumber;
+        
+        this.title = this.translate.get('PICTURE_OF_LAYER') + " " + this.layerNumber + "  ("+this.currentLayer.minThickness+"-"+this.currentLayer.maxThickness+" cm)";
         this.dirName = "layers";
         filePath = this.dataService.getCurrentLayer().picture;
         this.defaultPicture = "./assets/icon/generic-image.png";

@@ -17,7 +17,8 @@ export class Notation1Page {
   items: Array<{ title: string, checked: Boolean, imgSrc: String, code: number }>;
   code: number;
   public layerNumber: number;
-  private currentLayer: Layer;
+  public currentLayer: Layer;
+  public title:string;
 
   constructor(
     private dataService: DataService,
@@ -29,6 +30,7 @@ export class Notation1Page {
   ionViewDidLoad() {
     this.currentLayer = this.dataService.getCurrentLayer();
     this.layerNumber = this.currentLayer.num;
+    this.title = this.translate.get('NOTATION_OF_LAYER') + " " + this.layerNumber + "  ("+this.currentLayer.minThickness+"-"+this.currentLayer.maxThickness+" cm)";
     this.items = [
       {
         title: this.translate.get('NOTATION_STEP1_OPTION1'),

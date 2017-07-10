@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{ 'NOTATION_OF_LAYER' | translate}} {{layerNumber}}</ion-title>
+    <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <h3>{{title}}</h3>
+  <h3>{{subTitle}}</h3>
 
   <ion-list>
     <ion-item class="item-checkbox" *ngFor="let item of items; let i=index">

@@ -20,6 +20,7 @@ export class Notation2Page {
   //declaration of field
   items: Array<{ title: string, checked: Boolean, imgSrc: String, code2: number }>;
   title: string;
+  subTitle : string;
   code: number;
   code2: number;
   layerNumber: number;
@@ -41,6 +42,7 @@ export class Notation2Page {
   ionViewDidLoad() {
     this.currentLayer = this.dataService.getCurrentLayer();
     this.layerNumber = this.currentLayer.num;
+    this.title = this.translate.get('NOTATION_OF_LAYER') + " " + this.layerNumber + "  ("+this.currentLayer.minThickness+"-"+this.currentLayer.maxThickness+" cm)";
     this.code = this.navParams.get('code');
 
     if (!this.platform.is('core')) {
@@ -54,7 +56,7 @@ export class Notation2Page {
     switch (this.code) {
 
       case 1:
-        this.title = this.translate.get('NOTATION_STEP2_IF_STEP1_1_OPTIONS_TITLE');
+        this.subTitle = this.translate.get('NOTATION_STEP2_IF_STEP1_1_OPTIONS_TITLE');
         this.items = [
           {
             title: this.translate.get('NOTATION_STEP2_IF_STEP1_1_OPTION1'),
@@ -73,7 +75,7 @@ export class Notation2Page {
         break;
 
       case 3:
-        this.title = this.translate.get('NOTATION_STEP2_IF_STEP1_3_OPTIONS_TITLE');
+        this.subTitle = this.translate.get('NOTATION_STEP2_IF_STEP1_3_OPTIONS_TITLE');
         this.items = [
           {
             title: this.translate.get('NOTATION_STEP2_IF_STEP1_3_OPTION1'),
