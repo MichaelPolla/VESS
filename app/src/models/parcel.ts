@@ -37,10 +37,13 @@ export class Layer {
   public score: number;
   public picture?: string;
   public thickness: number;
+  public minThickness: number;
+  public maxThickness : number;
   public comment?: string;
 
-  constructor(num: number, thickness: number) {
+  constructor(num: number, thickness: number, minThickness:number) {
     this.num = num;
     this.thickness = thickness;
+    this.minThickness = minThickness;
   }
 }

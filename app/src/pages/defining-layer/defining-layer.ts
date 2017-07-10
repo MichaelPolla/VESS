@@ -56,23 +56,23 @@ export class DefiningLayerPage {
     this.thickness = this.currentTest.thickness ? this.currentTest.thickness : 30;
     this.nbLayersOld = this.nbLayers;
 
-    this.listLayers = this.currentTest.layers ? this.currentTest.layers : [(new Layer(1, 1))];
+    this.listLayers = this.currentTest.layers ? this.currentTest.layers : [(new Layer(1, 1, 0))];
     this.calcTotalSize();
 
   }
 
   changeNbLayers(nbLayers) {
+
     if (nbLayers < this.nbLayersOld) {
       for (let i = 0; i < this.nbLayersOld - nbLayers; i++) {
         this.listLayers.pop();
       }
     } else {
       for (let i = 0; i < nbLayers - this.nbLayersOld; i++) {
-
-        this.listLayers.push(new Layer(this.nbLayersOld + i + 1, 1))
+        this.listLayers.push(new Layer(this.nbLayersOld + i + 1, 1, 1));
       }
-
     }
+
     this.nbLayersOld = nbLayers;
     this.calcTotalSize();
   }
@@ -82,6 +82,13 @@ export class DefiningLayerPage {
   calcTotalSize() {
     this.totalSize = 0;
     for (let layer of this.listLayers) {
+      //set min thickness
+      if(layer.num == 1)
+        layer.minThickness = 0;
+      else
+        layer.minThickness = this.totalSize;
+        
+      layer.maxThickness = layer.minThickness+layer.thickness;
       this.totalSize += layer.thickness;
     }
   }
@@ -148,7 +155,7 @@ export class DefiningLayerPage {
       handler: data => {
         switch (data) {
           case 'stony':
-            this.showAlert(this.translate.get('STONY_SOIL'), this.translate.get('STONY_SOIL_NOTATION', { size:  this.thickness }));
+            this.showAlert(this.translate.get('STONY_SOIL'), this.translate.get('STONY_SOIL_NOTATION', { size: this.thickness }));
             this.currentTest.state = "STONY_SOIL";
             this.navCtrl.push(GifViewPage, {
               stepView: this.stepView + 1
