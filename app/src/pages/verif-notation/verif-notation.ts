@@ -27,9 +27,9 @@ export class VerifNotationPage {
   criterias: Array<{ title: string, array: Array<{ title: string, checked: Boolean, imgSrc?: string, code: number }> }>;
   private currentLayer: Layer;
   private currentTest: Test;
-  private nextLayerIndex:number;
-  private lastLayer:Boolean= false;
-  private comment:string;
+  private nextLayerIndex: number;
+  private lastLayer: Boolean = false;
+  private comment: string;
 
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -250,10 +250,10 @@ export class VerifNotationPage {
   private goToNextLayerOrHome() {
     this.currentLayer.score = this.score;
     this.dataService.saveParcels();
-    
+
     if (this.nextLayerIndex < this.currentTest.layers.length) {
       this.dataService.setCurrentLayer(this.nextLayerIndex);
-      this.navCtrl.push(CameraPage, {stepView: 5 });
+      this.navCtrl.push(CameraPage, { stepView: 5 });
     } else {
       this.calculateAndShowTestScore();
     }
@@ -261,12 +261,22 @@ export class VerifNotationPage {
 
   private calculateAndShowTestScore() {
     let testScore = 0;
+
     let blockThickness = this.currentTest.thickness;
     for (let i = 0; i < this.currentTest.layers.length; i++) {
       let layer = this.currentTest.layers[i];
       testScore += (layer.score * layer.thickness) / blockThickness;
     }
     testScore = Utils.round(testScore, 1);
+
+    switch (this.currentTest.state) {
+      case "STONY_SOIL":
+        this.currentTest.layers.push({num: this.currentLayer.num + 1, thickness: 30 - this.currentTest.thickness, score: 3, comment: this.translate.get('STONY_SOIL') })
+        break;
+      case "TOO_HARD_SOIL":
+        this.currentTest.layers.push({num: this.currentLayer.num + 1, thickness: 30 - this.currentTest.thickness, score: 5, comment: this.translate.get('TOO_HARD_SOIL') })
+        break;
+    }
 
     this.dataService.getUserInfo().then((value) => {
       if (value != null) {

@@ -89,9 +89,10 @@ export class DefiningLayerPage {
   validationStep() {
     if (this.nbLayers >= 1 && this.nbLayers <= 5) {
       if (this.thickness == this.totalSize) {
+        this.currentTest.thickness = this.thickness;
+        this.dataService.saveParcels();
         if (this.thickness >= 30) {
-          this.currentTest.thickness = this.thickness;
-          this.dataService.saveParcels();
+          this.currentTest.state = "NORMAL_SOIL";
           this.navCtrl.push(GifViewPage, {
             stepView: this.stepView + 1
           });
@@ -147,27 +148,23 @@ export class DefiningLayerPage {
       handler: data => {
         switch (data) {
           case 'stony':
-            this.showAlert(this.translate.get('STONY_SOIL'), this.translate.get('STONY_SOIL_NOTATION'));
-            this.navCtrl.push(ParcelsTestsPage, { isConsultation: false });
+            this.showAlert(this.translate.get('STONY_SOIL'), this.translate.get('STONY_SOIL_NOTATION', { size:  this.thickness }));
+            this.currentTest.state = "STONY_SOIL";
+            this.navCtrl.push(GifViewPage, {
+              stepView: this.stepView + 1
+            });
             break;
           case 'dry':
             this.showAlert(this.translate.get('TOO_DRY_SOIL'), this.translate.get('PLEASE_EXTRACT_A_NEW_BLOCK'));
+            this.currentTest.state = "TOO_DRY_SOIL";
             this.navCtrl.push(GifViewPage);
             break;
           case 'hard':
             this.showAlert(this.translate.get('TOO_HARD_SOIL'), this.translate.get('TOO_HARD_SOIL_NOTATION', { size: this.thickness }));
-            this.dataService.getUserInfo().then((value) => {
-              if (value != null) {
-                this.currentTest.user = value;
-                this.dataService.saveParcels();
-              }
+            this.currentTest.state = "TOO_HARD_SOIL";
+            this.navCtrl.push(GifViewPage, {
+              stepView: this.stepView + 1
             });
-            this.currentTest.isCompleted = true;
-            this.currentTest.score = 5;
-            this.dataService.saveParcels();
-            let toastMsg = this.translate.get('FINAL_SCORE', { score: 5 });
-            this.toasts.showToast(toastMsg, 5000);
-            this.navCtrl.push(HomePage);
             break;
 
         }

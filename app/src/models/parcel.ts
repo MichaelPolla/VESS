@@ -24,6 +24,7 @@ export class Test {
   public isCompleted?: Boolean = false;
   public comment?: string;
   public layers?: Layer[];
+  public state?: string;
 
   public constructor(init: Test) {
     Object.assign(this, init);
@@ -31,11 +32,12 @@ export class Test {
 }
 
 export class Layer {
-  public id: number;
+  public id?: number;
   public num: number;
   public score: number;
-  public picture: string;
+  public picture?: string;
   public thickness: number;
+  public comment?: string;
 
   constructor(num: number, thickness: number) {
     this.num = num;
