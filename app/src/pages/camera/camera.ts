@@ -216,7 +216,6 @@ export class CameraPage {
           text: this.translate.get('ADD'),
           handler: data => {
             this.currentTest.comment = data.comment;
-            console.log(this.currentTest)
           }
         }
       ]
