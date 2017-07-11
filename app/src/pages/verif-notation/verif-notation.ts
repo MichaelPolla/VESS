@@ -293,8 +293,8 @@ export class VerifNotationPage {
     this.currentTest.isCompleted = true;
     this.currentTest.score = testScore;
     this.dataService.saveParcels();
-    let toastMsg = this.translate.get('FINAL_SCORE', { score: testScore });
-    this.toasts.showToast(toastMsg, 5000);
+    //show resume
+    this.modalCtrl.create(ModalPicturePage, {type: "resume", resume: this.currentTest}).present();
     this.navCtrl.push(HomePage);
   }
 
