@@ -68,7 +68,7 @@
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col col-12><img src={{imageFileBlock}}></ion-col>
+    <ion-col col-12 ><img id="imgBlock" src={{imageFileBlock}}></ion-col>
   </ion-row>
   <p> 
     <ion-label stacked color="brown">{{ 'BLOCK_SIZE' | translate }}</ion-label>
@@ -93,7 +93,7 @@
         </span>
         <br/>
       </ion-label>
-      <div id="layerImg"><img src={{layerInfo.img}}></div>
+      <div id="layerImg" ><img src={{layerInfo.img}} ></div>
       <div id="layerDetails">
       <p>
         <strong *ngIf="layerInfo.layer.score" [ngClass]="{'good' : layerInfo.layer.score < 3, 'average' : layerInfo.layer.score == 3, 'bad' : layerInfo.layer.score > 3}">{{ 'SCORE' | translate }} : {{layerInfo.layer.score}} 

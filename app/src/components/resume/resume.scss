@@ -3,10 +3,25 @@ component-resume-view {
     font-size: medium;
   }
 
-  #layerImg{
-    height: 280px;
+
+  #imgBlock {
+    width: 60%;
     display: block;
   }
+
+  #layerImg{
+    min-height : 200px;
+    max-height : 300px;
+    display: block;
+  }
+
+  #layerImg img {
+    margin-top : 5%;
+    height :50%;
+    min-height : 200px;
+    max-height : 210px;
+  }
+
 
   #layerDetails{
     display: block;

@@ -13,7 +13,7 @@ export class LayerInfo {
   public img?: string;
   public layer?: Layer;
 
-  public constructor(layer : Layer) {
+  public constructor(layer: Layer) {
     this.layer = layer;
   }
 }
@@ -35,7 +35,7 @@ export class ResumeComponent {
     public navCtrl: NavController,
     private platform: Platform,
     private translate: TranslateService,
-    private iab: InAppBrowser) {}
+    private iab: InAppBrowser) { }
 
   ngOnInit() {
     console.log(this.resume);
@@ -65,7 +65,7 @@ export class ResumeComponent {
         this.file.checkFile(cordova.file.externalDataDirectory, layer.picture).then(_ => {
           //read picture
           this.file.readAsDataURL(cordova.file.externalDataDirectory, layer.picture).then((pictureAsBase64) => {
-            this.layerArray[layer.num - 1].img =  pictureAsBase64;
+            this.layerArray[layer.num - 1].img = pictureAsBase64;
             this.layerArray = this.layerArray.slice(); // Good for re-update the view https://stackoverflow.com/questions/39196766/angular-2-do-not-refresh-view-after-array-push-in-ngoninit-promise?answertab=votes#tab-top
           }).catch(err => {
             console.log(err);
@@ -77,17 +77,28 @@ export class ResumeComponent {
       }
 
 
+    } else {
+      this.defaultPicture = "./assets/icon/generic-image.png";
+      //init array
+      this.layerArray = [];
+      for (let layer of this.resume.layers)  //init all layers before read pictures of layer
+        this.layerArray.push(new LayerInfo(layer));
+      for (let layer of this.resume.layers) { //read all layers
+        this.layerArray[layer.num - 1].img = this.defaultPicture;
+      }
+      this.imageFileBlock = this.defaultPicture;
+
     }
   }
 
   openMap(event) {
     event.stopPropagation();
 
-    const browser = this.iab.create("http://maps.google.com/maps?q="+this.resume.geolocation.latitude+","+this.resume.geolocation.longitude);
+    const browser = this.iab.create("http://maps.google.com/maps?q=" + this.resume.geolocation.latitude + "," + this.resume.geolocation.longitude);
     browser.show();
   }
 
-  exportTest(event){
+  exportTest(event) {
     this.navCtrl.push(ExportPage, { test: this.resume });
   }
 }
