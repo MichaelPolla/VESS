@@ -3,7 +3,6 @@
     <ion-title>{{pageTitle}}</ion-title>
 
     <ion-buttons end *ngIf="!isConsultation">
-      <button ion-button icon-only (click)="addItem()"><ion-icon name="add"></ion-icon></button>
       <button ion-button icon-only (click)="switchEditMode()"><ion-icon name="create"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
@@ -30,6 +29,10 @@
       </button>
 
     </ion-item>
+    <ion-fab right bottom *ngIf="!isConsultation">
+      <button ion-fab color="brown" (click)="addItem()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
 
   </ion-list>
+  
 </ion-content>
