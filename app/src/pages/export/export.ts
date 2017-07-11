@@ -75,12 +75,20 @@ export class ExportPage {
         csv += 'layer,'+layer.num+','+layer.minThickness+'-'+layer.maxThickness+','+layer.thickness+','+layer.score+','+'no image,'+','+layer.comment+'\r\n';
       }
     }
-    let pathFileBloc = this.test.picture.split("/"); //split path
 
+    let pathFileBloc;
+    if(this.test.picture!=undefined){
+      pathFileBloc = this.test.picture.split("/"); //split path
+      pathFileBloc = pathFileBloc[1];
+    }
+    else{
+      pathFileBloc = 'no image'
+    }
+    
     if(this.test.geolocation!=undefined)
-      csv += 'test,'+this.test.name+','+'0-'+this.test.thickness+','+this.test.thickness+','+this.test.score+','+pathFileBloc[1]+','+this.test.date+','+this.test.comment+','+this.test.geolocation.latitude+','+this.test.geolocation.longitude+'\r\n';
+      csv += 'test,'+this.test.name+','+'0-'+this.test.thickness+','+this.test.thickness+','+this.test.score+','+pathFileBloc+','+this.test.date+','+this.test.comment+','+this.test.geolocation.latitude+','+this.test.geolocation.longitude+'\r\n';
     else
-      csv += 'test,'+this.test.name+','+'0-'+this.test.thickness+','+this.test.thickness+','+this.test.score+','+pathFileBloc[1]+','+this.test.date+','+this.test.comment+','+''+','+''+'\r\n';
+      csv += 'test,'+this.test.name+','+'0-'+this.test.thickness+','+this.test.thickness+','+this.test.score+','+pathFileBloc+','+this.test.date+','+this.test.comment+','+''+','+''+'\r\n';
     return csv;
   }
 
