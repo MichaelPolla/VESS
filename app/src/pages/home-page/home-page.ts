@@ -22,7 +22,7 @@ import { TranslateProvider } from './../../providers/translate/translate';
 })
 export class HomePage {
   user: User;
-  appVersion: string = "1.0.0"; // Could be useful for compatibility purpose in the future
+  appVersion: string = "0.9.1"; // Could be useful for compatibility purpose in the future
 
   constructor(
     private dataService: DataService,
@@ -42,11 +42,6 @@ export class HomePage {
         this.translate.setLang('fr'); // Default language (before the user sets the one s/he prefers).
       }
     });
-
-    let showTestResult;
-    if (showTestResult = this.navParams.get('showTestResult') != null) {
-      this.showResume(showTestResult)
-    }
   }
 
   ionViewDidEnter() {
@@ -86,10 +81,5 @@ export class HomePage {
         this.toasts.showToast("Cette fonctionnalité n'est pas encore disponible.");
         break;
     }
-  }
-
-  showResume(currentTest: Test) {
-    let modal = this.modalCtrl.create(ModalPicturePage, { type: "resume", resume: currentTest });
-    modal.present();
   }
 }
