@@ -71,7 +71,7 @@
     <ion-label stacked color="brown">{{ 'BLOCK_SIZE' | translate }}</ion-label>
     {{resume.thickness}} cm
   </p>
-  <label *ngIf="resume.comment">{{ 'COMMENT' | translate }}: </label> <p>{{resume.comment}}</p>
+  <ion-label stacked color="brown" *ngIf="resume.comment">{{ 'COMMENT' | translate }}: </ion-label> <p>{{resume.comment}}</p>
 
 
   <!-- LAYERS -->
