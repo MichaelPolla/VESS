@@ -29,7 +29,7 @@ export class VerifNotationPage {
   private currentTest: Test;
   private nextLayerIndex: number;
   private comment: string;
-  public title:string;
+  public title: string;
   public layerNumber: number;
 
   constructor(public navCtrl: NavController,
@@ -47,7 +47,7 @@ export class VerifNotationPage {
     this.currentTest = this.dataService.getCurrentTest();
     this.currentLayer.comment = "";
     this.layerNumber = this.currentLayer.num;
-    this.title = this.translate.get('NOTATION_VERIFICATION') + " " + this.layerNumber + "  ("+this.currentLayer.minThickness+"-"+this.currentLayer.maxThickness+" cm)";
+    this.title = this.translate.get('NOTATION_VERIFICATION') + " " + this.layerNumber + "  (" + this.currentLayer.minThickness + "-" + this.currentLayer.maxThickness + " cm)";
     this.nextLayerIndex = this.currentTest.layers.indexOf(this.currentLayer) + 1;
 
     if (!this.platform.is('core')) {
@@ -264,25 +264,30 @@ export class VerifNotationPage {
   }
 
   private calculateAndShowTestScore() {
-    let testScore = 0;
 
-    let blockThickness = this.currentTest.thickness;
-    for (let i = 0; i < this.currentTest.layers.length; i++) {
-      let layer = this.currentTest.layers[i];
-      testScore += (layer.score * layer.thickness) / blockThickness;
-    }
-    testScore = Utils.round(testScore, 1);
-
+    //indicative score
+    let testScoreIndicatif = 0
     switch (this.currentTest.state) {
-      case "STONY_SOIL":
-        this.currentTest.layers.push({ num: this.currentLayer.num + 1, thickness: 30 - this.currentTest.thickness, score: 3, 
-          comment: this.translate.get('STONY_SOIL'), minThickness: this.currentLayer.minThickness + this.currentLayer.thickness, maxThickness: 30 })
+      case "STONY_SOIL": 
+        testScoreIndicatif = this.calcTestScore()
+        this.currentTest.comment = "\r\n Score " + this.translate.get("SCORE_RELIABILITY") + ": " + testScoreIndicatif
+        this.currentTest.layers.push({
+          num: this.currentLayer.num + 1, thickness: 30 - this.currentTest.thickness, score: 3,
+          comment: this.translate.get('STONY_SOIL'), minThickness: this.currentLayer.minThickness + this.currentLayer.thickness, maxThickness: 30
+        })
         break;
       case "TOO_HARD_SOIL":
-        this.currentTest.layers.push({ num: this.currentLayer.num + 1, thickness: 30 - this.currentTest.thickness, score: 5, 
-          comment: this.translate.get('TOO_HARD_SOIL'), minThickness: this.currentLayer.minThickness + this.currentLayer.thickness, maxThickness: 30 })
+        testScoreIndicatif = this.calcTestScore()
+        this.currentTest.comment =  "\r\n Score " + this.translate.get("SCORE_RELIABILITY") + ": " + testScoreIndicatif
+        this.currentTest.layers.push({
+          num: this.currentLayer.num + 1, thickness: 30 - this.currentTest.thickness, score: 5,
+          comment: this.translate.get('TOO_HARD_SOIL'), minThickness: this.currentLayer.minThickness + this.currentLayer.thickness, maxThickness: 30
+        })
         break;
     }
+
+    let testScore = this.calcTestScore()
+
 
     this.dataService.getUserInfo().then((value) => {
       if (value != null) {
@@ -294,16 +299,27 @@ export class VerifNotationPage {
     this.currentTest.score = testScore;
     this.dataService.saveParcels();
     //show resume
-    this.modalCtrl.create(ModalPicturePage, {type: "resume", resume: this.currentTest}).present();
+    this.modalCtrl.create(ModalPicturePage, { type: "resume", resume: this.currentTest }).present();
     //go to the home view
     this.navCtrl.popToRoot();
+  }
+
+  calcTestScore() {
+    let score = 0;
+    let blockThickness = this.currentTest.thickness;
+    for (let i = 0; i < this.currentTest.layers.length; i++) {
+      let layer = this.currentTest.layers[i];
+      score += (layer.score * layer.thickness) / blockThickness;
+    }
+    score = Utils.round(score, 1);
+    return score;
   }
 
   addLayerComment() {
     let alert = this.alertCtrl.create({
       title: this.translate.get('COMMENT'),
       message: this.translate.get('COMMENT_BLOCK'),
-      inputs:[
+      inputs: [
         {
           name: 'comment',
           placeholder: this.translate.get('COMMENT'),

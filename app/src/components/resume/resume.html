@@ -40,9 +40,6 @@
       <ion-label stacked color="brown">{{ 'FINAL_SCORE_OF_TEST' | translate }} </ion-label>
       <strong *ngIf="resume.score" [ngClass]="{'good' : resume.score < 3, 'average' : resume.score == 3, 'bad' : resume.score > 3}">
         {{resume.score}} 
-        <span *ngIf="resume.state=='STONY_SOIL' || resume.state=='TOO_HARD_SOIL'">
-          {{ 'SCORE_RELIABILITY' | translate}}
-        </span>
       </strong>
     </ion-col>
   </ion-row>
@@ -97,9 +94,6 @@
       <div id="layerDetails">
       <p>
         <strong *ngIf="layerInfo.layer.score" [ngClass]="{'good' : layerInfo.layer.score < 3, 'average' : layerInfo.layer.score == 3, 'bad' : layerInfo.layer.score > 3}">{{ 'SCORE' | translate }} : {{layerInfo.layer.score}} 
-        <span *ngIf="(resume.state=='STONY_SOIL' || resume.state=='TOO_HARD_SOIL') && layerInfo.layer.num ==lastNumLayer ">
-            {{ 'SCORE_RELIABILITY' | translate}}
-        </span>
         </strong>
       </p>
       <p>
