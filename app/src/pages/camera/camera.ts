@@ -50,11 +50,11 @@ export class CameraPage {
 
     this.stepView = this.navParams.get('stepView');
     this.currentTest = this.dataService.getCurrentTest();
-    this.currentTest.comment = "";
 
     let filePath = "";
     switch (this.stepView) {
       case 1://test
+        this.currentTest.comment = "";
         this.title = translate.get('PICTURE_OF_WHOLE_BLOCK');
         this.dirName = "blocks";
         //check if file exist
@@ -153,6 +153,7 @@ export class CameraPage {
     if (this.isOfagUser && this.imageFile == this.defaultPicture) { // OFAG user must take a picture
       this.toasts.showToast(this.translate.get('PLEASE_TAKE_PICTURE'));
     } else {
+      this.dataService.saveParcels();
       switch (this.stepView) {
         case 1:
           this.navCtrl.push(DefiningLayerPage, {
@@ -189,9 +190,6 @@ export class CameraPage {
     }
     let blob = new Blob(byteArrays, { type: contentType });
 
-    // alternative way WITHOUT chunking the base64 data
-    // let blob = new Blob([atob(b64Data)],  {type: contentType});
-
     return blob;
   }
 
@@ -218,6 +216,7 @@ export class CameraPage {
           text: this.translate.get('ADD'),
           handler: data => {
             this.currentTest.comment = data.comment;
+            console.log(this.currentTest)
           }
         }
       ]

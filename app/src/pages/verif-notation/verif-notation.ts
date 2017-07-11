@@ -295,7 +295,8 @@ export class VerifNotationPage {
     this.dataService.saveParcels();
     //show resume
     this.modalCtrl.create(ModalPicturePage, {type: "resume", resume: this.currentTest}).present();
-    this.navCtrl.push(HomePage);
+    //go to the home view
+    this.navCtrl.popToRoot();
   }
 
   addLayerComment() {
@@ -321,6 +322,7 @@ export class VerifNotationPage {
           text: this.translate.get('ADD'),
           handler: data => {
             this.currentLayer.comment = data.comment;
+            this.dataService.saveParcels();
           }
         }
       ]
