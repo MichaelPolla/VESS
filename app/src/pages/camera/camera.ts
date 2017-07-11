@@ -1,7 +1,7 @@
 import { Geoloc } from './../../models/geoloc';
 import { Test, Layer } from './../../models/parcel';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 
@@ -39,6 +39,7 @@ export class CameraPage {
 
   constructor(
     private camera: Camera,
+    public alertCtrl: AlertController,
     private dataService: DataService,
     private file: File,
     public navCtrl: NavController,
@@ -49,6 +50,7 @@ export class CameraPage {
 
     this.stepView = this.navParams.get('stepView');
     this.currentTest = this.dataService.getCurrentTest();
+    this.currentTest.comment = "";
 
     let filePath = "";
     switch (this.stepView) {
@@ -63,8 +65,8 @@ export class CameraPage {
       case 5://block
         this.currentLayer = this.dataService.getCurrentLayer();
         this.layerNumber = this.currentLayer.num;
-        
-        this.title = this.translate.get('PICTURE_OF_LAYER') + " " + this.layerNumber + "  ("+this.currentLayer.minThickness+"-"+this.currentLayer.maxThickness+" cm)";
+
+        this.title = this.translate.get('PICTURE_OF_LAYER') + " " + this.layerNumber + "  (" + this.currentLayer.minThickness + "-" + this.currentLayer.maxThickness + " cm)";
         this.dirName = "layers";
         filePath = this.dataService.getCurrentLayer().picture;
         this.defaultPicture = "./assets/icon/generic-image.png";
@@ -191,5 +193,35 @@ export class CameraPage {
     // let blob = new Blob([atob(b64Data)],  {type: contentType});
 
     return blob;
+  }
+
+  addTestComment() {
+    let alert = this.alertCtrl.create({
+      title: this.translate.get('COMMENT'),
+      message: this.translate.get('COMMENT_TEST'),
+      inputs:[
+        {
+          name: 'comment',
+          placeholder: this.translate.get('COMMENT'),
+          type: 'text'
+        }]
+      ,
+      buttons: [
+        {
+          text: this.translate.get('CANCEL'),
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: this.translate.get('ADD'),
+          handler: data => {
+            this.currentTest.comment = data.comment;
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

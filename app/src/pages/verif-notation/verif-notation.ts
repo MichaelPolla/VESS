@@ -28,7 +28,6 @@ export class VerifNotationPage {
   private currentLayer: Layer;
   private currentTest: Test;
   private nextLayerIndex: number;
-  private lastLayer: Boolean = false;
   private comment: string;
   public title:string;
   public layerNumber: number;
@@ -46,12 +45,10 @@ export class VerifNotationPage {
   ionViewDidLoad() {
     this.currentLayer = this.dataService.getCurrentLayer();
     this.currentTest = this.dataService.getCurrentTest();
+    this.currentLayer.comment = "";
     this.layerNumber = this.currentLayer.num;
     this.title = this.translate.get('NOTATION_VERIFICATION') + " " + this.layerNumber + "  ("+this.currentLayer.minThickness+"-"+this.currentLayer.maxThickness+" cm)";
     this.nextLayerIndex = this.currentTest.layers.indexOf(this.currentLayer) + 1;
-    if (this.nextLayerIndex == this.currentTest.layers.length) {
-      this.lastLayer = true;
-    }
 
     if (!this.platform.is('core')) {
       this.rulerService.getHeightStyle(846, 56).then((value: number) => {
@@ -295,10 +292,39 @@ export class VerifNotationPage {
     });
     this.currentTest.isCompleted = true;
     this.currentTest.score = testScore;
-    this.currentTest.comment = this.comment;
     this.dataService.saveParcels();
     let toastMsg = this.translate.get('FINAL_SCORE', { score: testScore });
     this.toasts.showToast(toastMsg, 5000);
     this.navCtrl.push(HomePage);
+  }
+
+  addLayerComment() {
+    let alert = this.alertCtrl.create({
+      title: this.translate.get('COMMENT'),
+      message: this.translate.get('COMMENT_BLOCK'),
+      inputs:[
+        {
+          name: 'comment',
+          placeholder: this.translate.get('COMMENT'),
+          type: 'text'
+        }]
+      ,
+      buttons: [
+        {
+          text: this.translate.get('CANCEL'),
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: this.translate.get('ADD'),
+          handler: data => {
+            this.currentLayer.comment = data.comment;
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

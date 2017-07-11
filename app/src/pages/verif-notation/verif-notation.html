@@ -2,6 +2,9 @@
 
   <ion-navbar>
     <ion-title>{{title}}</ion-title>
+    <ion-buttons end >
+      <button ion-button icon-only (click)="addLayerComment()"><ion-icon name="text"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -20,8 +23,6 @@
       </ion-item>
     </ion-list>
   </h3>
-  <h3 *ngIf="lastLayer"> {{'VALIDATION_ADD_COMMENT'| translate }} </h3>
-  <ion-textarea placeholder="Enter a description" *ngIf="lastLayer" [(ngModel)]="comment"></ion-textarea>
 
   <img class="ruler" src='./assets/icon/ruler.png' [style.height.px]="heightRuler" />
 </ion-content>

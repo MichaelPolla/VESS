@@ -2,6 +2,9 @@
 
   <ion-navbar>
     <ion-title>{{title}}</ion-title>
+    <ion-buttons end *ngIf="stepView==1">
+      <button ion-button icon-only (click)="addTestComment()"><ion-icon name="text"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
