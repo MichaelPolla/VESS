@@ -13,12 +13,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'tutorial.html',
 })
 export class TutorialPage {
-
+  public items: Array<{ title: string, picture: string, text: String}>;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TutorialPage');
+    this.items = [];
+    this.items.push({title: "Extraire le bloc", picture: "./assets/gifs/extraction.gif", text:"swekfjoief iosjf fijw ofijw ofij weofj wef"});
+    this.items.push({title: "Ouverture du bloc", picture: "./assets/gifs/ouverture.gif", text:"rww rth fijw ofijw ofthirthj weofj wef"});
+    this.items.push({title: "Extraire le bloc", picture: "./assets/gifs/extraction.gif", text:"thwr hrt fijw ofijw ofij trth wef"});
+    this.items.push({title: "Ouverture du bloc", picture: "./assets/gifs/ouverture.gif", text:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus venenatis at diam ac mattis. Aenean nisl neque, scelerisque et velit sit amet, scelerisque auctor quam. Quisque aliquet scelerisque faucibus. Fusce tempus faucibus arcu quis blandit. Donec vitae interdum quam. Duis eget maximus mi. Nulla dapibus tempus turpis quis lacinia. Pellentesque pulvinar, ligula ac lobortis laoreet, lacus nisi sollicitudin nunc, quis ornare mauris velit sit amet nisi. Proin egestas eleifend turpis, in accumsan tellus congue a. Phasellus tristique justo id turpis laoreet vulputate. In d sf dsffvesr owiejv coijvc oej voiwejv oiwejv oiwej voiwej voiwej voije voijwe ovijwe oivj weoivj weoivj woeijv owiejv oiwejv oiwejv oiwejvo weoij weoivj weoijv oi wiejv oiwj voiwej voiwejvoiwej voiwej oiwej voiwej voijwe voijweeoijweov jweoivj owiejv oiwejv e222222222"});
+    console.log(this.items);
   }
 
 }

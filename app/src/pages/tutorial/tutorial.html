@@ -14,5 +14,18 @@
 
 
 <ion-content padding>
-
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let item of items"> 
+      <ion-card>
+        <ion-item >
+          <ion-label stacked color="brown" id="title">{{item.title}}</ion-label>
+        </ion-item>
+        <img src="{{item.picture}}" style="text-align:center;">
+        
+        <ion-card-content >
+          <p>{{item.text}}</p>
+        </ion-card-content>
+      </ion-card>
+   </ion-slide>
+  </ion-slides>
 </ion-content>
