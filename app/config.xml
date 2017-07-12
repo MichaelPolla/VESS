@@ -65,4 +65,5 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value=" " />
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
+    <engine name="android" spec="~6.1.2" />
 </widget>

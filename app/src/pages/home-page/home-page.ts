@@ -1,3 +1,4 @@
+import { StructuralQualityPage } from './../structural-quality/structural-quality';
 import { AboutPage } from './../about/about';
 import { Test } from './../../models/parcel';
 import { User } from './../../models/user';
@@ -67,6 +68,9 @@ export class HomePage {
         break;
       case "consultation":
         this.navCtrl.push(ParcelsTestsPage, { isConsultation: true });
+        break;
+      case "structural_quality":
+        this.navCtrl.push(StructuralQualityPage);
         break;
       case "settings":
         this.navCtrl.push(SettingsPage);

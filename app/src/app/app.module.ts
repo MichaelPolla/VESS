@@ -33,6 +33,7 @@ import { ResultsPage } from '../pages/results/results';
 import { VerifNotationPage } from '../pages/verif-notation/verif-notation';
 import { ConsultationParcelsPage} from '../pages/consultation-parcels/consultation-parcels'
 import { SettingsPage } from '../pages/settings/settings';
+import { StructuralQualityPage } from './../pages/structural-quality/structural-quality';
 
 // Providers
 import { DataService } from '../providers/data-service';
@@ -71,7 +72,8 @@ export function createTranslateLoader(http: Http) {
     SlidePictureComponent,
     ResumeComponent,
     ConsultationParcelsPage,
-    SettingsPage
+    SettingsPage,
+    StructuralQualityPage
   ],
   imports: [
     BrowserModule,
@@ -106,7 +108,8 @@ export function createTranslateLoader(http: Http) {
     SlidePictureComponent,
     ResumeComponent,
     ConsultationParcelsPage,
-    SettingsPage
+    SettingsPage,
+    StructuralQualityPage
   ],
   providers: [
     Camera,
