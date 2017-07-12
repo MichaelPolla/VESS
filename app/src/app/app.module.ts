@@ -1,3 +1,4 @@
+import { TutorialPage } from './../pages/tutorial/tutorial';
 import { AboutPage } from './../pages/about/about';
 import { NgModule } from '@angular/core';
 import { IonicStorageModule } from '@ionic/storage';
@@ -73,7 +74,8 @@ export function createTranslateLoader(http: Http) {
     ResumeComponent,
     ConsultationParcelsPage,
     SettingsPage,
-    StructuralQualityPage
+    StructuralQualityPage,
+    TutorialPage
   ],
   imports: [
     BrowserModule,
@@ -109,7 +111,8 @@ export function createTranslateLoader(http: Http) {
     ResumeComponent,
     ConsultationParcelsPage,
     SettingsPage,
-    StructuralQualityPage
+    StructuralQualityPage,
+    TutorialPage
   ],
   providers: [
     Camera,

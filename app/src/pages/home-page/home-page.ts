@@ -1,3 +1,4 @@
+import { TutorialPage } from './../tutorial/tutorial';
 import { StructuralQualityPage } from './../structural-quality/structural-quality';
 import { AboutPage } from './../about/about';
 import { Test } from './../../models/parcel';
@@ -71,6 +72,9 @@ export class HomePage {
         break;
       case "structural_quality":
         this.navCtrl.push(StructuralQualityPage);
+        break;
+      case "tutorial":
+        this.navCtrl.push(TutorialPage);
         break;
       case "settings":
         this.navCtrl.push(SettingsPage);
