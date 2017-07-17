@@ -19,7 +19,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Toast } from '@ionic-native/toast';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 // Pages
 import { CameraPage } from '../pages/camera/camera';
@@ -120,7 +119,7 @@ export function createTranslateLoader(http: Http) {
     SettingsPage,
     StructuralQualityPage,
     TutorialPage,
-    
+
     GalleryModal
   ],
   providers: [
