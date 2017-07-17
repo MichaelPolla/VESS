@@ -19,6 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Toast } from '@ionic-native/toast';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 // Pages
 import { CameraPage } from '../pages/camera/camera';
@@ -41,6 +42,9 @@ import { DataService } from '../providers/data-service';
 import { RulerService } from '../providers/ruler-service';
 import { Toasts } from '../providers/toasts';
 import { Utils } from '../providers/utils';
+import { GalleryModal } from 'ionic-gallery-modal';
+import { ZoomableImage } from 'ionic-gallery-modal';
+
 
 // Component
 import { FooterComponent } from '../components/footer/footer';
@@ -75,7 +79,10 @@ export function createTranslateLoader(http: Http) {
     ConsultationParcelsPage,
     SettingsPage,
     StructuralQualityPage,
-    TutorialPage
+    TutorialPage,
+
+    GalleryModal,
+    ZoomableImage,
   ],
   imports: [
     BrowserModule,
@@ -112,7 +119,9 @@ export function createTranslateLoader(http: Http) {
     ConsultationParcelsPage,
     SettingsPage,
     StructuralQualityPage,
-    TutorialPage
+    TutorialPage,
+    
+    GalleryModal
   ],
   providers: [
     Camera,

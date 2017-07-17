@@ -8,11 +8,36 @@
 
   <ion-navbar>
     <ion-title>{{ 'STRUCTURAL_QUALITY' | translate }}</ion-title>
+    <ion-buttons end >
+      <button ion-button icon-only (click)="openModal()"><ion-icon name="image"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
 
+
+ <!-- <ion-slides class="suit-slider" #SuitSlider initialSlide="0" loop="false" direction="horizontal" pager="true">
+
+    <ion-slide *ngFor="let item of list">
+
+      <ion-slides #CardSlider initialSlide="0" loop="false" direction="vertical" pager="true">
+
+        <ion-slide *ngFor="let card of item.cards">
+
+          <div class="card">
+            {{title}}
+            <img class="card__img" height="566" [src]="card.img">
+
+          </div>
+
+        </ion-slide>
+
+      </ion-slides>
+
+    </ion-slide>
+
+  </ion-slides>
+  -->
 </ion-content>
