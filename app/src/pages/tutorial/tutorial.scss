@@ -8,16 +8,10 @@ page-tutorial {
       margin-top :2%;
   }
 
-  .swiper-pagination-bullet-active{
-      opacity: 1;
-      background: #ab9371;
-  }
-
    ion-card-content{
       overflow: auto;
-      max-height : 150px;
-      margin-top :2%;
-      margin-bottom: 7%;
+      max-height : 15vh;
+      margin :2%;
    }
 
   p {

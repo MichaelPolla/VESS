@@ -8,7 +8,7 @@
 
   <ion-navbar>
     <ion-title>{{ 'STRUCTURAL_QUALITY' | translate }}</ion-title>
-    <ion-buttons end >
+    <ion-buttons end>
       <button ion-button icon-only (click)="openModal()"><ion-icon name="image"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
@@ -16,28 +16,71 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let item of items">
+
+      <ion-card-title color=brown>
+        {{item.quality}}
+      </ion-card-title>
+      
+      <ion-card color={{item.color}}>
+        <ion-scroll scrollY="true">
+          <ion-card-header>
+            Qualité de la Structure
+          </ion-card-header>
+          <ion-card-content>
+            {{item.qualityTxt}}
+          </ion-card-content>
+
+          <ion-card-header>
+            Taille et Apparence
+          </ion-card-header>
+          <ion-card-content>
+            {{item.sizeAppearance}}
+          </ion-card-content>
+
+          <ion-card-header>
+            Porosité Visible et Racines
+          </ion-card-header>
+          <ion-card-content>
+            {{item.porosity}}
+          </ion-card-content>
+
+          <ion-card-header>
+            Apparence après extraction: même sol mais travail du sol différent
+          </ion-card-header>
+          <ion-card-content>
+            <div>
+              <img src={{item.appearance1}}/>
+              <img src={{item.appearance2}}/>
+            </div>
+          </ion-card-content>
 
 
- <!-- <ion-slides class="suit-slider" #SuitSlider initialSlide="0" loop="false" direction="horizontal" pager="true">
+          <ion-card-header>
+            Traits distrinctifs
+          </ion-card-header>
+          <ion-card-content>
+            <div>
+              <img src={{item.distinctiveFeaturesImg}}/>
+            </div>
+            {{item.distrinctiveFeatureTxt}}
+          </ion-card-content>
 
-    <ion-slide *ngFor="let item of list">
+          <ion-card-header>
+            Apparence des agrégats ou fragments de ~= 1.5cm de diamètre
+          </ion-card-header>
+          <ion-card-content>
+            <div>
+              <img src={{item.aggreagatesImg}}/>
+            </div>
+            {{item.aggreagatesTxt}}
+          </ion-card-content>
 
-      <ion-slides #CardSlider initialSlide="0" loop="false" direction="vertical" pager="true">
 
-        <ion-slide *ngFor="let card of item.cards">
-
-          <div class="card">
-            {{title}}
-            <img class="card__img" height="566" [src]="card.img">
-
-          </div>
-
-        </ion-slide>
-
-      </ion-slides>
-
+        </ion-scroll>
+      </ion-card>
     </ion-slide>
-
   </ion-slides>
-  -->
+
 </ion-content>

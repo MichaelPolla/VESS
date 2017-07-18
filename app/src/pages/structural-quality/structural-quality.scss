@@ -1,8 +1,25 @@
 page-structural-quality {
-    .swiper-container.swiper-container-vertical {
-        height: 566px;
+    #title{
+        font-size: x-large;
+        text-align: center;
     }
-    .suit-slider {
-        height: auto;
+
+    img{
+        display:inline;
+    }
+
+    ion-scroll, ion-card{
+        height : 75vh;
+    }
+
+    ion-card-header{
+        font-weight: bold;
+        overflow: initial;
+        white-space: initial;
+    }
+
+     ion-card-title{
+        font-weight: bolder;
+        margin-top : 0vh !important;
     }
 }
