@@ -270,7 +270,7 @@ export class VerifNotationPage {
     switch (this.currentTest.state) {
       case "STONY_SOIL": 
         testScoreIndicatif = this.calcTestScore()
-        this.currentTest.comment = "\r\n" + this.translate.get("SCORE_INDICATIVE") + ": " + testScoreIndicatif
+        this.currentTest.comment = this.translate.get("SCORE_INDICATIVE") + ": " + testScoreIndicatif + " " +this.currentTest.comment;
         this.currentTest.layers.push({
           num: this.currentLayer.num + 1, thickness: 30 - this.currentTest.thickness, score: 3,
           comment: this.translate.get('STONY_SOIL'), minThickness: this.currentLayer.minThickness + this.currentLayer.thickness, maxThickness: 30
@@ -278,7 +278,7 @@ export class VerifNotationPage {
         break;
       case "TOO_HARD_SOIL":
         testScoreIndicatif = this.calcTestScore()
-        this.currentTest.comment =  "\r\n" + this.translate.get("SCORE_INDICATIVE") + ": " + testScoreIndicatif
+        this.currentTest.comment =  this.translate.get("SCORE_INDICATIVE") + ": " + testScoreIndicatif + " " +this.currentTest.comment;
         this.currentTest.layers.push({
           num: this.currentLayer.num + 1, thickness: 30 - this.currentTest.thickness, score: 5,
           comment: this.translate.get('TOO_HARD_SOIL'), minThickness: this.currentLayer.minThickness + this.currentLayer.thickness, maxThickness: 30
