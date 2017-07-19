@@ -1,3 +1,4 @@
+import { ModalPicturePage } from './../modal-picture/modal-picture';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides, ModalController } from 'ionic-angular';
 import { GalleryModal } from 'ionic-gallery-modal';
@@ -105,6 +106,11 @@ export class StructuralQualityPage {
       initialSlide: 0, // The second image
     });
     modal.present();
+  }
+
+  showModalPicture(imgSrc) {
+    let pictureModal = this.modalCtrl.create(ModalPicturePage, { imgSrc: imgSrc, type: "picture" });
+    pictureModal.present();
   }
 
 

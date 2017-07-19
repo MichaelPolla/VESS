@@ -51,8 +51,8 @@
           </ion-card-header>
           <ion-card-content>
             <div>
-              <img src={{item.appearance1}}/>
-              <img src={{item.appearance2}}/>
+              <img src={{item.appearance1}} (click)="showModalPicture(item.appearance1)"/>
+              <img src={{item.appearance2}} (click)="showModalPicture(item.appearance2)"/>
             </div>
           </ion-card-content>
 
@@ -62,7 +62,7 @@
           </ion-card-header>
           <ion-card-content>
             <div>
-              <img src={{item.distinctiveFeaturesImg}}/>
+              <img src={{item.distinctiveFeaturesImg}} (click)="showModalPicture(item.distinctiveFeaturesImg)"/>
             </div>
             {{item.distrinctiveFeatureTxt}}
           </ion-card-content>
@@ -72,7 +72,7 @@
           </ion-card-header>
           <ion-card-content>
             <div>
-              <img src={{item.aggreagatesImg}}/>
+              <img src={{item.aggreagatesImg}} (click)="showModalPicture(item.aggreagatesImg)"/>
             </div>
             {{item.aggreagatesTxt}}
           </ion-card-content>

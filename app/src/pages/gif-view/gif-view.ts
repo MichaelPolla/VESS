@@ -37,10 +37,10 @@ export class GifViewPage {
     //image in function of step
     switch (this.stepView) {
       case 0:
-        this.imageFile = './assets/gifs/extraction.gif';
+        this.imageFile = './assets/gifs/1extraction_bloc.gif';
         break;
       case 3:
-        this.imageFile = './assets/gifs/ouverture.gif';
+        this.imageFile = './assets/gifs/2ouverture_bloc.gif';
         break;
     }
 
