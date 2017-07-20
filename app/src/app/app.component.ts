@@ -1,3 +1,5 @@
+import { StructuralQualityPage } from './../pages/structural-quality/structural-quality';
+import { TutorialPage } from './../pages/tutorial/tutorial';
 import { Toasts } from './../providers/toasts';
 import { Toast } from '@ionic-native/toast';
 import { User } from './../models/user';
@@ -45,8 +47,8 @@ export class MyApp {
 
       { title: 'PARCEL_NOTATION', component: ParcelsTestsPage, params: { isConsultation: false } },
       { title: 'TESTS_CONSULTATION', component: ParcelsTestsPage, params: { isConsultation: true } },
-      { title: 'STRUCTURAL_QUALITY', component: "notImplemented" },
-      { title: 'TUTORIAL', component: "notImplemented"},
+      { title: 'STRUCTURAL_QUALITY', component: StructuralQualityPage },
+      { title: 'TUTORIAL', component: TutorialPage},
       { title: 'SETTINGS', component: SettingsPage },
       { title: 'ABOUT', component: AboutPage }
     ];
