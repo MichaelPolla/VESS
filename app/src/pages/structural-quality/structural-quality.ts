@@ -85,19 +85,6 @@ export class StructuralQualityPage {
                 aggreagatesImg:"./assets/pictures/aggregat_moins_1cm.png", 
                 aggreagatesTxt:"Agrégats constitués d’agrégats plus petits, maintenus ensemble par les racines. Une très faible pression additionnelle suffit pour obtenir des agrégats de taille <0.6mm environ.",
                 color:"redTab"});
-    /*this.list = [{
-      'title': 'Deck 1', 'cards':
-      [
-        { 'name': 'Card 1', 'img': 'https://princessdeficit.files.wordpress.com/2013/02/image45.jpg' },
-        { 'name': 'Card 2', 'img': 'https://princessdeficit.files.wordpress.com/2013/02/image46.jpg' }
-      ]
-    },
-    {
-      'title': 'Deck 2', 'cards':
-      [
-        { 'name': 'Card 1', 'img': 'https://princessdeficit.files.wordpress.com/2013/02/image47.jpg' },
-        { 'name': 'Card 2', 'img': 'https://princessdeficit.files.wordpress.com/2013/02/image48.jpg' }]
-    }];*/
   }
 
   private openModal() {
