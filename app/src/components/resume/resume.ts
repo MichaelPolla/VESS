@@ -4,8 +4,8 @@ import { NavController, Platform } from 'ionic-angular';
 import { Test } from '../../models/parcel';
 import { File } from '@ionic-native/file';
 import { TranslateService } from '@ngx-translate/core';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ExportPage } from '../../pages/export/export';
+import { BrowserTab } from '@ionic-native/browser-tab';
 
 declare var cordova;
 
@@ -35,10 +35,9 @@ export class ResumeComponent {
     public navCtrl: NavController,
     private platform: Platform,
     private translate: TranslateService,
-    private iab: InAppBrowser) { }
+    private browserTab: BrowserTab) { }
 
   ngOnInit() {
-    console.log(this.resume);
     this.lastNumLayer = this.resume.layers.length;
     if (!this.platform.is('core')) { // Check that we aren't running on desktop
       this.defaultPicture = "./assets/icon/two-layers-example.png";
@@ -92,10 +91,17 @@ export class ResumeComponent {
   }
 
   openMap(event) {
+    
     event.stopPropagation();
 
-    const browser = this.iab.create("http://maps.google.com/maps?q=" + this.resume.geolocation.latitude + "," + this.resume.geolocation.longitude);
-    browser.show();
+    this.browserTab.isAvailable()
+    .then((isAvailable: boolean) => {
+      if (isAvailable) {
+        this.browserTab.openUrl("http://maps.google.com/maps?q=" + this.resume.geolocation.latitude + "," + this.resume.geolocation.longitude )
+      } else {
+        // open URL with InAppBrowser instead or SafariViewController
+      }
+    });
   }
 
   exportTest(event) {
