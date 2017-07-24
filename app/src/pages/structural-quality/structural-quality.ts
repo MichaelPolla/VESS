@@ -40,7 +40,7 @@ export class StructuralQualityPage {
                 distrinctiveFeatureTxt:"Agrégats très finset poreux", 
                 aggreagatesImg:"./assets/pictures/aggregat_moins_1cm.png", 
                 aggreagatesTxt:"Agrégats constitués d’agrégats plus petits, maintenus ensemble par les racines. Une très faible pression additionnelle suffit pour obtenir des agrégats de taille <0.6mm environ.",
-                color:"greenTab"});
+                color:"sq1"});
     this.items.push({ quality: "SQ2 Intact", 
                 qualityTxt:"Agrégats très friables entre les doigts sur la bêche", 
                 sizeAppearance: "Majorité des agrégats <1cm.Le bloc de sol ne tient pas bien surla bêche. Pas de mottes fermées", 
@@ -51,7 +51,7 @@ export class StructuralQualityPage {
                 distrinctiveFeatureTxt:"Agrégats très finset poreux", 
                 aggreagatesImg:"./assets/pictures/aggregat_moins_1cm.png", 
                 aggreagatesTxt:"Agrégats constitués d’agrégats plus petits, maintenus ensemble par les racines. Une très faible pression additionnelle suffit pour obtenir des agrégats de taille <0.6mm environ.",
-                color:"greenTab"});
+                color:"sq2"});
     this.items.push({ quality: "SQ3 Ferme", 
                 qualityTxt:"Agrégats très friables entre les doigts sur la bêche", 
                 sizeAppearance: "Majorité des agrégats <1cm.Le bloc de sol ne tient pas bien surla bêche. Pas de mottes fermées", 
@@ -62,7 +62,7 @@ export class StructuralQualityPage {
                 distrinctiveFeatureTxt:"Agrégats très finset poreux", 
                 aggreagatesImg:"./assets/pictures/aggregat_moins_1cm.png", 
                 aggreagatesTxt:"Agrégats constitués d’agrégats plus petits, maintenus ensemble par les racines. Une très faible pression additionnelle suffit pour obtenir des agrégats de taille <0.6mm environ.",
-                color:"yellowTab"});
+                color:"sq3"});
     this.items.push({ quality: "SQ4 Compact", 
                 qualityTxt:"Agrégats très friables entre les doigts sur la bêche", 
                 sizeAppearance: "Majorité des agrégats <1cm.Le bloc de sol ne tient pas bien surla bêche. Pas de mottes fermées", 
@@ -73,7 +73,7 @@ export class StructuralQualityPage {
                 distrinctiveFeatureTxt:"Agrégats très finset poreux", 
                 aggreagatesImg:"./assets/pictures/aggregat_moins_1cm.png", 
                 aggreagatesTxt:"Agrégats constitués d’agrégats plus petits, maintenus ensemble par les racines. Une très faible pression additionnelle suffit pour obtenir des agrégats de taille <0.6mm environ.",
-                color:"redTab"});
+                color:"sq4"});
     this.items.push({ quality: "SQ5 Très compact", 
                 qualityTxt:"Agrégats très friables entre les doigts sur la bêche", 
                 sizeAppearance: "Majorité des agrégats <1cm.Le bloc de sol ne tient pas bien surla bêche. Pas de mottes fermées", 
@@ -84,7 +84,7 @@ export class StructuralQualityPage {
                 distrinctiveFeatureTxt:"Agrégats très finset poreux", 
                 aggreagatesImg:"./assets/pictures/aggregat_moins_1cm.png", 
                 aggreagatesTxt:"Agrégats constitués d’agrégats plus petits, maintenus ensemble par les racines. Une très faible pression additionnelle suffit pour obtenir des agrégats de taille <0.6mm environ.",
-                color:"redTab"});
+                color:"sq5"});
   }
 
   private openModal() {
