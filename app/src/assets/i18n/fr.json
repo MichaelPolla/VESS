@@ -47,6 +47,7 @@
   "LAYER_APPEARANCE": "Apparence de la couche",
   "LAYER_SIZE": "Taille de la couche",
   "LAYER_TITLE" : "Détails des couches",
+  "MISSING_TEXT" : "[Texte manquant ({{key}})]",
   "MUST_BE": "doit être",
   "NAME": "Nom",
   "NEXT": "Suivant",

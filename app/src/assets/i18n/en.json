@@ -47,6 +47,7 @@
   "LAYER_APPEARANCE": "Layer appearance",
   "LAYER_SIZE": "Layer size",
   "LAYER_TITLE" : "Layers details",
+  "MISSING_TEXT": "[Missing translation ({{key}})]",
   "MUST_BE": "must be",
   "NAME": "Name",
   "NEXT": "Next",

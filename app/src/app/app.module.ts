@@ -50,11 +50,12 @@ import { FooterComponent } from '../components/footer/footer';
 import { HelpComponent } from '../components/help/help';
 import { SlidePictureComponent } from '../components/slide-picture/slide-picture';
 import { ResumeComponent } from '../components/resume/resume';
-import { TranslateProvider } from '../providers/translate/translate';
+import { TranslateProvider, CustomTranslatePipe } from '../providers/translate/translate';
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ export function createTranslateLoader(http: Http) {
 
     GalleryModal,
     ZoomableImage,
+    CustomTranslatePipe
   ],
   imports: [
     BrowserModule,
