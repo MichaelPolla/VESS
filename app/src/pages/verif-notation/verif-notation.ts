@@ -306,7 +306,7 @@ export class VerifNotationPage {
 
   calcTestScore() {
     let score = 0;
-    let blockThickness = this.currentTest.thickness;
+    let blockThickness = this.currentTest.layers[this.currentTest.layers.length - 1].maxThickness;
     for (let i = 0; i < this.currentTest.layers.length; i++) {
       let layer = this.currentTest.layers[i];
       score += (layer.score * layer.thickness) / blockThickness;

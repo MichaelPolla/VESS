@@ -47,7 +47,10 @@
         "latest-version": "^3.1.0",
         "rxjs": "5.1.1",
         "sw-toolbox": "3.4.0",
-        "zone.js": "^0.8.12"
+        "zone.js": "^0.8.12",
+        "cordova-android": "~6.1.2",
+        "cordova-plugin-browsertab": "~0.2.0",
+        "cordova-plugin-screensize": "~1.3.1"
     },
     "devDependencies": {
         "@ionic/app-scripts": "1.3.7",
@@ -92,9 +95,12 @@
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-geolocation": {
                 "GEOLOCATION_USAGE_DESCRIPTION": " "
-            }
+            },
+            "cordova-plugin-browsertab": {},
+            "cordova-plugin-screensize": {}
         },
         "platforms": [
+            "android",
             "ios"
         ]
     }
