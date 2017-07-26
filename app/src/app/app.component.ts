@@ -11,6 +11,7 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -32,6 +33,7 @@ export class MyApp {
   constructor(
     public menu: MenuController,
     public platform: Platform,
+    private screenOrientation: ScreenOrientation,
     public splashScreen: SplashScreen,
     public statusBar: StatusBar,
     private translate: TranslateProvider,
@@ -70,6 +72,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+      // Lock screen to Portrait
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
     });
   }
 

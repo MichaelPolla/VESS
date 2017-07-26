@@ -14,7 +14,8 @@ import { MyApp } from './app.component';
 import { Camera } from '@ionic-native/camera';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { File } from '@ionic-native/file';
-import { Geolocation} from '@ionic-native/geolocation';
+import { Geolocation } from '@ionic-native/geolocation';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Toast } from '@ionic-native/toast';
@@ -125,12 +126,13 @@ export function createTranslateLoader(http: Http) {
     EmailComposer,
     File,
     Geolocation,
-    RulerService, 
+    RulerService,
+    ScreenOrientation,
     SplashScreen,
     StatusBar,
-    Storage, 
+    Storage,
     Toast,
-    Toasts, 
+    Toasts,
     Utils,
     TranslateProvider
   ]
