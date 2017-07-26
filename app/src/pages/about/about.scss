@@ -1,25 +1,32 @@
 page-about {
-    ion-content{
+    ion-content {
         text-align: center;
     }
 
-    h1{
+    h1 {
         font-weight: bolder;
     }
     
-    label{
+    label {
         font-weight: bold;
     }
 
-    #autors{
+    #authors {
         margin-top : 5%;
     }
 
-    #content{
+    #content {
         margin-top : 5%;
     }
 
-    #version{
+    #version {
         font-size: 12pt;
+    }
+
+    .logo {
+        display: inline-block;
+        height:35px;
+        margin-left:2em;
+        vertical-align: middle;
     }
 }
