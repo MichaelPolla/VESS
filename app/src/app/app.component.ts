@@ -1,7 +1,6 @@
 import { StructuralQualityPage } from './../pages/structural-quality/structural-quality';
 import { TutorialPage } from './../pages/tutorial/tutorial';
 import { Toasts } from './../providers/toasts';
-import { Toast } from '@ionic-native/toast';
 import { User } from './../models/user';
 import { DataService } from './../providers/data-service';
 import { AboutPage } from './../pages/about/about';
