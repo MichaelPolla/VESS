@@ -17,11 +17,7 @@ export class TranslateProvider {
   public get(key: string, interpolateParams?: Object): string {
     let result: string;
     this.translate.get(key, interpolateParams).subscribe((res: string) => {
-      if (res === key) {
-        result = this.get("MISSING_TEXT", { key: key});
-      } else {
-        result = res;
-      }
+      result = (res !== "" && res !== key) ? res : this.get("MISSING_TEXT", { key: key});
     });
     return result;
   }
