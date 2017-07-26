@@ -30,7 +30,6 @@ import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
 import { Notation1Page } from '../pages/notation-1/notation-1';
 import { Notation2Page } from '../pages/notation-2/notation-2';
 import { ParcelsTestsPage } from '../pages/parcels-tests/parcels-tests';
-import { ResultsPage } from '../pages/results/results';
 import { VerifNotationPage } from '../pages/verif-notation/verif-notation';
 import { SettingsPage } from '../pages/settings/settings';
 import { StructuralQualityPage } from './../pages/structural-quality/structural-quality';
@@ -69,7 +68,6 @@ export function createTranslateLoader(http: Http) {
     MyApp,
     Notation2Page,
     ParcelsTestsPage,
-    ResultsPage,
     VerifNotationPage,
     FooterComponent,
     HelpComponent,
@@ -109,7 +107,6 @@ export function createTranslateLoader(http: Http) {
     Notation1Page,
     Notation2Page,
     ParcelsTestsPage,
-    ResultsPage,
     VerifNotationPage,
     FooterComponent,
     HelpComponent,
