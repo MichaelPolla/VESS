@@ -91,6 +91,14 @@ export class StructuralQualityPage {
     });
   }
 
+  protected openModal() {
+    let modal = this.modalCtrl.create(GalleryModal, {
+      photos: this.photos,
+      initialSlide: 0, // The second image
+    });
+    modal.present();
+  }
+
   showModalPicture(imgSrc) {
     let pictureModal = this.modalCtrl.create(ModalPicturePage, { imgSrc: imgSrc, type: "picture" });
     pictureModal.present();
