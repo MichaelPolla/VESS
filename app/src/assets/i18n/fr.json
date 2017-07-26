@@ -1,12 +1,14 @@
 {
+  "APP_DESCRIPTION": "Cette application permet d'effectuer le test à la bêche (VESS).",
   "APP_TITLE": "VESS (Beta)",
   "APP_VERSION": "0.9.1",
-  "ABOUT": "À propos",
-  "ABOUT_FINANCE_LABEL": "Soutien financier",
-  "ABOUT_IT_LABEL": "Développeurs",
-  "ABOUT_MOVIE_LABEL": "Montage GIF",
-  "ABOUT_SCIENTIFIC_LABEL": "Auteurs scientifiques",
-  "ABOUT_CONTENT": "Cette application permet d'effectuer le test à la bêche (VESS).",
+  "ABOUT": {
+    "TITLE": "À propos",
+    "DEVELOPERS": "Développeurs",
+    "FINANCIAL_SUPPORT": "Soutiens financiers",
+    "SCIENTIFIC_AUTHORS": "Auteurs scientifiques",
+    "VIDEO_PRODUCTION": "Réalisation vidéos"
+  },
   "ADD": "Ajouter",
   "AGATE_NUMBER": "Numéro Agate",
   "ANONYMOUS": "Anonyme",

@@ -1,12 +1,14 @@
 {
+  "APP_DESCRIPTION": "This application allows to perform a VESS test.",
   "APP_TITLE": "VESS (Beta)",
   "APP_VERSION": "0.9.1",
-  "ABOUT": "About",
-  "ABOUT_FINANCE_LABEL": "Financial support",
-  "ABOUT_IT_LABEL": "Developers",
-  "ABOUT_MOVIE_LABEL": "GIF editing",
-  "ABOUT_SCIENTIFIC_LABEL": "Scientific author",
-  "ABOUT_CONTENT": "This application allows to perform a VESS test.",
+  "ABOUT": {
+    "TITLE": "About",
+    "DEVELOPERS": "Developers",
+    "FINANCIAL_SUPPORT": "Financial support",
+    "SCIENTIFIC_AUTHORS": "Scientific authors",
+    "VIDEO_PRODUCTION": "Réalisation vidéos"
+  },
   "ADD": "Add",
   "AGATE_NUMBER": "Agate number",
   "ANONYMOUS": "Anonymous",
