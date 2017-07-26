@@ -1,9 +1,11 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ 'STRUCTURAL_QUALITY' | translate }}</ion-title>
+    <ion-title>{{ 'STRUCTURE_QUALITY' | translate }}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="openModal()"><ion-icon name="image"></ion-icon></button>
+      <button ion-button icon-only (click)="openModal()">
+        <ion-icon name="image"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 
@@ -16,57 +18,57 @@
       <ion-card-title color=brown>
         {{item.quality}}
       </ion-card-title>
-      
+
       <ion-card color={{item.color}}>
         <ion-scroll scrollY="true">
           <ion-card-header>
-            Qualité de la Structure
+            {{ 'STRUCTURE_QUALITY' | translate }}
           </ion-card-header>
           <ion-card-content>
             {{item.qualityTxt}}
           </ion-card-content>
 
           <ion-card-header>
-            Taille et Apparence
+            {{ 'SIZE_AND_APPEARANCE' | translate }}
           </ion-card-header>
           <ion-card-content>
             {{item.sizeAppearance}}
           </ion-card-content>
 
           <ion-card-header>
-            Porosité Visible et Racines
+            {{ 'VISIBLE_POROSITY_AND_ROOTS' | translate }}
           </ion-card-header>
           <ion-card-content>
             {{item.porosity}}
           </ion-card-content>
 
           <ion-card-header>
-            Apparence après extraction: même sol mais travail du sol différent
+            {{ 'APPEARANCE_AFTER_BREAK_UP' | translate }} : {{ 'SAME_SOIL_DIFFERENT_TILLAGE' | translate }}
           </ion-card-header>
           <ion-card-content>
             <div>
-              <img src={{item.appearance1}} (click)="showModalPicture(item.appearance1)"/>
-              <img src={{item.appearance2}} (click)="showModalPicture(item.appearance2)"/>
+              <img src={{item.appearance1}} (click)="showModalPicture(item.appearance1)" />
+              <img src={{item.appearance2}} (click)="showModalPicture(item.appearance2)" />
             </div>
           </ion-card-content>
 
 
           <ion-card-header>
-            Traits distrinctifs
+            {{ 'DISTINGUISHING_FEATURE' | translate }}
           </ion-card-header>
           <ion-card-content>
             <div>
-              <img src={{item.distinctiveFeaturesImg}} (click)="showModalPicture(item.distinctiveFeaturesImg)"/>
+              <img src={{item.distinctiveFeaturesImg}} (click)="showModalPicture(item.distinctiveFeaturesImg)" />
             </div>
             {{item.distrinctiveFeatureTxt}}
           </ion-card-content>
 
           <ion-card-header>
-            Apparence des agrégats ou fragments de ~= 1.5cm de diamètre
+            {{ 'APPEARANCE_OF_FRAGMENT' | translate }}
           </ion-card-header>
           <ion-card-content>
             <div>
-              <img src={{item.aggreagatesImg}} (click)="showModalPicture(item.aggreagatesImg)"/>
+              <img src={{item.aggreagatesImg}} (click)="showModalPicture(item.aggreagatesImg)" />
             </div>
             {{item.aggreagatesTxt}}
           </ion-card-content>

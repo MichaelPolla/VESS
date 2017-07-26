@@ -47,7 +47,7 @@ export class MyApp {
 
       { title: 'PARCEL_NOTATION', component: ParcelsTestsPage, params: { isConsultation: false } },
       { title: 'TESTS_CONSULTATION', component: ParcelsTestsPage, params: { isConsultation: true } },
-      { title: 'STRUCTURAL_QUALITY', component: StructuralQualityPage },
+      { title: 'STRUCTURE_QUALITY', component: StructuralQualityPage },
       { title: 'TUTORIAL', component: TutorialPage},
       { title: 'SETTINGS', component: SettingsPage },
       { title: 'ABOUT', component: AboutPage }

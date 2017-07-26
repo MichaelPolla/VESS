@@ -1,29 +1,32 @@
 {
-  "APP_TITLE":"VESS (Beta)",
-  "APP_VERSION":"0.9.1",
-  "ABOUT":"À propos",
-  "ABOUT_FINANCE_LABEL":"Soutien financier",
-  "ABOUT_IT_LABEL":"Développeurs",
-  "ABOUT_MOVIE_LABEL":"Montage GIF",
-  "ABOUT_SCIENTIFIC_LABEL":"Auteurs scientifiques",
-  "ABOUT_CONTENT" : "Cette application permet d'effectuer le test à la bêche (VESS).",
+  "APP_TITLE": "VESS (Beta)",
+  "APP_VERSION": "0.9.1",
+  "ABOUT": "À propos",
+  "ABOUT_FINANCE_LABEL": "Soutien financier",
+  "ABOUT_IT_LABEL": "Développeurs",
+  "ABOUT_MOVIE_LABEL": "Montage GIF",
+  "ABOUT_SCIENTIFIC_LABEL": "Auteurs scientifiques",
+  "ABOUT_CONTENT": "Cette application permet d'effectuer le test à la bêche (VESS).",
   "ADD": "Ajouter",
   "AGATE_NUMBER": "Numéro Agate",
   "ANONYMOUS": "Anonyme",
+  "APPEARANCE_AFTER_BREAK_UP": "Apparence après extraction",
+  "APPEARANCE_OF_FRAGMENT": "Apparence des agrégats ou fragments de ≈ 1.5 cm de diamètre",
   "BACK": "Retour",
   "BLOCK_OPENING": "Ouverture du bloc",
   "BLOCK_EXTRACTION": "Extraction du bloc",
   "BLOCK_PICTURE": "Photo du bloc",
   "BLOCK_SIZE": "Taille du bloc",
   "BLOCK_SIZE_TOO_SMALL_PLEASE_SPECIFY_WHY": "Le bloc fait moins de 30 cm. Merci de préciser pourquoi :",
-  "BLOCK_TITLE" : "Détails du bloc",
+  "BLOCK_TITLE": "Détails du bloc",
   "CANCEL": "Annuler",
   "COMMENT": "Commentaires",
-  "COMMENT_BLOCK": "Ajouter un commentaire a la couche",
+  "COMMENT_BLOCK": "Ajouter un commentaire à la couche",
   "COMMENT_TEST": "Ajouter un commentaire au test",
   "DATE": "Date",
   "DEFINING_LAYERS_INSTRUCTIONS": "Indiquez le nombre de couches composant le bloc, et sa taille totale",
   "DEFINITION_OF_LAYERS": "Définition des couches",
+  "DISTINGUISHING_FEATURE": "Traits distinctifs",
   "EDIT": "Éditer",
   "EMAIL_ADDRESS": "Adresse e-mail",
   "ERROR": "Erreur",
@@ -31,6 +34,7 @@
   "ERROR_CREATING_PICTURE_FOLDER": "Erreur lors de la création du répertoire de l'image.",
   "ERROR_SAVING_PICTURE": "Erreur lors de l'enregistrement de l'image.",
   "ERROR_SIZE_OF_LAYERS": "La taille totale des couches ne correspond pas à l'épaisseur du bloc.",
+  "EXPORT": "Exporter",
   "FINAL_SCORE": "Score final : {{score}}",
   "FINAL_SCORE_OF_TEST": "Score final du test :",
   "HELP": "Aide",
@@ -41,13 +45,13 @@
   "HELP_VERIF_SCORE2": "Cochez la ou les proposition(s) qui se rapprochent le plus de votre observation. Pour cela observez, manipulez, ouvrez les agrégats* de diamètre environ égal à 1.5 cm.",
   "HELP_VERIF_SCORE4": "Cochez la ou les proposition(s) qui se rapprochent le plus de votre observation. Pour cela observez, manipulez et ouvrez les fragments* de sol issus de mottes fermées de diamètre environ égal à 1.5 cm.",
   "HELP_UNAVAILABLE": "Aide indisponible.",
-  "HOME":"Accueil",
+  "HOME": "Accueil",
   "LANGUAGE": "Langue",
   "LAYER": "Couche",
   "LAYER_APPEARANCE": "Apparence de la couche",
   "LAYER_SIZE": "Taille de la couche",
-  "LAYER_TITLE" : "Détails des couches",
-  "MISSING_TEXT" : "[Texte manquant ({{key}})]",
+  "LAYER_TITLE": "Détails des couches",
+  "MISSING_TEXT": "[Texte manquant ({{key}})]",
   "MUST_BE": "doit être",
   "NAME": "Nom",
   "NEXT": "Suivant",
@@ -80,6 +84,7 @@
   "PLEASE_FILL_IN_OFAG_ID": "Veuillez renseigner l'identifiant OFAG.",
   "PLEASE_SET_YOUR_USER_INFO_IN_SETTINGS_FIRST": "Veuillez d'abord configurer vos données utilisateur dans les paramètres.",
   "PLEASE_TAKE_PICTURE": "Veuillez prendre une photo.",
+  "SAME_SOIL_DIFFERENT_TILLAGE": "Même sol mais travail du sol différent",
   "SAVE": "Enregistrer",
   "SCORE": "Score",
   "SCORE_INDICATIVE": "Score indicatif sans la dernière couche",
@@ -87,9 +92,50 @@
   "SETTINGS": "Paramètres",
   "SETTINGS_SAVE": "Les données ont bien été enregistrées",
   "SHOW_SUMMARY": "Afficher le résumé",
+  "SIZE_AND_APPEARANCE": "Taille et apparence",
+  "SQ1": {
+    "QUALITY": "SQ1 Friable",
+    "QUALITY_DESCRIPTION": "Agrégats très friables entre les doigts sur la bêche",
+    "SIZE_AND_APPEARANCE": "Majorité des agrégats < 1 cm. Le bloc de sol ne tient pas bien sur la bêche. Pas de mottes fermées.",
+    "POROSITY_AND_ROOTS": "Majorité des agrégats TRÈS poreux. Racines colonisant l'ensemble du sol, bien présentes à l'intérieur ainsi qu'autour des agrégats.",
+    "DISTINGUISHING_FEATURE": "Agrégats très fins et poreux",
+    "APPEARANCE_OF_FRAGMENT": "Agrégats constitués d'agrégats plus petits, maintenus ensemble par les racines. Une très faible pression additionnelle suffit pour obtenir des agrégats de taille < 0.6 mm environ."
+  },
+  "SQ2": {
+    "QUALITY": "SQ2 Intact",
+    "QUALITY_DESCRIPTION": "Agrégats friables entre les doigts",
+    "SIZE_AND_APPEARANCE": "Mélange d'agrégats poreux arronids de 2 mm à 7 cm. Pas de mottes fermées.",
+    "POROSITY_AND_ROOTS": "Majorité des agrégats poreux. Racines colonisant l'ensemble du sol, bien présentes à l'intérieur ainsi qu'autour des agrégats.",
+    "DISTINGUISHING_FEATURE": "Forte porosité des agrégats",
+    "APPEARANCE_OF_FRAGMENT": "Agrégats arrondis et fragiles, se cassant très facilement et très poreux."
+  },
+  "SQ3": {
+    "QUALITY": "SQ3 Ferme",
+    "QUALITY_DESCRIPTION": "Majorité des agrégats se brisent à la main",
+    "SIZE_AND_APPEARANCE": "Mélange d'aggrégats poreux de 2mm à 10 cm, moins de 30% < 1 cm. Présence possible de mottes fermées.",
+    "POROSITY_AND_ROOTS": "Présence possible de pores grossiers visibles et de fentes de retrait. Racines colonisant l'ensemble du sol, bien présentes à l'intérieur ainsi qu'autour des agrégats.",
+    "DISTINGUISHING_FEATURE": "Faible porosité des agrégats",
+    "APPEARANCE_OF_FRAGMENT": "Agrégats plutôt faciles à obtenir. Peu de pores visibles et plutôt arrondis. Racines poussant habituellement à travers les agrégats."
+  },
+  "SQ4": {
+    "QUALITY": "SQ4 Compact",
+    "QUALITY_DESCRIPTION": "Gros effort pour briser les mottes à la main",
+    "SIZE_AND_APPEARANCE": "Principalement mottes fermées sub-angulaires > 10 cm, < 30% des mottes de taille < 7 cm. Structure lamellaire possible.",
+    "POROSITY_AND_ROOTS": "Peu de \"pores grossiers visibles\" et peu de fissures. Pas ou peu de racines au sein des fragments. Racines peu nombreuses et concentrées autour des mottes fermées, dans les \"pores grossiers visibles\" et les fissures.",
+    "DISTINGUISHING_FEATURE": "Racines passant uniquement dans les pores grossiers visibles",
+    "APPEARANCE_OF_FRAGMENT": "Fragments faciles à obtenir quand le sol est humide, possédant une forme cubique avec des bords anguleux et des fissures internes."
+  },
+  "SQ5": {
+    "QUALITY": "SQ5 Très compact",
+    "QUALITY_DESCRIPTION": "Mottes fermées vraiment très difficiles à briser",
+    "SIZE_AND_APPEARANCE": "Principalement mottes fermées angulaires > 10 cm, très peu de mottes de taille < 7 cm.",
+    "POROSITY_AND_ROOTS": "Très peu de \"pores grossiers visibles\" et de fissures. Anoxie possible. Peu ou pas de racines. Pas ou peu de racines au sein des fragments. Racines peu nombreuses et concentrées autour des mottes fermées, dans les \"pores grossiers visibles\" et les fissures.",
+    "DISTINGUISHING_FEATURE": "Couleur gris-bleu possible",
+    "APPEARANCE_OF_FRAGMENT": "Fragments potentiellement difficiles à obtenir même sur sol humide, possédant des bords anguleux."
+  },
   "STONY_SOIL": "Sol caillouteux",
-  "STONY_SOIL_NOTATION": "La note de 3 sera attribué à la couche manquante de {{size}} à 30 cm",
-  "STRUCTURAL_QUALITY": "Type de qualité structurale",
+  "STONY_SOIL_NOTATION": "La note de 3 sera attribuée à la couche manquante de {{size}} à 30 cm",
+  "STRUCTURE_QUALITY": "Qualité de la structure",
   "SURNAME": "Prénom",
   "TAKE_PICTURE": "Prendre une photo",
   "TEST_DATE": "Date du test",
@@ -99,9 +145,43 @@
   "THICKNESS": "Épaisseur",
   "TOO_DRY_SOIL": "Sol trop sec",
   "TOO_HARD_SOIL": "Sol trop dur",
-  "TOO_HARD_SOIL_NOTATION": "La note de 5 sera attribué à la couche manquante de {{size}} à 30 cm",
+  "TOO_HARD_SOIL_NOTATION": "La note de 5 sera attribuée à la couche manquante de {{size}} à 30 cm",
   "TOTAL_LAYERS_SIZE": "Taille totale des couches",
-  "TUTORIAL": "Tutoriel",
+  "TUTORIAL": {
+    "TITLE": "Tutoriel",
+    "STEP1": {
+      "TITLE": "Extraire le bloc",
+      "INSTRUCTIONS": ""
+    },
+    "STEP2": {
+      "TITLE": "Ouverture du bloc en couches",
+      "INSTRUCTIONS": ""
+    },
+    "STEP3": {
+      "TITLE": "Enlever les parties tassées",
+      "INSTRUCTIONS": ""
+    },
+    "STEP4": {
+      "TITLE": "Observation de l'horizon 1",
+      "INSTRUCTIONS": ""
+    },
+    "STEP5": {
+      "TITLE": "Observation de l'horizon 2",
+      "INSTRUCTIONS": ""
+    },
+    "STEP6": {
+      "TITLE": "Observation de l'horizon 3",
+      "INSTRUCTIONS": ""
+    },
+    "STEP7": {
+      "TITLE": "Motte ouverte",
+      "INSTRUCTIONS": ""
+    },
+    "STEP8": {
+      "TITLE": "Motte fermée",
+      "INSTRUCTIONS": ""
+    }
+  },
   "TYPE_OF_SOIL": "Type de sol",
   "USER_NAME": "Nom de l'utilisateur",
   "USER_TYPE": "Type d'utilisateur",
@@ -131,5 +211,6 @@
   "VERIF_SCORE5_CRITERIA1_CHECK2": "Contiennent très peu ou pas de racines",
   "VERIF_SCORE5_CRITERIA2_TITLE": "Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles",
   "VERIF_SCORE5_CRITERIA3_TITLE": "Anoxie possible, couleur gris-bleu (odeur d’œuf pourri)",
+  "VISIBLE_POROSITY_AND_ROOTS": "Porosité visible et racines",
   "YES": "Oui"
 }
