@@ -1,9 +1,7 @@
-import { Camera } from '@ionic-native/camera';
 import { Layer, Test } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, Platform, AlertController } from 'ionic-angular';
 // Pages
-import { HomePage } from './../home-page/home-page';
 import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { Notation1Page } from '../notation-1/notation-1';
 import { CameraPage } from '../camera/camera';
@@ -28,7 +26,6 @@ export class VerifNotationPage {
   private currentLayer: Layer;
   private currentTest: Test;
   private nextLayerIndex: number;
-  private comment: string;
   public title: string;
   public layerNumber: number;
 
@@ -330,9 +327,7 @@ export class VerifNotationPage {
         {
           text: this.translate.get('CANCEL'),
           role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
+          handler: data => {}
         },
         {
           text: this.translate.get('ADD'),

@@ -137,14 +137,11 @@ export class CameraPage {
         }).catch((error) => {
           console.log('Error getting location', error);
         });
-
-
         break;
       case 5:
         this.dataService.getCurrentLayer().picture = this.imageNamePath;
         break;
     }
-
 
     this.dataService.saveParcels();
   }
@@ -197,7 +194,7 @@ export class CameraPage {
     let alert = this.alertCtrl.create({
       title: this.translate.get('COMMENT'),
       message: this.translate.get('COMMENT_TEST'),
-      inputs:[
+      inputs: [
         {
           name: 'comment',
           placeholder: this.translate.get('COMMENT'),

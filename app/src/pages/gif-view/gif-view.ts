@@ -43,7 +43,6 @@ export class GifViewPage {
         this.imageFile = './assets/gifs/2ouverture_bloc.gif';
         break;
     }
-
   }
 
   validationStep() {

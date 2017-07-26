@@ -4,8 +4,6 @@ import { NavController, NavParams, Platform, AlertController } from 'ionic-angul
 
 // Pages
 import { GifViewPage } from '../gif-view/gif-view';
-import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
-import { HomePage } from './../home-page/home-page';
 //Providers
 import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';

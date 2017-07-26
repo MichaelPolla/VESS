@@ -17,10 +17,10 @@ import { TranslateProvider } from './../../providers/translate/translate';
   templateUrl: 'notation-2.html'
 })
 export class Notation2Page {
-  //declaration of field
+
   items: Array<{ title: string, checked: Boolean, imgSrc: String, code2: number }>;
   title: string;
-  subTitle : string;
+  subTitle: string;
   code: number;
   code2: number;
   layerNumber: number;
@@ -42,7 +42,7 @@ export class Notation2Page {
   ionViewDidLoad() {
     this.currentLayer = this.dataService.getCurrentLayer();
     this.layerNumber = this.currentLayer.num;
-    this.title = this.translate.get('NOTATION_OF_LAYER') + " " + this.layerNumber + "  ("+this.currentLayer.minThickness+"-"+this.currentLayer.maxThickness+" cm)";
+    this.title = this.translate.get('NOTATION_OF_LAYER') + " " + this.layerNumber + "  (" + this.currentLayer.minThickness + "-" + this.currentLayer.maxThickness + " cm)";
     this.code = this.navParams.get('code');
 
     if (!this.platform.is('core')) {

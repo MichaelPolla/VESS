@@ -11,8 +11,10 @@ export class ModalPicturePage {
   imgSrc: string;
   type: string;
   helpId: string;
-  resume:Test;
-  constructor(public viewCtrl: ViewController,
+  resume: Test;
+
+  constructor(
+    public viewCtrl: ViewController,
     public navParams: NavParams,
     private platform: Platform) { }
 
@@ -22,7 +24,7 @@ export class ModalPicturePage {
     });
 
     this.type = this.navParams.get('type');
-    
+
     switch (this.type) {
       case 'picture':
         this.imgSrc = this.navParams.get('imgSrc');

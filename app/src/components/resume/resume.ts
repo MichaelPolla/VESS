@@ -65,7 +65,7 @@ export class ResumeComponent {
           //read picture
           this.file.readAsDataURL(cordova.file.externalDataDirectory, layer.picture).then((pictureAsBase64) => {
             this.layerArray[layer.num - 1].img = pictureAsBase64;
-            this.layerArray = this.layerArray.slice(); // Good for re-update the view https://stackoverflow.com/questions/39196766/angular-2-do-not-refresh-view-after-array-push-in-ngoninit-promise?answertab=votes#tab-top
+            this.layerArray = this.layerArray.slice(); // Good for re-update the view https://stackoverflow.com/a/39201747/1975002
           }).catch(err => {
             console.log(err);
           });

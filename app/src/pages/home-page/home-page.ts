@@ -1,16 +1,14 @@
-import { TutorialPage } from './../tutorial/tutorial';
-import { StructuralQualityPage } from './../structural-quality/structural-quality';
-import { AboutPage } from './../about/about';
-import { Test } from './../../models/parcel';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
 
 // Pages
+import { AboutPage } from './../about/about';
 import { ExportPage } from './../export/export';
-import { ModalPicturePage } from '../modal-picture/modal-picture';
 import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 import { SettingsPage } from '../settings/settings';
+import { StructuralQualityPage } from './../structural-quality/structural-quality';
+import { TutorialPage } from './../tutorial/tutorial';
 
 // Providers
 import { DataService } from '../../providers/data-service';
@@ -60,7 +58,6 @@ export class HomePage {
   showPage(pageName: String) {
     switch (pageName) {
       case "notation":
-        console.dir(this.user);
         if (!this.user) {
           this.toasts.showToast(this.translate.get('PLEASE_SET_YOUR_USER_INFO_IN_SETTINGS_FIRST'));
         } else {
@@ -84,9 +81,6 @@ export class HomePage {
         break;
       case "about":
         this.navCtrl.push(AboutPage);
-        break;
-      case "notImplemented":
-        this.toasts.showToast("Cette fonctionnalité n'est pas encore disponible.");
         break;
     }
   }

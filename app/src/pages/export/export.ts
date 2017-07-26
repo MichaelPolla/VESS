@@ -1,12 +1,11 @@
-import { Geoloc } from './../../models/geoloc';
 import { Component } from '@angular/core';
 import { Layer } from './../../models/parcel';
 import { NavController, NavParams, Platform } from 'ionic-angular';
-import { User, UserType } from '../../models/user';
+import { User } from '../../models/user';
 import { Parcel, Test } from '../../models/parcel';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { File } from '@ionic-native/file';
-
+// Providers
 import { DataService } from '../../providers/data-service';
 
 declare var cordova;
@@ -56,39 +55,37 @@ export class ExportPage {
             this.readPicture();
           }
         });
-
       }
     });
-
   }
 
   strJSONToCSV(string) {
-    var csv= ',first name,last name,user type,mail\r\n';
-    csv += 'userInfo,'+this.test.user.firstName+','+this.test.user.lastName+','+this.test.user.userType+','+this.test.user.mail+'\r\n';
+    var csv = ',first name,last name,user type,mail\r\n';
+    csv += 'userInfo,' + this.test.user.firstName + ',' + this.test.user.lastName + ',' + this.test.user.userType + ',' + this.test.user.mail + '\r\n';
     csv += '\r\n';
     csv += ',identifiant,depth,thickness,score,picture,date,comment,latitude,longitude\r\n';
-    for(let layer of this.test.layers){
-      if(layer.picture!=undefined){
+    for (let layer of this.test.layers) {
+      if (layer.picture != undefined) {
         let pathFileLayer = layer.picture.split("/"); //split path 
-        csv += 'layer,'+layer.num+','+layer.minThickness+'-'+layer.maxThickness+','+layer.thickness+','+layer.score+','+pathFileLayer[1]+','+','+layer.comment+'\r\n';
-      }else{
-        csv += 'layer,'+layer.num+','+layer.minThickness+'-'+layer.maxThickness+','+layer.thickness+','+layer.score+','+'no image,'+','+layer.comment+'\r\n';
+        csv += 'layer,' + layer.num + ',' + layer.minThickness + '-' + layer.maxThickness + ',' + layer.thickness + ',' + layer.score + ',' + pathFileLayer[1] + ',' + ',' + layer.comment + '\r\n';
+      } else {
+        csv += 'layer,' + layer.num + ',' + layer.minThickness + '-' + layer.maxThickness + ',' + layer.thickness + ',' + layer.score + ',' + 'no image,' + ',' + layer.comment + '\r\n';
       }
     }
 
     let pathFileBloc;
-    if(this.test.picture!=undefined){
+    if (this.test.picture != undefined) {
       pathFileBloc = this.test.picture.split("/"); //split path
       pathFileBloc = pathFileBloc[1];
     }
-    else{
+    else {
       pathFileBloc = 'no image'
     }
-    
-    if(this.test.geolocation!=undefined)
-      csv += 'test,'+this.test.name+','+'0-'+this.test.thickness+','+this.test.thickness+','+this.test.score+','+pathFileBloc+','+this.test.date+','+this.test.comment+','+this.test.geolocation.latitude+','+this.test.geolocation.longitude+'\r\n';
+
+    if (this.test.geolocation != undefined)
+      csv += 'test,' + this.test.name + ',' + '0-' + this.test.thickness + ',' + this.test.thickness + ',' + this.test.score + ',' + pathFileBloc + ',' + this.test.date + ',' + this.test.comment + ',' + this.test.geolocation.latitude + ',' + this.test.geolocation.longitude + '\r\n';
     else
-      csv += 'test,'+this.test.name+','+'0-'+this.test.thickness+','+this.test.thickness+','+this.test.score+','+pathFileBloc+','+this.test.date+','+this.test.comment+','+''+','+''+'\r\n';
+      csv += 'test,' + this.test.name + ',' + '0-' + this.test.thickness + ',' + this.test.thickness + ',' + this.test.score + ',' + pathFileBloc + ',' + this.test.date + ',' + this.test.comment + ',' + '' + ',' + '' + '\r\n';
     return csv;
   }
 
@@ -165,7 +162,7 @@ export class ExportPage {
   sendEmail(cntReadPicture) {
     // test if all picture are read because promise are async
     if (cntReadPicture == this.test.layers.length + 1) {
-      let testJson:any=Object.assign({},this.test); // copy object
+      let testJson: any = Object.assign({}, this.test); // copy object
 
       //delete field
       delete testJson.isCompleted;

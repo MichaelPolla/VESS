@@ -14,12 +14,6 @@ import { Toasts } from './../../providers/toasts';
 import { TranslateProvider } from '../../providers/translate/translate'
 import { Utils } from '../../providers/utils';
 
-/*
-* TODOs :
-* itemType: use a kind of enum ? to only allow "parcels", "tests" and "blocks"
-*/
-
-
 enum Steps {
   Parcels,
   Tests

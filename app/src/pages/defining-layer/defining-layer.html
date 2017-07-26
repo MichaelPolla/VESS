@@ -12,7 +12,7 @@
     <ion-item>
       <ion-label stacked color="brown">{{ 'BLOCK_SIZE' | translate }} :</ion-label>
       <ion-range min="15" max="40" [(ngModel)]="thickness" color="green" snaps="true" (ionChange)="changeSizeLayers()">
-        <ion-label range-right>{{thickness}} (cm)</ion-label>
+        <ion-label range-right>{{thickness}} cm</ion-label>
       </ion-range>
     </ion-item>
     <ion-item>
@@ -39,7 +39,7 @@
   </ion-list>
 
   <img src={{imageFile}}/>
-  <img class="ruler" src='./assets/icon/ruler.png' [style.height.px]="heightRuler"/>
+  <img class="ruler" src='./assets/icon/ruler.png' [style.height.px]="heightRuler" />
 
 
 </ion-content>

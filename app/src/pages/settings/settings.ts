@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { User, UserType } from '../../models/user';
 import { Storage } from '@ionic/storage';
-import { Toasts } from './../../providers/toasts';
+
 // Providers
 import { DataService } from '../../providers/data-service';
+import { Toasts } from './../../providers/toasts';
 import { TranslateProvider } from '../../providers/translate/translate'
 
 @Component({
