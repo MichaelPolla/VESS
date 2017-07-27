@@ -45,13 +45,12 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'HOME', component: HomePage },
-
       { title: 'PARCEL_NOTATION', component: ParcelsTestsPage, params: { isConsultation: false } },
       { title: 'TESTS_CONSULTATION', component: ParcelsTestsPage, params: { isConsultation: true } },
       { title: 'STRUCTURE_QUALITY', component: StructuralQualityPage },
-      { title: 'TUTORIAL', component: TutorialPage },
+      { title: 'TUTORIAL.TITLE', component: TutorialPage },
       { title: 'SETTINGS', component: SettingsPage },
-      { title: 'ABOUT', component: AboutPage }
+      { title: 'ABOUT.TITLE', component: AboutPage }
     ];
 
     this.dataService.getUserInfo().then((value) => {
