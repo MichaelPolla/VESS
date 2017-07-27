@@ -39,14 +39,22 @@
   "EXPORT": "Exporter",
   "FINAL_SCORE": "Score final : {{score}}",
   "FINAL_SCORE_OF_TEST": "Score final du test :",
-  "HELP": "Aide",
-  "HELP_LAYER_APPEARANCE": "Cochez la proposition qui se rapproche le plus de votre observation. Pour cela, caractérisez la taille principale des agrégats directement observables après  l’extraction du bloc (VIDEO VESS 1) et la séparation des couches (VIDEO VESS 2). Puis après avoir rapidement ouvert la couche de sol (VIDEO VESS 5), observez et recherchez la présence d’agrégats* non poreux et de mottes fermées*",
-  "HELP_NOTATION_STEP2_MAINLY_CLOSED_CLODS": "Cochez la proposition qui se rapproche le plus de votre observation. Pour cela caractérisez la taille principale des agrégats* et mottes* directement observables après l’extraction du bloc (VIDEO VESS 1) et la séparation des couches (VIDEO VESS 2).",
-  "HELP_NOTATION_STEP2_NO_CLOSED_CLODS": "Cochez la proposition qui se rapproche le plus de votre observation. Pour cela après avoir rapidement ouvert la couche de sol (VIDEO VESS 5), observez la couche de sol et caractérisez la taille principale des agrégats* directement obtenus lors de l’extraction.",
-  "HELP_VERIF_SCORE1": "Cochez la ou les proposition(s) qui se rapproche le plus de ce que vous observez. Observez, manipulez, ouvrez les agrégats* de diamètre égal à 1 cm environ.",
-  "HELP_VERIF_SCORE2": "Cochez la ou les proposition(s) qui se rapprochent le plus de votre observation. Pour cela observez, manipulez, ouvrez les agrégats* de diamètre environ égal à 1.5 cm.",
-  "HELP_VERIF_SCORE4": "Cochez la ou les proposition(s) qui se rapprochent le plus de votre observation. Pour cela observez, manipulez et ouvrez les fragments* de sol issus de mottes fermées de diamètre environ égal à 1.5 cm.",
-  "HELP_UNAVAILABLE": "Aide indisponible.",
+  "HELP": {
+    "TITLE": "Aide",
+    "UNAVAILABLE": "Aide indisponible.",
+    "LAYER_APPEARANCE": "Cochez la proposition qui se rapproche le plus de votre observation. Pour cela, caractérisez la taille principale des agrégats directement observables après l’extraction du bloc : {{video1}} et la séparation des couches : {{video2}} Puis après avoir rapidement ouvert la couche de sol : {{video3}} observez et recherchez la présence d’agrégats* non poreux et de mottes fermées*.",
+    "NOTATION": {
+      "STEP2": {
+        "MAINLY_CLOSED_CLODS": "Cochez la proposition qui se rapproche le plus de votre observation. Pour cela caractérisez la taille principale des agrégats* et mottes* directement observables après l’extraction du bloc : {{video1}} et la séparation des couches : {{video2}}",
+        "NO_CLOSED_CLODS": "Cochez la proposition qui se rapproche le plus de votre observation. Pour cela après avoir rapidement ouvert la couche de sol : {{video}} observez la couche de sol et caractérisez la taille principale des agrégats* directement obtenus lors de l’extraction."
+      }
+    },
+    "VERIFICATION": {
+      "SCORE1": "Cochez la ou les proposition(s) qui se rapproche le plus de ce que vous observez. Observez, manipulez, ouvrez les agrégats* de diamètre égal à 1 cm environ.",
+      "SCORE2": "Cochez la ou les proposition(s) qui se rapprochent le plus de votre observation. Pour cela observez, manipulez, ouvrez les agrégats* de diamètre environ égal à 1.5 cm.",
+      "SCORE4": "Cochez la ou les proposition(s) qui se rapprochent le plus de votre observation. Pour cela observez, manipulez et ouvrez les fragments* de sol issus de mottes fermées de diamètre environ égal à 1.5 cm."
+    }
+  },
   "HOME": "Accueil",
   "LANGUAGE": "Langue",
   "LAYER": "Couche",

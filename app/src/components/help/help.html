@@ -1,2 +1,3 @@
-<ion-label stacked color="brown">{{ 'HELP' | translate }}</ion-label>
-{{helpContent}}
+<ion-label stacked color="brown"><h1>{{ 'HELP.TITLE' | translate }}</h1></ion-label>
+
+<div [innerHTML]="helpContent"></div>

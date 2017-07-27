@@ -39,14 +39,22 @@
   "EXPORT": "Export",
   "FINAL_SCORE": "Final score : {{score}}",
   "FINAL_SCORE_OF_TEST": "Final score of test",
-  "HELP": "Help",
-  "HELP_LAYER_APPEARANCE": "Tick the proposal closest to your observation. To do this, characterize the main size of the aggregates directly observable after the extraction of the block (VIDEO VESS 1) and the separation of the layers (VIDEO VESS 2). Then, after quickly opening the soil layer (VIDEO VESS 5), observe and look for the presence of non-porous aggregates* and closed clods*.",
-  "HELP_NOTATION_STEP2_MAINLY_CLOSED_CLODS": "Tick the proposal closest to your observation. To do this, characterize the main size of the aggregates* and clods* directly observable after the extraction of the block (VIDEO VESS 1) and the separation of the layers (VIDEO VESS 2).",
-  "HELP_NOTATION_STEP2_NO_CLOSED_CLODS": "Tick the proposal closest to your observation. To do this after having quickly opened the soil layer (VIDEO VESS 5), observe the soil layer and characterize the main size of the aggregates* directly obtained during the extraction.",
-  "HELP_VERIF_SCORE1": "Tick the proposal(s) closest to what you are observing. Observe, manipulate, open the aggregates* of diameter equal to about 1cm.",
-  "HELP_VERIF_SCORE2": "Tick the proposal(s) closest to your observation. For this observe, manipulate, open the aggregates* of diameter approximately equal to 1.5 cm.",
-  "HELP_VERIF_SCORE4": "Tick the proposal(s) closest to your observation. To do this observe, manipulate and open the fragments* of soil coming from closed clods of diameter approximately equal to 1.5 cm.",
-  "HELP_UNAVAILABLE": "Help unavailable.",
+  "HELP": {
+    "TITLE": "Help",
+    "UNAVAILABLE": "Help unavailable.",
+    "NOTATION": {
+    "STEP1": "Tick the proposal closest to your observation. To do this, characterize the main size of the aggregates directly observable after the extraction of the block: {{video1}} and the separation of the layers: {{video2}} Then, after quickly opening the soil layer {{video3}} observe and look for the presence of non-porous aggregates* and closed clods*.",
+      "STEP2": {
+        "MAINLY_CLOSED_CLODS": "Tick the proposal closest to your observation. To do this, characterize the main size of the aggregates* and clods* directly observable after the extraction of the block: {{video1}} and the separation of the layers: {{video2}}",
+        "NO_CLOSED_CLODS": "Tick the proposal closest to your observation. To do this after having quickly opened the soil layer : {{video}} observe the soil layer and characterize the main size of the aggregates* directly obtained during the extraction."
+      }
+    },
+    "VERIFICATION": {
+      "SCORE1": "Tick the proposal(s) closest to what you are observing. Observe, manipulate, open the aggregates* of diameter equal to about 1cm.",
+      "SCORE2": "Tick the proposal(s) closest to your observation. For this observe, manipulate, open the aggregates* of diameter approximately equal to 1.5 cm.",
+      "SCORE4": "Tick the proposal(s) closest to your observation. To do this observe, manipulate and open the fragments* of soil coming from closed clods of diameter approximately equal to 1.5 cm."
+    }
+  },
   "HOME": "Home",
   "LANGUAGE": "Language",
   "LAYER": "Layer",
