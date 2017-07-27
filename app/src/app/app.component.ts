@@ -49,7 +49,7 @@ export class MyApp {
       { title: 'PARCEL_NOTATION', component: ParcelsTestsPage, params: { isConsultation: false } },
       { title: 'TESTS_CONSULTATION', component: ParcelsTestsPage, params: { isConsultation: true } },
       { title: 'STRUCTURE_QUALITY', component: StructuralQualityPage },
-      { title: 'TUTORIAL', component: TutorialPage},
+      { title: 'TUTORIAL', component: TutorialPage },
       { title: 'SETTINGS', component: SettingsPage },
       { title: 'ABOUT', component: AboutPage }
     ];
@@ -63,7 +63,7 @@ export class MyApp {
       }
 
     });
-    
+
 
   }
 
@@ -71,9 +71,14 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      // Lock screen to Portrait
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+
+      // Not running on desktop, call plugins that use Cordova.
+      if (!this.platform.is('core')) {
+        this.statusBar.styleDefault();
+
+        // Lock screen to Portrait
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      }
     });
   }
 
@@ -82,9 +87,9 @@ export class MyApp {
       // close the menu when clicking a link from the menu
       this.menu.close();
       this.nav.popToRoot();
-    } else if(page.component == "notImplemented"){
+    } else if (page.component == "notImplemented") {
       this.toasts.showToast("Cette fonctionnalité n'est pas encore disponible.");
-    }else {
+    } else {
       // close the menu when clicking a link from the menu
       this.menu.close();
       // navigate to the new page if it is not the current page
