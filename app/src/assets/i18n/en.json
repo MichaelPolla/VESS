@@ -1,7 +1,6 @@
 {
   "APP_DESCRIPTION": "This application allows to perform a VESS test.",
   "APP_TITLE": "VESS (Beta)",
-  "APP_VERSION": "0.9.1",
   "ABOUT": {
     "TITLE": "About",
     "DEVELOPERS": "Developers",
@@ -222,6 +221,7 @@
   "VERIF_SCORE5_CRITERIA1_CHECK2": "Contain very little or no roots",
   "VERIF_SCORE5_CRITERIA2_TITLE": "The roots are mostly around the clods or within visible coarse pores",
   "VERIF_SCORE5_CRITERIA3_TITLE": "Possible anoxia, gray-blue color (rotten egg odor)",
+  "VERSION": "Version",
   "VISIBLE_POROSITY_AND_ROOTS": "Visible porosity and roots",
   "YES": "Yes"
 }

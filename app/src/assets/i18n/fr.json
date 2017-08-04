@@ -1,7 +1,6 @@
 {
   "APP_DESCRIPTION": "Cette application permet d'effectuer le test à la bêche (VESS).",
   "APP_TITLE": "VESS (Beta)",
-  "APP_VERSION": "0.9.1",
   "ABOUT": {
     "TITLE": "À propos",
     "DEVELOPERS": "Développeurs",
@@ -222,6 +221,7 @@
   "VERIF_SCORE5_CRITERIA1_CHECK2": "Contiennent très peu ou pas de racines",
   "VERIF_SCORE5_CRITERIA2_TITLE": "Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles",
   "VERIF_SCORE5_CRITERIA3_TITLE": "Anoxie possible, couleur gris-bleu (odeur d’œuf pourri)",
+  "VERSION" : "Version",
   "VISIBLE_POROSITY_AND_ROOTS": "Porosité visible et racines",
   "YES": "Oui"
 }
