@@ -15,34 +15,36 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-//#####LIST#########
+h1 {
+  color: color($colors, green);
+}
+
 .listHeader{
   font-size: x-large;
   margin-bottom: initial;
-  color: #ab9371;
+  color: color($colors, brown);
 }
 
-//#####NAVBAR########
+// Navbar //
 .toolbar-background {
-  background-color: #426114;
+  background-color: color($colors, green);
   color:white;
 }
 
 .toolbar-title-md {
-  color: #fff;
+  color: white;
 }
 .bar-button{
-  color: #fff;
+  color: white;
 }
+//End Navbar //
 
 
-//######modal#######
 ion-thumbnail {
-  z-index:1;
+  z-index:1; // Needed for Modals
 }
 
 
-//######ruler#######
 .ruler{
   width: 4vh;
   position: fixed;
@@ -68,5 +70,5 @@ ion-thumbnail {
 //TUTORIAL AND STRUCTURAL QUALITY
 .swiper-pagination-bullet-active{
   opacity: 1;
-  background: #ab9371;
+  background: color($colors, brown);
 }
