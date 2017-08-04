@@ -160,7 +160,7 @@ export class ParcelsTestsPage {
     // and show its actual values in the formular.
     // See also the manageItem method ; it wasn't complete but shows a way to 
     // get the selected item.
-    this.toasts.showToast("Fonctionnalité temporairement indisponible.");
+    this.toasts.showToast(this.translate.get('FUNCTIONALITY_NOT_YET_AVAILABLE'));
   }
 
   /**
