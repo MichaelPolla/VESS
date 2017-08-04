@@ -1,108 +1,108 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
-  "private": true,
-  "scripts": {
-    "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
-  },
-  "dependencies": {
-    "@angular/common": "4.1.2",
-    "@angular/compiler": "4.1.2",
-    "@angular/compiler-cli": "4.1.2",
-    "@angular/core": "4.1.2",
-    "@angular/forms": "4.1.2",
-    "@angular/http": "4.1.2",
-    "@angular/platform-browser": "4.1.2",
-    "@angular/platform-browser-dynamic": "4.1.2",
-    "@ionic-native/browser-tab": "^4.0.1",
-    "@ionic-native/camera": "^3.12.1",
-    "@ionic-native/core": "3.12.1",
-    "@ionic-native/email-composer": "^3.12.1",
-    "@ionic-native/file": "^3.12.1",
-    "@ionic-native/geolocation": "^3.12.1",
-    "@ionic-native/splash-screen": "^3.12.1",
-    "@ionic-native/status-bar": "^3.12.1",
-    "@ionic-native/toast": "^3.12.1",
-    "@ionic/storage": "2.0.1",
-    "@ngx-translate/core": "^7.0.0",
-    "@ngx-translate/http-loader": "^0.1.0",
-    "cordova-ios": "^4.4.0",
-    "cordova-plugin-camera": "~2.4.0",
-    "cordova-plugin-console": "~1.0.4",
-    "cordova-plugin-device": "~1.1.4",
-    "cordova-plugin-email": "~1.2.6",
-    "cordova-plugin-file": "~4.3.1",
-    "cordova-plugin-geolocation": "^2.4.3",
-    "cordova-plugin-splashscreen": "~4.0.1",
-    "cordova-plugin-statusbar": "~2.2.1",
-    "cordova-plugin-whitelist": "~1.3.1",
-    "cordova-plugin-x-toast": "~2.5.2",
-    "cordova-sqlite-storage": "~2.0.2",
-    "ionic-angular": "3.3.0",
-    "ionic-gallery-modal": "^0.1.1",
-    "ionic-plugin-keyboard": "~2.2.1",
-    "ionicons": "3.0.0",
-    "latest-version": "^3.1.0",
-    "rxjs": "5.1.1",
-    "sw-toolbox": "3.4.0",
-    "zone.js": "^0.8.12",
-    "cordova-android": "~6.1.2",
-    "cordova-plugin-browsertab": "~0.2.0",
-    "cordova-plugin-screensize": "~1.3.1"
-  },
-  "devDependencies": {
-    "@ionic/app-scripts": "1.3.7",
-    "@ionic/cli-plugin-cordova": "1.6.2",
-    "@ionic/cli-plugin-ionic-angular": "1.4.1",
-    "ionic": "3.7.0",
-    "typescript": "2.3.4"
-  },
-  "cordovaPlugins": [
-    "cordova-plugin-whitelist",
-    "cordova-plugin-console",
-    "cordova-plugin-statusbar",
-    "cordova-plugin-device",
-    "ionic-plugin-keyboard",
-    "cordova-plugin-x-toast",
-    "cordova-plugin-compat",
-    "cordova-plugin-file",
-    "cordova-plugin-screensize",
-    "cordova-plugin-camera",
-    "cordova-sqlite-storage",
-    "cordova-plugin-email"
-  ],
-  "cordovaPlatforms": [
-    {
-      "platform": "android",
-      "version": "",
-      "locator": "android"
-    }
-  ],
-  "description": "VESS: Visual Evaluation of Soil Structure",
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-console": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-statusbar": {},
-      "cordova-plugin-whitelist": {},
-      "cordova-sqlite-storage": {},
-      "ionic-plugin-keyboard": {},
-      "cordova-plugin-email": {},
-      "cordova-plugin-file": {},
-      "cordova-plugin-camera": {},
-      "cordova-plugin-x-toast": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-geolocation": {
-        "GEOLOCATION_USAGE_DESCRIPTION": " "
-      },
-      "cordova-plugin-browsertab": {},
-      "cordova-plugin-screensize": {}
+    "name": "ionic-hello-world",
+    "author": "Ionic Framework",
+    "homepage": "http://ionicframework.com/",
+    "private": true,
+    "scripts": {
+        "ionic:build": "ionic-app-scripts build",
+        "ionic:serve": "ionic-app-scripts serve"
     },
-    "platforms": [
-      "android",
-      "ios"
-    ]
-  }
+    "dependencies": {
+        "@angular/common": "4.1.2",
+        "@angular/compiler": "4.1.2",
+        "@angular/compiler-cli": "4.1.2",
+        "@angular/core": "4.1.2",
+        "@angular/forms": "4.1.2",
+        "@angular/http": "4.1.2",
+        "@angular/platform-browser": "4.1.2",
+        "@angular/platform-browser-dynamic": "4.1.2",
+        "@ionic-native/browser-tab": "^4.0.1",
+        "@ionic-native/camera": "^3.12.1",
+        "@ionic-native/core": "3.12.1",
+        "@ionic-native/email-composer": "^3.12.1",
+        "@ionic-native/file": "^3.12.1",
+        "@ionic-native/geolocation": "^3.12.1",
+        "@ionic-native/splash-screen": "^3.12.1",
+        "@ionic-native/status-bar": "^3.12.1",
+        "@ionic-native/toast": "^3.12.1",
+        "@ionic/storage": "2.0.1",
+        "@ngx-translate/core": "^7.0.0",
+        "@ngx-translate/http-loader": "^0.1.0",
+        "cordova-ios": "^4.4.0",
+        "cordova-plugin-camera": "~2.4.0",
+        "cordova-plugin-console": "~1.0.4",
+        "cordova-plugin-device": "~1.1.4",
+        "cordova-plugin-email": "~1.2.6",
+        "cordova-plugin-file": "~4.3.1",
+        "cordova-plugin-geolocation": "^2.4.3",
+        "cordova-plugin-splashscreen": "~4.0.1",
+        "cordova-plugin-statusbar": "~2.2.1",
+        "cordova-plugin-whitelist": "~1.3.1",
+        "cordova-plugin-x-toast": "~2.5.2",
+        "cordova-sqlite-storage": "~2.0.2",
+        "ionic-angular": "3.3.0",
+        "ionic-gallery-modal": "^0.1.1",
+        "ionic-plugin-keyboard": "~2.2.1",
+        "ionicons": "3.0.0",
+        "latest-version": "^3.1.0",
+        "rxjs": "5.1.1",
+        "sw-toolbox": "3.4.0",
+        "zone.js": "^0.8.12",
+        "cordova-android": "~6.1.2",
+        "cordova-plugin-browsertab": "~0.2.0",
+        "cordova-plugin-screensize": "~1.3.1"
+    },
+    "devDependencies": {
+        "@ionic/app-scripts": "1.3.7",
+        "@ionic/cli-plugin-cordova": "1.6.2",
+        "@ionic/cli-plugin-ionic-angular": "1.4.1",
+        "ionic": "3.7.0",
+        "typescript": "2.3.4"
+    },
+    "cordovaPlugins": [
+        "cordova-plugin-whitelist",
+        "cordova-plugin-console",
+        "cordova-plugin-statusbar",
+        "cordova-plugin-device",
+        "ionic-plugin-keyboard",
+        "cordova-plugin-x-toast",
+        "cordova-plugin-compat",
+        "cordova-plugin-file",
+        "cordova-plugin-screensize",
+        "cordova-plugin-camera",
+        "cordova-sqlite-storage",
+        "cordova-plugin-email"
+    ],
+    "cordovaPlatforms": [
+        {
+            "platform": "android",
+            "version": "",
+            "locator": "android"
+        }
+    ],
+    "description": "VESS: Visual Evaluation of Soil Structure",
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-console": {},
+            "cordova-plugin-device": {},
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-whitelist": {},
+            "cordova-sqlite-storage": {},
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-email": {},
+            "cordova-plugin-file": {},
+            "cordova-plugin-camera": {},
+            "cordova-plugin-x-toast": {},
+            "cordova-plugin-splashscreen": {},
+            "cordova-plugin-geolocation": {
+                "GEOLOCATION_USAGE_DESCRIPTION": " "
+            },
+            "cordova-plugin-browsertab": {},
+            "cordova-plugin-screensize": {}
+        },
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    }
 }
