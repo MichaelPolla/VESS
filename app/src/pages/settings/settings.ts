@@ -77,15 +77,16 @@ export class SettingsPage {
     }
   }
 
-  onLanguageChange(value: string) {
-    this.translate.setLang(value);
+  onLanguageChange(langSelect : HTMLSelectElement) {
+    this.translate.setLang(langSelect.value);
     this.saveUserInfo();
   }
 
-  onUserTypeChange(value : string) {
-    if (value === UserType.Ofag) {
+  onUserTypeChange(userTypeSelect : HTMLSelectElement) {
+    if (userTypeSelect.value === UserType.Ofag) {
       this.toasts.showToast(this.translate.get('FUNCTIONALITY_NOT_YET_AVAILABLE'));
       this.userType = UserType.Anonymous;
+      userTypeSelect.value = UserType.Anonymous;
     }
   }
 }

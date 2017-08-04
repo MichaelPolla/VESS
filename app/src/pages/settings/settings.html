@@ -11,7 +11,7 @@
 
   <ion-item>
     <ion-label>{{ 'USER_TYPE' | translate }}</ion-label>
-    <ion-select interface="popover" #usertype (ionChange)="onUserTypeChange(usertype.value)" [(ngModel)]="userType">
+    <ion-select interface="popover" #usertype [(ngModel)]="userType" (ionChange)="onUserTypeChange(usertype)">
       <ion-option value="anonymous">{{ 'ANONYMOUS' | translate }}</ion-option>
       <ion-option value="ofag">OFAG</ion-option>
     </ion-select>
@@ -39,7 +39,7 @@
 
     <ion-item>
       <ion-label>{{ 'LANGUAGE' | translate }}</ion-label>
-      <ion-select interface="popover" #lang (ionChange)="onLanguageChange(lang.value)" [(ngModel)]="language">
+      <ion-select interface="popover" #lang (ionChange)="onLanguageChange(lang)" [(ngModel)]="language">
         <!-- These strings are voluntarily not translated (language names in their native form) -->
         <ion-option value="en">English</ion-option>
         <ion-option value="fr">Français</ion-option>
