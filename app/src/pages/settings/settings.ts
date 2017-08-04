@@ -81,4 +81,11 @@ export class SettingsPage {
     this.translate.setLang(value);
     this.saveUserInfo();
   }
+
+  onUserTypeChange(value : string) {
+    if (value === UserType.Ofag) {
+      this.toasts.showToast(this.translate.get('FUNCTIONALITY_NOT_YET_AVAILABLE'));
+      this.userType = UserType.Anonymous;
+    }
+  }
 }

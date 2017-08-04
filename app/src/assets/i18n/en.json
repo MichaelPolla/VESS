@@ -39,6 +39,7 @@
   "EXPORT": "Export",
   "FINAL_SCORE": "Final score : {{score}}",
   "FINAL_SCORE_OF_TEST": "Final score of test",
+  "FUNCTIONALITY_NOT_YET_AVAILABLE": "Functionality not yet available.",
   "HELP": {
     "TITLE": "Help",
     "UNAVAILABLE": "Help unavailable.",

@@ -11,7 +11,7 @@
 
   <ion-item>
     <ion-label>{{ 'USER_TYPE' | translate }}</ion-label>
-    <ion-select interface="popover" [(ngModel)]="userType">
+    <ion-select interface="popover" #usertype (ionChange)="onUserTypeChange(usertype.value)" [(ngModel)]="userType">
       <ion-option value="anonymous">{{ 'ANONYMOUS' | translate }}</ion-option>
       <ion-option value="ofag">OFAG</ion-option>
     </ion-select>
