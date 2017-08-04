@@ -16,11 +16,12 @@
 // automatically applied to the <body> element in the app.
 
 h1 {
-  color: color($colors, green);
+  font-size: large;
+  color: color($colors, brown);
 }
 
 .listHeader{
-  font-size: x-large;
+  font-size: large;
   margin-bottom: initial;
   color: color($colors, brown);
 }
