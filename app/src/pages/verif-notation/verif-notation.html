@@ -11,8 +11,8 @@
 
 
 <ion-content padding>
-  <h3 *ngFor="let criteria of criterias;"> {{criteria.title}}
-    <!--List of criteria-->
+  <h1 *ngFor="let criteria of criterias;"> {{criteria.title}}
+
     <ion-list>
       <ion-item class="item-checkbox" *ngFor="let item of criteria.array; let i=index">
         <ion-label class="wraptext">{{item.title}}</ion-label>
@@ -22,7 +22,7 @@
         <ion-checkbox item-right color="secondary" [(ngModel)]="item.checked"></ion-checkbox>
       </ion-item>
     </ion-list>
-  </h3>
+  </h1>
 
   <img class="ruler" src='./assets/icon/ruler.png' [style.height.px]="heightRuler" />
 </ion-content>
