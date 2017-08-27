@@ -130,7 +130,6 @@ export function createTranslateLoader(http: Http) {
     ScreenOrientation,
     SplashScreen,
     StatusBar,
-    Storage,
     Toast,
     Toasts,
     Utils,
