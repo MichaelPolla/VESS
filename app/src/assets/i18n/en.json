@@ -161,35 +161,35 @@
     "TITLE": "Tutorial",
     "STEP1": {
       "TITLE": "Extract block",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Dig a hole and extract a soil block with a spade without damaging the soil structure."
     },
     "STEP2": {
       "TITLE": "Open block in layers",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "To better see the structure of the bloc, open it to reveal the different layers."
     },
     "STEP3": {
       "TITLE": "Remove packed parts",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Remove the soil which was damaged by the spade during extraction."
     },
     "STEP4": {
       "TITLE": "Observation of layer 1",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "After defining the depth of the first layer, observe soil structure features (aggregate shape and size, porosity, rooting, etc.) in order to score it."
     },
     "STEP5": {
       "TITLE": "Observation of layer 2",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "After defining the depth of the second layer, observe soil structure features (aggregate shape and size, porosity, rooting, etc.) in order to score it."
     },
     "STEP6": {
       "TITLE": "Observation of layer 3",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "After defining the depth of the third layer, observe soil structure features (aggregate shape and size, porosity, rooting, etc.) in order to score it."
     },
     "STEP7": {
       "TITLE": "Opened clod",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Breaking a loose clod reveals porosity and smaller aggregates."
     },
     "STEP8": {
       "TITLE": "Closed clod",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Breaking a firm clod reveals non porous angular faces. Presence of macropores and cracks possible. During breaking, the clod is broken straight where pressure is applied."
     }
   },
   "TYPE_OF_SOIL": "Type of soil",

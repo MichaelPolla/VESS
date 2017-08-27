@@ -161,35 +161,35 @@
     "TITLE": "Tutoriel",
     "STEP1": {
       "TITLE": "Extraire le bloc",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Creusez un trou, puis extrayez un bloc de sol à l’aide d’une bêche sans abîmer la structure."
     },
     "STEP2": {
       "TITLE": "Ouverture du bloc en couches",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Pour mieux voir la structure du bloc, ouvrez-le pour rendre visible les différentes couches."
     },
     "STEP3": {
       "TITLE": "Enlever les parties tassées",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Enlevez le sol qui a été abîmé par la bêche lors de l’extraction."
     },
     "STEP4": {
       "TITLE": "Observation de l'horizon 1",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Après avoir déterminé la profondeur de la première couche, observez les caractéristiques de la structure (ex. : forme et taille des agrégats, porosité, enracinement, etc.) et donnez une note à la couche."
     },
     "STEP5": {
       "TITLE": "Observation de l'horizon 2",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Après avoir déterminé la profondeur de la seconde couche, observez les caractéristiques de la structure (ex. : forme et taille des agrégats, porosité, enracinement, etc.) et donnez une note à la couche."
     },
     "STEP6": {
       "TITLE": "Observation de l'horizon 3",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Après avoir déterminé la profondeur de la troisième couche, observez les caractéristiques de la structure (ex. : forme et taille des agrégats, porosité, enracinement, etc.) et donnez une note à la couche."
     },
     "STEP7": {
       "TITLE": "Motte ouverte",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Briser une motte ouverte permet de révéler une structure poreuse avec des agrégats qui se détachent facilement."
     },
     "STEP8": {
       "TITLE": "Motte fermée",
-      "INSTRUCTIONS": ""
+      "INSTRUCTIONS": "Briser une motte fermée révèle des faces angulaires non poreuses. Présence de macropores et de fissures possibles. En brisant la motte, une cassure droite se forme à l’endroit où on applique la pression."
     }
   },
   "TYPE_OF_SOIL": "Type de sol",
