@@ -1,5 +1,5 @@
 {
-  "APP_DESCRIPTION": "This application allows to perform a VESS test.",
+  "APP_DESCRIPTION": "This application allows to perform a VESS test. VESS: Visual Evaluation of Soil Structure (Ball et al. 2007, Guimaraes et al. 2013)",
   "APP_TITLE": "VESS (Beta)",
   "ABOUT": {
     "TITLE": "About",
@@ -172,15 +172,15 @@
       "INSTRUCTIONS": ""
     },
     "STEP4": {
-      "TITLE": "Observation of horizon 1",
+      "TITLE": "Observation of layer 1",
       "INSTRUCTIONS": ""
     },
     "STEP5": {
-      "TITLE": "Observation of horizon 2",
+      "TITLE": "Observation of layer 2",
       "INSTRUCTIONS": ""
     },
     "STEP6": {
-      "TITLE": "Observation of horizon 3",
+      "TITLE": "Observation of layer 3",
       "INSTRUCTIONS": ""
     },
     "STEP7": {

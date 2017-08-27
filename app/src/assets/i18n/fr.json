@@ -1,5 +1,5 @@
 {
-  "APP_DESCRIPTION": "Cette application permet d'effectuer le test à la bêche (VESS).",
+  "APP_DESCRIPTION": "Cette application permet d'effectuer le test à la bêche (VESS).VESS : Evaluation Visuelle de la Structure du Sol (Ball et al. 2007, Guimaraes et al. 2013)",
   "APP_TITLE": "VESS (Beta)",
   "ABOUT": {
     "TITLE": "À propos",
@@ -114,7 +114,7 @@
   "SQ2": {
     "QUALITY": "SQ2 Intact",
     "QUALITY_DESCRIPTION": "Agrégats friables entre les doigts",
-    "SIZE_AND_APPEARANCE": "Mélange d'agrégats poreux arronids de 2 mm à 7 cm. Pas de mottes fermées.",
+    "SIZE_AND_APPEARANCE": "Mélange d'agrégats poreux arrondis de 2 mm à 7 cm. Pas de mottes fermées.",
     "POROSITY_AND_ROOTS": "Majorité des agrégats poreux. Racines colonisant l'ensemble du sol, bien présentes à l'intérieur ainsi qu'autour des agrégats.",
     "DISTINGUISHING_FEATURE": "Forte porosité des agrégats",
     "APPEARANCE_OF_FRAGMENT": "Agrégats arrondis et fragiles, se cassant très facilement et très poreux."
@@ -122,7 +122,7 @@
   "SQ3": {
     "QUALITY": "SQ3 Ferme",
     "QUALITY_DESCRIPTION": "Majorité des agrégats se brisent à la main",
-    "SIZE_AND_APPEARANCE": "Mélange d'aggrégats poreux de 2mm à 10 cm, moins de 30% < 1 cm. Présence possible de mottes fermées.",
+    "SIZE_AND_APPEARANCE": "Mélange d'agrégats poreux de 2mm à 10 cm, moins de 30% < 1 cm. Présence possible de mottes fermées.",
     "POROSITY_AND_ROOTS": "Présence possible de pores grossiers visibles et de fentes de retrait. Racines colonisant l'ensemble du sol, bien présentes à l'intérieur ainsi qu'autour des agrégats.",
     "DISTINGUISHING_FEATURE": "Faible porosité des agrégats",
     "APPEARANCE_OF_FRAGMENT": "Agrégats plutôt faciles à obtenir. Peu de pores visibles et plutôt arrondis. Racines poussant habituellement à travers les agrégats."
