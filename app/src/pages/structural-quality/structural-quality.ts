@@ -1,6 +1,6 @@
 import { ModalPicturePage } from './../modal-picture/modal-picture';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { GalleryModal } from 'ionic-gallery-modal';
 // Providers
 import { TranslateProvider } from './../../providers/translate/translate';
