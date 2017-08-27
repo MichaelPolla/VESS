@@ -5,7 +5,6 @@ import { GalleryModal } from 'ionic-gallery-modal';
 // Providers
 import { TranslateProvider } from './../../providers/translate/translate';
 
-@IonicPage()
 @Component({
   selector: 'page-structural-quality',
   templateUrl: 'structural-quality.html',

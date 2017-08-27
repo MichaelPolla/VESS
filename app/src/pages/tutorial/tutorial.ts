@@ -4,7 +4,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 // Providers
 import { TranslateProvider } from './../../providers/translate/translate';
 
-@IonicPage()
 @Component({
   selector: 'page-tutorial',
   templateUrl: 'tutorial.html',
