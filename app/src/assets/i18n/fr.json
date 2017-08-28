@@ -1,11 +1,12 @@
 {
-  "APP_DESCRIPTION": "Cette application permet d'effectuer le test à la bêche (VESS).VESS : Evaluation Visuelle de la Structure du Sol (Ball et al. 2007, Guimaraes et al. 2013)",
+  "APP_DESCRIPTION": "Cette application permet d'effectuer l'évaluation visuelle de la structure du sol (VESS). VESS : Evaluation Visuelle de la Structure du Sol (Ball et al. 2007, Guimaraes et al. 2011)",
   "APP_TITLE": "VESS (Beta)",
   "ABOUT": {
     "TITLE": "À propos",
     "DEVELOPERS": "Développeurs",
     "FINANCIAL_SUPPORT": "Soutiens financiers",
-    "SCIENTIFIC_AUTHORS": "Auteurs scientifiques",
+    "SCIENTIFIC_ADAPTATION": "Adaptation scientifique",
+    "SCIENTIFIC_BASE": "Base scientifique",
     "VIDEO_PRODUCTION": "Réalisation vidéos"
   },
   "ADD": "Ajouter",

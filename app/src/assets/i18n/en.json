@@ -1,11 +1,12 @@
 {
-  "APP_DESCRIPTION": "This application allows to perform a VESS test. VESS: Visual Evaluation of Soil Structure (Ball et al. 2007, Guimaraes et al. 2013)",
+  "APP_DESCRIPTION": "This application allows to perform a VESS test. VESS: Visual Evaluation of Soil Structure (Ball et al. 2007, Guimaraes et al. 2011)",
   "APP_TITLE": "VESS (Beta)",
   "ABOUT": {
     "TITLE": "About",
     "DEVELOPERS": "Developers",
     "FINANCIAL_SUPPORT": "Financial support",
-    "SCIENTIFIC_AUTHORS": "Scientific authors",
+    "SCIENTIFIC_ADAPTATION": "Scientific adaptation",
+    "SCIENTIFIC_BASE": "Scientific basis",
     "VIDEO_PRODUCTION": "Video production"
   },
   "ADD": "Add",
@@ -184,11 +185,11 @@
       "INSTRUCTIONS": "After defining the depth of the third layer, observe soil structure features (aggregate shape and size, porosity, rooting, etc.) in order to score it."
     },
     "STEP7": {
-      "TITLE": "Opened clod",
+      "TITLE": "Loose clod with open structure",
       "INSTRUCTIONS": "Breaking a loose clod reveals porosity and smaller aggregates."
     },
     "STEP8": {
-      "TITLE": "Closed clod",
+      "TITLE": "Firm clod with closed structure",
       "INSTRUCTIONS": "Breaking a firm clod reveals non porous angular faces. Presence of macropores and cracks possible. During breaking, the clod is broken straight where pressure is applied."
     }
   },
