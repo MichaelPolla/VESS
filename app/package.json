@@ -22,19 +22,23 @@
         "@ionic-native/email-composer": "^3.12.1",
         "@ionic-native/file": "^3.12.1",
         "@ionic-native/geolocation": "^3.12.1",
+        "@ionic-native/screen-orientation": "^4.2.1",
         "@ionic-native/splash-screen": "^3.12.1",
         "@ionic-native/status-bar": "^3.12.1",
         "@ionic-native/toast": "^3.12.1",
         "@ionic/storage": "2.0.1",
         "@ngx-translate/core": "^7.0.0",
         "@ngx-translate/http-loader": "^0.1.0",
+        "cordova-android": "~6.1.2",
         "cordova-ios": "^4.4.0",
+        "cordova-plugin-browsertab": "~0.2.0",
         "cordova-plugin-camera": "~2.4.0",
         "cordova-plugin-console": "~1.0.4",
         "cordova-plugin-device": "~1.1.4",
         "cordova-plugin-email": "~1.2.6",
         "cordova-plugin-file": "~4.3.1",
         "cordova-plugin-geolocation": "^2.4.3",
+        "cordova-plugin-screensize": "~1.3.1",
         "cordova-plugin-splashscreen": "~4.0.1",
         "cordova-plugin-statusbar": "~2.2.1",
         "cordova-plugin-whitelist": "~1.3.1",
@@ -48,9 +52,7 @@
         "rxjs": "5.1.1",
         "sw-toolbox": "3.4.0",
         "zone.js": "^0.8.12",
-        "cordova-android": "~6.1.2",
-        "cordova-plugin-browsertab": "~0.2.0",
-        "cordova-plugin-screensize": "~1.3.1"
+        "cordova-plugin-screen-orientation": "~2.0.1"
     },
     "devDependencies": {
         "@ionic/app-scripts": "1.3.7",
@@ -96,7 +98,8 @@
                 "GEOLOCATION_USAGE_DESCRIPTION": " "
             },
             "cordova-plugin-browsertab": {},
-            "cordova-plugin-screensize": {}
+            "cordova-plugin-screensize": {},
+            "cordova-plugin-screen-orientation": {}
         },
         "platforms": [
             "android",
