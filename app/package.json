@@ -1,7 +1,6 @@
 {
-    "name": "ionic-hello-world",
-    "author": "Ionic Framework",
-    "homepage": "http://ionicframework.com/",
+    "name": "vess",
+    "author": "Polla Michael, Cicciu Salvatore",
     "private": true,
     "scripts": {
         "ionic:build": "ionic-app-scripts build",
