@@ -58,7 +58,6 @@
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <plugin name="cordova-plugin-browsertab" spec="~0.2.0" />
     <plugin name="cordova-plugin-camera" spec="~2.4.0" />
-    <plugin name="cordova-plugin-console" spec="~1.0.4" />
     <plugin name="cordova-plugin-device" spec="~1.1.4" />
     <plugin name="cordova-plugin-email" spec="~1.2.6" />
     <plugin name="cordova-plugin-file" spec="~4.3.1" />
@@ -75,5 +74,5 @@
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <engine name="android" spec="~6.1.2" />
-    <engine name="ios" spec="4.5.4" />
+    <engine name="ios" spec="^4.5.4" />
 </widget>
