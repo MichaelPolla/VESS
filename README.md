@@ -10,7 +10,7 @@ Visual Evaluation of Soil Structure (VESS)
 
 ```bash
 git clone https://github.com/MichaelPolla/VESS.git
-cd VESS
+cd app
 npm install
 ```
 
@@ -26,6 +26,6 @@ Browser (not all functionalities): `ionic serve`
 
 <img src="/docs/colorApp.png" width="200">
 
-## Vue d'ensemble
+## Overview (fr)
 
 <img src="docs/Vue d'ensemble.png" width="100%">
