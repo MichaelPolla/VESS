@@ -1,14 +1,34 @@
-page-home-page {
-    #btn{
-        width: 100%;
-        height: 100%;
-        text-transform: none; /*remove uppercase*/
-        white-space: initial; /*text overflow of button*/
-    }
-
-    .icon{
-
-      font-size: 350%;
-      width : 25px;
+.ios{
+    page-home-page {
+        #btn{
+            width: 100%;
+            height: 100%;
+            text-transform: none; /*remove uppercase*/
+            white-space: initial; /*text overflow of button*/
+        }
+    
+        .icon{
+    
+          font-size: 350%;
+          width : 42px;
+        }
     }
 }
+
+.md{
+    page-home-page {
+        #btn{
+            width: 100%;
+            height: 100%;
+            text-transform: none; /*remove uppercase*/
+            white-space: initial; /*text overflow of button*/
+        }
+    
+        .icon{
+    
+          font-size: 350%;
+          width : 25px;
+        }
+    }
+}
+
