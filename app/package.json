@@ -45,6 +45,7 @@
         "cordova-plugin-x-toast": "^2.6.2",
         "cordova-sqlite-storage": "^2.3.2",
         "es6-promise-plugin": "^4.2.2",
+        "intl": "^1.2.5",
         "ionic-angular": "3.3.0",
         "ionic-gallery-modal": "^0.1.1",
         "ionic-plugin-keyboard": "^2.2.1",

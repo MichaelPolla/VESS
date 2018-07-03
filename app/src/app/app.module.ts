@@ -50,6 +50,8 @@ import { HelpComponent } from '../components/help/help';
 import { SlidePictureComponent } from '../components/slide-picture/slide-picture';
 import { ResumeComponent } from '../components/resume/resume';
 import { TranslateProvider, CustomTranslatePipe } from '../providers/translate/translate';
+import 'intl';
+import 'intl/locale-data/jsonp/en';
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

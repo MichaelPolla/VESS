@@ -25,15 +25,15 @@ enum Steps {
 })
 export class ParcelsTestsPage {
 
-  private pageTitle: string;
-  private listHeader: string;
+  public pageTitle: string;
+  public listHeader: string;
   private stepNumber: number;
-  private stepName: string;
-  private listItems: any = [];
+  public stepName: string;
+  public listItems: any = [];
   private parcels: Parcel[] = [];
   private user: User;
   private currentParcel: Parcel;
-  private editMode: Boolean = false;
+  public editMode: Boolean = false;
   private isConsultation: Boolean;
 
   constructor(public navCtrl: NavController,
