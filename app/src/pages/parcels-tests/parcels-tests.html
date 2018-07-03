@@ -3,7 +3,7 @@
     <ion-title>{{pageTitle}}</ion-title>
 
     <ion-buttons end *ngIf="!isConsultation">
-      <button ion-button icon-only (click)="switchEditMode()"><ion-icon name="create"></ion-icon></button>
+      <button ion-button icon-only (tap)="switchEditMode()"><ion-icon name="create"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 
@@ -11,7 +11,7 @@
 <ion-content padding>
   <ion-list>
     <ion-list-header class="listHeader" *ngIf="listHeader!=null">{{listHeader}}</ion-list-header>
-    <ion-item *ngFor="let item of listItems" (click)=itemClicked(item)>
+    <ion-item *ngFor="let item of listItems" (tap)=itemClicked(item)>
 
       <span *ngIf="item.date">{{item.date}} </span> {{item.name}}
       <span *ngIf="item.ofag">(OFAG : {{item.ofag}})</span>
@@ -21,16 +21,16 @@
       <!--      <button ion-button item-right icon-only *ngIf="editMode">
         <ion-icon name="information-circle"></ion-icon>
       </button>-->
-      <button ion-button item-right icon-only color="yellow" *ngIf="editMode" (click)="editItem(item)">
+      <button ion-button item-right icon-only color="yellow" *ngIf="editMode" (tap)="editItem(item)">
         <ion-icon name="paper"></ion-icon>
       </button>
-      <button ion-button item-right icon-only color="danger" *ngIf="editMode" (click)="deleteItem($event,item)">
+      <button ion-button item-right icon-only color="danger" *ngIf="editMode" (tap)="deleteItem($event,item)">
         <ion-icon name="trash"></ion-icon>
       </button>
 
     </ion-item>
     <ion-fab right bottom *ngIf="!isConsultation">
-      <button ion-fab color="brown" (click)="addItem()"><ion-icon name="add"></ion-icon></button>
+      <button ion-fab color="brown" (tap)="addItem()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 
   </ion-list>
