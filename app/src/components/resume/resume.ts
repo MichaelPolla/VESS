@@ -3,9 +3,10 @@ import { Component, Input } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { Test } from '../../models/parcel';
 import { File } from '@ionic-native/file';
-import { TranslateService } from '@ngx-translate/core';
 import { ExportPage } from '../../pages/export/export';
 import { BrowserTab } from '@ionic-native/browser-tab';
+import { Toasts } from './../../providers/toasts';
+import { TranslateProvider } from '../../providers/translate/translate'
 
 declare var cordova;
 
@@ -25,6 +26,7 @@ export class LayerInfo {
 export class ResumeComponent {
 
   @Input() resume: Test;
+  private destinationRootDirectory: string;
 
   public imageFileBlock: string;
   public lastNumLayer: number;
@@ -33,18 +35,28 @@ export class ResumeComponent {
   constructor(
     private file: File,
     public navCtrl: NavController,
-    private platform: Platform,
-    private translate: TranslateService,
+    private translate: TranslateProvider,
+    public platform: Platform,
+    private toasts: Toasts,
     private browserTab: BrowserTab) { }
 
   ngOnInit() {
+    if (this.platform.is('ios')) {
+      // This will only print when on iOS
+      this.destinationRootDirectory = cordova.file.documentsDirectory;
+    }else if(this.platform.is('android')){
+      this.destinationRootDirectory = cordova.file.externalDataDirectory;
+    }else{
+      this.toasts.showToast(this.translate.get('ERROR'));
+    }
+
     this.lastNumLayer = this.resume.layers.length;
     if (!this.platform.is('core')) { // Check that we aren't running on desktop
       this.defaultPicture = "./assets/icon/two-layers-example.png";
       //read block
-      this.file.checkFile(cordova.file.externalDataDirectory, this.resume.picture).then(_ => {
+      this.file.checkFile(this.destinationRootDirectory, this.resume.picture).then(_ => {
         //read picture
-        this.file.readAsDataURL(cordova.file.externalDataDirectory, this.resume.picture).then((pictureAsBase64) => {
+        this.file.readAsDataURL(this.destinationRootDirectory, this.resume.picture).then((pictureAsBase64) => {
           this.imageFileBlock = pictureAsBase64;
         });
       }).catch(err => {
@@ -61,9 +73,9 @@ export class ResumeComponent {
       for (let layer of this.resume.layers) { //read all layers
 
         //read block
-        this.file.checkFile(cordova.file.externalDataDirectory, layer.picture).then(_ => {
+        this.file.checkFile(this.destinationRootDirectory, layer.picture).then(_ => {
           //read picture
-          this.file.readAsDataURL(cordova.file.externalDataDirectory, layer.picture).then((pictureAsBase64) => {
+          this.file.readAsDataURL(this.destinationRootDirectory, layer.picture).then((pictureAsBase64) => {
             this.layerArray[layer.num - 1].img = pictureAsBase64;
             this.layerArray = this.layerArray.slice(); // Good for re-update the view https://stackoverflow.com/a/39201747/1975002
           }).catch(err => {

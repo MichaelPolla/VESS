@@ -5,8 +5,10 @@ import { User } from '../../models/user';
 import { Parcel, Test } from '../../models/parcel';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { File } from '@ionic-native/file';
+import { Toasts } from './../../providers/toasts';
 // Providers
 import { DataService } from '../../providers/data-service';
+import { TranslateProvider } from '../../providers/translate/translate'
 
 declare var cordova;
 
@@ -31,6 +33,7 @@ export class ExportPage {
   public imageFileBlock: string;
   public attachements: string[];
   defaultPicture: string;
+  private destinationRootDirectory: string;
 
   constructor(
     private emailComposer: EmailComposer,
@@ -38,11 +41,22 @@ export class ExportPage {
     public navParams: NavParams,
     public dataService: DataService,
     private file: File,
+    private toasts: Toasts,
+    private translate: TranslateProvider,
     private platform: Platform) { }
 
   ionViewDidLoad() {
     this.test = this.navParams.get('test');
     console.log(this.test);
+
+    if (this.platform.is('ios')) {
+      // This will only print when on iOS
+      this.destinationRootDirectory = cordova.file.documentsDirectory;
+    }else if(this.platform.is('android')){
+      this.destinationRootDirectory = cordova.file.externalDataDirectory;
+    }else{
+      this.toasts.showToast(this.translate.get('ERROR'));
+    }
 
 
 
@@ -99,9 +113,9 @@ export class ExportPage {
       this.defaultPicture = "./assets/icon/two-layers-example.png";
       this.attachements = [];
       //read block
-      this.file.checkFile(cordova.file.externalDataDirectory, this.test.picture).then(_ => {
+      this.file.checkFile(this.destinationRootDirectory, this.test.picture).then(_ => {
         //read picture
-        this.file.readAsDataURL(cordova.file.externalDataDirectory, this.test.picture).then((pictureAsBase64) => {
+        this.file.readAsDataURL(this.destinationRootDirectory, this.test.picture).then((pictureAsBase64) => {
           let imgData = this.b64Streamtob64Data(pictureAsBase64);
           let pathFile = this.test.picture.split("/"); //split path 
           this.attachements.push('base64:' + pathFile[1] + '//' + imgData);
@@ -121,9 +135,9 @@ export class ExportPage {
       for (let layer of this.test.layers) { //read all layers
 
         //read layer
-        this.file.checkFile(cordova.file.externalDataDirectory, layer.picture).then(_ => {
+        this.file.checkFile(this.destinationRootDirectory, layer.picture).then(_ => {
           //read picture
-          this.file.readAsDataURL(cordova.file.externalDataDirectory, layer.picture).then((pictureLayerAsBase64) => {
+          this.file.readAsDataURL(this.destinationRootDirectory, layer.picture).then((pictureLayerAsBase64) => {
             let imgDataLayer = this.b64Streamtob64Data(pictureLayerAsBase64);
             let pathFileLayer = layer.picture.split("/"); //split path 
             this.attachements.push('base64:' + pathFileLayer[1] + '//' + imgDataLayer);

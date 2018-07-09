@@ -1,7 +1,7 @@
 import { Geoloc } from './../../models/geoloc';
 import { Test, Layer } from './../../models/parcel';
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 
@@ -35,7 +35,7 @@ export class CameraPage {
   defaultPicture: string;
 
   //TODO: Only Android ; should be something like cordova.file.dataDirectory for iOS
-  private readonly destinationRootDirectory: string = cordova.file.externalDataDirectory;
+  private destinationRootDirectory: string;
 
   constructor(
     private camera: Camera,
@@ -44,9 +44,20 @@ export class CameraPage {
     private file: File,
     public navCtrl: NavController,
     public navParams: NavParams,
+    public platform: Platform,
     private toasts: Toasts,
     private translate: TranslateProvider,
     private geolocation: Geolocation) {
+
+    if (this.platform.is('ios')) {
+      // This will only print when on iOS
+      this.destinationRootDirectory = cordova.file.documentsDirectory;
+    }else if(this.platform.is('android')){
+      this.destinationRootDirectory = cordova.file.externalDataDirectory;
+    }else{
+      this.toasts.showToast(this.translate.get('ERROR'));
+    }
+    
 
     this.stepView = this.navParams.get('stepView');
     this.currentTest = this.dataService.getCurrentTest();
