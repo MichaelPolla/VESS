@@ -84,7 +84,6 @@
   "OFAG_ID": "Identifiant OFAG",
   "PARCEL": "Parcelle",
   "PARCEL_NAME": "Parcelle : {{name}}",
-  "PARCEL_NOTATION": "Commencer le test à la bêche",
   "PARCELS": "Parcelles",
   "PICTURE_OF_LAYER": "Photo couche",
   "PICTURE_OF_LAYER_INSTRUCTIONS": "Prenez une photo de la couche :",
@@ -145,6 +144,7 @@
     "DISTINGUISHING_FEATURE": "Couleur gris-bleu possible",
     "APPEARANCE_OF_FRAGMENT": "Fragments potentiellement difficiles à obtenir même sur sol humide, possédant des bords anguleux."
   },
+  "START_EVALUATION": "Commencer le test à la bêche",
   "STONY_SOIL": "Sol caillouteux",
   "STONY_SOIL_NOTATION": "La note de 3 sera attribuée à la couche manquante de {{size}} à 30 cm",
   "STRUCTURE_QUALITY": "Qualité de la structure",

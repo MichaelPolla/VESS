@@ -84,7 +84,6 @@
   "OFAG_ID": "OFAG ID",
   "PARCEL": "Parcel",
   "PARCEL_NAME": "Parcel : {{name}}",
-  "PARCEL_NOTATION": "Start the soil evaluation",
   "PICTURE_OF_LAYER": "Picture layer",
   "PARCELS": "Parcels",
   "PICTURE_OF_LAYER_INSTRUCTIONS": "Take a picture of the layer:",
@@ -145,6 +144,7 @@
     "DISTINGUISHING_FEATURE": "Grey-blue colour possible",
     "APPEARANCE_OF_FRAGMENT": "Aggregate fragments are easy to obtain when soil is wet, although considerable force may be needed. No pores or cracks are visible usually."
   },
+  "START_EVALUATION": "Start the soil evaluation",
   "STONY_SOIL": "Stony soil",
   "STONY_SOIL_NOTATION": "The score of 3 will be assigned to the missing layer of {{size}} to 30 cm",
   "STRUCTURE_QUALITY": "Structure quality",
