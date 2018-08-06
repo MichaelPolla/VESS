@@ -4,7 +4,7 @@
 
 Visual Evaluation of Soil Structure (VESS)
 
-<img src="/docs/VESS-Icon2.png" width="200">
+<img src="/docs/vess-icon.png" width="200">
 
 ## Installation
 
