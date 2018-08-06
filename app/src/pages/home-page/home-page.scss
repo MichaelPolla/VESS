@@ -9,8 +9,13 @@
     
         .icon{
     
-          font-size: 350%;
+          font-size: 300%;
           width : 42px;
+        }
+
+        .icon-big{
+            font-size: 600%; 
+            width : 55px;
         }
     }
 }
@@ -25,9 +30,12 @@
         }
     
         .icon{
-    
-          font-size: 350%;
+          font-size: 300%;
           width : 25px;
+        }
+        .icon-big{
+            font-size: 500%;
+            width : 50px;
         }
     }
 }
