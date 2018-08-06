@@ -1,41 +1,12 @@
-.ios{
-    page-home-page {
-        #btn{
-            width: 100%;
-            height: 100%;
-            text-transform: none; /*remove uppercase*/
-            white-space: initial; /*text overflow of button*/
-        }
-    
-        .icon{
-    
-          font-size: 300%;
-          width : 42px;
-        }
-
-        .icon-big{
-            font-size: 600%; 
-            width : 55px;
-        }
-    }
-}
-
-.md{
-    page-home-page {
-        #btn{
-            width: 100%;
-            height: 100%;
-            text-transform: none; /*remove uppercase*/
-            white-space: initial; /*text overflow of button*/
-        }
-    
+.ios, .md{
+    page-home-page {    
         .icon{
           font-size: 300%;
-          width : 25px;
+          width: 40px;
         }
         .icon-big{
-            font-size: 500%;
-            width : 50px;
+            font-size: 600%;
+            width : 60px;
         }
     }
 }
