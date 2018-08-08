@@ -139,7 +139,6 @@ export class ParcelsTestsPage {
                 let testId = this.currentParcel.tests.length > 0 ? this.currentParcel.tests[this.currentParcel.tests.length - 1].id + 1 : 1;
                 let test = new Test({ id: testId, name: data['name'], date: data['date'], layers: [] });
                 let parcelIndex = this.parcels.indexOf(this.dataService.getCurrentParcel());
-                console.log(parcelIndex);
                 this.parcels[parcelIndex].tests.push(test);
                 this.dataService.saveParcels();
                 this.listItems = this.currentParcel.tests.filter(test => test.isCompleted === this.isConsultation);
