@@ -134,7 +134,7 @@ export class CameraPage {
 
     let dataBlob: Blob = this.b64toBlob(imgData, imgType, 512);
     this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
-    this.file.writeFile(this.destinationRootDirectory, this.imageNamePath, dataBlob, true).then(success => { // Store file
+    this.file.writeFile(this.destinationRootDirectory, this.imageNamePath, dataBlob).then(success => { // Store file
     }, error => {
       this.toasts.showToast(this.translate.get('ERROR_SAVING_PICTURE'));
     });
