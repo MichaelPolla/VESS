@@ -1,10 +1,12 @@
 {
     "name": "vess",
-    "author": "Polla Michael, Cicciu Salvatore",
+    "author": "Michael POLLA, Salvatore CICCIU",
     "private": true,
     "scripts": {
-        "ionic:build": "ionic-app-scripts build",
-        "ionic:serve": "ionic-app-scripts serve"
+        "start": "ionic-app-scripts serve",
+        "clean": "ionic-app-scripts clean",
+        "build": "ionic-app-scripts build",
+        "lint": "ionic-app-scripts lint"
     },
     "dependencies": {
         "@angular/common": "4.1.2",
@@ -57,7 +59,6 @@
     },
     "devDependencies": {
         "@ionic/app-scripts": "1.3.7",
-        "ionic": "3.20.0",
         "typescript": "2.3.4"
     },
     "cordovaPlugins": [
