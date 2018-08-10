@@ -4,7 +4,6 @@ import { ModalController, NavController, NavParams } from 'ionic-angular';
 
 // Pages
 import { AboutPage } from './../about/about';
-import { ExportPage } from './../export/export';
 import { ParcelsTestsPage } from '../parcels-tests/parcels-tests';
 import { SettingsPage } from '../settings/settings';
 import { StructuralQualityPage } from './../structural-quality/structural-quality';
@@ -75,9 +74,6 @@ export class HomePage {
         break;
       case "settings":
         this.navCtrl.push(SettingsPage);
-        break;
-      case "email":
-        this.navCtrl.push(ExportPage);
         break;
       case "about":
         this.navCtrl.push(AboutPage);
