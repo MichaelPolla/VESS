@@ -1,12 +1,3 @@
-import { StructuralQualityPage } from './../pages/structural-quality/structural-quality';
-import { TutorialPage } from './../pages/tutorial/tutorial';
-import { Toasts } from './../providers/toasts';
-import { User } from './../models/user';
-import { DataService } from './../providers/data-service';
-import { AboutPage } from './../pages/about/about';
-import { SettingsPage } from './../pages/settings/settings';
-import { ParcelsTestsPage } from './../pages/parcels-tests/parcels-tests';
-import { TranslateProvider } from './../providers/translate/translate';
 import { Component, ViewChild } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
@@ -16,9 +7,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 // Pages
-import { HomePage } from '../pages/home-page/home-page';
+import { AboutPage } from './../pages/about/about';
 import { GlossaryPage } from '../pages/glossary/glossary';
+import { HomePage } from '../pages/home-page/home-page';
+import { ParcelsTestsPage } from './../pages/parcels-tests/parcels-tests';
+import { SettingsPage } from './../pages/settings/settings';
+import { StructuralQualityPage } from './../pages/structural-quality/structural-quality';
+import { TutorialPage } from './../pages/tutorial/tutorial';
 
+// Providers
+import { DataService } from './../providers/data-service';
+import { Toasts } from './../providers/toasts';
+import { TranslateProvider } from './../providers/translate/translate';
+
+import { User } from './../models/user';
 
 @Component({
   templateUrl: 'app.html',
