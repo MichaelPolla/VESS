@@ -17,6 +17,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 // Pages
 import { HomePage } from '../pages/home-page/home-page';
+import { GlossaryPage } from '../pages/glossary/glossary';
 
 
 @Component({
@@ -49,6 +50,7 @@ export class MyApp {
       { title: 'TESTS_CONSULTATION', component: ParcelsTestsPage, params: { isConsultation: true } },
       { title: 'STRUCTURE_QUALITY', component: StructuralQualityPage },
       { title: 'TUTORIAL.TITLE', component: TutorialPage },
+      { title: 'GLOSSARY', component: GlossaryPage },
       { title: 'SETTINGS', component: SettingsPage },
       { title: 'ABOUT.TITLE', component: AboutPage }
     ];
