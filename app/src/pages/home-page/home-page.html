@@ -25,6 +25,10 @@
       <ion-icon class="icon" name="book" item-left color="brown"></ion-icon>
       {{ 'TUTORIAL.TITLE' | translate }}
     </button>
+    <button ion-item (click)="showPage('glossary')">
+        <ion-icon class="icon" name="bookmarks" item-left color="brown"></ion-icon>
+        {{ 'GLOSSARY' | translate }}
+      </button>
     <button ion-item (click)="showPage('settings')">
       <ion-icon class="icon" name="settings" item-left color="brown"></ion-icon>
       {{ 'SETTINGS' | translate }}

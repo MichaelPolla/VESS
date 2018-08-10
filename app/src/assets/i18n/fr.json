@@ -40,6 +40,7 @@
   "FINAL_SCORE": "Score final : {{score}}",
   "FINAL_SCORE_OF_TEST": "Score final du test :",
   "FUNCTIONALITY_NOT_YET_AVAILABLE": "Fonctionnalité pas encore disponible.",
+  "GLOSSARY": "Glossaire",
   "HELP": {
     "TITLE": "Aide",
     "UNAVAILABLE": "Aide indisponible.",
@@ -223,7 +224,7 @@
   "VERIF_SCORE5_CRITERIA1_CHECK2": "Contiennent très peu ou pas de racines",
   "VERIF_SCORE5_CRITERIA2_TITLE": "Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles",
   "VERIF_SCORE5_CRITERIA3_TITLE": "Anoxie possible, couleur gris-bleu (odeur d’œuf pourri)",
-  "VERSION" : "Version",
+  "VERSION": "Version",
   "VISIBLE_POROSITY_AND_ROOTS": "Porosité visible et racines",
   "YES": "Oui"
 }
