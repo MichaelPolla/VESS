@@ -1,6 +1,17 @@
 import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 
+// Pages
+import { GlossaryDefinitionPage } from './../glossary-definition/glossary-definition';
+
+// Providers
+import { TranslateProvider } from "../../providers/translate/translate";
+
+export interface GlossaryEntry {
+  id: string;
+  value?: string;
+}
+
 @Component({
   selector: "page-glossary",
   templateUrl: "glossary.html"
@@ -9,5 +20,24 @@ export class GlossaryPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private translate: TranslateProvider
   ) {}
+
+  glossaryEntries: GlossaryEntry[] = [
+    { id: "AGGREGATE" },
+    { id: "ANOXIA" },
+    { id: "CLOD" }
+  ];
+
+  ionViewDidLoad() {
+    // Set the values (= localized texts) of the glossary entries
+    for (let glossaryEntry of this.glossaryEntries) {
+      glossaryEntry.value = this.translate.get(glossaryEntry.id);
+    }
+  }
+
+  itemSelected(item: GlossaryEntry) {
+    console.log(item.id);
+    this.navCtrl.push(GlossaryDefinitionPage, { glossaryEntry: item });
+  }
 }

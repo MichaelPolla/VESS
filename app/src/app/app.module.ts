@@ -27,6 +27,7 @@ import { DefiningLayerPage } from '../pages/defining-layer/defining-layer';
 import { ExportPage } from './../pages/export/export';
 import { GifViewPage } from '../pages/gif-view/gif-view';
 import { GlossaryPage } from '../pages/glossary/glossary';
+import { GlossaryDefinitionPage } from '../pages/glossary-definition/glossary-definition';
 import { HomePage } from '../pages/home-page/home-page';
 import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
 import { Notation1Page } from '../pages/notation-1/notation-1';
@@ -66,6 +67,7 @@ export function createTranslateLoader(http: Http) {
     DefiningLayerPage,
     GifViewPage,
     GlossaryPage,
+    GlossaryDefinitionPage,
     ExportPage,
     HomePage,
     ModalPicturePage,
@@ -107,6 +109,7 @@ export function createTranslateLoader(http: Http) {
     ExportPage,
     GifViewPage,
     GlossaryPage,
+    GlossaryDefinitionPage,
     HomePage,
     ModalPicturePage,
     MyApp,

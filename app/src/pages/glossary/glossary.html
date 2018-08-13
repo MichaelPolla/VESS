@@ -1,12 +1,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>glossary</ion-title>
+    <ion-title>{{ 'GLOSSARY' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-
+    <ion-list>
+        <button ion-item *ngFor="let glossaryEntry of glossaryEntries" (click)="itemSelected(glossaryEntry)">
+          {{ glossaryEntry.value }}
+        </button>  
+      </ion-list>
 </ion-content>
