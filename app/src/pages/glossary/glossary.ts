@@ -38,6 +38,9 @@ export class GlossaryPage {
     for (let glossaryEntry of this.glossaryEntries) {
       glossaryEntry.value = this.translate.get(glossaryEntry.id);
     }
+    // Sort glossary alphabetically
+    this.glossaryEntries.sort((a, b) => a.value.localeCompare(b.value));
+
    }
 
   itemSelected(item: GlossaryEntry) {
