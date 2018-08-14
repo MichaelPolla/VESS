@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 
 // Pages
-import { GlossaryDefinitionPage } from './../glossary-definition/glossary-definition';
+import { GlossaryDefinitionPage } from "./../glossary-definition/glossary-definition";
 
 // Providers
 import { TranslateProvider } from "../../providers/translate/translate";
@@ -26,7 +26,11 @@ export class GlossaryPage {
   glossaryEntries: GlossaryEntry[] = [
     { id: "AGGREGATE" },
     { id: "ANOXIA" },
-    { id: "CLOD" }
+    { id: "CLOD" },
+    { id: "CRACK" },
+    { id: "POROSITY_VISIBLE_TO_EYE" },
+    { id: "SOIL_FRAGMENT" },
+    { id: "VISIBLE_COARSE_PORE" }
   ];
 
   ionViewDidLoad() {
@@ -34,7 +38,7 @@ export class GlossaryPage {
     for (let glossaryEntry of this.glossaryEntries) {
       glossaryEntry.value = this.translate.get(glossaryEntry.id);
     }
-  }
+   }
 
   itemSelected(item: GlossaryEntry) {
     console.log(item.id);

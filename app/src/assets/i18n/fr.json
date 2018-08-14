@@ -31,6 +31,8 @@
   "COMMENT": "Commentaires",
   "COMMENT_BLOCK": "Ajouter un commentaire à la couche",
   "COMMENT_TEST": "Ajouter un commentaire au test",
+  "CRACK": "Fissure",
+  "CRACK_DEFINITION": "Espace inter-agrégats ou inter-fragments créé sous l'effet du retrait / gonflement des argiles durant les phases de dessiccation/humectation ou gel/dégel des sols.",
   "DATE": "Date",
   "DEFINING_LAYERS_INSTRUCTIONS": "Indiquez le nombre de couches composant le bloc, et sa taille totale",
   "DEFINITION": "Définition",
@@ -102,6 +104,8 @@
   "PLEASE_FILL_IN_OFAG_ID": "Veuillez renseigner l'identifiant OFAG.",
   "PLEASE_SET_YOUR_USER_INFO_IN_SETTINGS_FIRST": "Veuillez d'abord configurer vos données utilisateur dans les paramètres.",
   "PLEASE_TAKE_PICTURE": "Veuillez prendre une photo.",
+  "POROSITY_VISIBLE_TO_EYE": "Porosité visible à l'œil",
+  "POROSITY_VISIBLE_TO_EYE_DEFINITION": "Regroupe tous les pores > 0.1-0.2 mm jusqu’aux galeries de lombrics.",
   "SAME_SOIL_DIFFERENT_TILLAGE": "Même sol mais travail du sol différent",
   "SAVE": "Enregistrer",
   "SCORE": "Score",
@@ -112,7 +116,7 @@
   "SETTINGS_SAVE": "Les données ont bien été enregistrées",
   "SHOW_SUMMARY": "Afficher le résumé",
   "SIZE_AND_APPEARANCE": "Taille et apparence",
-  "SOIL_FRAGMENT": "Soil fragment",
+  "SOIL_FRAGMENT": "Fragment de sol",
   "SOIL_FRAGMENT_DEFINITION": "Obtenu après avoir brisé une motte plutôt fermée",
   "SQ1": {
     "QUALITY": "SQ1 Friable",
@@ -234,6 +238,8 @@
   "VERIF_SCORE5_CRITERIA2_TITLE": "Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles",
   "VERIF_SCORE5_CRITERIA3_TITLE": "Anoxie possible, couleur gris-bleu (odeur d’œuf pourri)",
   "VERSION": "Version",
+  "VISIBLE_COARSE_PORE": "Pore visible grossier",
+  "VISIBLE_COARSE_PORE_DEFINITION": "Pore de plus de 2 mm.",
   "VISIBLE_POROSITY_AND_ROOTS": "Porosité visible et racines",
   "YES": "Oui"
 }
