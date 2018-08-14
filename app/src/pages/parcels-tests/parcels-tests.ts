@@ -67,7 +67,7 @@ export class ParcelsTestsPage {
 
         default: // Steps.Parcels, hopefully
           this.stepNumber = Steps.Parcels;
-          this.pageTitle = this.translate.get('PARCELS');
+          this.pageTitle = this.translate.get('PARCELS_TO_TEST');
           this.listItems = this.parcels;
           break;
       }

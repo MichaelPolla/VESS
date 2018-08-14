@@ -95,6 +95,7 @@
   "PARCEL": "Parcelle",
   "PARCEL_NAME": "Parcelle : {{name}}",
   "PARCELS": "Parcelles",
+  "PARCELS_TO_TEST": "Parcelles à tester",
   "PICTURE_OF_LAYER": "Photo couche",
   "PICTURE_OF_LAYER_INSTRUCTIONS": "Prenez une photo de la couche :",
   "PICTURE_OF_WHOLE_BLOCK": "Photo du bloc entier",

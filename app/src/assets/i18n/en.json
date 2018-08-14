@@ -96,6 +96,7 @@
   "PARCEL_NAME": "Parcel : {{name}}",
   "PICTURE_OF_LAYER": "Picture layer",
   "PARCELS": "Parcels",
+  "PARCELS_TO_TEST": "Parcels to test",
   "PICTURE_OF_LAYER_INSTRUCTIONS": "Take a picture of the layer:",
   "PICTURE_OF_WHOLE_BLOCK": "Picture of the whole block",
   "PICTURE_OF_WHOLE_BLOCK_INSTRUCTIONS": "Take a picture showing the whole block with its different layers, and the hole from which it was extracted:",
