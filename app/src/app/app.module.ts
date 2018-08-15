@@ -14,6 +14,7 @@ import { MyApp } from './app.component';
 import { Camera } from '@ionic-native/camera';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { File } from '@ionic-native/file';
+import { FilePath } from '@ionic-native/file-path';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -133,6 +134,7 @@ export function createTranslateLoader(http: Http) {
     DataService,
     EmailComposer,
     File,
+    FilePath,
     Geolocation,
     RulerService,
     ScreenOrientation,
