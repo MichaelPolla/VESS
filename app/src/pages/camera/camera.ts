@@ -1,3 +1,4 @@
+import { FilePath } from '@ionic-native/file-path';
 import { Geoloc } from './../../models/geoloc';
 import { Test, Layer } from './../../models/parcel';
 import { Component } from '@angular/core';
@@ -42,6 +43,7 @@ export class CameraPage {
     public alertCtrl: AlertController,
     private dataService: DataService,
     private file: File,
+    private filePath: FilePath,
     public navCtrl: NavController,
     public navParams: NavParams,
     public platform: Platform,
@@ -62,14 +64,14 @@ export class CameraPage {
     this.stepView = this.navParams.get('stepView');
     this.currentTest = this.dataService.getCurrentTest();
 
-    let filePath = "";
+    let picturePath = "";
     switch (this.stepView) {
       case 1://test
         this.currentTest.comment = "";
         this.title = translate.get('PICTURE_OF_WHOLE_BLOCK');
         this.dirName = "blocks";
         //check if file exist
-        filePath = this.currentTest.picture;
+        picturePath = this.currentTest.picture;
         this.defaultPicture = "./assets/icon/two-layers-example.png";
         this.instructions = translate.get('PICTURE_OF_WHOLE_BLOCK_INSTRUCTIONS');
         break;
@@ -79,15 +81,15 @@ export class CameraPage {
 
         this.title = this.translate.get('PICTURE_OF_LAYER') + " " + this.layerNumber + "  (" + this.currentLayer.minThickness + "-" + this.currentLayer.maxThickness + " cm)";
         this.dirName = "layers";
-        filePath = this.dataService.getCurrentLayer().picture;
+        picturePath = this.dataService.getCurrentLayer().picture;
         this.defaultPicture = "./assets/icon/generic-image.png";
         this.instructions = translate.get('PICTURE_OF_LAYER_INSTRUCTIONS');
         break;
     }
 
-    this.file.checkFile(this.destinationRootDirectory, filePath).then(_ => {
+    this.file.checkFile(this.destinationRootDirectory, picturePath).then(_ => {
       //read picture
-      this.file.readAsDataURL(this.destinationRootDirectory, filePath).then((pictureAsBase64) => {
+      this.file.readAsDataURL(this.destinationRootDirectory, picturePath).then((pictureAsBase64) => {
         this.imageFile = pictureAsBase64;
       });
     }).catch(err => {
@@ -102,8 +104,8 @@ export class CameraPage {
       quality: 90,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      targetWidth: 1000, //TODO: check if it necessary to resize picture, and if so, set correct values
-      targetHeight: 1000,
+      //targetWidth: 1000, //TODO: check if it necessary to resize picture, and if so, set correct values
+      //targetHeight: 1000,
       correctOrientation: true
     }
     this.camera.getPicture(options).then((pictureAsBinary) => {
