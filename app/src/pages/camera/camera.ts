@@ -104,8 +104,6 @@ export class CameraPage {
       quality: 90,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      //targetWidth: 1000, //TODO: check if it necessary to resize picture, and if so, set correct values
-      //targetHeight: 1000,
       correctOrientation: true
     }
     this.camera.getPicture(options).then((pictureAsBinary) => {
