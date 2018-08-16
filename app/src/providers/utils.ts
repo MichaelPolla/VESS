@@ -23,11 +23,12 @@ export class Utils {
   }
 
   /**
-   * Returns a filename base on the current date and time, with the extension passed in argument.  
+   * Returns a filename based on the current date and time, with the extension passed in argument.  
+   * Filename example: "20181608_150217.jpg"
    * fileExt : the file extension, prefixed by '.'  (.jpg, .png...)
    */
   public static getDatetimeFilename(fileExt: string): string {
-    return this.getCurrentDatetime('ddMMy_HHmmss') + fileExt;
+    return this.getCurrentDatetime('yMMdd_HHmmss') + fileExt;
   }
 
   /**
