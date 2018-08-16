@@ -103,9 +103,7 @@ export class CameraPage {
   takePicture() {
     const options = {
       quality: 90,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true
+      correctOrientation: true // Fix the 90° picture rotation on Android devices. Note that when using the front camera, pictures are usally vertically flipped.
     }
     this.camera.getPicture(options).then((imagePath) => {
       let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
@@ -117,10 +115,12 @@ export class CameraPage {
   }
 
   private copyFileToLocalDir(namePath, currentName, newFileName) {
-    this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => { this.lastImage = newFileName; },
+    this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(
+      success => { 
+      this.lastImage = newFileName;
+      this.saveData(); },
       error => {
     this.toasts.showToast(this.translate.get('ERROR_SAVING_PICTURE'));
-    console.log(error);
     });
   }
 
@@ -131,12 +131,41 @@ export class CameraPage {
     return newFileName;
   }
 
-  public pathForImage(img) {
+  /**
+   * Return the full path to an image, if it exists.
+   * Example: "file:///data/user/0/ch.hepia.vess/files/1534408546442.jpg"
+   * @param img The image to get the path.
+   */
+  public getPathForImage(img: string) {
     if (img === null) {
-      return '';
+      return "";
     } else {
       return cordova.file.dataDirectory + img;
     }
+  }
+
+  private saveData(){
+    switch (this.stepView) {
+      case 1:
+        this.currentTest.picture = this.lastImage;
+        this.takeGeolocation();
+        break;
+      case 5:
+        this.dataService.getCurrentLayer().picture = this.lastImage;
+        break;
+    }
+
+    this.dataService.saveParcels();
+
+  } 
+
+  private takeGeolocation() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.dataService.getCurrentTest().geolocation = new Geoloc(resp.coords);
+      this.dataService.saveParcels();
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
 
   private savePicture(imageBase64: any) {
@@ -153,23 +182,6 @@ export class CameraPage {
     }, error => {
       this.toasts.showToast(this.translate.get('ERROR_SAVING_PICTURE'));
     });
-    switch (this.stepView) {
-      case 1:
-        this.currentTest.picture = this.imageNamePath;
-        //take geoloc
-        this.geolocation.getCurrentPosition().then((resp) => {
-          this.dataService.getCurrentTest().geolocation = new Geoloc(resp.coords);
-          this.dataService.saveParcels();
-        }).catch((error) => {
-          console.log('Error getting location', error);
-        });
-        break;
-      case 5:
-        this.dataService.getCurrentLayer().picture = this.imageNamePath;
-        break;
-    }
-
-    this.dataService.saveParcels();
   }
 
   validationStep() {

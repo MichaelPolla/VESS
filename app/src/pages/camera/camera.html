@@ -11,7 +11,7 @@
 
 <ion-content padding>
   <p> {{instructions}} </p>
-  <img src={{pathForImage(lastImage)}} (click)="takePicture()">
+  <img src={{getPathForImage(lastImage)}} (click)="takePicture()">
 
   <button ion-button block color="brown" item-center (click)="takePicture()">
       <ion-icon name="camera"></ion-icon>
