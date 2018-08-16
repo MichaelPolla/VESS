@@ -24,6 +24,8 @@ declare var cordova;
 })
 export class CameraPage {
   public imageFile: string;
+
+  public lastImage: string = null;
   private isOfagUser: boolean = false;
   private currentTest: Test;
   public layerNumber: number;
@@ -100,28 +102,41 @@ export class CameraPage {
 
   takePicture() {
     const options = {
-      destinationType: this.camera.DestinationType.DATA_URL,
       quality: 90,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true
     }
-    this.camera.getPicture(options).then((pictureAsBinary) => {
-      //read new image
-      this.imageFile = "data:image/jpeg;base64," + pictureAsBinary;
-      //check if directory exist
-      this.file.checkDir(this.destinationRootDirectory, this.dirName).then(success => {
-        this.savePicture(this.imageFile);
-      }, error => {
-        this.file.createDir(this.destinationRootDirectory, this.dirName, true).then(success => {
-          this.savePicture(this.imageFile);
-        }, error => {
-          this.toasts.showToast(this.translate.get('ERROR_CREATING_PICTURE_FOLDER'));
-        });
-      });
-    }, (err) => {
+    this.camera.getPicture(options).then((imagePath) => {
+      let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+      let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+      this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+    }, (error) => {
       this.toasts.showToast(this.translate.get('ERROR_CREATING_PICTURE'));
     });
+  }
+
+  private copyFileToLocalDir(namePath, currentName, newFileName) {
+    this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => { this.lastImage = newFileName; },
+      error => {
+    this.toasts.showToast(this.translate.get('ERROR_SAVING_PICTURE'));
+    console.log(error);
+    });
+  }
+
+  private createFileName() {
+    var d = new Date(),
+    n = d.getTime(),
+    newFileName =  n + ".jpg";
+    return newFileName;
+  }
+
+  public pathForImage(img) {
+    if (img === null) {
+      return '';
+    } else {
+      return cordova.file.dataDirectory + img;
+    }
   }
 
   private savePicture(imageBase64: any) {
