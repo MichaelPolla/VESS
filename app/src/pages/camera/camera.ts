@@ -108,7 +108,7 @@ export class CameraPage {
     this.camera.getPicture(options).then((imagePath) => {
       let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
       let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-      this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+      this.copyFileToLocalDir(correctPath, currentName, Utils.getDatetimeFilename('.jpg'));
     }, (error) => {
       this.toasts.showToast(this.translate.get('ERROR_CREATING_PICTURE'));
     });
@@ -123,14 +123,6 @@ export class CameraPage {
     this.toasts.showToast(this.translate.get('ERROR_SAVING_PICTURE'));
     });
   }
-
-  private createFileName() {
-    var d = new Date(),
-    n = d.getTime(),
-    newFileName =  n + ".jpg";
-    return newFileName;
-  }
-
   /**
    * Return the full path to an image, if it exists.
    * Example: "file:///data/user/0/ch.hepia.vess/files/1534408546442.jpg"
@@ -168,22 +160,6 @@ export class CameraPage {
     });
   }
 
-  private savePicture(imageBase64: any) {
-    // Convert the base64 string in a Blob
-    let imgWithMeta = imageBase64.split(",")
-    // base64 data
-    let imgData = imgWithMeta[1].trim();
-    // content type
-    let imgType = imgWithMeta[0].trim().split(";")[0].split(":")[1];
-
-    let dataBlob: Blob = this.b64toBlob(imgData, imgType, 512);
-    this.imageNamePath = this.dirName + "/" + Utils.getDatetimeFilename('.jpg');
-    this.file.writeFile(this.destinationRootDirectory, this.imageNamePath, dataBlob).then(success => { // Store file
-    }, error => {
-      this.toasts.showToast(this.translate.get('ERROR_SAVING_PICTURE'));
-    });
-  }
-
   validationStep() {
     if (this.isOfagUser && this.imageFile == this.defaultPicture) { // OFAG user must take a picture
       this.toasts.showToast(this.translate.get('PLEASE_TAKE_PICTURE'));
@@ -201,31 +177,6 @@ export class CameraPage {
           break;
       }
     }
-  }
-
-  // convert base64 to Blob
-  // Copy from https://github.com/ionic-team/ionic-native/issues/806
-  b64toBlob(b64Data, contentType, sliceSize) {
-    let byteCharacters = atob(b64Data);
-
-    let byteArrays = [];
-
-    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-      let slice = byteCharacters.slice(offset, offset + sliceSize);
-
-      let byteNumbers = new Array(slice.length);
-      for (let i = 0; i < slice.length; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
-
-      let byteArray = new Uint8Array(byteNumbers);
-
-      byteArrays.push(byteArray);
-
-    }
-    let blob = new Blob(byteArrays, { type: contentType });
-
-    return blob;
   }
 
   addTestComment() {
