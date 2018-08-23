@@ -140,8 +140,7 @@ export class CameraPage {
       switch (this.stepView) {
         case 1:
           this.navCtrl.push(DefiningLayerPage, {
-            stepView: this.stepView + 1,
-            imageFileName: this.lastImageFileName
+            stepView: this.stepView + 1
           })
           break;
         case 5:

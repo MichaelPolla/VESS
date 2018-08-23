@@ -9,6 +9,7 @@ import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
 import { Toasts } from '../../providers/toasts';
 import { TranslateProvider } from '../../providers/translate/translate'
+import { Utils } from '../../providers/utils';
 
 
 @Component({
@@ -39,8 +40,8 @@ export class DefiningLayerPage {
 
   ionViewDidLoad() {
     this.stepView = this.navParams.get('stepView');
-    this.imageFile = this.navParams.get('picture');
     this.currentTest = this.dataService.getCurrentTest();
+    this.imageFile = Utils.getPathForImage(this.currentTest.picture);
 
     if (!this.platform.is('core')) {
       this.rulerService.getHeightStyle(846, 56).then((value: number) => {
