@@ -25,7 +25,8 @@ declare var cordova;
 export class CameraPage {
   public imageFile: string;
 
-  public lastImage: string = null;
+  public lastImage: string;
+  private lastImageFileName: string;
   private isOfagUser: boolean = false;
   private currentTest: Test;
   public layerNumber: number;
@@ -33,12 +34,8 @@ export class CameraPage {
   title: string;
   stepView: number;
   imageNamePath: string;
-  dirName: string;
   instructions: string;
-  defaultPicture: string;
-
-  //TODO: Only Android ; should be something like cordova.file.dataDirectory for iOS
-  private destinationRootDirectory: string;
+  defaultImage: string;
 
   constructor(
     private camera: Camera,
@@ -49,55 +46,35 @@ export class CameraPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public platform: Platform,
+    public  utils: Utils,
     private toasts: Toasts,
     private translate: TranslateProvider,
     private geolocation: Geolocation) {
 
-    if (this.platform.is('ios')) {
-      // This will only print when on iOS
-      this.destinationRootDirectory = cordova.file.documentsDirectory;
-    }else if(this.platform.is('android')){
-      this.destinationRootDirectory = cordova.file.externalDataDirectory;
-    }else{
-      this.toasts.showToast(this.translate.get('ERROR'));
-    }
-    
-
     this.stepView = this.navParams.get('stepView');
     this.currentTest = this.dataService.getCurrentTest();
 
-    let picturePath = "";
+    let existingPicture = "";
     switch (this.stepView) {
-      case 1://test
+      case 1: // Block
         this.currentTest.comment = "";
         this.title = translate.get('PICTURE_OF_WHOLE_BLOCK');
-        this.dirName = "blocks";
         //check if file exist
-        picturePath = this.currentTest.picture;
-        this.defaultPicture = "./assets/icon/two-layers-example.png";
+        existingPicture = this.currentTest.picture;
+        this.defaultImage = "./assets/icon/two-layers-example.png";
         this.instructions = translate.get('PICTURE_OF_WHOLE_BLOCK_INSTRUCTIONS');
         break;
-      case 5://block
+      case 5: // Layer
         this.currentLayer = this.dataService.getCurrentLayer();
         this.layerNumber = this.currentLayer.num;
 
         this.title = this.translate.get('PICTURE_OF_LAYER') + " " + this.layerNumber + "  (" + this.currentLayer.minThickness + "-" + this.currentLayer.maxThickness + " cm)";
-        this.dirName = "layers";
-        picturePath = this.dataService.getCurrentLayer().picture;
-        this.defaultPicture = "./assets/icon/generic-image.png";
+        existingPicture = this.dataService.getCurrentLayer().picture;
+        this.defaultImage = "./assets/icon/generic-image.png";
         this.instructions = translate.get('PICTURE_OF_LAYER_INSTRUCTIONS');
         break;
     }
-
-    this.file.checkFile(this.destinationRootDirectory, picturePath).then(_ => {
-      //read picture
-      this.file.readAsDataURL(this.destinationRootDirectory, picturePath).then((pictureAsBase64) => {
-        this.imageFile = pictureAsBase64;
-      });
-    }).catch(err => {
-      //file doesn't exist, so display exemple picture for how to take photo
-      this.imageFile = this.defaultPicture;
-    });
+    this.lastImage = existingPicture ? existingPicture : this.defaultImage;
   }
 
   takePicture() {
@@ -114,42 +91,37 @@ export class CameraPage {
     });
   }
 
+  /**
+   * Copy a file to the local directory of the device (cordova.file.dataDirectory).
+   * @param namePath Path of the file to copy.
+   * @param currentName Name of the file to copy.
+   * @param newFileName File name for the copied file.
+   */
   private copyFileToLocalDir(namePath, currentName, newFileName) {
     this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(
       success => { 
-      this.lastImage = newFileName;
+      this.lastImageFileName = newFileName;
+      this.lastImage = Utils.getPathForImage(this.lastImageFileName);
       this.saveData(); },
       error => {
     this.toasts.showToast(this.translate.get('ERROR_SAVING_PICTURE'));
     });
   }
-  /**
-   * Return the full path to an image, if it exists.
-   * Example: "file:///data/user/0/ch.hepia.vess/files/1534408546442.jpg"
-   * @param img The image to get the path.
-   */
-  public getPathForImage(img: string) {
-    if (img === null) {
-      return "";
-    } else {
-      return cordova.file.dataDirectory + img;
-    }
-  }
 
   private saveData(){
     switch (this.stepView) {
       case 1:
-        this.currentTest.picture = this.lastImage;
+        this.currentTest.picture = this.lastImageFileName;
         this.takeGeolocation();
         break;
       case 5:
-        this.dataService.getCurrentLayer().picture = this.lastImage;
+        this.dataService.getCurrentLayer().picture = this.lastImageFileName;
         break;
     }
 
     this.dataService.saveParcels();
 
-  } 
+  }
 
   private takeGeolocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
@@ -161,7 +133,7 @@ export class CameraPage {
   }
 
   validationStep() {
-    if (this.isOfagUser && this.imageFile == this.defaultPicture) { // OFAG user must take a picture
+    if (this.isOfagUser && this.imageFile == this.defaultImage) { // OFAG user must take a picture
       this.toasts.showToast(this.translate.get('PLEASE_TAKE_PICTURE'));
     } else {
       this.dataService.saveParcels();
@@ -169,7 +141,7 @@ export class CameraPage {
         case 1:
           this.navCtrl.push(DefiningLayerPage, {
             stepView: this.stepView + 1,
-            picture: this.imageFile
+            imageFileName: this.lastImageFileName
           })
           break;
         case 5:
