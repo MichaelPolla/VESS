@@ -101,10 +101,10 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <allow-navigation href="http://192.168.1.114:8101" />
     <allow-navigation href="http://172.20.0.68:8101" />
-    <engine name="android" spec="^7.1.1" />
-    <engine name="ios" spec="^4.5.5" />
     <allow-navigation href="http://169.254.57.52:8101" />
     <allow-navigation href="http://192.168.1.139:8100" />
     <plugin name="cordova-plugin-filepath" spec="^1.4.2" />
-    <engine name="browser" spec="~5.0.4" />
+    <engine name="android" spec="^7.1.1" />
+    <engine name="ios" spec="^4.5.5" />
+    <engine name="browser" spec="5.0.4" />
 </widget>
