@@ -14,6 +14,7 @@ import { TranslateProvider } from "../../providers/translate/translate";
   templateUrl: "gif-view.html"
 })
 export class GifViewPage {
+  public description: string;
   stepView: number;
   imageFile: string;
   title: string;
@@ -32,6 +33,7 @@ export class GifViewPage {
     } else {
       this.stepView = this.navParams.get("stepView");
       this.title = translate.get("BLOCK_OPENING");
+      this.description = translate.get("BLOCK_OPENING_DESCRIPTION");
     }
 
     //image in function of step

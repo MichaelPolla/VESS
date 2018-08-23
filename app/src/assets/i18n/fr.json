@@ -20,6 +20,7 @@
   "APPEARANCE_OF_FRAGMENT": "Apparence des agrégats ou fragments de ≈ 1.5 cm de diamètre",
   "BACK": "Retour",
   "BLOCK_OPENING": "Ouverture du bloc",
+  "BLOCK_OPENING_DESCRIPTION": "L'ouverture du bloc sert à identifier les couches de sols de structures différentes.",
   "BLOCK_EXTRACTION": "Extraction du bloc",
   "BLOCK_PICTURE": "Photo du bloc",
   "BLOCK_SIZE": "Taille du bloc",

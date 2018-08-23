@@ -20,6 +20,7 @@
   "APPEARANCE_OF_FRAGMENT": "Appearance of aggregates or fragments of ≈ 1.5 cm diameter",
   "BACK": "Back",
   "BLOCK_OPENING": "Block opening",
+  "BLOCK_OPENING_DESCRIPTION": "The opening of the block is used to identify the soil layers of different structures.",
   "BLOCK_EXTRACTION": "Block extraction",
   "BLOCK_PICTURE": "Block picture",
   "BLOCK_SIZE": "Block size",
