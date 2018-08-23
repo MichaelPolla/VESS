@@ -12,10 +12,19 @@ export class Parcel {
   }
 }
 
+export enum Steps {
+  EXTRACTING_BLOCK,
+  PICTURE_EXTRACTED_BLOCK,
+  OPENING_BLOCK,
+  PICTURE_OPENED_BLOCK,
+  DEFINING_LAYERS
+}
+
 export class Test {
   public id: number;
   public name?: string;
   public date: string;
+  public currentStep: number;
   public score?: number;
   public picture?: string;
   public geolocation?: Geoloc;
