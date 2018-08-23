@@ -15,10 +15,8 @@ export class TranslateProvider {
    * If the key isn't found in the translation file, the key is returned instead.
    */
   public get(key: string, interpolateParams?: Object): string {
-    let result: string;
-    this.translate.get(key, interpolateParams).subscribe((res: string) => {
-      result = (res !== "" && res !== key) ? res : this.get("MISSING_TEXT", { key: key});
-    });
+    let result: string = this.translate.instant(key, interpolateParams);
+      result = (result !== "" && result !== key) ? result : this.get("MISSING_TEXT", { key: key});
     return result;
   }
 
