@@ -38,7 +38,7 @@
 
   </ion-list>
 
-  <img src={{imageFile}}/>
+  <img [src]=imageFile [hidden]="imageFile == ''"/>
   <img class="ruler" src='./assets/icon/ruler.png' [style.height.px]="heightRuler" />
 
 
