@@ -48,7 +48,7 @@ export class Utils {
    * @param img The image to get the path.
    */
   public static getPathForImage(img: string) {
-    if (img === null) {
+    if (!img || img === null) {
       return "";
     } else {
       return cordova.file.dataDirectory + img;
