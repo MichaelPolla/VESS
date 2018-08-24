@@ -17,14 +17,15 @@ export enum Steps {
   PICTURE_EXTRACTED_BLOCK,
   OPENING_BLOCK,
   PICTURE_OPENED_BLOCK,
-  DEFINING_LAYERS
+  DEFINING_LAYERS,
+  NOTATION
 }
 
 export class Test {
   public id: number;
   public name?: string;
   public date: string;
-  public currentStep: number;
+  public currentStep?: Steps = Steps.EXTRACTING_BLOCK;
   public score?: number;
   public picture?: string;
   public geolocation?: Geoloc;
