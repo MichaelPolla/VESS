@@ -34,7 +34,7 @@ export class Test {
   public isCompleted?: Boolean = false;
   public comment?: string;
   public layers?: Layer[];
-  public state?: string;
+  public soilState?: string;
 
   public constructor(init: Test) {
     Object.assign(this, init);
