@@ -107,20 +107,6 @@ export class DataService {
   }
 
   /**
-   * Get the test picture.
-   */
-  public getTestPicture(): string {
-    return this.getCurrentTest().picture;
-  }
-  /**
-   * Set the test picture.  
-   * - filepath: path of the picture.
-   */
-  public setTestPicture(filepath: string) {
-    this.getCurrentTest().picture = filepath;
-  }
-
-  /**
  * Save data using ionic Storage (key/value pair).
  * key : key associated to the value.
  * value : the value to save.
