@@ -109,7 +109,7 @@ export class DataService {
   /**
    * Get the test picture.
    */
-  public getTestPicture(): any {
+  public getTestPicture(): string {
     return this.getCurrentTest().picture;
   }
   /**
