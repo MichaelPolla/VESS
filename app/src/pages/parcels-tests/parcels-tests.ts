@@ -19,7 +19,7 @@ import { Toasts } from "./../../providers/toasts";
 import { TranslateProvider } from "../../providers/translate/translate";
 import { Utils } from "../../providers/utils";
 
-enum Steps {
+enum ParcelTestNavigation {
   Parcels,
   Tests
 }
@@ -61,7 +61,7 @@ export class ParcelsTestsPage {
       }
 
       switch (this.stepNumber) {
-        case Steps.Tests:
+        case ParcelTestNavigation.Tests:
           this.pageTitle = this.translate.get("TESTS");
           this.listHeader = this.translate.get("PARCEL_NAME", {
             name: this.currentParcel.name
@@ -75,12 +75,12 @@ export class ParcelsTestsPage {
 
         default:
           // Steps.Parcels, hopefully
-          this.stepNumber = Steps.Parcels;
+          this.stepNumber = ParcelTestNavigation.Parcels;
           this.pageTitle = this.translate.get("PARCELS_TO_TEST");
           this.listItems = this.parcels;
           break;
       }
-      this.stepName = Steps[this.stepNumber];
+      this.stepName = ParcelTestNavigation[this.stepNumber];
     });
 
     //Todo : should not create a new user here if non-existent
@@ -108,7 +108,7 @@ export class ParcelsTestsPage {
   protected addItem() {
     let inputsList: any;
     switch (this.stepNumber) {
-      case Steps.Parcels:
+      case ParcelTestNavigation.Parcels:
         if (this.user.userType == UserType.Ofag) {
           inputsList = [
             {
@@ -133,7 +133,7 @@ export class ParcelsTestsPage {
         }
 
         break;
-      case Steps.Tests:
+      case ParcelTestNavigation.Tests:
         inputsList = [
           {
             name: "name",
@@ -160,7 +160,7 @@ export class ParcelsTestsPage {
           text: this.translate.get("VALIDATE"),
           handler: data => {
             switch (this.stepNumber) {
-              case Steps.Parcels:
+              case ParcelTestNavigation.Parcels:
                 let parcelId =
                   this.parcels.length > 0
                     ? this.parcels[this.parcels.length - 1].id + 1
@@ -174,7 +174,7 @@ export class ParcelsTestsPage {
                 this.parcels.push(parcel);
                 this.dataService.saveParcels();
                 break;
-              case Steps.Tests:
+              case ParcelTestNavigation.Tests:
                 let testId =
                   this.currentParcel.tests.length > 0
                     ? this.currentParcel.tests[
@@ -283,10 +283,10 @@ export class ParcelsTestsPage {
   protected deleteItem(event, item: Test | Parcel) {
     event.stopPropagation();
     switch (this.stepNumber) {
-      case Steps.Parcels:
+      case ParcelTestNavigation.Parcels:
         this.dataService.deleteParcel(item as Parcel);
         break;
-      case Steps.Tests:
+      case ParcelTestNavigation.Tests:
         this.dataService.deleteTest(item as Test);
         this.listItems = this.currentParcel.tests.filter(
           test => test.isCompleted === this.isConsultation
@@ -298,14 +298,14 @@ export class ParcelsTestsPage {
 
   protected itemClicked(item) {
     switch (this.stepNumber) {
-      case Steps.Parcels:
+      case ParcelTestNavigation.Parcels:
         this.dataService.setCurrentParcel((item as Parcel).id);
         this.navCtrl.push(ParcelsTestsPage, {
           isConsultation: this.isConsultation,
           step: this.stepNumber + 1
         });
         break;
-      case Steps.Tests:
+      case ParcelTestNavigation.Tests:
         if (this.isConsultation) {
           this.showSummary(item);
         } else {
