@@ -1,9 +1,12 @@
-import { Test, Layer } from './../../models/parcel';
+
+import { Test, Layer, Steps } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 
 // Pages
+import { CameraPage } from '../camera/camera';
 import { GifViewPage } from '../gif-view/gif-view';
+import { Notation1Page } from '../notation-1/notation-1';
 //Providers
 import { DataService } from '../../providers/data-service';
 import { RulerService } from '../../providers/ruler-service';
@@ -11,7 +14,12 @@ import { Toasts } from '../../providers/toasts';
 import { TranslateProvider } from '../../providers/translate/translate'
 import { Utils } from '../../providers/utils';
 
-
+enum SoilState {
+  normal = "normal",
+  dry = "dry",
+  hard = "hard",
+  stony = "stony"
+}
 @Component({
   selector: 'page-defining-layer',
   templateUrl: 'defining-layer.html'
@@ -92,16 +100,19 @@ export class DefiningLayerPage {
     }
   }
 
+  /**
+   * Check if all the required values are correctly set 
+   * (number of layers, size of layers...).
+   * If everything's ok, go to the next step.
+   */
   validationStep() {
     if (this.nbLayers >= 1 && this.nbLayers <= 5) {
       if (this.thickness == this.totalSize) {
         this.currentTest.thickness = this.thickness;
         if (this.thickness >= 30) {
-          this.currentTest.state = 'NORMAL_SOIL';
-          this.dataService.saveParcels();
-          this.navCtrl.push(GifViewPage, {
-            stepView: this.stepView + 1
-          });
+          this.currentTest.soilState = 'NORMAL_SOIL';
+          this.dataService.setCurrentLayer(0);
+          this.saveAndGoToNextStep(SoilState.normal);
         } else {
           this.showRadioAlert();
         }
@@ -130,21 +141,21 @@ export class DefiningLayerPage {
     alert.addInput({
       type: 'radio',
       label: this.translate.get('STONY_SOIL'),
-      value: 'stony',
+      value: SoilState.stony,
       checked: true
     });
 
     alert.addInput({
       type: 'radio',
       label: this.translate.get('TOO_DRY_SOIL'),
-      value: 'dry',
+      value: SoilState.dry,
       checked: false
     });
 
     alert.addInput({
       type: 'radio',
       label: this.translate.get('TOO_HARD_SOIL'),
-      value: 'hard',
+      value: SoilState.hard,
       checked: false
     });
 
@@ -153,27 +164,20 @@ export class DefiningLayerPage {
       text: 'OK',
       handler: data => {
         switch (data) {
-          case 'stony':
+          case SoilState.stony:
             this.showAlert(this.translate.get('STONY_SOIL'), this.translate.get('STONY_SOIL_NOTATION', { size: this.thickness }));
-            this.currentTest.state = 'STONY_SOIL';
-            this.dataService.saveParcels();
-            this.navCtrl.push(GifViewPage, {
-              stepView: this.stepView + 1
-            });
+            this.currentTest.soilState = 'STONY_SOIL';
+            this.saveAndGoToNextStep(SoilState.stony);
             break;
-          case 'dry':
+          case SoilState.dry:
             this.showAlert(this.translate.get('TOO_DRY_SOIL'), this.translate.get('PLEASE_EXTRACT_A_NEW_BLOCK'));
-            this.currentTest.state = 'TOO_DRY_SOIL';
-            this.dataService.saveParcels();
-            this.navCtrl.push(GifViewPage);
+            this.currentTest.soilState = 'TOO_DRY_SOIL';            
+            this.saveAndGoToNextStep(SoilState.dry);
             break;
-          case 'hard':
+          case SoilState.hard:
             this.showAlert(this.translate.get('TOO_HARD_SOIL'), this.translate.get('TOO_HARD_SOIL_NOTATION', { size: this.thickness }));
-            this.currentTest.state = 'TOO_HARD_SOIL';
-            this.dataService.saveParcels();
-            this.navCtrl.push(GifViewPage, {
-              stepView: this.stepView + 1
-            });
+            this.currentTest.soilState = 'TOO_HARD_SOIL';
+            this.saveAndGoToNextStep(SoilState.hard);
             break;
 
         }
@@ -183,4 +187,27 @@ export class DefiningLayerPage {
     alert.present();
   }
 
+  /**
+    * Save data and go to the next test step, depending of the soil state.
+    * @param soilState: The soil state.
+    */
+  private saveAndGoToNextStep(soilState: SoilState) {
+    this.dataService.saveParcels();
+
+    switch (soilState) {
+      case SoilState.dry:
+      this.currentTest.step = Steps.EXTRACTING_BLOCK;
+      this.navCtrl.push(GifViewPage);
+        break;
+        
+      default: // Normal, hard or stony soil
+        if (this.platform.is('core')) {
+          this.currentTest.step = Steps.NOTATION;
+          this.navCtrl.push(Notation1Page);
+        } else {
+          this.currentTest.step = Steps.PICTURE_LAYER;
+          this.navCtrl.push(CameraPage);
+        }
+    }
+  }
 }

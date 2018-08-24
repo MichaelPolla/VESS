@@ -1,3 +1,4 @@
+import { Steps } from './../../models/parcel';
 import { ModalPicturePage } from "./../modal-picture/modal-picture";
 import { UserType } from "./../../models/user";
 import { Component } from "@angular/core";
@@ -19,7 +20,7 @@ import { Toasts } from "./../../providers/toasts";
 import { TranslateProvider } from "../../providers/translate/translate";
 import { Utils } from "../../providers/utils";
 
-enum ParcelTestNavigation {
+enum ParcelTestNavigationStep {
   Parcels,
   Tests
 }
@@ -31,7 +32,7 @@ enum ParcelTestNavigation {
 export class ParcelsTestsPage {
   public pageTitle: string;
   public listHeader: string;
-  private stepNumber: number;
+  private navigationStep: ParcelTestNavigationStep;
   public stepName: string;
   public listItems: any = [];
   private parcels: Parcel[] = [];
@@ -53,15 +54,15 @@ export class ParcelsTestsPage {
 
   ionViewDidLoad() {
     this.isConsultation = this.navParams.get("isConsultation");
-    this.stepNumber = this.navParams.get("step");
+    this.navigationStep = this.navParams.get("step");
     this.dataService.getParcels().then(value => {
       if (value != null) {
         this.parcels = value;
         this.currentParcel = this.dataService.getCurrentParcel();
       }
 
-      switch (this.stepNumber) {
-        case ParcelTestNavigation.Tests:
+      switch (this.navigationStep) {
+        case ParcelTestNavigationStep.Tests:
           this.pageTitle = this.translate.get("TESTS");
           this.listHeader = this.translate.get("PARCEL_NAME", {
             name: this.currentParcel.name
@@ -75,12 +76,12 @@ export class ParcelsTestsPage {
 
         default:
           // Steps.Parcels, hopefully
-          this.stepNumber = ParcelTestNavigation.Parcels;
+          this.navigationStep = ParcelTestNavigationStep.Parcels;
           this.pageTitle = this.translate.get("PARCELS_TO_TEST");
           this.listItems = this.parcels;
           break;
       }
-      this.stepName = ParcelTestNavigation[this.stepNumber];
+      this.stepName = ParcelTestNavigationStep[this.navigationStep];
     });
 
     //Todo : should not create a new user here if non-existent
@@ -107,8 +108,8 @@ export class ParcelsTestsPage {
    */
   protected addItem() {
     let inputsList: any;
-    switch (this.stepNumber) {
-      case ParcelTestNavigation.Parcels:
+    switch (this.navigationStep) {
+      case ParcelTestNavigationStep.Parcels:
         if (this.user.userType == UserType.Ofag) {
           inputsList = [
             {
@@ -133,7 +134,7 @@ export class ParcelsTestsPage {
         }
 
         break;
-      case ParcelTestNavigation.Tests:
+      case ParcelTestNavigationStep.Tests:
         inputsList = [
           {
             name: "name",
@@ -159,8 +160,8 @@ export class ParcelsTestsPage {
         {
           text: this.translate.get("VALIDATE"),
           handler: data => {
-            switch (this.stepNumber) {
-              case ParcelTestNavigation.Parcels:
+            switch (this.navigationStep) {
+              case ParcelTestNavigationStep.Parcels:
                 let parcelId =
                   this.parcels.length > 0
                     ? this.parcels[this.parcels.length - 1].id + 1
@@ -174,7 +175,7 @@ export class ParcelsTestsPage {
                 this.parcels.push(parcel);
                 this.dataService.saveParcels();
                 break;
-              case ParcelTestNavigation.Tests:
+              case ParcelTestNavigationStep.Tests:
                 let testId =
                   this.currentParcel.tests.length > 0
                     ? this.currentParcel.tests[
@@ -282,11 +283,11 @@ export class ParcelsTestsPage {
 
   protected deleteItem(event, item: Test | Parcel) {
     event.stopPropagation();
-    switch (this.stepNumber) {
-      case ParcelTestNavigation.Parcels:
+    switch (this.navigationStep) {
+      case ParcelTestNavigationStep.Parcels:
         this.dataService.deleteParcel(item as Parcel);
         break;
-      case ParcelTestNavigation.Tests:
+      case ParcelTestNavigationStep.Tests:
         this.dataService.deleteTest(item as Test);
         this.listItems = this.currentParcel.tests.filter(
           test => test.isCompleted === this.isConsultation
@@ -297,19 +298,21 @@ export class ParcelsTestsPage {
   }
 
   protected itemClicked(item) {
-    switch (this.stepNumber) {
-      case ParcelTestNavigation.Parcels:
+    switch (this.navigationStep) {
+      case ParcelTestNavigationStep.Parcels:
         this.dataService.setCurrentParcel((item as Parcel).id);
         this.navCtrl.push(ParcelsTestsPage, {
           isConsultation: this.isConsultation,
-          step: this.stepNumber + 1
+          step: ParcelTestNavigationStep.Tests
         });
         break;
-      case ParcelTestNavigation.Tests:
+      case ParcelTestNavigationStep.Tests:
         if (this.isConsultation) {
           this.showSummary(item);
         } else {
-          this.dataService.setCurrentTest((item as Test).id);
+          let test = item as Test;
+          test.step = Steps.EXTRACTING_BLOCK; // Always start by this step after selecting a test.
+          this.dataService.setCurrentTest(test.id);
           this.navCtrl.push(GifViewPage);
           break;
         }

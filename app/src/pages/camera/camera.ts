@@ -1,13 +1,13 @@
 import { FilePath } from '@ionic-native/file-path';
 import { Geoloc } from './../../models/geoloc';
-import { Test, Layer } from './../../models/parcel';
+import { Test, Layer, Steps } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 
 // Pages
-import { DefiningLayerPage } from '../defining-layer/defining-layer';
+import { GifViewPage } from '../gif-view/gif-view';
 import { Notation1Page } from '../notation-1/notation-1';
 // Providers
 import { DataService } from './../../providers/data-service';
@@ -31,8 +31,8 @@ export class CameraPage {
   private currentTest: Test;
   public layerNumber: number;
   private currentLayer: Layer;
+  private testStep: Steps;
   title: string;
-  stepView: number;
   imageNamePath: string;
   instructions: string;
   defaultImage: string;
@@ -49,33 +49,33 @@ export class CameraPage {
     public  utils: Utils,
     private toasts: Toasts,
     private translate: TranslateProvider,
-    private geolocation: Geolocation) {
+    private geolocation: Geolocation) {}
 
-    this.stepView = this.navParams.get('stepView');
+    ionViewDidLoad() {
     this.currentTest = this.dataService.getCurrentTest();
+    this.testStep = this.currentTest.step;
 
     let existingPicture = "";
-    switch (this.stepView) {
-      case 1: // Block
+    switch (this.testStep) {
+      case Steps.PICTURE_EXTRACTED_BLOCK:
         this.currentTest.comment = "";
-        this.title = translate.get('PICTURE_OF_WHOLE_BLOCK');
-        //check if file exist
+        this.title = this.translate.get('PICTURE_OF_WHOLE_BLOCK');
         existingPicture = this.currentTest.picture;
         this.defaultImage = "./assets/icon/two-layers-example.png";
-        this.instructions = translate.get('PICTURE_OF_WHOLE_BLOCK_INSTRUCTIONS');
+        this.instructions = this.translate.get('PICTURE_OF_WHOLE_BLOCK_INSTRUCTIONS');
         break;
-      case 5: // Layer
+      case Steps.PICTURE_LAYER:
         this.currentLayer = this.dataService.getCurrentLayer();
         this.layerNumber = this.currentLayer.num;
 
         this.title = this.translate.get('PICTURE_OF_LAYER') + " " + this.layerNumber + "  (" + this.currentLayer.minThickness + "-" + this.currentLayer.maxThickness + " cm)";
         existingPicture = this.dataService.getCurrentLayer().picture;
         this.defaultImage = "./assets/icon/generic-image.png";
-        this.instructions = translate.get('PICTURE_OF_LAYER_INSTRUCTIONS');
+        this.instructions = this.translate.get('PICTURE_OF_LAYER_INSTRUCTIONS');
         break;
     }
     this.lastImage = existingPicture ? existingPicture : this.defaultImage;
-  }
+    }
 
   takePicture() {
     const options = {
@@ -109,12 +109,12 @@ export class CameraPage {
   }
 
   private saveData(){
-    switch (this.stepView) {
-      case 1:
+    switch (this.testStep) {
+      case Steps.PICTURE_EXTRACTED_BLOCK:
         this.currentTest.picture = this.lastImageFileName;
         this.takeGeolocation();
         break;
-      case 5:
+      case Steps.PICTURE_LAYER:
         this.dataService.getCurrentLayer().picture = this.lastImageFileName;
         break;
     }
@@ -132,18 +132,21 @@ export class CameraPage {
     });
   }
 
+   /**
+   * Called when the user press the "Next" button.
+   * Go to the next step for the test if all requirements are met for the current step.
+   */
   validationStep() {
     if (this.isOfagUser && this.imageFile == this.defaultImage) { // OFAG user must take a picture
       this.toasts.showToast(this.translate.get('PLEASE_TAKE_PICTURE'));
     } else {
       this.dataService.saveParcels();
-      switch (this.stepView) {
-        case 1:
-          this.navCtrl.push(DefiningLayerPage, {
-            stepView: this.stepView + 1
-          })
+      switch (this.testStep) {
+        case Steps.PICTURE_EXTRACTED_BLOCK:
+          this.currentTest.step = Steps.OPENING_BLOCK;
+          this.navCtrl.push(GifViewPage);
           break;
-        case 5:
+        case Steps.PICTURE_LAYER:
           this.navCtrl.push(Notation1Page)
           break;
       }

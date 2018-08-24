@@ -1,4 +1,4 @@
-import { Layer, Test } from './../../models/parcel';
+import { Layer, Test, Steps } from './../../models/parcel';
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, Platform, AlertController } from 'ionic-angular';
 // Pages
@@ -251,9 +251,12 @@ export class VerifNotationPage {
 
     if (this.nextLayerIndex < this.currentTest.layers.length) {
       this.dataService.setCurrentLayer(this.nextLayerIndex);
-      if (!this.platform.is('core'))  // Check that we aren't running on desktop
-        this.navCtrl.push(CameraPage, { stepView: 5 });
+      if (!this.platform.is('core')) { // Check that we aren't running on desktop
+      this.currentTest.step = Steps.PICTURE_LAYER;
+        this.navCtrl.push(CameraPage);
+      }
       else
+        this.currentTest.step = Steps.NOTATION;
         this.navCtrl.push(Notation1Page);
     } else {
       this.calculateAndShowTestScore();
@@ -264,7 +267,7 @@ export class VerifNotationPage {
 
     //indicative score
     let testScoreIndicatif = 0
-    switch (this.currentTest.state) {
+    switch (this.currentTest.soilState) {
       case "STONY_SOIL": 
         testScoreIndicatif = this.calcTestScore()
         this.currentTest.comment = this.translate.get("SCORE_INDICATIVE") + ": " + testScoreIndicatif + " " +this.currentTest.comment;
