@@ -77,7 +77,7 @@ export class ParcelsTestsPage {
         default:
           // Steps.Parcels, hopefully
           this.navigationStep = ParcelTestNavigationStep.Parcels;
-          this.pageTitle = this.translate.get("PARCELS_TO_TEST");
+          this.pageTitle = this.isConsultation ? this.translate.get("PARCELS") : this.translate.get("PARCELS_TO_TEST");
           this.listItems = this.parcels;
           break;
       }
