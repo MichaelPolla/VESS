@@ -9,6 +9,7 @@ import { Toasts } from './../../providers/toasts';
 // Providers
 import { DataService } from '../../providers/data-service';
 import { TranslateProvider } from '../../providers/translate/translate'
+import { Utils } from '../../providers/utils';
 
 declare var cordova;
 
@@ -28,12 +29,10 @@ export class LayerInfo {
 
 export class ExportPage {
   private userInfo: User;
-  private parcels: Parcel;
   private test: Test;
   public imageFileBlock: string;
-  public attachements: string[];
+  public attachements: string[] = [];
   defaultPicture: string;
-  private destinationRootDirectory: string;
 
   constructor(
     private emailComposer: EmailComposer,
@@ -49,24 +48,12 @@ export class ExportPage {
     this.test = this.navParams.get('test');
     console.log(this.test);
 
-    if (this.platform.is('ios')) {
-      // This will only print when on iOS
-      this.destinationRootDirectory = cordova.file.documentsDirectory;
-    }else if(this.platform.is('android')){
-      this.destinationRootDirectory = cordova.file.externalDataDirectory;
-    }else{
-      this.toasts.showToast(this.translate.get('ERROR'));
-    }
-
-
-
     this.dataService.getUserInfo().then((user) => {
       if (user != null) {
         this.userInfo = user;
         this.dataService.getParcels().then((parcels) => {
           if (parcels != null) {
-            this.parcels = parcels;
-            this.readPicture();
+            this.sendEmail();
           }
         });
       }
@@ -104,78 +91,9 @@ export class ExportPage {
   }
 
   /**
-   * Read all picture and send email
-   */
-  readPicture() {
-    let cntReadPicture = 0;
-    //read pictures
-    if (!this.platform.is('core')) { // Check that we aren't running on desktop
-      this.defaultPicture = "./assets/icon/two-layers-example.png";
-      this.attachements = [];
-      //read block
-      this.file.checkFile(this.destinationRootDirectory, this.test.picture).then(_ => {
-        //read picture
-        this.file.readAsDataURL(this.destinationRootDirectory, this.test.picture).then((pictureAsBase64) => {
-          let imgData = this.b64Streamtob64Data(pictureAsBase64);
-          let pathFile = this.test.picture.split("/"); //split path 
-          this.attachements.push('base64:' + pathFile[1] + '//' + imgData);
-          cntReadPicture++;
-          this.sendEmail(cntReadPicture);
-        }).catch(err => {
-          console.log(err);
-        });
-
-      }).catch(err => {
-        console.log(err);
-        cntReadPicture++;
-        this.sendEmail(cntReadPicture);
-      });
-
-      //read layers
-      for (let layer of this.test.layers) { //read all layers
-
-        //read layer
-        this.file.checkFile(this.destinationRootDirectory, layer.picture).then(_ => {
-          //read picture
-          this.file.readAsDataURL(this.destinationRootDirectory, layer.picture).then((pictureLayerAsBase64) => {
-            let imgDataLayer = this.b64Streamtob64Data(pictureLayerAsBase64);
-            let pathFileLayer = layer.picture.split("/"); //split path 
-            this.attachements.push('base64:' + pathFileLayer[1] + '//' + imgDataLayer);
-            cntReadPicture++;
-
-            this.sendEmail(cntReadPicture);
-          }).catch(err => {
-            console.log(err);
-          });
-
-        }).catch(err => {
-          console.log(err);
-          cntReadPicture++;
-          this.sendEmail(cntReadPicture);
-        });
-      }
-
-    }
-  }
-
-
-  /**
-   * convert base64 stream to base64 data
-   */
-  b64Streamtob64Data(b64Stream) {
-    // Convert the base64 string in a Blob
-    let imgWithMeta = b64Stream.split(",")
-    // base64 data
-    let imgData = imgWithMeta[1].trim();
-    return imgData;
-  }
-
-  /**
    * send email if all picture are read 
    */
-  sendEmail(cntReadPicture) {
-    // test if all picture are read because promise are async
-    if (cntReadPicture == this.test.layers.length + 1) {
+  sendEmail() {
       let testJson: any = Object.assign({}, this.test); // copy object
 
       //delete field
@@ -187,13 +105,12 @@ export class ExportPage {
       this.attachements.push('base64:' + this.test.name + '.csv//' + btoa(this.strJSONToCSV(newJson)));
       this.attachements.push('base64:' + this.test.name + '.json//' + btoa(newJson))
 
-      this.emailComposer.isAvailable().then((available: boolean) => {
-        if (available) {
-          // In fact, the code should be there, but it doesn't work,
-          // "available"" is always false - although the emailComposer can be called...!
-          // Last checked : 18.06.2017
-        }
-      });
+      if(this.test.picture) this.attachements.push(Utils.getPathForImage(this.dataService.getLocalDirectory(), this.test.picture)); // Add block picture if existing
+      for (let layer of this.test.layers) { // Add existing layers pictures
+        if(layer.picture) this.attachements.push(Utils.getPathForImage(this.dataService.getLocalDirectory(), layer.picture));
+      }
+
+      console.log(this.attachements);
 
       let email = {
         to: this.userInfo.mail,
@@ -206,7 +123,5 @@ export class ExportPage {
       // Send a text message using default options
       this.emailComposer.open(email);
       this.navCtrl.pop();
-    }
   }
-
 }
