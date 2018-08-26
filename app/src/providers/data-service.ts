@@ -1,5 +1,6 @@
 import { Test, Parcel, Layer } from './../models/parcel';
 import { User } from './../models/user';
+
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
@@ -49,7 +50,7 @@ export class DataService {
 
   /**
    * Set the current Layer.  
-   * - layerIndex: index of the Layer.
+   * @param layerIndex Index of the Layer.
    */
   public setCurrentLayer(layerIndex: number) {
     this.currentLayer = this.getCurrentTest().layers[layerIndex];
@@ -65,6 +66,7 @@ export class DataService {
 
   /**
    * Set the current Parcel.
+   * @param parcelId The parcel id.
    */
   public setCurrentParcel(parcelId: number) {
     this.currentParcel = this.data.find(parcel => parcel.id == parcelId);
@@ -72,7 +74,7 @@ export class DataService {
 
   /**
    * Delete a Parcel.
-   * parcel : the Parcel to delete.
+   * @param parcel The Parcel to delete.
    */
   public deleteParcel(parcel: Parcel) {
     let index = this.data.indexOf(parcel);
@@ -97,7 +99,7 @@ export class DataService {
 
   /**
    * Delete a test (in the current Parcel)
-   * test: the Test to delete.
+   * @param test The Test to delete.
    */
   public deleteTest(test: Test): void {
     let index = this.getCurrentParcel().tests.indexOf(test);
@@ -108,8 +110,8 @@ export class DataService {
 
   /**
  * Save data using ionic Storage (key/value pair).
- * key : key associated to the value.
- * value : the value to save.
+ * @param key Key associated to the value.
+ * @param value The value to save.
  */
   public save(key: string, value: any) {
     this.storage.set(key, JSON.stringify(value));
@@ -124,8 +126,8 @@ export class DataService {
 
   /**
  * Get data from Storage.
- * key : the key associated to the desired values.
- * Return : a Promise (from Storage)
+ * @param key the key associated to the desired values.
+ * @returns A Promise (from Storage)
  */
   private load(key: string): Promise<any> {
     return this.storage.get(key).then((value) => {
