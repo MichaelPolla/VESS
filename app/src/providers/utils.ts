@@ -45,13 +45,14 @@ export class Utils {
   /**
    * Return the full path to an image, if it exists.
    * Example: "file:///data/user/0/ch.hepia.vess/files/1534408546442.jpg"
+   * @param localDir The local directory in which the image is stored.
    * @param img The image to get the path.
    */
-  public static getPathForImage(img: string) {
+  public static getPathForImage(localDir: any, img: string) {
     if (!img || img === null) {
       return "";
     } else {
-      return cordova.file.dataDirectory + img;
+      return localDir + img;
     }
   }
 }

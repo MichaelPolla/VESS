@@ -3,6 +3,9 @@ import { User } from './../models/user';
 
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Platform } from 'ionic-angular';
+
+declare var cordova;
 
 @Injectable()
 export class DataService {
@@ -13,7 +16,7 @@ export class DataService {
   private data: Parcel[] = [];
   private userData: User;
 
-  constructor(public storage: Storage) { }
+  constructor(private platform: Platform, public storage: Storage) { }
 
   /**
    * Get parcels data.
@@ -145,5 +148,22 @@ export class DataService {
         console.log("Nothing stored under key: " + key);
       }
     });
+  }
+
+  /**
+   * Get the local directory set for the device.  
+   * See https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-file/#where-to-store-files for the list of all available locations depending of the platform.
+   */
+  public getLocalDirectory(): string {
+    let localDir;
+    if (this.platform.is('ios')) {
+      localDir = cordova.file.documentsDirectory;
+    }else if(this.platform.is('android')){
+      localDir = cordova.file.externalDataDirectory;
+    }
+    else {
+      localDir = cordova.file.dataDirectory; // Default
+    }
+    return localDir;
   }
 }

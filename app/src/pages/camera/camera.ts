@@ -85,23 +85,25 @@ export class CameraPage {
     this.camera.getPicture(options).then((imagePath) => {
       let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
       let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-      this.copyFileToLocalDir(correctPath, currentName, Utils.getDatetimeFilename('.jpg'));
+      this.copyFileToLocalDir(correctPath, currentName, this.dataService.getLocalDirectory() , Utils.getDatetimeFilename('.jpg'));
     }, (error) => {
       this.toasts.showToast(this.translate.get('ERROR_CREATING_PICTURE'));
     });
   }
 
   /**
-   * Copy a file to the local directory of the device (cordova.file.dataDirectory).
+   * Copy a file to the specified local directory of the device.
    * @param namePath Path of the file to copy.
    * @param currentName Name of the file to copy.
-   * @param newFileName File name for the copied file.
+   * @param directory Local directory where to copy the file.  
+   * See https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-file/#where-to-store-files for a list of valid locations depending of the platform.
+   * @param newFileName New name of file to copy to (leave blank to remain the same).
    */
-  private copyFileToLocalDir(namePath, currentName, newFileName) {
-    this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(
+  private copyFileToLocalDir(namePath, currentName, directory, newFileName) {
+    this.file.copyFile(namePath, currentName, directory, newFileName).then(
       success => { 
       this.lastImageFileName = newFileName;
-      this.lastImage = Utils.getPathForImage(this.lastImageFileName);
+      this.lastImage = Utils.getPathForImage(this.dataService.getLocalDirectory(), this.lastImageFileName);
       this.saveData(); },
       error => {
     this.toasts.showToast(this.translate.get('ERROR_SAVING_PICTURE'));
