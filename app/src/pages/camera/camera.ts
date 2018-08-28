@@ -79,7 +79,9 @@ export class CameraPage {
 
   takePicture() {
     const options = {
-      quality: 90,
+      quality: 80,
+      targetWidth: 1000,
+      targetHeight: 1000,
       correctOrientation: true // Fix the 90° picture rotation on Android devices. Note that when using the front camera, pictures are usally vertically flipped.
     }
     this.camera.getPicture(options).then((imagePath) => {
