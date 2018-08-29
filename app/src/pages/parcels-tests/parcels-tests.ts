@@ -78,6 +78,10 @@ export class ParcelsTestsPage {
           // Steps.Parcels, hopefully
           this.navigationStep = ParcelTestNavigationStep.Parcels;
           this.pageTitle = this.isConsultation ? this.translate.get("PARCELS") : this.translate.get("PARCELS_TO_TEST");
+          if(!this.isConsultation && this.parcels.length === 0) {
+            // No existing parcel; open the dialog to add a new one.
+            this.addItem();
+          }
           this.listItems = this.parcels;
           break;
       }
