@@ -119,7 +119,7 @@ export class ParcelsTestsPage {
             },
             {
               name: "ofag",
-              placeholder: "Identifiant OFAG",
+              placeholder: this.translate.get("OFAG_ID"),
               value: this.user.idOfag
             }
           ];
