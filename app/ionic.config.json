@@ -1,8 +1,8 @@
 {
   "name": "VESS",
-  "app_id": "0c954de9",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular",
+  "pro_id": "0c954de9"
 }
