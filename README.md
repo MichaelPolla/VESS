@@ -2,7 +2,7 @@
 
 # VESS
 
-Visual Evaluation of Soil Structure (VESS)
+This application allows to perform a Visual Evaluation of Soil Structure (VESS) test [Ball et al. 2007, Guimaraes et al. 2011].
 
 <img src="/docs/vess-icon.png" width="200">
 
