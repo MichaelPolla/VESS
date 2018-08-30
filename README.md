@@ -6,13 +6,29 @@ Visual Evaluation of Soil Structure (VESS)
 
 <img src="/docs/vess-icon.png" width="200">
 
-## Installation
 
-```bash
-git clone https://github.com/MichaelPolla/VESS.git
-cd app
-npm install
-```
+## Installation
+First, install ionic:
+
+Look at the documentation :[ionic framework](https://ionicframework.com/getting-started#cli)
+
+Clone repository:
+
+`git clone https://github.com/MichaelPolla/VESS.git`
+
+Install npm package:
+`npm install`
+For Mac, you need to need to execute this command line before the command npm install:
+`sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer/`
+
+Execute code:
+
+`ionic serve --lab` (in browser)
+OR
+ionic run android --livereload` (for emulator)
+OR
+`ionic run android --device` (for connected device)
+
 
 Running the app
 
