@@ -78,8 +78,4 @@ If you need to completely clean XCode cache, delete all the content of `Library/
 
 ## Color palette
 
-<img src="/docs/colorApp.png" width="200">
-
-## Overview (fr)
-
-<img src="docs/Vue d'ensemble.png" width="100%">
+<img src="/docs/colorApp.png" width="200px">
