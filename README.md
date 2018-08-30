@@ -6,8 +6,8 @@ Visual Evaluation of Soil Structure (VESS)
 
 <img src="/docs/vess-icon.png" width="200">
 
-
 ## Installation
+
 First, install ionic:
 
 Look at the documentation :[ionic framework](https://ionicframework.com/getting-started#cli)
@@ -26,10 +26,9 @@ Execute code:
 
 `ionic serve --lab` (in browser)
 OR
-ionic run android --livereload` (for emulator)
+`ionic run android --livereload` (for emulator)
 OR
 `ionic run android --device` (for connected device)
-
 
 Running the app
 
@@ -39,6 +38,24 @@ Android: `ionic cordova run android`
   
 Browser (not all functionalities): `ionic serve`
 
+### Android build
+
+For complete instructions, see the Cordova [Android Platform Guide](https://cordova.apache.org/docs/en/8.x/guide/platforms/android/).  
+In summary:
+
+1. Install [Java Development Kit (JDK) 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+
+2. Install [Gradle](https://gradle.org/install).
+3. Install [Android Studio](https://developer.android.com/studio/). This will also install the Android SDK.
+4. Run: `ionic cordova run android`. This will build and run the app on a connected device, or will start the Android emulator.
+
+### iOS build
+
+XCode must be installed.
+
+Install ios-deploy: `npm install -g ios-deploy`  
+Build and run on emulator or connected device: `ionic cordova run ios`
+
 ## Troubleshooting
 
 ### Android build error
@@ -47,11 +64,17 @@ Android build: if you keep getting the following message although Android Studio
 
 ```
 UnhandledPromiseRejectionWarning: CordovaError: Could not find an installed version of Gradle either in Android Studio,
-or on your system to install the gradle wrapper. Please include gradle 
+or on your system to install the gradle wrapper. Please include gradle
 in your path, or install Android Studio
 ```
 
 Install gradle: https://gradle.org/install
+
+### iOS build error
+
+if `npm install ios-deploy -g` fails, run: `sudo npm install --global --unsafe-perm ios-deploy` (as suggested [here](https://github.com/ios-control/ios-deploy/issues/109#issuecomment-92589783))
+
+If you need to completely clean XCode cache, delete all the content of `Library/Developer/Xcode/DeriveData/`
 
 ## Color palette
 
