@@ -8,35 +8,19 @@ This application allows to perform a Visual Evaluation of Soil Structure (VESS) 
 
 ## Installation
 
-First, install ionic:
+1. Install [NodeJS](https://nodejs.org/en/).
+2. Install [Ionic](https://ionicframework.com/getting-started#cli).
+3. Clone this repository: `git clone https://github.com/MichaelPolla/VESS.git`.
+4. Go into the `app` folder (`cd /vess/app`) and run `npm install`.
 
-Look at the documentation :[ionic framework](https://ionicframework.com/getting-started#cli)
-
-Clone repository:
-
-`git clone https://github.com/MichaelPolla/VESS.git`
-
-Install npm package:
-`npm install`
-
-For Mac, if you have this message ´gyp: No Xcode or CLT version detected!´, you to need to execute this command line before `npm install`:
+Mac: if you get the message `gyp: No Xcode or CLT version detected!`, you to need to execute this command line before `npm install`:
 `sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer/`
-
-Execute code:
-
-`ionic serve --lab` (in browser)
-OR
-`ionic run android --livereload` (for emulator)
-OR
-`ionic run android --device` (for connected device)
 
 Running the app
 
 `cd app`
-
-Android: `ionic cordova run android`  
   
-Browser (not all functionalities): `ionic serve`
+Browser (not all functionalities): `ionic serve` or `ionic serve --lab`
 
 ### Android build
 
