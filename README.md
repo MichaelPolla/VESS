@@ -18,7 +18,8 @@ Clone repository:
 
 Install npm package:
 `npm install`
-For Mac, you need to need to execute this command line before the command npm install:
+
+For Mac, you need to need to execute this command line before the command `npm install`:
 `sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer/`
 
 Execute code:
