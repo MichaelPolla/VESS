@@ -136,21 +136,6 @@ export class ParcelsTestsPage {
             }
           ];
         }
-
-        break;
-      case ParcelTestNavigationStep.Tests:
-        inputsList = [
-          {
-            name: "name",
-            placeholder: this.translate.get("NAME"),
-            value: "Test "
-          },
-          {
-            name: "date",
-            placeholder: this.translate.get("DATE"),
-            value: Utils.getCurrentDatetime("dd/MM/y")
-          }
-        ];
         break;
     }
 
@@ -166,8 +151,7 @@ export class ParcelsTestsPage {
           handler: data => {
             switch (this.navigationStep) {
               case ParcelTestNavigationStep.Parcels:
-                let parcelId =
-                  this.parcels.length > 0
+                let parcelId = this.parcels.length > 0
                     ? this.parcels[this.parcels.length - 1].id + 1
                     : 1;
                 let parcel = new Parcel({
