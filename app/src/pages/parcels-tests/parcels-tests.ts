@@ -50,7 +50,7 @@ export class ParcelsTestsPage {
     public storage: Storage,
     private toasts: Toasts,
     private translate: TranslateProvider
-  ) {}
+  ) { }
 
   ionViewDidLoad() {
     this.isConsultation = this.navParams.get("isConsultation");
@@ -78,7 +78,7 @@ export class ParcelsTestsPage {
           // Steps.Parcels, hopefully
           this.navigationStep = ParcelTestNavigationStep.Parcels;
           this.pageTitle = this.isConsultation ? this.translate.get("PARCELS") : this.translate.get("PARCELS_TO_TEST");
-          if(!this.isConsultation && this.parcels.length === 0) {
+          if (!this.isConsultation && this.parcels.length === 0) {
             // No existing parcel; open the dialog to add a new one.
             this.addItem();
           }
@@ -178,28 +178,6 @@ export class ParcelsTestsPage {
                 });
                 this.parcels.push(parcel);
                 this.dataService.saveParcels();
-                break;
-              case ParcelTestNavigationStep.Tests:
-                let testId =
-                  this.currentParcel.tests.length > 0
-                    ? this.currentParcel.tests[
-                        this.currentParcel.tests.length - 1
-                      ].id + 1
-                    : 1;
-                let test = new Test({
-                  id: testId,
-                  name: data["name"],
-                  date: data["date"],
-                  layers: []
-                });
-                let parcelIndex = this.parcels.indexOf(
-                  this.dataService.getCurrentParcel()
-                );
-                this.parcels[parcelIndex].tests.push(test);
-                this.dataService.saveParcels();
-                this.listItems = this.currentParcel.tests.filter(
-                  test => test.isCompleted === this.isConsultation
-                );
                 break;
             }
           }
@@ -304,21 +282,36 @@ export class ParcelsTestsPage {
   protected itemClicked(item) {
     switch (this.navigationStep) {
       case ParcelTestNavigationStep.Parcels:
-        this.dataService.setCurrentParcel((item as Parcel).id);
-        this.navCtrl.push(ParcelsTestsPage, {
-          isConsultation: this.isConsultation,
-          step: ParcelTestNavigationStep.Tests
-        });
+        let selectedParcel = (item as Parcel);
+        this.dataService.setCurrentParcel(selectedParcel.id);
+        if (this.isConsultation) {
+          this.navCtrl.push(ParcelsTestsPage, {
+            isConsultation: this.isConsultation,
+            step: ParcelTestNavigationStep.Tests
+          });
+        } else {
+          let testId = selectedParcel.tests.length > 0
+            ? selectedParcel.tests[selectedParcel.tests.length - 1].id + 1
+            : 1;
+          let test = new Test({
+            id: testId,
+            name: this.translate.get("TEST") + " " + testId,
+            date: Utils.getCurrentDatetime("dd/MM/y"),
+            layers: [],
+            step: Steps.EXTRACTING_BLOCK
+          });
+          let parcelIndex = this.parcels.indexOf(
+            this.dataService.getCurrentParcel()
+          );
+          this.parcels[parcelIndex].tests.push(test);
+          this.dataService.setCurrentTest(test.id);
+          this.dataService.saveParcels();
+          this.navCtrl.push(GifViewPage);
+        }
         break;
       case ParcelTestNavigationStep.Tests:
         if (this.isConsultation) {
           this.showSummary(item);
-        } else {
-          let test = item as Test;
-          test.step = Steps.EXTRACTING_BLOCK; // Always start by this step after selecting a test.
-          this.dataService.setCurrentTest(test.id);
-          this.navCtrl.push(GifViewPage);
-          break;
         }
     }
   }
