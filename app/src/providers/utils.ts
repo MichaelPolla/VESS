@@ -43,10 +43,11 @@ export class Utils {
   }
 
   /**
-   * Return the full path to an image, if it exists.
+   * Return the full path to an image.
    * Example: "file:///data/user/0/ch.hepia.vess/files/1534408546442.jpg"
    * @param localDir The local directory in which the image is stored.
    * @param img The image to get the path.
+   * @returns The path to the image if it exists, an empty string ('') otherwise.
    */
   public static getPathForImage(localDir: any, img: string) {
     if (!img || img === null) {
