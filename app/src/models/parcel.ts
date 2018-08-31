@@ -5,7 +5,7 @@ export class Parcel {
   public id: number;
   public name: string;
   public ofag?: string;
-  public tests?: Test[];
+  public tests?: Test[] = [];
 
   public constructor(init: Parcel) {
     Object.assign(this, init);
@@ -33,7 +33,7 @@ export class Test {
   public user?: User;
   public isCompleted?: Boolean = false;
   public comment?: string;
-  public layers?: Layer[];
+  public layers?: Layer[] = [];
   public soilState?: string;
 
   public constructor(init: Test) {

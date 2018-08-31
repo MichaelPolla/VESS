@@ -108,7 +108,7 @@ export class ParcelsTestsPage {
   }
 
   /**
-   * Add a new item (Parcel or Test, depending on which step we are in).
+   * Add a new item (Parcel).
    */
   protected addItem() {
     let inputsList: any;
@@ -173,8 +173,7 @@ export class ParcelsTestsPage {
                 let parcel = new Parcel({
                   id: parcelId,
                   name: data["name"],
-                  ofag: data["ofag"],
-                  tests: []
+                  ofag: data["ofag"]
                 });
                 this.parcels.push(parcel);
                 this.dataService.saveParcels();
@@ -297,7 +296,6 @@ export class ParcelsTestsPage {
             id: testId,
             name: this.translate.get("TEST") + " " + testId,
             date: Utils.getCurrentDatetime("dd/MM/y"),
-            layers: [],
             step: Steps.EXTRACTING_BLOCK
           });
           let parcelIndex = this.parcels.indexOf(
