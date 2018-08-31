@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Layer } from './../../models/parcel';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { User } from '../../models/user';
-import { Parcel, Test } from '../../models/parcel';
+import { Test } from '../../models/parcel';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { File } from '@ionic-native/file';
 import { Toasts } from './../../providers/toasts';
