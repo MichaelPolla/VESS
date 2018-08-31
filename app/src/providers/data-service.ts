@@ -152,7 +152,8 @@ export class DataService {
 
   /**
    * Get the local directory set for the device.  
-   * See https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-file/#where-to-store-files for the list of all available locations depending of the platform.
+   * See https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-file/#where-to-store-files 
+   * for the list of all available locations depending of the platform.
    */
   public getLocalDirectory(): string {
     let localDir;
@@ -162,7 +163,7 @@ export class DataService {
       localDir = cordova.file.externalDataDirectory;
     }
     else {
-      localDir = cordova.file.dataDirectory; // Default
+      localDir = ""; // Default. Don't use a cordova location as it may not be available (e.g. if running on a regular browser)
     }
     return localDir;
   }
