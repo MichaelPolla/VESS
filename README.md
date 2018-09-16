@@ -16,11 +16,14 @@ This application allows to perform a Visual Evaluation of Soil Structure (VESS) 
 Mac: if you get the message `gyp: No Xcode or CLT version detected!`, you to need to execute this command line before `npm install`:
 `sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer/`
 
-Running the app
+## Build & Run
 
-`cd app`
-  
-Browser (not all functionalities): `ionic serve` or `ionic serve --lab`
+### Browser
+
+This is the easiest way to try the app. However please note that not all functionalities will be available (e.g. the Camera will not be accessible).
+
+1. Open the `app` folder
+2. Run `ionic serve` or `ionic serve --lab`
 
 ### Android build
 
@@ -52,11 +55,12 @@ or on your system to install the gradle wrapper. Please include gradle
 in your path, or install Android Studio
 ```
 
-Install gradle: https://gradle.org/install
+=> Install [Gradle](https://gradle.org/install).
 
 ### iOS build error
 
-if `npm install ios-deploy -g` fails, run: `sudo npm install --global --unsafe-perm ios-deploy` (as suggested [here](https://github.com/ios-control/ios-deploy/issues/109#issuecomment-92589783))
+if `npm install ios-deploy -g` fails, run:  
+`sudo npm install --global --unsafe-perm ios-deploy` (as suggested [here](https://github.com/ios-control/ios-deploy/issues/109#issuecomment-92589783))
 
 If you need to completely clean XCode cache, delete all the content of `Library/Developer/Xcode/DeriveData/`
 
