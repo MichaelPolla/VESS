@@ -18,6 +18,11 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 declare var cordova;
 
+13/**
+ * Camera view. Used to take the picture of:
+ * - Extracted block,
+ * - Layers.
+ */
 @Component({
   selector: 'page-camera',
   templateUrl: 'camera.html'
@@ -61,7 +66,7 @@ export class CameraPage {
         this.currentTest.comment = "";
         this.title = this.translate.get('PICTURE_OF_WHOLE_BLOCK');
         existingPicture = this.currentTest.picture;
-        this.defaultImage = "./assets/icon/two-layers-example.png";
+        this.defaultImage = "./assets/pictures/ex_tb.jpg";
         this.instructions = this.translate.get('PICTURE_OF_WHOLE_BLOCK_INSTRUCTIONS');
         break;
       case Steps.PICTURE_LAYER:

@@ -5,6 +5,10 @@ import { GalleryModal } from 'ionic-gallery-modal';
 // Providers
 import { TranslateProvider } from './../../providers/translate/translate';
 
+/**
+ * Structural quality view. Shows criterias for each
+ * score from SQ1 to SQ5.
+ */
 @Component({
   selector: 'page-structural-quality',
   templateUrl: 'structural-quality.html',
@@ -42,9 +46,9 @@ export class StructuralQualityPage {
         porosity: this.translate.get('SQ1.POROSITY_AND_ROOTS'),
         appearance1: "./assets/pictures/pas_motte_fermee.png",
         appearance2: "./assets/pictures/pas_motte_fermee.png",
-        distinctiveFeaturesImg: "./assets/pictures/pas_motte_fermee.png",
+        distinctiveFeaturesImg: "./assets/pictures/sq1.jpg",
         distrinctiveFeatureTxt: this.translate.get('SQ1.DISTINGUISHING_FEATURE'),
-        aggreagatesImg: "./assets/pictures/aggregat_moins_1cm.png",
+        aggreagatesImg: "./assets/pictures/sq2_1cm.jpg",
         aggreagatesTxt: this.translate.get('SQ1.APPEARANCE_OF_FRAGMENT'),
         color: "sq1"
       },
@@ -55,9 +59,9 @@ export class StructuralQualityPage {
         porosity: this.translate.get('SQ2.POROSITY_AND_ROOTS'),
         appearance1: "./assets/pictures/pas_motte_fermee.png",
         appearance2: "./assets/pictures/pas_motte_fermee.png",
-        distinctiveFeaturesImg: "./assets/pictures/pas_motte_fermee.png",
+        distinctiveFeaturesImg: "./assets/pictures/sq2.jpg",
         distrinctiveFeatureTxt: this.translate.get('SQ2.DISTINGUISHING_FEATURE'),
-        aggreagatesImg: "./assets/pictures/aggregat_moins_1cm.png",
+        aggreagatesImg: "./assets/pictures/sq2_1cm.jpg",
         aggreagatesTxt: this.translate.get('SQ2.APPEARANCE_OF_FRAGMENT'),
         color: "sq2"
       },
@@ -68,9 +72,9 @@ export class StructuralQualityPage {
         porosity: this.translate.get('SQ3.POROSITY_AND_ROOTS'),
         appearance1: "./assets/pictures/pas_motte_fermee.png",
         appearance2: "./assets/pictures/pas_motte_fermee.png",
-        distinctiveFeaturesImg: "./assets/pictures/pas_motte_fermee.png",
+        distinctiveFeaturesImg: "./assets/pictures/sq3.jpg",
         distrinctiveFeatureTxt: this.translate.get('SQ3.DISTINGUISHING_FEATURE'),
-        aggreagatesImg: "./assets/pictures/aggregat_moins_1cm.png",
+        aggreagatesImg: "./assets/pictures/sq3_1.jpg",
         aggreagatesTxt: this.translate.get('SQ3.APPEARANCE_OF_FRAGMENT'),
         color: "sq3"
       },
@@ -81,9 +85,9 @@ export class StructuralQualityPage {
         porosity: this.translate.get('SQ4.POROSITY_AND_ROOTS'),
         appearance1: "./assets/pictures/pas_motte_fermee.png",
         appearance2: "./assets/pictures/pas_motte_fermee.png",
-        distinctiveFeaturesImg: "./assets/pictures/pas_motte_fermee.png",
+        distinctiveFeaturesImg: "./assets/pictures/sq4.jpg",
         distrinctiveFeatureTxt: this.translate.get('SQ4.DISTINGUISHING_FEATURE'),
-        aggreagatesImg: "./assets/pictures/aggregat_moins_1cm.png",
+        aggreagatesImg: "./assets/pictures/fragment_1cm.jpg",
         aggreagatesTxt: this.translate.get('SQ4.APPEARANCE_OF_FRAGMENT'),
         color: "sq4"
       },
@@ -94,9 +98,9 @@ export class StructuralQualityPage {
         porosity: this.translate.get('SQ5.POROSITY_AND_ROOTS'),
         appearance1: "./assets/pictures/pas_motte_fermee.png",
         appearance2: "./assets/pictures/pas_motte_fermee.png",
-        distinctiveFeaturesImg: "./assets/pictures/pas_motte_fermee.png",
+        distinctiveFeaturesImg: "./assets/pictures/sq5.jpg",
         distrinctiveFeatureTxt: this.translate.get('SQ5.DISTINGUISHING_FEATURE'),
-        aggreagatesImg: "./assets/pictures/aggregat_moins_1cm.png",
+        aggreagatesImg: "./assets/pictures/fragment_1cm.jpg",
         aggreagatesTxt: this.translate.get('SQ5.APPEARANCE_OF_FRAGMENT'),
         color: "sq5"
       }

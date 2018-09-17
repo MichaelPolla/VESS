@@ -12,7 +12,14 @@ import { Toasts } from '../../providers/toasts';
 import { TranslateProvider } from '../../providers/translate/translate'
 import { Utils } from './../../providers/utils';
 
-
+/**
+ * Validation of the layer notation. User must check multiples criterias.
+ * Depending of the number of validated criteras:
+ * - Enough are validated: score is given,
+ * - Only a few are checked: ask the user if he's sure, or wants to redo
+ *   the layer notation,
+ * - No critera is validated: the user must redo the layer notation.
+ */
 @Component({
   selector: 'page-verif-notation',
   templateUrl: 'verif-notation.html'
@@ -60,24 +67,24 @@ export class VerifNotationPage {
 
       switch (this.score) {
 
-        case 1:
+        case 1: // No closed clods; < 1cm
           this.items = [
             {
               title: this.translate.get('VERIF_SCORE1_CRITERIA1_CHECK1'),
               checked: false,
-              imgSrc: './assets/pictures/aggregat_moins_1cm.png',
+              imgSrc: './assets/pictures/sq2_1cm.jpg',
               code: 1
             },
             {
               title: this.translate.get('VERIF_SCORE1_CRITERIA1_CHECK2'),
               checked: false,
-              imgSrc: './assets/pictures/aggregat_moins_1cm.png',
+              imgSrc: './assets/pictures/sq2_1cm.jpg',
               code: 2
             },
             {
               title: this.translate.get('VERIF_SCORE1_CRITERIA1_CHECK3'),
               checked: false,
-              imgSrc: './assets/pictures/aggregat_moins_1cm.png',
+              imgSrc: './assets/pictures/sq2_1cm.jpg',
               code: 3
             }
           ];
@@ -85,24 +92,24 @@ export class VerifNotationPage {
           this.helpId = "help_verif_score1";
           break;
 
-        case 2:
+        case 2: // No closed clods; up to 7cm
           this.items = [
             {
               title: this.translate.get('VERIF_SCORE2_CRITERIA1_CHECK1'),
               checked: false,
-              imgSrc: './assets/pictures/aggregat_jusque_7cm.png',
+              imgSrc: './assets/pictures/no_picture.png',
               code: 1
             },
             {
               title: this.translate.get('VERIF_SCORE2_CRITERIA1_CHECK2'),
-              imgSrc: './assets/pictures/aggregat_jusque_7cm.png',
               checked: false,
+              imgSrc: './assets/pictures/sq2_1cm.jpg',
               code: 2
             },
             {
               title: this.translate.get('VERIF_SCORE2_CRITERIA1_CHECK3'),
               checked: false,
-              imgSrc: './assets/pictures/aggregat_jusque_7cm.png',
+              imgSrc: './assets/pictures/no_picture.png',
               code: 3
             }
           ];
@@ -127,29 +134,29 @@ export class VerifNotationPage {
             {
               title: this.translate.get('VERIF_SCORE3_CRITERIA1_CHECK3'),
               checked: false,
-              imgSrc: './assets/pictures/fragment_1cm.png',
+              imgSrc: './assets/pictures/sq2_1cm.jpg',
               code: 3
             }
           ];
           this.criterias = [{ title: this.translate.get('VERIF_SCORE3_CRITERIA1_TITLE'), array: this.items }];
           this.criterias.push({
             title: this.translate.get('VERIF_SCORE3_CRITERIA2_TITLE'),
-            array: [{ title: this.translate.get('YES'), checked: false, imgSrc: './assets/pictures/fragment_sans_racine.png', code: 1 }]
+            array: [{ title: this.translate.get('YES'), checked: false, imgSrc: './assets/pictures/motte_fermee.jpg', code: 1 }]
           });
           this.helpId = "help_verif_score3";
           break;
 
-        case 4:
+        case 4: // Majority of closed clods; less than 30% of aggregates...
           this.items = [
             {
               title: this.translate.get('VERIF_SCORE4_CRITERIA1_CHECK1'),
-              checked: false, imgSrc: './assets/pictures/non_poreux.png',
+              checked: false, imgSrc: './assets/pictures/fragment_1cm.jpg',
               code: 1
             },
             {
               title: this.translate.get('VERIF_SCORE4_CRITERIA1_CHECK2'),
               checked: false,
-              imgSrc: './assets/pictures/no_picture.png',
+              imgSrc: './assets/pictures/racine_vdt_1.jpg',
               code: 2
             }
           ];
@@ -157,12 +164,12 @@ export class VerifNotationPage {
           this.criterias.push({ title: 'Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }] });
           this.helpId = "help_verif_score4";
           break;
-        case 5:
+        case 5: // Majority of closed clods; almost no aggregates smaller than 7 cm
           this.items = [
             {
               title: this.translate.get('VERIF_SCORE5_CRITERIA1_CHECK1'),
               checked: false,
-              imgSrc: './assets/pictures/fragment_difficile_obtenir.png',
+              imgSrc: './assets/pictures/fragment_1cm.jpg',
               code: 1
             },
             {
@@ -175,11 +182,11 @@ export class VerifNotationPage {
           this.criterias = [{ title: this.translate.get('VERIF_SCORE5_CRITERIA1_TITLE'), array: this.items }];
           this.criterias.push({
             title: this.translate.get('VERIF_SCORE5_CRITERIA2_TITLE'),
-            array: [{ title: this.translate.get('YES'), checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }]
+            array: [{ title: this.translate.get('YES'), checked: false, imgSrc: './assets/pictures/racine_vdt_1.jpg', code: 1 }]
           });
           this.criterias.push({
             title: this.translate.get('VERIF_SCORE5_CRITERIA3_TITLE'),
-            array: [{ title: this.translate.get('YES'), checked: false, imgSrc: './assets/pictures/anoxie_possible.png', code: 1 }]
+            array: [{ title: this.translate.get('YES'), checked: false, imgSrc: './assets/pictures/anoxie.jpg', code: 1 }]
           });
           this.helpId = "help_verif_score5";
           break;

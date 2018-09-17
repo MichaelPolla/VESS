@@ -9,6 +9,9 @@ import { VerifNotationPage } from './../verif-notation/verif-notation';
 import { DataService } from '../../providers/data-service';
 import { TranslateProvider } from './../../providers/translate/translate';
 
+/**
+ * Notation - Step 1
+ */
 @Component({
   selector: 'page-notation-1',
   templateUrl: 'notation-1.html'
@@ -35,19 +38,19 @@ export class Notation1Page {
       {
         title: this.translate.get('NOTATION_STEP1_OPTION1'),
         checked: false,
-        imgSrc: './assets/pictures/pas_motte_fermee.png',
+        imgSrc: './assets/pictures/sq1.jpg',
         code: 1
       },
       {
         title: this.translate.get('NOTATION_STEP1_OPTION2'),
         checked: false,
-        imgSrc: './assets/pictures/possibles_mottes_fermees.png',
+        imgSrc: './assets/pictures/sq2.jpg',
         code: 2
       },
       {
         title: this.translate.get('NOTATION_STEP1_OPTION3'),
         checked: false,
-        imgSrc: './assets/pictures/majoritaire_mottes_fermees.png',
+        imgSrc: './assets/pictures/sq3.jpg',
         code: 3
       }
     ];
