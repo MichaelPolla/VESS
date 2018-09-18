@@ -194,8 +194,7 @@ export class VerifNotationPage {
     }
   }
 
-  showModal(item_index) {
-    let imgSrc = this.items[item_index].imgSrc; // TODO: pass this parameter to the modal so it can be used to show the picture.
+  showModal(imgSrc) {
     let testModal = this.modalCtrl.create(ModalPicturePage, { imgSrc: imgSrc, type: "picture" });
     testModal.present();
   }
