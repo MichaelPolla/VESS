@@ -10,29 +10,25 @@
   <p>{{ 'DEFINING_LAYERS_INSTRUCTIONS' | translate }} :</p>
   <ion-list>
     <ion-item>
-      <ion-label stacked color="brown">{{ 'BLOCK_SIZE' | translate }} :</ion-label>
+      <ion-label stacked color="brown">{{ 'BLOCK_SIZE' | translate }} : <span class="user-input">{{thickness}} cm</span></ion-label>
       <ion-range min="15" max="40" [(ngModel)]="thickness" color="green" snaps="true" (ionChange)="changeSizeLayers()">
-        <ion-label range-right>{{thickness}} cm</ion-label>
       </ion-range>
     </ion-item>
     <ion-item>
-      <ion-label stacked color="brown">{{ 'NUMBER_OF_LAYERS' | translate }} :</ion-label>
+      <ion-label stacked color="brown">{{ 'NUMBER_OF_LAYERS' | translate }} : <span class="user-input">{{nbLayers}}</span></ion-label>
       <ion-range min="1" max="5" [(ngModel)]="nbLayers" color="green" snaps="true" (ionChange)="changeNbLayers(nbLayers)">
-        <ion-label range-right>{{nbLayers}}</ion-label>
       </ion-range>
     </ion-item>
 
     <ion-item *ngFor="let layer of listLayers">
-      <ion-label stacked color="brown">{{ 'LAYER_SIZE' | translate }} {{layer.num}} :</ion-label>
+      <ion-label stacked color="brown">{{ 'LAYER_SIZE' | translate }} {{layer.num}} : <span class="user-input">{{layer.thickness}} cm</span></ion-label>
       <ion-range min="1" max="25" step="1" [(ngModel)]="layer.thickness" color="green" snaps="true" (ionChange)="changeSizeLayers()">
-        <ion-label range-right>{{layer.thickness}} cm</ion-label>
       </ion-range>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked color="brown">{{ 'TOTAL_LAYERS_SIZE' | translate }} ({{ 'MUST_BE' | translate }} {{thickness}} cm) : </ion-label>
-      <ion-label range-right [ngClass]="{'good' : totalSize == thickness, 'bad' : totalSize != thickness}">
-        {{totalSize}} cm
+      <ion-label stacked color="brown">{{ 'TOTAL_LAYERS_SIZE' | translate }} ({{ 'MUST_BE' | translate }} {{thickness}} cm) : 
+        <span class="user-input" [ngClass]="{'good' : totalSize == thickness, 'bad' : totalSize != thickness}">{{totalSize}} cm</span>
       </ion-label>
     </ion-item>
 

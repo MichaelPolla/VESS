@@ -9,8 +9,10 @@ page-defining-layer {
   ion-label {
     overflow: initial;
     white-space: initial;
-    width: 80% /* TODO: not working, also with px.*/
+  }
 
+  .user-input {
+    font-weight: bold;
   }
 
 }
