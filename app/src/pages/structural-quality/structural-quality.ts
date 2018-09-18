@@ -74,7 +74,7 @@ export class StructuralQualityPage {
         appearance2: "./assets/pictures/pas_motte_fermee.png",
         distinctiveFeaturesImg: "./assets/pictures/sq3.jpg",
         distrinctiveFeatureTxt: this.translate.get('SQ3.DISTINGUISHING_FEATURE'),
-        aggreagatesImg: "./assets/pictures/sq3_1.jpg",
+        aggreagatesImg: "./assets/pictures/sq2_1cm.jpg",
         aggreagatesTxt: this.translate.get('SQ3.APPEARANCE_OF_FRAGMENT'),
         color: "sq3"
       },
