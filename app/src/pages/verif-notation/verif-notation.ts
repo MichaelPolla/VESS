@@ -161,7 +161,7 @@ export class VerifNotationPage {
             }
           ];
           this.criterias = [{ title: this.translate.get('VERIF_SCORE4_CRITERIA1_TITLE'), array: this.items }];
-          this.criterias.push({ title: 'Les racines se situent principalement autour des mottes ou au sein des pores grossiers visibles', array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }] });
+          this.criterias.push({ title: this.translate.get('VERIF_SCORE4_CRITERIA2_TITLE'), array: [{ title: 'Oui', checked: false, imgSrc: './assets/pictures/racines_autour_mottes.png', code: 1 }] });
           this.helpId = "help_verif_score4";
           break;
         case 5: // Majority of closed clods; almost no aggregates smaller than 7 cm
